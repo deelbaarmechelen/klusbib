@@ -1,0 +1,9 @@
+logs/*
+!.gitkeep
+node_modules/
+tmp
+bower_components/
+.settings
+.project
+.buildpath
+.env

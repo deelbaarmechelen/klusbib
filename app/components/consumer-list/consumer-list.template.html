@@ -1,0 +1,24 @@
+<section id="content_home" class="active" class="content_section">
+	<h4>Consumables price list</h4>
+	<table id="price_table" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Category</th>
+				<th>Brand</th>
+				<th>Reference</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Stock</th>
+			</tr>
+		</thead>
+		<tbody id="price_table_tbody">
+		<tr ng-repeat="item in $ctrl.consumers | filter:{Public:1}">
+			<td>{{item.Category}}</td>
+			<td>{{item.Brand}}</td>
+			<td>{{item.Reference}}</td>
+			<td>{{item.Description}}</td>
+			<td>{{item.Price}} &euro; {{item.Unit}}</td>
+			<td>{{item.Stock}}</td>
+		</tr>
+	</table>
+</section>

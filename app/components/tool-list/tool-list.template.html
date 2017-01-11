@@ -1,0 +1,41 @@
+<!-- <button ng-click="filterCategory = 'construction'" ng-init="filterCategory = 'construction'"> -->
+<button ng-click="$ctrl.filterCategory = 'construction'">
+    {{$ctrl.translateCategory('construction')}}
+</button>
+<button ng-click="$ctrl.filterCategory = 'electricity'">
+    {{$ctrl.translateCategory('electricity')}} 
+</button>
+<button ng-click="$ctrl.filterCategory = 'wood'">
+    {{$ctrl.translateCategory('wood')}}
+</button>
+<br>
+<h2>{{$ctrl.translateCategory($ctrl.filterCategory)}}</h2>
+
+<table class="table table-striped">
+   <thead>
+         <tr>
+            <th>Foto</th>
+            <th>Beschrijving</th>
+            <th>Functies</th>
+         </tr>
+   </thead>
+   <tbody>
+
+        <tr ng-repeat="item in $ctrl.tools| filter:{category:$ctrl.filterCategory }"> 
+            <td><a href="#!/tools/{{item.id}}"><img ng-src="{{item.img}}"/></a></td>
+            <td><a href="#!/tools/{{item.id}}">{{item.name}}</a>:<br>{{item.description}}
+                <ul>
+                    <li>Link:<a href="{{item.link}}">{{item.link}}</a></li>
+                </ul>
+            </td>
+            <td><button ng-click="deleteTool(item.id, $index)" ng-if=isAdmin(user)>Verwijderen</button></td>
+        </tr>
+        <tr class="buttons" ng-if=isAdmin(user)>
+            <td>
+                <button ng-click="newTool()">
+                    Werktuig toevoegen
+                </button>
+            </td>
+        </tr>
+   </tbody>
+</table>
