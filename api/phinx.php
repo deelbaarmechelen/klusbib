@@ -6,7 +6,10 @@ return array(
 				"migrations" => "%%PHINX_CONFIG_DIR%%/db/migrations",
 				"seeds" => "%%PHINX_CONFIG_DIR%%/db/seeds"
 		),
-		'migration_base_class' => '\Api\Migration\Migration',
+		"templates" => array(
+				"file" => "%%PHINX_CONFIG_DIR%%/templates/migration.template.php.dist",
+		),
+		// 		'migration_base_class' => '\Api\Migration\Migration',
 		"environments" => array(
 				"default_migration_table" => "phinxlog",
 				"default_database" => "dev",
