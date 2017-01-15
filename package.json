@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "A tool library",
   "repository": "https://github.com/???",
-  "license": "MIT",
+  "license": "AGPLv3",
   "devDependencies": {
     "bower": "^1.7.7",
     "http-server": "^0.9.0",
