@@ -1,9 +1,17 @@
 <?php
 // Routes
 
+$app->get('/', function ($request, $response, $args) {
+	// Sample log message
+	$this->logger->info("Slim-Skeleton '/' route");
+
+	// Render index view
+	return $this->renderer->render($response, 'index.phtml', $args);
+});
+
 $app->get('/hello[/{name}]', function ($request, $response, $args) {
     // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
+    $this->logger->info("Slim-Skeleton '/hello' route");
 
     // Render index view
     return $this->renderer->render($response, 'index.phtml', $args);
@@ -22,10 +30,28 @@ $app->get('/tools', function ($request, $response, $args) {
 	return $response->withJson($data);
 });
 
-$app->post('/tools/new', function (Request $request, Response $response) {
-	$data = $request->getParsedBody();
-	$tools_data = [];
-	$tools_data['title'] = filter_var($data['title'], FILTER_SANITIZE_STRING);
-	$tools_data['description'] = filter_var($data['description'], FILTER_SANITIZE_STRING);
+$app->get('/tools/new', function ($request, $response, $args) {
+// 	$app->post('/tools/new', function (Request $request, Response $response) {
+// 	$data = $request->getParsedBody();
+// 	echo $args;
+	$tool = new \Api\Model\Tool();
+// 	$tool->name = filter_var($data['name'], FILTER_SANITIZE_STRING);
+	$tool->name = 'test';
+	$tool->description = 'my new tool';
+	$tool->save();
+	echo 'created';
+// 	$tool->description = filter_var($data['description'], FILTER_SANITIZE_STRING);
+	// 	$tools_data = [];
+// 	$tools_data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
+// 	$tools_data['description'] = filter_var($data['description'], FILTER_SANITIZE_STRING);
+// 	$tools_data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
 	// ...
 });
+
+// 	$app->get('/create', function(){
+// 		$widget = new \MyProject\Model\Widget();
+// 		$widget->serial_number = 123;
+// 		$widget->name = 'My Test Widget';
+// 		$widget->save();
+// 		echo 'Created!';
+// 	});
