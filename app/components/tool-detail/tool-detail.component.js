@@ -44,35 +44,35 @@ angular.
                 alert.show('Deleted', args.calendarEvent);
               }
             }];
-            self.events = [];
-//          self.events = [
-//              {
-//                title: 'An event',
-//                color: calendarConfig.colorTypes.warning,
-//                startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-//                endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
-//                draggable: true,
-//                resizable: true,
-//                actions: actions
-//              }, {
-//                title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
-//                color: calendarConfig.colorTypes.info,
-//                startsAt: moment().subtract(1, 'day').toDate(),
-//                endsAt: moment().add(5, 'days').toDate(),
-//                draggable: true,
-//                resizable: true,
-//                actions: actions
-//              }, {
-//                title: 'This is a really long event title that occurs on every year',
-//                color: calendarConfig.colorTypes.important,
-//                startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-//                endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-//                recursOn: 'year',
-//                draggable: true,
-//                resizable: true,
-//                actions: actions
-//              }
-//            ];
+//            self.events = [];
+          self.events = [
+              {
+                title: 'An event',
+                color: calendarConfig.colorTypes.warning,
+                startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
+                endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
+                draggable: true,
+                resizable: true,
+                actions: actions
+              }, {
+                title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
+                color: calendarConfig.colorTypes.info,
+                startsAt: moment().subtract(1, 'day').toDate(),
+                endsAt: moment().add(5, 'days').toDate(),
+                draggable: true,
+                resizable: true,
+                actions: actions
+              }, {
+                title: 'This is a really long event title that occurs on every year',
+                color: calendarConfig.colorTypes.important,
+                startsAt: moment().startOf('day').add(7, 'hours').toDate(),
+                endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+                recursOn: 'year',
+                draggable: true,
+                resizable: true,
+                actions: actions
+              }
+            ];
 
           self.cellIsOpen = true;
 
@@ -129,23 +129,29 @@ angular.
 
             };
           
-//         $http.get('data/tools/' + $routeParams.toolId + '.json').then(function(response) {
-//             self.tool = response.data;
-//             self.showCategory = function () {
-//                 var selected = $filter('filter')(self.categories, {value: self.tool.category});
-//                 return (self.tool.category && selected.length) ? selected[0].text : 'Not set';
-//             };
-//         });
-          
-          
-          
-          $http.get('data/tools/' + $routeParams.toolId + '.json').then(function(response) {
-            self.tool = response.data;
-            self.showCategory = function () {
-                var selected = $filter('filter')(self.categories, {value: self.tool.category});
-                return (self.tool.category && selected.length) ? selected[0].text : 'Not set';
-            };
-          });
+          $http.get('/api/public/tools/'+ $routeParams.toolId).then(function(response) {
+    	        self.tool = response.data;
+    	        self.showCategory = function () {
+    	        	var selected = $filter('filter')(self.categories, {value: self.tool.category});
+    	        	return (self.tool.category && selected.length) ? selected[0].text : 'Not set';
+    	        };
+    	        self.events = [];
+    	        self.tool.reservations.forEach ( function (reservation){
+    	        	var primarycolor = colourNameToHex('dark' + reservation.color);
+    	        	var secondarycolor = colourNameToHex(reservation.color);
+    	        	var event = {
+        	                title: reservation.title,
+//        	                color: calendarConfig.colorTypes.warning,
+        	                color: { primary: primarycolor, secondary: secondarycolor},
+        	                startsAt: new Date(moment(reservation.startsAt, "YYYY-MM-DD")),
+        	                endsAt: new Date(moment(reservation.endsAt, "YYYY-MM-DD")),
+        	                draggable: true,
+        	                resizable: true,
+        	                actions: actions
+    	        	}
+    	        	self.events.push(event);
+    	        });
+    	  });
         }
     ]
   });
