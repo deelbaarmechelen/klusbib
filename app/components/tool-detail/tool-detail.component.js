@@ -128,7 +128,18 @@ angular.
               }
 
             };
-          
+          self.assignEventColor = function(reservation) {
+        	  var color = 'red';
+        	  if ('maintenance' === reservation.type) {
+        		  color = 'green';
+        	  } else if ('reservation' === reservation.type) {
+        		  color = 'blue';
+        	  }
+        	  var primarycolor = colourNameToHex('dark' + color);
+        	  var secondarycolor = colourNameToHex(color);
+        	  return { primary: primarycolor, secondary: secondarycolor};
+//        	  return calendarConfig.colorTypes.warning;
+          }
           $http.get('/api/public/tools/'+ $routeParams.toolId).then(function(response) {
     	        self.tool = response.data;
     	        self.showCategory = function () {
@@ -137,12 +148,9 @@ angular.
     	        };
     	        self.events = [];
     	        self.tool.reservations.forEach ( function (reservation){
-    	        	var primarycolor = colourNameToHex('dark' + reservation.color);
-    	        	var secondarycolor = colourNameToHex(reservation.color);
     	        	var event = {
         	                title: reservation.title,
-//        	                color: calendarConfig.colorTypes.warning,
-        	                color: { primary: primarycolor, secondary: secondarycolor},
+        	                color: self.assignEventColor(reservation),
         	                startsAt: new Date(moment(reservation.startsAt, "YYYY-MM-DD")),
         	                endsAt: new Date(moment(reservation.endsAt, "YYYY-MM-DD")),
         	                draggable: true,
