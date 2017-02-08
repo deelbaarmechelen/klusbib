@@ -11,7 +11,7 @@ class CreateTools extends AbstractMigration
 	{
 		Capsule::schema()->create('tools', function(Illuminate\Database\Schema\Blueprint $table){
 			// Auto-increment id
-			$table->increments('id');
+			$table->increments('tool_id');
 			$table->string('name', 50);
 			$table->string('description', 255)->nullable()->default(null);
 			$table->string('link', 255)->nullable()->default(null);
