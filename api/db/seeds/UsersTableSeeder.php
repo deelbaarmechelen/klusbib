@@ -17,13 +17,15 @@ class UsersTableSeeder extends AbstractSeed
      */
     public function run()
     {
+    	$startdate = new DateTime();
+    	$enddate = clone $startdate;
+    	$enddate->add(new DateInterval('P7D'));
     	Capsule::table('users')->insert([
     			'firstname' => 'admin',
     			'lastname' => 'admin',
     			'role' => 'admin', 
-    			 'description' => 'description of this tool',
-    			'link' => null,
-    			'category' => 'wood',
+    			'membership_start_date' => $startdate,
+    			'membership_end_date' => $enddate
     	]);
     	}
 }

@@ -153,10 +153,60 @@ $app->post('/tools/{toolid}/reservations/new', function ($request, $response, $a
 	echo 'created';
 });
 	
-	// 	$app->get('/create', function(){
-// 		$widget = new \MyProject\Model\Widget();
-// 		$widget->serial_number = 123;
-// 		$widget->name = 'My Test Widget';
-// 		$widget->save();
-// 		echo 'Created!';
-// 	});
+$app->get('/users', function ($request, $response, $args) {
+	$this->logger->info("Klusbib '/users' route");
+	$users = Capsule::table('users')->orderBy('lastname', 'asc')->get();
+	$data = array();
+	foreach ($users as $user) {
+		$item  = array(
+				"user_id" => $user->user_id,
+				"firstname" => $user->firstname,
+				"lastname" => $user->lastname,
+				"role" => $user->role,
+				"membership_start_date" => $user->membership_start_date,
+				"membership_end_date" => $user->membership_end_date
+		);
+		array_push($data, $item);
+	}
+	return $response->withJson($data);
+});
+
+$app->get('/users/{userid}', function ($request, $response, $args) {
+	$this->logger->info("Klusbib '/users/id' route");
+	$users = Capsule::table('users')->where('user_id', $args['userid'])->get();
+	if (null == users || count(users) == 0) {
+		return $response->withStatus(404);
+	}
+	$user = users[0];
+
+	$data = array("user_id" => $user->tool_id,
+			"firstname" => $user->firstname,
+			"lastname" => $user->lastname,
+			"link" => $user->link,
+			"role" => $user->role,
+			"membership_start_date" => $user->membership_start_date,
+			"membership_end_date" => $user->membership_end_date,
+			"reservations" => array()
+	);
+	return $response->withJson($data);
+});
+	
+$app->get('/reservations', function ($request, $response, $args) {
+	$this->logger->info("Klusbib '/reservations' route");
+	$reservations = Capsule::table('reservations')->orderBy('startsAt', 'desc')->get();
+	$data = array();
+	foreach ($reservations as $reservation) {
+		$item  = array(
+				"reservation_id" => $reservation->reservation_id,
+				"tool_id" => $reservation->tool_id,
+				"user_id" => $reservation->user_id,
+				"title" => $reservation->title,
+				"startsAt" => $reservation->startsAt,
+				"endsAt" => $reservation->endsAt,
+				"type" => $reservation->type,
+			);
+		array_push($data, $item);
+	}
+	return $response->withJson($data);
+});
+
