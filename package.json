@@ -9,12 +9,12 @@
   "repository": "https://github.com/renardeau/klusbib",
   "license": "AGPLv3",
   "dependencies": {
+    "http-server": "^0.9.0",
     "bower": "^1.8.0",
     "gulp": "^3.9.1",
     "ng-admin": "^1.0.0"
   },
   "devDependencies": {
-    "http-server": "^0.9.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
