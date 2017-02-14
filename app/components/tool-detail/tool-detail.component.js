@@ -24,8 +24,8 @@ angular.
   module('toolDetail').
   component('toolDetail', {
     templateUrl: 'components/tool-detail/tool-detail.template.html',
-    controller: ['$http', '$routeParams','moment','calendarConfig', 'alert',
-      function ToolDetailController($http, $routeParams,moment,calendarConfig, alert) {
+    controller: ['$http', '$routeParams','moment','calendarConfig', 'alert','__env', 
+      function ToolDetailController($http, $routeParams,moment,calendarConfig, alert, __env) {
           var self = this;
           self.toolId = $routeParams.toolId;
           self.calendarView = 'month';
@@ -110,7 +110,7 @@ angular.
         	  var secondarycolor = colourNameToHex(color);
         	  return { primary: primarycolor, secondary: secondarycolor};
           }
-          $http.get('/api/public/tools/'+ $routeParams.toolId).then(function(response) {
+          $http.get(__env.apiUrl + '/public/tools/'+ $routeParams.toolId).then(function(response) {
     	        self.tool = response.data;
     	        self.showCategory = function () {
     	        	var selected = $filter('filter')(self.categories, {value: self.tool.category});

@@ -1,4 +1,5 @@
 // This file should handle routes configuration
+
 angular.
   module('toollibApp').
   config(['$locationProvider', '$routeProvider',

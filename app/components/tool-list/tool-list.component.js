@@ -1,12 +1,10 @@
-// Register `phoneList` component, along with its associated controller and template
 angular.module('toolList').component('toolList', {
 	templateUrl : 'components/tool-list/tool-list.template.html',
 	controller :
-	[ '$http', '$routeParams', function ToolListController($http, $routeParams) {
+	[ '$http', '$routeParams', '__env', function ToolListController($http, $routeParams, __env) {
 		var self = this;
 		self.filterCategory = $routeParams.category
-		//$http.get('data/tools/tools.json').then(function(response) {
-		$http.get('/api/public/tools').then(function(response) {
+		$http.get(__env.apiUrl + '/public/tools').then(function(response) {
 	        self.tools = response.data;
 	      });
 
