@@ -110,7 +110,7 @@ angular.
         	  var secondarycolor = colourNameToHex(color);
         	  return { primary: primarycolor, secondary: secondarycolor};
           }
-          $http.get(__env.apiUrl + '/public/tools/'+ $routeParams.toolId).then(function(response) {
+          $http.get(__env.apiUrl + '/tools/'+ $routeParams.toolId).then(function(response) {
     	        self.tool = response.data;
     	        self.showCategory = function () {
     	        	var selected = $filter('filter')(self.categories, {value: self.tool.category});

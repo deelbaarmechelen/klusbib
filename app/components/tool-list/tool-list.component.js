@@ -4,7 +4,7 @@ angular.module('toolList').component('toolList', {
 	[ '$http', '$routeParams', '__env', function ToolListController($http, $routeParams, __env) {
 		var self = this;
 		self.filterCategory = $routeParams.category
-		$http.get(__env.apiUrl + '/public/tools').then(function(response) {
+		$http.get(__env.apiUrl + '/tools').then(function(response) {
 	        self.tools = response.data;
 	      });
 
