@@ -9,7 +9,7 @@ Object.assign(env, window.__env);
 
 var app = angular.module('toollibApp', [
 	'ngRoute',
-//	'toyList', 
+	'signIn', 
 	'toolList', 
 	'toolDetail',
 	'consumerList'

@@ -7,6 +7,9 @@ angular.
       $locationProvider.hashPrefix('!');
 
       $routeProvider.
+      	when('/signin', {
+          template: '<sign-in></sign-in>'
+      	}).
         when('/tools', {
           template: '<tool-list></tool-list>'
         }).
@@ -15,7 +18,7 @@ angular.
         }).
         when('/consumers', {
             template: '<consumer-list></consumer-list>'
-          }).
+        }).
         otherwise('/tools');
     }
   ]);
@@ -72,4 +75,4 @@ function colourNameToHex(colour)
         return colours[colour.toLowerCase()];
 
     return false;
-}
+};
