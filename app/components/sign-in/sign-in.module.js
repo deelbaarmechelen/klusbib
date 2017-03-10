@@ -18,7 +18,7 @@ appSignin.factory('Auth', ['$http', '$localStorage', '__env',
         	var data = '["tools.all"]';
             $http.post(__env.apiUrl + '/token', data, {headers: headers}).then(success,error)
         },
-        logout: function (success) {
+        signout: function (success) {
             delete $localStorage.token;
             success();
         },

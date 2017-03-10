@@ -20,6 +20,11 @@ angular.module('signIn').component('signIn', {
             	  self.error = 'Invalid credentials.';
               })
 			};
+			this.signout = function () {
+				Auth.signout(function () {
+		            self.error = 'Successfully logged out!';
+				});
+			}
    		} 
 	]
     
