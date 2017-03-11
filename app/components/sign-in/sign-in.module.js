@@ -15,7 +15,7 @@ appSignin.factory('Auth', ['$http', '$localStorage', '__env',
         signin: function (login, password, success, error) {
         	var auth = btoa(login + ":" + password), 
             	headers = {"Authorization": "Basic " + auth};
-        	var data = '["tools.all"]';
+        	var data = '["tools.all", "users.all", "reservations.all"]';
             $http.post(__env.apiUrl + '/token', data, {headers: headers}).then(success,error)
         },
         signout: function (success) {
