@@ -7,12 +7,12 @@
 											class="table table-striped table-bordered table-condensed">
 											<tbody>
 												<tr>
-													<td>Manufacturer</td>
-													<td class="wrap">Makita(TODO: replace fix value)</td>
+													<td>Merk</td>
+													<td class="wrap">{{ $ctrl.tool.brand }}</td>
 												</tr>
 												<tr>
 													<td>Model</td>
-													<td class="wrap">5903R(TODO: replace fix value)</td>
+													<td class="wrap">{{ $ctrl.tool.type }}</td>
 												</tr>
 
 											</tbody>
@@ -44,8 +44,9 @@
 <!--                                             {{ showCategory() }} -->
                                             {{ $ctrl.tool.category }}
                                             </span></li>
-                                    <li>Link: <a href="{{$ctrl.tool.link}}">{{$ctrl.tool.link}}</a>
+                                    <li>Fabrikant: <a href="{{$ctrl.tool.manufacturer_url}}">{{$ctrl.tool.manufacturer_url}}</a>
                                         <div ng-if=isAdmin(user)><span editable-text="$ctrl.tool.link" e-name="link" e-maxlength="50"></span></div></li>
+                                    <li>Documentatie: <a href="{{$ctrl.tool.doc_url}}">{{$ctrl.tool.doc_url}}</a>
                                 </ul>
                             </td>
                         </tr>
@@ -72,7 +73,7 @@
   mwl-date-modifier
   date="$ctrl.viewDate"
   decrement="$ctrl.calendarView">
-  Previous
+  Vorige
 </button>
 
 <button
@@ -80,7 +81,7 @@
   mwl-date-modifier
   date="$ctrl.viewDate"
   set-to-today>
-  Today
+  Vandaag
 </button>
 
 <button
@@ -88,15 +89,15 @@
   mwl-date-modifier
   date="$ctrl.viewDate"
   increment="$ctrl.calendarView">
-  Next
+  Volgende
 </button>
 
     <div class="col-md-6 text-center">
       <div class="btn-group">
-        <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'year'" ng-click="$ctrl.cellIsOpen = false">Year</label>
-        <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'month'" ng-click="$ctrl.cellIsOpen = false">Month</label>
+        <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'year'" ng-click="$ctrl.cellIsOpen = false">Jaar</label>
+        <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'month'" ng-click="$ctrl.cellIsOpen = false">Maand</label>
         <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'week'" ng-click="$ctrl.cellIsOpen = false">Week</label>
-        <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'day'" ng-click="$ctrl.cellIsOpen = false">Day</label>
+        <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'day'" ng-click="$ctrl.cellIsOpen = false">Dag</label>
       </div>
     </div>
 	<mwl-calendar
