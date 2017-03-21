@@ -33,7 +33,27 @@ angular.
           var previousDate = moment(self.viewDate);
 
           
-          var actions = [{
+  		this.resizeImage = function (imageUrl, size) {
+			baseUrl = imageUrl.substr(0,imageUrl.lastIndexOf('.'));
+			ext = imageUrl.substr(imageUrl.lastIndexOf('.')+1);
+			newUrl = baseUrl + '-' + size + '.' + ext;
+			return newUrl;
+		}
+		
+  		this.translateCategory = function translateCategory(category) {
+			catMap = {
+				'construction' : 'Bouw',
+				'electricity' : 'Elektriciteit',
+				'wood' : 'Hout',
+			};
+			if (category in catMap) {
+				return catMap[category];
+			} else {
+				return category;
+			}
+		}
+
+  		var actions = [{
               label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
               onClick: function(args) {
                 alert.show('Edited', args.calendarEvent);

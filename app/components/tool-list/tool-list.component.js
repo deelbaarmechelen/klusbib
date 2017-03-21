@@ -10,6 +10,13 @@ angular.module('toolList').component('toolList', {
 	        self.tools = response.data;
 	      });
 
+		this.resizeImage = function (imageUrl, size) {
+			baseUrl = imageUrl.substr(0,imageUrl.lastIndexOf('.'));
+			ext = imageUrl.substr(imageUrl.lastIndexOf('.')+1);
+			newUrl = baseUrl + '-' + size + '.' + ext;
+			return newUrl;
+		}
+		
 		this.translateCategory = function translateCategory(category) {
 			catMap = {
 				'construction' : 'Bouw',

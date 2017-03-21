@@ -31,29 +31,5 @@ appToolList.config(['$httpProvider', function ($httpProvider) {
     }]);
 }]);
 
-//appToolList.factory('ToolQueryWithToken', ['$resource', '__env',
-//    function($resource, __env){
-//        return {
-//            tools: function (token) {
-//                return $resource(__env.apiUrl + '/tools', {}, {
-//                    query: {
-//                        method: 'GET',
-//                        isArray:true,
-//                        headers: {
-//                            'Authorization': 'Bearer ' + token
-//                        }
-//                    }
-//                });
-//            },
-//            login: function () {
-//                return $resource(__env.apiUrl + '/token', {}, {
-//                    login : {
-//                        method: 'POST',
-//                        isArray: false
-//                    }
-//                });
-//            }
-//    };
-//}]);
 
 

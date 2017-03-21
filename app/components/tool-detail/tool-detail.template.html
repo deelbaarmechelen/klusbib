@@ -1,7 +1,7 @@
 <div class="col-md-3">
-    <a href="#!/tools?category={{$ctrl.tool.category}}">{{ $ctrl.tool.category }}</a>
+    <a href="#!/tools?category={{$ctrl.tool.category}}">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a>
 <!-- 		<div class="w-5 p-3"> -->
-			<img ng-src="{{$ctrl.tool.img}}"/>
+			<img ng-src="{{ $ctrl.resizeImage($ctrl.tool.img, 'x400') }}"/>
 <!-- 		</div> -->
 										<table
 											class="table table-striped table-bordered table-condensed">
@@ -42,7 +42,7 @@
                                     <li>Type: <span editable-select="$ctrl.tool.category" e-name="category" e-required 
                                                     e-ng-options="c.value as c.text for c in categories">
 <!--                                             {{ showCategory() }} -->
-                                            {{ $ctrl.tool.category }}
+                                            {{ $ctrl.translateCategory($ctrl.tool.category) }}
                                             </span></li>
                                     <li>Fabrikant: <a href="{{$ctrl.tool.manufacturer_url}}">{{$ctrl.tool.manufacturer_url}}</a>
                                         <div ng-if=isAdmin(user)><span editable-text="$ctrl.tool.link" e-name="link" e-maxlength="50"></span></div></li>
