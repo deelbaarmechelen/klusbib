@@ -19,9 +19,13 @@ angular.module('toolList').component('toolList', {
 		
 		this.translateCategory = function translateCategory(category) {
 			catMap = {
-				'construction' : 'Bouw',
-				'electricity' : 'Elektriciteit',
-				'wood' : 'Hout',
+					'general' : 'Algemeen',
+					'car' : 'Auto',
+					'construction' : 'Bouw',
+					'electricity' : 'Elektriciteit',
+					'sanitary' : 'Sanitair',
+					'wood' : 'Schrijnwerk',
+					'garden' : 'Tuin',
 			};
 			if (category in catMap) {
 				return catMap[category];

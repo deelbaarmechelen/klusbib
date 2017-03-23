@@ -42,9 +42,13 @@ angular.
 		
   		this.translateCategory = function translateCategory(category) {
 			catMap = {
+				'general' : 'Algemeen',
+				'car' : 'Auto',
 				'construction' : 'Bouw',
 				'electricity' : 'Elektriciteit',
-				'wood' : 'Hout',
+				'sanitary' : 'Sanitair',
+				'wood' : 'Schrijnwerk',
+				'garden' : 'Tuin',
 			};
 			if (category in catMap) {
 				return catMap[category];

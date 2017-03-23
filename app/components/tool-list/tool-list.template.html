@@ -1,12 +1,24 @@
 <!-- <button ng-click="filterCategory = 'construction'" ng-init="filterCategory = 'construction'"> -->
+<button ng-click="$ctrl.filterCategory = 'general'">
+    {{$ctrl.translateCategory('general')}} 
+</button>
+<button ng-click="$ctrl.filterCategory = 'car'">
+    {{$ctrl.translateCategory('car')}} 
+</button>
 <button ng-click="$ctrl.filterCategory = 'construction'">
     {{$ctrl.translateCategory('construction')}}
 </button>
 <button ng-click="$ctrl.filterCategory = 'electricity'">
     {{$ctrl.translateCategory('electricity')}} 
 </button>
+<button ng-click="$ctrl.filterCategory = 'sanitary'">
+    {{$ctrl.translateCategory('sanitary')}}
+</button>
 <button ng-click="$ctrl.filterCategory = 'wood'">
     {{$ctrl.translateCategory('wood')}}
+</button>
+<button ng-click="$ctrl.filterCategory = 'garden'">
+    {{$ctrl.translateCategory('garden')}}
 </button>
 <br>
 <h2>{{$ctrl.translateCategory($ctrl.filterCategory)}}</h2>
