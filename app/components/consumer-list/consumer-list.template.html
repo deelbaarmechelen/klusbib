@@ -12,13 +12,13 @@
 			</tr>
 		</thead>
 		<tbody id="price_table_tbody">
-		<tr ng-repeat="item in $ctrl.consumers | filter:{Public:1}">
-			<td>{{item.Category}}</td>
-			<td>{{item.Brand}}</td>
-			<td>{{item.Reference}}</td>
-			<td>{{item.Description}}</td>
-			<td>{{item.Price}} &euro; {{item.Unit}}</td>
-			<td>{{item.Stock}}</td>
+		<tr ng-repeat="item in $ctrl.consumers | filter:{public:1}">
+			<td>{{item.category}}</td>
+			<td>{{item.brand}}</td>
+			<td>{{item.reference}}</td>
+			<td>{{item.description}}</td>
+			<td>{{item.price}} &euro; {{item.unit}}</td>
+			<td>{{item.stock}}</td>
 		</tr>
 	</table>
 </section>
