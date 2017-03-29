@@ -36,15 +36,14 @@
              <tr class='even_row'>
                  <td>
                      <p><strong><font size='+2'>
-                             <i>Werktuig: </i>
-                             <span editable-text="$ctrl.tool.name" e-name="name" e-required>{{ $ctrl.tool.name || 'empty' }}</span>
-                             </font></strong><br>
+                        <span editable-text="$ctrl.tool.name" e-name="name" e-required>{{ $ctrl.tool.name || 'empty' }}</span>
+                        </font></strong><br>
                  </td>
              </tr>
               <tr>
                  <td>
                      <i editable-text="$ctrl.tool.description" e-form="textBtnForm">
-                         {{$ctrl.tool.description || 'Geef een beschrijving'}}</i>
+                         {{$ctrl.tool.description}}</i>
                  </td>
              </tr>
              <tr>
@@ -69,49 +68,49 @@
              </span>
          </div>
      </form>
-   	<h2 class="text-center">{{ $ctrl.calendarTitle }}</h2>
-   	<button
-	  class="btn btn-primary"
-	  mwl-date-modifier
-	  date="$ctrl.viewDate"
-	  decrement="$ctrl.calendarView">
-	  Vorige
-	</button>
+<!--    	<h2 class="text-center">{{ $ctrl.calendarTitle }}</h2> -->
+<!--    	<button -->
+<!-- 	  class="btn btn-primary" -->
+<!-- 	  mwl-date-modifier -->
+<!-- 	  date="$ctrl.viewDate" -->
+<!-- 	  decrement="$ctrl.calendarView"> -->
+<!-- 	  Vorige -->
+<!-- 	</button> -->
 	
-	<button
-	  class="btn btn-default"
-	  mwl-date-modifier
-	  date="$ctrl.viewDate"
-	  set-to-today>
-	  Vandaag
-	</button>
+<!-- 	<button -->
+<!-- 	  class="btn btn-default" -->
+<!-- 	  mwl-date-modifier -->
+<!-- 	  date="$ctrl.viewDate" -->
+<!-- 	  set-to-today> -->
+<!-- 	  Vandaag -->
+<!-- 	</button> -->
 	
-	<button
-	  class="btn btn-primary"
-	  mwl-date-modifier
-	  date="$ctrl.viewDate"
-	  increment="$ctrl.calendarView">
-	  Volgende
-	</button>
+<!-- 	<button -->
+<!-- 	  class="btn btn-primary" -->
+<!-- 	  mwl-date-modifier -->
+<!-- 	  date="$ctrl.viewDate" -->
+<!-- 	  increment="$ctrl.calendarView"> -->
+<!-- 	  Volgende -->
+<!-- 	</button> -->
 
-    <div class="col-md-6 text-center">
-      <div class="btn-group">
-        <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'year'" ng-click="$ctrl.cellIsOpen = false">Jaar</label>
-        <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'month'" ng-click="$ctrl.cellIsOpen = false">Maand</label>
-        <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'week'" ng-click="$ctrl.cellIsOpen = false">Week</label>
-        <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'day'" ng-click="$ctrl.cellIsOpen = false">Dag</label>
-      </div>
-    </div>
-	<mwl-calendar
-	    view="$ctrl.calendarView"
-	    view-date="$ctrl.viewDate"
-	   	events="$ctrl.events"
-	    view-title="$ctrl.calendarTitle"
-	   	on-event-click="$ctrl.eventClicked(calendarEvent)"
-	    on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-	    cell-is-open="true"
-	    on-timespan-click="$ctrl.timespanClicked(calendarDate, calendarCell)">
-	</mwl-calendar>
+<!--     <div class="col-md-6 text-center"> -->
+<!--       <div class="btn-group"> -->
+<!--         <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'year'" ng-click="$ctrl.cellIsOpen = false">Jaar</label> -->
+<!--         <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'month'" ng-click="$ctrl.cellIsOpen = false">Maand</label> -->
+<!--         <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'week'" ng-click="$ctrl.cellIsOpen = false">Week</label> -->
+<!--         <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'day'" ng-click="$ctrl.cellIsOpen = false">Dag</label> -->
+<!--       </div> -->
+<!--     </div> -->
+<!-- 	<mwl-calendar -->
+<!-- 	    view="$ctrl.calendarView" -->
+<!-- 	    view-date="$ctrl.viewDate" -->
+<!-- 	   	events="$ctrl.events" -->
+<!-- 	    view-title="$ctrl.calendarTitle" -->
+<!-- 	   	on-event-click="$ctrl.eventClicked(calendarEvent)" -->
+<!-- 	    on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd" -->
+<!-- 	    cell-is-open="true" -->
+<!-- 	    on-timespan-click="$ctrl.timespanClicked(calendarDate, calendarCell)"> -->
+<!-- 	</mwl-calendar> -->
 				
 	<br><br><br>
 </div>
