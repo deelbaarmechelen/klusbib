@@ -1,96 +1,98 @@
 <div class="col-md-3">
-    <a href="#!/tools?category={{$ctrl.tool.category}}">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a>
-<!-- 		<div class="w-5 p-3"> -->
-			<img ng-src="{{ $ctrl.resizeImage($ctrl.tool.img, 'x400') }}"/>
-<!-- 		</div> -->
-										<table
-											class="table table-striped table-bordered table-condensed">
-											<tbody>
-												<tr>
-													<td>Merk</td>
-													<td class="wrap">{{ $ctrl.tool.brand }}</td>
-												</tr>
-												<tr>
-													<td>Model</td>
-													<td class="wrap">{{ $ctrl.tool.type }}</td>
-												</tr>
+<!--     <a href="#!/tools?category={{$ctrl.tool.category}}">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a> -->
+	<table
+		class="table table-striped table-bordered table-condensed">
+		<tbody>
+			<tr>
+				<td>Categorie</td>
+				<td class="wrap"><a href="#!/tools?category={{$ctrl.tool.category}}">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a></td>
+			</tr>
+			<tr ng-if="$ctrl.tool.brand">
+				<td>Merk</td>
+				<td class="wrap">{{ $ctrl.tool.brand }}</td>
+			</tr>
+			<tr ng-if="$ctrl.tool.type">
+				<td>Model</td>
+				<td class="wrap">{{ $ctrl.tool.type }}</td>
+			</tr>
+			<tr ng-if="$ctrl.tool.manufacturer_url">
+				<td>Fabrikant</td>
+				<td class="wrap"><a href="{{$ctrl.tool.manufacturer_url}}">{{$ctrl.tool.manufacturer_url}}</a></td>
+			</tr>
+			<tr ng-if="$ctrl.tool.doc_url">
+				<td>Documentatie</td>
+				<td class="wrap"><a href="{{$ctrl.tool.doc_url}}">{{$ctrl.tool.doc_url}}</a></td>
+			</tr>
 
-											</tbody>
-										</table>
+		</tbody>
+	</table>
 </div>
 <div class="col-md-9">
 <!-- <div class="col-md-3"> -->
-               <form editable-form name="editableForm" onaftersave="saveTool()">
-                    <table cellspacing='0' cellpadding='0' border='0' width='100%'>
-                        <tr class='even_row'>
-                            <td>
-                                <p><strong><font size='+1'>
-                                        <i>Werktuig: </i>
-                                        <span editable-text="$ctrl.tool.name" e-name="name" e-required>{{ $ctrl.tool.name || 'empty' }}</span>
-                                        </font></strong><br>
-                            </td>
-                        </tr>
-                         <tr>
-                            <td>
-                                <i editable-text="$ctrl.tool.description" e-form="textBtnForm">
-                                    {{$ctrl.tool.description || 'Geef een beschrijving'}}</i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li>Type: <span editable-select="$ctrl.tool.category" e-name="category" e-required 
-                                                    e-ng-options="c.value as c.text for c in categories">
-<!--                                             {{ showCategory() }} -->
-                                            {{ $ctrl.translateCategory($ctrl.tool.category) }}
-                                            </span></li>
-                                    <li>Fabrikant: <a href="{{$ctrl.tool.manufacturer_url}}">{{$ctrl.tool.manufacturer_url}}</a>
-                                        <div ng-if=isAdmin(user)><span editable-text="$ctrl.tool.link" e-name="link" e-maxlength="50"></span></div></li>
-                                    <li>Documentatie: <a href="{{$ctrl.tool.doc_url}}">{{$ctrl.tool.doc_url}}</a>
-                                </ul>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="buttons" ng-if=isAdmin(user)>
-                        <!-- button to show form -->
-                        <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
-                            Edit
-                        </button>
-                        <!-- buttons to submit / cancel form -->
-                        <span ng-show="editableForm.$visible">
-                            <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-                                Save
-                            </button>
-                            <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-                                Cancel
-                            </button>
-                        </span>
-                    </div>
-                </form>
-       	<h2 class="text-center">{{ $ctrl.calendarTitle }}</h2>
-        	<button
-  class="btn btn-primary"
-  mwl-date-modifier
-  date="$ctrl.viewDate"
-  decrement="$ctrl.calendarView">
-  Vorige
-</button>
-
-<button
-  class="btn btn-default"
-  mwl-date-modifier
-  date="$ctrl.viewDate"
-  set-to-today>
-  Vandaag
-</button>
-
-<button
-  class="btn btn-primary"
-  mwl-date-modifier
-  date="$ctrl.viewDate"
-  increment="$ctrl.calendarView">
-  Volgende
-</button>
+<!-- 		<div class="w-5 p-3"> -->
+<!-- 		</div> -->
+    <form editable-form name="editableForm" onaftersave="saveTool()">
+         <table cellspacing='0' cellpadding='0' border='0' width='100%'>
+             <tr class='even_row'>
+                 <td>
+                     <p><strong><font size='+2'>
+                             <i>Werktuig: </i>
+                             <span editable-text="$ctrl.tool.name" e-name="name" e-required>{{ $ctrl.tool.name || 'empty' }}</span>
+                             </font></strong><br>
+                 </td>
+             </tr>
+              <tr>
+                 <td>
+                     <i editable-text="$ctrl.tool.description" e-form="textBtnForm">
+                         {{$ctrl.tool.description || 'Geef een beschrijving'}}</i>
+                 </td>
+             </tr>
+             <tr>
+                 <td>
+					<img ng-src="{{ $ctrl.resizeImage($ctrl.tool.img, 'x400') }}"/>
+                 </td>
+             </tr>
+         </table>
+         <div class="buttons" ng-if=isAdmin(user)>
+             <!-- button to show form -->
+             <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+                 Edit
+             </button>
+             <!-- buttons to submit / cancel form -->
+             <span ng-show="editableForm.$visible">
+                 <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                     Save
+                 </button>
+                 <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                     Cancel
+                 </button>
+             </span>
+         </div>
+     </form>
+   	<h2 class="text-center">{{ $ctrl.calendarTitle }}</h2>
+   	<button
+	  class="btn btn-primary"
+	  mwl-date-modifier
+	  date="$ctrl.viewDate"
+	  decrement="$ctrl.calendarView">
+	  Vorige
+	</button>
+	
+	<button
+	  class="btn btn-default"
+	  mwl-date-modifier
+	  date="$ctrl.viewDate"
+	  set-to-today>
+	  Vandaag
+	</button>
+	
+	<button
+	  class="btn btn-primary"
+	  mwl-date-modifier
+	  date="$ctrl.viewDate"
+	  increment="$ctrl.calendarView">
+	  Volgende
+	</button>
 
     <div class="col-md-6 text-center">
       <div class="btn-group">
