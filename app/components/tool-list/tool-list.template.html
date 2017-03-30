@@ -28,7 +28,7 @@
          <tr>
             <th>Foto</th>
             <th>Beschrijving</th>
-            <th>Functies</th>
+            <th ng-if=isAdmin(user) >Functies</th>
          </tr>
    </thead>
    <tbody>
@@ -36,9 +36,6 @@
         <tr ng-repeat="item in $ctrl.tools| filter:{category:$ctrl.filterCategory }"> 
             <td><a href="#!/tools/{{item.tool_id}}"><img ng-src="{{ $ctrl.resizeImage(item.img, 'x200') }}"/></a></td>
             <td><a href="#!/tools/{{item.tool_id}}">{{item.name}}</a>:<br>{{item.description}}
-                <ul>
-                    <li>Link:<a href="{{item.link}}">{{item.link}}</a></li>
-                </ul>
             </td>
             <td><button ng-click="deleteTool(item.tool_id, $index)" ng-if=isAdmin(user)>Verwijderen</button></td>
         </tr>
