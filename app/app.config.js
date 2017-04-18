@@ -19,6 +19,9 @@ angular.
         when('/consumers', {
             template: '<consumer-list></consumer-list>'
         }).
+        when('/profile/:userId', {
+            template: '<my-profile></my-profile>'
+          }).
         otherwise('/tools');
     }
   ]);

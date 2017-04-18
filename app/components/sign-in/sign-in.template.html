@@ -18,13 +18,14 @@
 
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="password" placeholder="Paswoord"
-                                   ng-model="$ctrl.password">
+                                   data-ng-model="$ctrl.password">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-primary pull-right">Inloggen</button>
-                            <button type="button" class="btn btn-primary pull-right" ng-click="$ctrl.signout()">Uitloggen</button>
+                            <button type="button" class="btn btn-primary pull-right" 
+                            	data-ng-if="$ctrl.user.id" data-ng-click="$ctrl.signout()">Uitloggen</button>
                         </div>
                     </div>
                     <p data-ng-show="$ctrl.error" class="error">{{ $ctrl.error }}</p>

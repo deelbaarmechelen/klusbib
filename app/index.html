@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="toollibApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="toollibApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="toollibApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="toollibApp" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="en" data-ng-app="toollibApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" data-ng-app="toollibApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" data-ng-app="toollibApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" data-ng-app="toollibApp" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,6 +42,8 @@
   <script src="components/tool-detail/tool-detail.component.js"></script>
   <script src="components/consumer-list/consumer-list.module.js"></script>
   <script src="components/consumer-list/consumer-list.component.js"></script>
+  <script src="components/my-profile/my-profile.module.js"></script>
+  <script src="components/my-profile/my-profile.component.js"></script>
 
   <link href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
   <link href="bower_components/angular-bootstrap-colorpicker/css/colorpicker.min.css" rel="stylesheet">
@@ -51,7 +53,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav data-ng-controller="toollibController" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Klusbib</a>
@@ -66,7 +68,8 @@
 <!-- 		            </div> -->
 <!-- 		        </form>	 -->
 		       </li>
-		       <li><a ng-href="#!/signin">Inloggen</a></li>
+		       <li><a data-ng-href="#!/signin">Inloggen</a></li>
+<!-- 		       <li><a data-ng-href="#!/profile/{{user.id}}">Profiel {{user.id}}</a></li> -->
 		     </ul>
             </div> 
         </div>
@@ -79,7 +82,7 @@
         	<p>Hier vind je een overzicht van de werktuigen in onze bib</p>
       	</div>
 
-    	<div ng-view></div>
+    	<div data-ng-view></div>
     </div>
 </body>
 </html>

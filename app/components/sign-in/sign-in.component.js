@@ -1,11 +1,14 @@
 angular.module('signIn').component('signIn', {
+	scope: true,
 	templateUrl : 'components/sign-in/sign-in.template.html',
 	controller :
-	[ '$http', '__env', 'Auth', '$localStorage', '$location',
-		function SignInController($http, __env, Auth, $localStorage, $location) {
+	[ '$http', '__env', 'Auth', '$localStorage', '$location','User',
+		function SignInController($http, __env, Auth, $localStorage, $location, User) {
 			var self = this;
-			
+			self.user = User.get();
             var successAuth = function (res) {
+            	var tokenClaims = Auth.getTokenClaims();
+            	User.update(tokenClaims["sub"]);
 	            $localStorage.token = res.data.token;
 	            $location.path("/");
 	        }
@@ -23,6 +26,7 @@ angular.module('signIn').component('signIn', {
 			this.signout = function () {
 				Auth.signout(function () {
 		            self.error = 'Successfully logged out!';
+		            User.update(null);
 				});
 			}
    		} 
