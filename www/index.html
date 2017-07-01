@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" data-ng-app="webApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" data-ng-app="webApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" data-ng-app="webApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" data-ng-app="webApp" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<title>Klusbib</title>
+	<meta name="description" content="een bibliotheek voor werktuigen in Mechelen" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!--     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
+<!--     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/creative.min.css" rel="stylesheet">
+
+  <script src="../app/bower_components/angular/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
+<!--   <script src="bower_components/angular-route/angular-route.js"></script> -->
+  <script src="../app/bower_components/angular-resource/angular-resource.js"></script>
+  <script src="../app/bower_components/angular-base64/angular-base64.js"></script>
+  <script src="../app/bower_components/angular-jquery/dist/angular-jquery.min.js"></script>
+<!--   <script src="../app/bower_components/jquery/dist/jquery.min.js"></script> -->
+  <script src="../app/bower_components/angular-bootstrap-affix/dist/angular-bootstrap-affix.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+  <script src="../app/app.env.js"></script>
+  <script src="../app/www.module.js"></script>
+  <script src="../app/www.config.js"></script>
+  <script src="../app/www.controller.js"></script>
+  <script src="../app/core/core.module.js"></script>
+  <script src="../app/core/core.js"></script>
+  <script src="../app/components/sign-in/sign-in.module.js"></script>
+  <script src="../app/components/sign-in/sign-in.factory.js"></script>
+  <script src="../app/components/sign-in/sign-in.component.js"></script>
+  <script src="../app/components/my-profile/my-profile.module.js"></script>
+  <script src="../app/components/my-profile/my-profile.component.js"></script>
+  <script src="../app/components/navigation/navigation.module.js"></script>
+  <script src="../app/components/navigation/navigation.component.js"></script>
+</head>
+<!-- <body> -->
+<body id="page-top" data-ng-controller="webController">
+ 	<navigation items="menuItems"></navigation>
+    
+    <header>
+    </header>
+
+	<div data-ng-view></div>
+	
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h1 id="homeHeading">Klusbib is open !</h1>
+                    <h2 class="subtitle"> Welkom op maandag en vrijdag van 18u-21u <br>en op woensdag van 14u-17u
+                    </h2>
+                <hr>
+<!--                     <h2 class="section-heading">Klusbib</h2> -->
+                    <hr class="light">
+                    <p class="text-faded">de betaalbare en ecologische bibliotheek voor	werktuigen in Mechelen</p>
+                    <p> Klusbib is een gereedschapsbibliotheek waar Mechelaars allerhande gereedschap voor huis en tuin kunnen ontlenen</p>
+                    <p> In ruil voor een jaarlijks lidmaatschap van 20 euro kan je tot maximaal 5 werktuigen gelijktijdig ontlenen uit ons assortiment.</p>
+                    <hr class="light">
+                    <p> Openingsuren: </p>
+            		<div class="row">
+                		<div class="col-lg-4 text-center">
+                    	<p> Maandag 18u - 21u</p>
+                		</div><div class="col-lg-4 text-center">
+                    	<p> Woensdag 14u - 17u</p>
+                		</div><div class="col-lg-4 text-center">
+                    	<p> Vrijdag 18u - 21u</p>
+                    	</div>
+                    </div>
+                    <p> Let op: Gesloten op 21 juli (nationale feestdag)</p>
+                    <p> Klusbib is een initiatief van Deelbaar Mechelen vzw (ondernemingsnummer: 
+                    <a class="light" href="http://kbopub.economie.fgov.be/kbopub/toonondernemingps.html?lang=nl&ondernemingsnummer=674379236">0674.379.236</a>)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="where" >
+         <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                   <h2 class="section-heading">Ons adres</h2>
+                    <hr class="primary">
+ 	    	        <!-- Add Google Maps -->
+		        	<div id="map" class="w3-round-large w3-greyscale" style="height: 400px;"></div>
+		        	<p>
+		        	<i class="fa fa-map-marker fa-3x"></i>
+        				Onze-Lieve-Vrouwestraat 12 te Mechelen<br>
+       				</p>
+		        </div>
+            </div>
+    	</div>
+    </section>
+    
+    <section id="contact">
+         <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                
+                    <h2 class="section-heading">Laat van je horen!</h2>
+                    <hr class="primary">
+
+                    <p>Wil je op de hoogte blijven?</p>
+
+					<!-- Begin MailChimp Signup Form -->
+					<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+					<style type="text/css">
+						#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+						/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+						   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+					</style>
+					<div id="mc_embed_signup">
+					<form action="//klusbib.us15.list-manage.com/subscribe/post?u=39b9e1ae6afd18c3bce3eddb3&amp;id=9166113303" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					    <div id="mc_embed_signup_scroll">
+						<h2>Schrijf je in op onze nieuwsbrief</h2>
+					<div class="indicates-required"><span class="asterisk">*</span> verplichte velden</div>
+					<div class="mc-field-group">
+						<label for="mce-EMAIL">Email adres  <span class="asterisk">*</span>
+					</label>
+						<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+					</div>
+					<div class="mc-field-group">
+						<label for="mce-FNAME">Voornaam </label>
+						<input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+					</div>
+					<div class="mc-field-group">
+						<label for="mce-LNAME">Familienaam </label>
+						<input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+					</div>
+						<div id="mce-responses" class="clear">
+							<div class="response" id="mce-error-response" style="display:none"></div>
+							<div class="response" id="mce-success-response" style="display:none"></div>
+						</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+					    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_39b9e1ae6afd18c3bce3eddb3_9166113303" tabindex="-1" value=""></div>
+					    <div class="clear"><input type="submit" value="Inschrijven" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+					    </div>
+					</form>
+					</div>
+					<!--End mc_embed_signup-->
+
+                    <p>Of stuur ons een berichtje</p>
+					<ul class="list-inline list-social">
+		                <li class="social-email btn-social">
+		                    <a href="mailto:info@klusbib.be"><i class="fa fa-envelope-o fa-3x sr-contact"></i></a>
+		                </li>
+		                <li></li>
+		                <li class="social-facebook btn-social">
+		                    <a href="https://www.facebook.com/Klusbib/"><i class="fa fa-facebook fa-3x"></i></a>
+		                </li>
+		         	</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-primary" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Veelgestelde vragen</h2>
+                    <hr class="light">
+                    <h3 >Waarom een klusbib?</h3>
+                    <p class="text-faded">
+                    Vanuit de gedachte dat de gemiddelde schroefmachine op zijn ganse levensduur maar 13 minuten effectief werkt werd 
+                    het idee geopperd om van start te gaan met een initiatief waar Mechelaars allerhande gereedschap kunnen ontlenen 
+                    tegen een voordelige ledenbijdrage. </p>
+                    <p class="text-faded">
+                    We hopen zo bij te dragen aan een socialer Mechelen waar iedereen kan beschikken over het nodige gereedschap zonder 
+                    hiervoor grote investeringen te moeten doen en de mensen kritisch te laten nadenken over het vele privébezit van
+                    allerhande gereedschap dat slechts zelden gebruikt wordt. Een win-win dus waar de uitdagingen voor een sociale en 
+                    klimaatvriendelijke stad hand in hand gaan.</p>
+                    <h3>Wie zijn we?</h3>
+                    <p class="text-faded">Dit initiatief wordt gedragen door enkele Mechelaars die vorig jaar samenkwamen 
+                    omdat ze geloofden in de toekomst van de deeleconomie <br>
+                    Klusbib is een initiatief van Deelbaar Mechelen vzw, welke volledig draait op vrijwilligers
+                    </p>
+                    <h3 >Hoe werkt het?</h3>
+                    <p class="text-faded">
+                    Voor een vast bedrag van 20 euro ben je een jaar lid van Klusbib. Je kan dan tot maximaal 5 werktuigen gedurende 1 week ontlenen, 
+                    met optie tot verlenging met nog een week. <br>
+                    Alle details staan beschreven in de <a class="light" href="/docs/KlusbibAfspraken.pdf">klusbib afspraken</a>
+                    </p>
+                    <h3 >Waar kan ik jullie vinden?</h3>
+                    <p class="text-faded">
+                    Klusbib opent zijn deuren in de Onze-Lieve-Vrouwestraat 12 te Mechelen
+                    </p>
+                    <h3>Wat kan er zoal ontleend worden?</h3>
+                    <p class="text-faded">
+                    Een overzicht van onze werktuigen vind je op de online <a class="light" href="//app.klusbib.be">inventaris</a>. 
+                    </p>
+                    <h3 >Ik wil helpen</h3>
+                    <p class="text-faded">
+                    Wil je graag meewerken aan dit initiatief? Dat komt goed uit, want wij kunnnen je hulp goed gebruiken!
+                    Neem zeker een kijkje naar dit <a class="light" href="/docs/KLUSBIB-functieprofielvanhandigevrijwilliger.pdf" >functie profiel</a>
+                    </p>
+                    <p class="text-faded">
+                    Ook andere talenten kunnen we zeker gebruiken om onze vele andere ideeën uit te werken. Stuur ons een <a class="light" href=#contact>berichtje</a>
+                    </p>
+                    <h3 >Ik heb nog gereedschap liggen</h3>
+                    <p class="text-faded">
+                    Mechelaars die nog gereedschap in kasten en schuiven hebben liggen die nog zelden gebruikt worden kunnen dit als gift doneren aan Klusbib. 
+                    Momenteel is er al heel wat gereedschap bij elkaar gebracht maar om te groeien en voldoende voorraad te hebben is 
+                    extra materiaal zeker welkom. </p>
+                    <p class="text-faded">
+                    Bovendien blijft bij een donatie dit gereedschap gedurende 5 jaar jouw eigendom.  
+                    De eerste 2 jaar kan jij beslissen welke periodes het toestel kan worden ontleend.  
+                    De laatste 3 jaar kan je het zelf reserveren voor de periode die je wil.  <br>
+                    Klusbib engageert zich om je toestel goed te onderhouden, te stockeren en te verzekeren tegen diefstal. 
+                    Op deze manier heb je altijd een machine die werkt wanneer je het zelf nodig hebt en thuis heb je extra plaats in je bergruimte! 
+                    Bovendien ben je meteen een deelbare Mechelaar die meewerkt aan een mooiere samenleving.</p>
+                    <p class="text-faded">
+                    Let wel: Klusbib is niet verantwoordelijk voor verlies of schade aan jouw toestel. 
+					Klusbib zal dit wel verhalen op de ontlener volgens de geldende afspraken.
+                    </p>
+                    <h3>Het gereedschap dat ik zoek ligt niet in jullie bib</h3>
+                    <p class="text-faded">
+                    Laat ons weten waar je naar op zoek bent, dan kijken wij uit of we het aan ons assortiment kunnen toevoegen. <br>
+                    Neem zeker ook een kijkje op ons <a class="light" href="//forum.klusbib.be" >forum</a>. Mogelijks zijn er nog anderen op zoek naar 
+                    hetzelfde gereedschap en kan je dat samen aankopen
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+  	<section id="sponsor">
+       <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                	<p> Met de steun van:
+                	</p>
+                	<div class="col-lg-6 text-center"><a href="http://www.mechelenklimaatstad.be">Mechelen Klimaatstad VZW<img src="" /></a>
+                	</div>
+                	<div class="col-lg-6 text-center"><a href="http://www.mechelen.be">Stad Mechelen</a>
+                	</div>
+                </div>
+            </div>
+       </div>
+  	</section>
+  	
+	<footer id="footer">
+        <div class="container footer-above">
+            <p>Gebouwd met gedeelde middelen</p>
+            <a href="//github.com/renardeau/klusbib" class="btn btn-primary btn-xl page-scroll">Source code</a>
+        </div>
+		<div class="back-to-top-link">
+			<a href="#top"><span class="arrow"></span>Top</a>
+		</div>
+		<div class="footer-wrapper">
+			<div class="sqs-layout sqs-grid-12 columns-12 empty"
+				data-layout-label="Footer Content" data-type="block-field"
+				data-updated-on="1479381940722" id="footerBlocks">
+				<div class="row sqs-row">
+					<div class="col sqs-col-12 span-12"></div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
+    <!-- jQuery -->
+<!--     <script src="vendor/jquery/jquery.min.js"></script> -->
+    <!-- jQuery -->
+    <script src="../app/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/creative.min.js"></script>
+
+	<!-- Add Google Maps -->
+    <script>
+      function initMap() {
+        var uluru = {lat: 51.024618, lng: 4.477179}; //51.024618, 4.477179
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI8xAPjlP8imcKL5eyONF2AT2ZJbSE88M&callback=initMap">
+    </script>
+	
+</body>
+</html>
