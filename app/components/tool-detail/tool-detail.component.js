@@ -4,7 +4,7 @@ angular.
 
   function show(action, event) {
     return $uibModal.open({
-      templateUrl: 'components/tool-detail/modalContent.html',
+      templateUrl: '/app/components/tool-detail/modalContent.html',
       controller: function() {
         var vm = this;
         vm.action = action;

@@ -1,0 +1,45 @@
+<!-- assets/html/navbar.html -->
+
+    <nav id="mainNav" 
+    	ng-class="{'navbar': true, 'navbar-default': !$ctrl.inverse, 'navbar-inverse': $ctrl.inverse, 'navbar-fixed-top': true}" 
+    	bs-affix 
+    	data-offset-top="200" 
+    	role="navigation">
+    	<!-- FIXME: include bootstrap css styling e.g. affix not working when creative.js already loaded
+    	fix with https://github.com/maxisam/angular-bootstrap-affix ?? or http://ngmodules.org/modules/ngScrollSpy ??
+    	or even https://github.com/oblador/angular-scroll -->
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="/www#page-top">Klusbib</a>
+<!-- 				<a href="/" id="top"> <img -->
+<!-- 					src="/assets/img/klusbib_logo.jpg" -->
+<!-- 					alt="Klusbib" /> -->
+<!-- 				</a> -->
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+<!--                     <li ng-repeat="item in $ctrl.menuItems"> -->
+                    <li ng-repeat="item in $ctrl.items">
+                        <a class="page-scroll" ng-href="{{item.href}}">{{item.label}}</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/app">Inventaris</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="//forum.klusbib.be">Forum</a>
+                    </li>
+					<li><a data-ng-if="!user.id" data-ng-href="#!/signin">Inloggen</a></li>
+					<li><a data-ng-if="!!user.id" data-ng-href="#!/profile/{{user.id}}">Mijn Profiel ({{user.id}})</a></li>
+					<li><a data-ng-if="!!user.id" data-ng-href="#!/signin" ng-click="logout()"'>Uitloggen</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>

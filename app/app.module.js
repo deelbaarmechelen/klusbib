@@ -9,6 +9,7 @@ Object.assign(env, window.__env);
 
 var app = angular.module('toollibApp', [
 	'ngRoute',
+	'navigation',
 	'signIn', 
 	'toolList', 
 	'toolDetail',
@@ -18,19 +19,3 @@ var app = angular.module('toollibApp', [
 
 //Register environment in AngularJS as constant
 app.constant('__env', env);
-
-app.controller('toollibController', ['$scope', 'User', function ToollibController($scope, User){
-	$scope.user = User.get();
-}]);
-
-app.factory('User', function() {
-	   var user = {id:null};
-	   return {
-	        update: function (userId) {
-	        	user.id = userId;
-	        },
-	        get: function () {
-	            return user;
-	        },
-	    };
-});

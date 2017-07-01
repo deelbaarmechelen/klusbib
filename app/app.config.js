@@ -1,4 +1,5 @@
 // This file should handle routes configuration
+//(function() {
 
 angular.
   module('toollibApp').
@@ -79,3 +80,4 @@ function colourNameToHex(colour)
 
     return false;
 };
+//}());

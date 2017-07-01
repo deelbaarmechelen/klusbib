@@ -1,12 +1,12 @@
 angular.module('toolList').component('toolList', {
-	templateUrl : 'components/tool-list/tool-list.template.html',
+	templateUrl : '/app/components/tool-list/tool-list.template.html',
 	controller :
 	[ '$http', '$routeParams', '__env',
 		function ToolListController($http, $routeParams, __env) {
 
 		var self = this;
 		self.filterCategory = $routeParams.category;
-		$http.get(__env.apiUrl + '/tools').then(function(response) {
+		$http.get(__env.apiUrl + '/tools?_perPage=100').then(function(response) {
 	        self.tools = response.data;
 	      });
 
