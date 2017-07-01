@@ -1,3 +1,4 @@
+<h1 align="center">{{ $ctrl.tool.name || 'empty' }}</h1>
 <div class="col-md-3">
 <!--     <a href="#!/tools?category={{$ctrl.tool.category}}">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a> -->
 	<table
@@ -33,13 +34,6 @@
 <!-- 		</div> -->
     <form editable-form name="editableForm" onaftersave="saveTool()">
          <table cellspacing='0' cellpadding='0' border='0' width='100%'>
-             <tr class='even_row'>
-                 <td>
-                     <p><strong><font size='+2'>
-                        <span editable-text="$ctrl.tool.name" e-name="name" e-required>{{ $ctrl.tool.name || 'empty' }}</span>
-                        </font></strong><br>
-                 </td>
-             </tr>
               <tr>
                  <td>
                      <i editable-text="$ctrl.tool.description" e-form="textBtnForm">

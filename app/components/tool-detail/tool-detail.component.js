@@ -34,9 +34,10 @@ angular.
 
           
   		this.resizeImage = function (imageUrl, size) {
-  			if (typeof imageUrl == 'undefined') {
+  			if (typeof imageUrl == 'undefined' || imageUrl == null) {
   				return;
   			}
+  			console.log('imageUrl=' + JSON.stringify(imageUrl));
 			baseUrl = imageUrl.substr(0,imageUrl.lastIndexOf('.'));
 			ext = imageUrl.substr(imageUrl.lastIndexOf('.')+1);
 			newUrl = baseUrl + '-' + size + '.' + ext;

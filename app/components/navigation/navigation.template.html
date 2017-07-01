@@ -31,15 +31,17 @@
                     <li>
                         <a class="page-scroll" href="/app">Inventaris</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="//forum.klusbib.be">Forum</a>
-                    </li>
-					<li><a data-ng-if="!user.id" data-ng-href="#!/signin">Inloggen</a></li>
-					<li><a data-ng-if="!!user.id" data-ng-href="#!/profile/{{user.id}}">Mijn Profiel ({{user.id}})</a></li>
-					<li><a data-ng-if="!!user.id" data-ng-href="#!/signin" ng-click="logout()"'>Uitloggen</a></li>
+<!--                     <li> -->
+<!--                         <a class="page-scroll" href="//forum.klusbib.be">Forum</a> -->
+<!--                     </li> -->
+					<li><a data-ng-if="!user.id" data-ng-href="/app/#!/signin">Inloggen</a></li>
+					<li><a data-ng-if="!!user.id" data-ng-href="/app/#!/profile/{{user.id}}">Mijn Profiel ({{user.id}})</a></li>
+					<li><a data-ng-if="!!user.id" data-ng-href="/app/#!/signin" ng-click="logout()"'>Uitloggen</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
+    <p ng-if="!$ctrl.transparant"><br/><br/><br/></p>
+    

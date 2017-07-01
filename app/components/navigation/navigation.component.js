@@ -16,7 +16,8 @@
 		],
         bindings: {
             items: '=items', // or items: '<' it depends on what binding you need
-            inverse: '=inverse' // if true, use a darker style (default=false)
+            inverse: '=inverse', // if true, use a darker style (default=false)
+            transparant: '=transparant' // if true, text/image behind navigation is assumed visible 
         }
 	});
 })();

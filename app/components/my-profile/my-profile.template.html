@@ -25,7 +25,7 @@ Geboortedatum {{$ctrl.user.birth_date}}<br>
    <tbody>
         <tr ng-repeat="item in $ctrl.user.reservations"> 
             <td>{{item.title}}</td>
-            <td><a ng-href="#!/tools/{{item.tool_id}}">{{item.tool_id}}</a></td>
+            <td><a ng-href="/app/#!/tools/{{item.tool_id}}">{{item.tool_id}}</a></td>
             <td>{{item.startsAt}}</td>
             <td>{{item.endsAt}}</td>
         </tr>
