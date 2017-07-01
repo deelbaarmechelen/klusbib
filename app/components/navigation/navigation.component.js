@@ -6,15 +6,11 @@
 		controller :
 		[ '$scope', 'User',
 			function NavigationController($scope, User) {
-//				this.menuItems = [
-//					{'label': 'Over ons', 'href': '#about'}, 
-//					{'label': 'Waar', 'href': '#where'},
-//					{'label': 'Contact', 'href': '#contact'},
-//					{'label': 'FAQ', 'href': '#faq'}
-//				];
+
 				$scope.user = User.get();
 				$scope.logout = function () {
-					User.update(null);
+					console.log('logging out user ' + JSON.stringify(User.get()));
+					User.logout();
 				}
 			}
 		],
