@@ -308,6 +308,9 @@ footer .footer-below {
 .call-to-action h2 {
   margin: 0 auto 20px;
 }
+.sponsor {
+  width: 200px;
+}
 .text-primary {
   color: #08B293;
 }
