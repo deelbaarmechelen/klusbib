@@ -22,7 +22,12 @@ angular.
         }).
         when('/profile/:userId', {
             template: '<my-profile></my-profile>'
-          }).
+        }).
+        when('/lid-worden', {
+            controller: 'EnrolmentController',
+            templateUrl: 'enrolment/enrolment.view.html',
+            controllerAs: 'vm'
+        }).
         otherwise('/tools');
     }
   ]);

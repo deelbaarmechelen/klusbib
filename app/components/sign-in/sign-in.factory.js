@@ -44,6 +44,10 @@ appSignin.factory('Auth', ['$http', '$localStorage', '__env',
 //            delete $localStorage.token;
             success();
         },
+        resetPwd: function (email, success, error) {
+        	var data = '{"email": "' + email + '"}';
+            $http.post(__env.apiUrl + '/auth/reset', data).then(success,error)
+        },
         getTokenClaims: function () {
         	tokenClaims = getClaimsFromToken();
             return tokenClaims;

@@ -15,6 +15,7 @@ var app = angular.module('toollibApp', [
 	'toolDetail',
 	'consumerList',
 	'myProfile'
+//	'enrolment'
 ]);
 
 //Register environment in AngularJS as constant

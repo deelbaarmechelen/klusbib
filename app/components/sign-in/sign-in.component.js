@@ -28,6 +28,13 @@ angular.module('signIn').component('signIn', {
 		            self.error = 'Successfully logged out!';
 				});
 			}
+			this.resetPwd = function () {
+				Auth.resetPwd(this.email, function () {
+					self.error = 'Paswoord reset aangevraagd: check je mailbox'
+				} , function () {
+					self.error = 'Er is een probleem opgetreden bij je paswoord reset aanvraag, is het ingegeven email adres correct?'
+				})
+			};
    		} 
 	]
     

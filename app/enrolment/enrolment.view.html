@@ -1,0 +1,70 @@
+<div class="col-md-6 col-md-offset-3">
+    <h2>Lid worden</h2>
+    <form name="form" ng-submit="vm.enrolment()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+            <label for="firstname">Voornaam</label>
+            <input type="text" name="firstname" id="firstname" class="form-control" ng-model="vm.user.firstname" required />
+            <span ng-show="form.firstname.$dirty && form.firstname.$error.required" class="help-block">Voornaam is vereist</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.lastname.$dirty && form.lastname.$error.required }">
+            <label for="lastname">Achternaam</label>
+            <input type="text" name="lastname" id="lastname" class="form-control" ng-model="vm.user.lastname" required />
+            <span ng-show="form.lastname.$dirty && form.lastname.$error.required" class="help-block">Acthernaam is vereist</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required />
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">E-mail is vereist</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.address.$dirty }">
+            <label for="address">Adres</label>
+            <input type="text" name="lastname" id="address" class="form-control" ng-model="vm.user.address"  />
+        </div>
+        <div class="form-group">
+            <label for="postcode">Postcode</label>
+            <input type="text" name="postcode" id="postcode" class="form-control" ng-model="vm.user.postcode"  />
+        </div>
+        <div class="form-group">
+            <label for="city">Stad</label>
+            <input type="text" name="city" id="city" class="form-control" ng-model="vm.user.city" />
+        </div>
+        <div class="form-group">
+            <label for="phone">Telefoon of GSM</label>
+            <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" />
+        </div>
+        <div class="form-group">
+            <label for="registration_number">Registratie nummer</label>
+            <input type="text" name="registration_number" id="registration_number" class="form-control" ng-model="vm.user.registration_number" />
+        </div>
+
+<!--         <div class="form-group" ng-class="{ 'has-error': form.payment_mode.$dirty && form.payment_mode.$error.required }"> -->
+        	<div class="form-check" >
+	        <label class="form-check-label" for="payment_mode">Betalingswijze</label><br>
+            <label class="form-check-label" for="payment_mode_cash">
+            <input type="radio" name="payment_mode" id="payment_mode_cash" class="form-check-input"  ng-model="vm.user.payment_mode" 
+            	value="CASH" required />
+            Cash (je betaalt bij je eerste bezoek)</label>
+            <label class="form-check-label" for="payment_mode_transfer">
+            <input type="radio" name="payment_mode" id="payment_mode_transfer" class="form-check-input" ng-model="vm.user.payment_mode" 
+            	value="TRANSFER" required />
+            Overschrijving op volgend rekeningnummer:&nbsp;BE55 5230 4844 8444 (Gebruik ‘lidgeld + naam’ als mededeling)</label>
+            <span ng-show="form.payment_mode.$dirty && form.payment_mode.$error.required" class="help-block">Kies een betalingswijze</span>
+            </div>
+<!--         </div> -->
+
+		<p>
+			Lees ook eerst de <a href="/www/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a> na.
+		</p>
+        <label class="form-check-label" for="accept_terms">
+            <input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" ng-model="vm.user.accept_terms" value="1" />
+            Verklaart hierbij de Klusbib afspraken te hebben gelezen en ermee akkoord te gaan.
+            <span ng-show="form.accept_terms.$dirty && form.accept_terms.$error.required" class="help-block">
+            Lees en aanvaardt de Klusbib afspraken om verder te gaan</span>
+        </label>
+
+		<div class="form-actions">
+<!--             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Inschrijven</button> -->
+            <button type="submit" class="btn btn-primary">Inschrijven</button>
+        </div>
+    </form>
+</div>
