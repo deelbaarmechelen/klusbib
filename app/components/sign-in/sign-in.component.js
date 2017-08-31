@@ -18,8 +18,14 @@ angular.module('signIn').component('signIn', {
                   email: this.email,
                   password: this.password
               };
-              Auth.signin(formData.email, formData.password, successAuth, function () {
-            	  self.error = 'Invalid credentials.';
+              Auth.signin(formData.email, formData.password, successAuth, function (response) {
+            	  if (response.status == '401') {
+            		  self.error = 'Invalid credentials!';
+            	  } else if (response.status == '403') {
+            		  self.error = 'Operation not allowed. Contact system administrator...';
+            	  } else {
+            		  self.error = 'Unexpected error, contact system administrator if this problem persists'
+            	  }
               })
 			};
 			this.signout = function () {

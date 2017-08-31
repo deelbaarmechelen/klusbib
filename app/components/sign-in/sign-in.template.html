@@ -23,7 +23,10 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary pull-right">Inloggen</button>
+                            <button type="submit" class="btn btn-primary pull-right"
+                            	data-ng-if="!$ctrl.user.id">Inloggen</button>
+                            <button type="button" class="btn btn-primary pull-right"
+                                data-ng-if="!$ctrl.user.id" data-ng-click="$ctrl.resetPwd()">Paswoord vergeten?</button>
                             <button type="button" class="btn btn-primary pull-right" 
                             	data-ng-if="$ctrl.user.id" data-ng-click="$ctrl.signout()">Uitloggen</button>
                         </div>

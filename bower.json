@@ -18,6 +18,8 @@
     "moment": "~2.17.1",
     "angular-bootstrap-colorpicker": "~3.0.25",
     "angular-base64": "~2.0.5",
-    "angular-bootstrap-affix": "~0.2.2"
+    "angular-bootstrap-affix": "~0.2.2",
+    "angular-flash-alert": "~2.4.0",
+    "interact": "~1.2.9"
   }
 }

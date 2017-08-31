@@ -1,17 +1,44 @@
 
-<!-- <p>Hallo {{$ctrl.user.firstname}}</p> -->
+<flash-message></flash-message>
 <h2>Mijn gegevens</h2>
-<p>
-Voornaam {{$ctrl.user.firstname}}<br>
-Naam {{$ctrl.user.lastname}}<br>
-Adres {{$ctrl.user.address}}, {{$ctrl.user.postal_code}} {{$ctrl.user.city}}<br>
-Email {{$ctrl.user.email}}<br>
-Tel {{$ctrl.user.phone}}<br>
-GSM {{$ctrl.user.mobile}}<br>
-Start lidmaatschap {{$ctrl.user.membership_start_date}}<br>
-Einde lidmaatschap {{$ctrl.user.membership_end_date}}<br>
-Geboortedatum {{$ctrl.user.birth_date}}<br>
-</p>
+<table class="table table-striped">
+	<tr>
+		<td>Voornaam</td>
+		<td>{{$ctrl.user.firstname}}</td>
+	</tr>
+	<tr>
+		<td>Naam</td>
+		<td>{{$ctrl.user.lastname}}</td>
+	</tr>
+	<tr>
+		<td>Adres</td>
+		<td>{{$ctrl.user.address}}<br> {{$ctrl.user.postal_code}} {{$ctrl.user.city}}</td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td>{{$ctrl.user.email}}</td>
+	</tr>
+	<tr>
+		<td>Tel</td>
+		<td>{{$ctrl.user.phone}}</td>
+	</tr>
+	<tr>
+		<td>GSM</td>
+		<td>{{$ctrl.user.mobile}}</td>
+	</tr>
+	<tr>
+		<td>Start lidmaatschap</td>
+		<td>{{$ctrl.user.membership_start_date}}</td>
+	</tr>
+	<tr>
+		<td>Einde lidmaatschap</td>
+		<td>{{$ctrl.user.membership_end_date}}</td>
+	</tr>
+	<tr>
+		<td>Geboortedatum</td>
+		<td>{{$ctrl.user.birth_date}}</td>
+	</tr>
+</table>
 <h2>Mijn reservaties</h2>
 <table class="table table-striped">
    <thead>
@@ -20,39 +47,20 @@ Geboortedatum {{$ctrl.user.birth_date}}<br>
             <th>Toestel</th>
             <th>Begin</th>
             <th>Einde</th>
+            <th>Status</th>
          </tr>
    </thead>
    <tbody>
-        <tr ng-repeat="item in $ctrl.user.reservations"> 
+        <tr ng-repeat="item in $ctrl.reservations"> 
             <td>{{item.title}}</td>
             <td><a ng-href="/app/#!/tools/{{item.tool_id}}">{{item.tool_id}}</a></td>
             <td>{{item.startsAt}}</td>
             <td>{{item.endsAt}}</td>
+            <td>{{item.state}}</td>
+            <td>
+<!--             	<button ng-click="$ctrl.extend(item)">Verleng</button> -->
+            	<button ng-click="$ctrl.cancel(item)">Annuleer</button>
+            </td>
         </tr>
    </tbody>
 </table>
-
-<h2>Nieuwe reservatie:</h2>
-<form class="form-horizontal" role="form" ng-submit="$ctrl.addReservation()">
-    <div class="form-group">
-        <label for="start_date" class="col-sm-2 control-label">Start datum</label>
-
-        <div class="col-sm-10">
-            <input type="date" class="form-control" id="start_date" placeholder="Start Datum" ng-model="$ctrl.reservation.start_date">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="end_date" class="col-sm-2 control-label">Eind datum</label>
-
-        <div class="col-sm-10">
-            <input type="date" class="form-control" id="end_date" placeholder="Eind Datum"
-                   data-ng-model="$ctrl.password">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary pull-right">Reserveren</button>
-        </div>
-    </div>
-    <p data-ng-show="$ctrl.error" class="error">{{ $ctrl.error }}</p>
-</form>
