@@ -13,28 +13,29 @@
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required />
+            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" size="35" required />
             <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">E-mail is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.address.$dirty }">
             <label for="address">Adres</label>
-            <input type="text" name="lastname" id="address" class="form-control" ng-model="vm.user.address"  />
+            <input type="text" name="lastname" id="address" class="form-control" ng-model="vm.user.address" size="50" />
         </div>
         <div class="form-group">
             <label for="postcode">Postcode</label>
-            <input type="text" name="postcode" id="postcode" class="form-control" ng-model="vm.user.postcode"  />
+            <input type="text" name="postcode" id="postcode" class="form-control" ng-model="vm.user.postcode" size="6" />
         </div>
         <div class="form-group">
             <label for="city">Stad</label>
-            <input type="text" name="city" id="city" class="form-control" ng-model="vm.user.city" />
+            <input type="text" name="city" id="city" class="form-control" ng-model="vm.user.city" size="20"/>
         </div>
         <div class="form-group">
             <label for="phone">Telefoon of GSM</label>
-            <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" />
+            <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" size="20"/>
         </div>
         <div class="form-group">
             <label for="registration_number">Registratie nummer</label>
-            <input type="text" name="registration_number" id="registration_number" class="form-control" ng-model="vm.user.registration_number" />
+            <input type="text" name="registration_number" id="registration_number" class="form-control" 
+            ng-model="vm.user.registration_number" size="15"/>
         </div>
 
 <!--         <div class="form-group" ng-class="{ 'has-error': form.payment_mode.$dirty && form.payment_mode.$error.required }"> -->
