@@ -29,10 +29,13 @@
                         <a class="page-scroll" ng-href="{{item.href}}">{{item.label}}</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/app">Inventaris</a>
+                        <a  href="/app/#!lid-worden">Lid worden</a>
+                    </li>
+                    <li>
+                        <a href="/app">Inventaris</a>
                     </li>
 <!--                     <li> -->
-<!--                         <a class="page-scroll" href="//forum.klusbib.be">Forum</a> -->
+<!--                         <a href="//forum.klusbib.be">Forum</a> -->
 <!--                     </li> -->
 					<li><a data-ng-if="!user.id" data-ng-href="/app/#!/signin">Inloggen</a></li>
 					<li><a data-ng-if="!!user.id" data-ng-href="/app/#!/profile/{{user.id}}">Mijn Profiel ({{user.id}})</a></li>
