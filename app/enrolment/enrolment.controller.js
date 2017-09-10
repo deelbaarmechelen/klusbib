@@ -4,9 +4,9 @@
     angular
         .module('toollibApp')
         .controller('EnrolmentController', EnrolmentController);
-    EnrolmentController.$inject = ['TokenService', 'UserService'];
+    EnrolmentController.$inject = ['TokenService', 'UserService','Flash'];
 
-    function EnrolmentController(TokenService, UserService) {
+    function EnrolmentController(TokenService, UserService, Flash) {
         var vm = this;
 
 //        (function initController() {
@@ -25,9 +25,12 @@
                 	if (response.success) {
                 		// TODO: send confirmation email to user (+ email address verification?)
 //                        FlashService.Success('Registration successful', true);
+                		var id = Flash.create('success', 'Inschrijving succesvol ingediend', 5000);
                 	} else {
 //                        FlashService.Error(response.message);
                 		vm.dataLoading = false;
+                		console.log("enrolment problem: " + response.message);
+                		var id = Flash.create('danger', 'Inschrijving mislukt. Probeer later opnieuw of stuur ons een bericht', 0);
                 	}
                 });
             }

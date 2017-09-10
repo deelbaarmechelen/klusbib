@@ -51,7 +51,9 @@
         				'Authorization': 'Bearer ' + token
         			}
             }
-            return $http.post(__env.apiUrl + '/users', user, config).then(handleSuccess, handleError('Error creating user'));
+            return $http.post(__env.apiUrl + '/users', user, config)
+            	.then(handleSuccess, handleError);
+//            	.then(handleSuccess, handleError('Error creating user'));
         }
 
 //        users: function (token) {
@@ -67,24 +69,48 @@
 //        },
         
         function Update(user) {
-            return $http.put(__env.apiUrl + '/users/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+            return $http.put(__env.apiUrl + '/users/' + user.id, user)
+//            .then(handleSuccess, handleError('Error updating user'));
+        		.then(handleSuccess, handleError);
         }
 
         function Delete(id) {
-            return $http.delete(__env.apiUrl + '/users/' + id).then(handleSuccess, handleError('Error deleting user'));
+            return $http.delete(__env.apiUrl + '/users/' + id)
+//            .then(handleSuccess, handleError('Error deleting user'));
+            	.then(handleSuccess, handleError);
         }
 
         // private functions
 
-        function handleSuccess(res) {
-            return res.data;
+        // private functions
+        function handleSuccess(response) {
+            return { success: true, message: response.data };;
         }
 
-        function handleError(error) {
-            return function () {
-                return { success: false, message: error };
-            };
+        // function (data, status, headers, config)??
+        function handleError(response, error) {
+            console.log(JSON.stringify(response));
+        	var data = response.data;
+            var status = response.status;
+            var statusText = response.statusText;
+            var headers = response.headers;
+            var config = response.config;
+            var message = 'Er ging iets mis, probeer later eens opnieuw';
+            if (status == 401) {
+            	message = 'Geen toegang. Gelieve eerst (opnieuw) in te loggen (' + data.message + ')';
+            }
+            console.log(message);
+            return { success: false, message: message };
         }
+//        function handleSuccess(res) {
+//            return res.data;
+//        }
+//
+//        function handleError(error) {
+//            return function () {
+//                return { success: false, message: error };
+//            };
+//        }
     }
 
 })();
