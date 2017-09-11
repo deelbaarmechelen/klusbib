@@ -20,12 +20,20 @@ angular.
         when('/consumers', {
             template: '<consumer-list></consumer-list>'
         }).
+//        when('/reservations', {
+//            template: '<reservation-list></reservation-list>'
+//        }).
         when('/profile/:userId', {
             template: '<my-profile></my-profile>'
         }).
         when('/lid-worden', {
             controller: 'EnrolmentController',
             templateUrl: 'enrolment/enrolment.view.html',
+            controllerAs: 'vm'
+        }).
+        when('/vrijwilligers', {
+            controller: 'VolunteerController',
+            templateUrl: 'volunteer/volunteer.view.html',
             controllerAs: 'vm'
         }).
         otherwise('/tools');

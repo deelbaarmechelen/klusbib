@@ -14,7 +14,9 @@ var app = angular.module('toollibApp', [
 	'toolList', 
 	'toolDetail',
 	'consumerList',
-	'myProfile'
+	'myProfile',
+//	'reservationList',
+	'volunteerCalendar'
 //	'enrolment'
 ]);
 
