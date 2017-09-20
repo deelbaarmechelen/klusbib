@@ -1,10 +1,17 @@
 angular.module('toolList').component('toolList', {
 	templateUrl : '/app/components/tool-list/tool-list.template.html',
 	controller :
-	[ '$http', '$routeParams', '__env',
-		function ToolListController($http, $routeParams, __env) {
+	[ '$http', '$routeParams','User', 'UserService', '__env',
+		function ToolListController($http, $routeParams, User, UserService, __env) {
 
 		var self = this;
+        self.userId = User.get().id;
+        self.user = UserService.GetById(self.userId).then(function(response) {
+        	if (response.success && response.message.role == "admin") {
+        		self.showFunctions = true;
+        	}
+        });
+        self.showFunctions = false;
 		self.filterCategory = $routeParams.category;
 		$http.get(__env.apiUrl + '/tools?_perPage=100').then(function(response) {
 	        self.tools = response.data;
@@ -17,7 +24,7 @@ angular.module('toolList').component('toolList', {
 			return newUrl;
 		}
 		
-		this.translateCategory = function translateCategory(category) {
+		this.translateCategory = function (category) {
 			catMap = {
 					'general' : 'Algemeen',
 					'car' : 'Auto',
@@ -33,5 +40,13 @@ angular.module('toolList').component('toolList', {
 				return category;
 			}
 		}
+
+		this.newTool = function () {
+			alert ('not yet implemented!');
+		}
+		this.deleteTool = function (toolId, index) {
+			alert ('not yet implemented!');
+		}
+
 	} ]
 });

@@ -33,7 +33,7 @@
          <tr>
             <th>Foto</th>
             <th>Beschrijving</th>
-            <th ng-if=isAdmin(user) >Functies</th>
+            <th ng-if=$ctrl.showFunctions >Functies</th>
          </tr>
    </thead>
    <tbody>
@@ -44,11 +44,11 @@
             </a></td>
             <td><a ng-href="#!/tools/{{item.tool_id}}">{{item.name}}</a>:<br>{{item.description}}
             </td>
-            <td><button ng-click="deleteTool(item.tool_id, $index)" ng-if=isAdmin(user)>Verwijderen</button></td>
+            <td><button ng-click="$ctrl.deleteTool(item.tool_id, $index)" ng-if=$ctrl.showFunctions>Verwijderen</button></td>
         </tr>
-        <tr class="buttons" ng-if=isAdmin(user)>
+        <tr class="buttons" ng-if=$ctrl.showFunctions>
             <td>
-                <button ng-click="newTool()">
+                <button ng-click="$ctrl.newTool()">
                     Werktuig toevoegen
                 </button>
             </td>

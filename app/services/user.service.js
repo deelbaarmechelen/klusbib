@@ -33,15 +33,15 @@
         return service;
 
         function GetAll() {
-            return $http.get(__env.apiUrl + '/users').then(handleSuccess, handleError('Error getting all users'));
+            return $http.get(__env.apiUrl + '/users').then(handleSuccess, handleError);
         }
 
         function GetById(id) {
-            return $http.get(__env.apiUrl + '/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
+            return $http.get(__env.apiUrl + '/users/' + id).then(handleSuccess, handleError);
         }
 
         function GetByUsername(username) {
-            return $http.get(__env.apiUrl + '/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
+            return $http.get(__env.apiUrl + '/users/' + username).then(handleSuccess, handleError);
         }
 
         function Create(user, token) {
