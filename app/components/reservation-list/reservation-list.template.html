@@ -1,0 +1,37 @@
+<div class="jumbotron">
+ 	<h1>Under construction: Klusbib reservaties (admin)</h1>
+ 	<p>Hier vind je een overzicht van de lopende reservaties</p>
+</div>
+<flash-message></flash-message>
+      	
+<table class="table table-striped">
+   <thead>
+         <tr>
+            <th>Van</th>
+            <th>Tot</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th ng-if="$ctrl.showFunctions" >Functies</th>
+         </tr>
+   </thead>
+   <tbody>
+
+        <tr ng-repeat="item in $ctrl.reservations"> 
+            <td>{{item.startsAt}}</td>
+            <td>{{item.endsAt}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.state}}</td>
+            <td ng-if="$ctrl.showFunctions">
+			<button ng-click="$ctrl.confirmReservation(item, $index)" ng-if="$ctrl.canBeConfirmed(item)">Bevestigen</button>
+            <button ng-click="$ctrl.deleteReservation(item.reservation_id, $index)" >Verwijderen</button>
+            </td>
+        </tr>
+        <tr class="buttons" ng-if="$ctrl.showFunctions">
+            <td>
+                <button ng-click="$ctrl.newReservation()">
+                    Reservatie toevoegen
+                </button>
+            </td>
+        </tr>
+   </tbody>
+</table>

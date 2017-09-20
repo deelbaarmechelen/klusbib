@@ -28,8 +28,8 @@
         service.Create = Create;
         service.Extend = Extend;
         service.Cancel = Cancel;
-//        service.Update = Update;
-//        service.Delete = Delete;
+        service.Update = Update;
+        service.Delete = Delete;
 
         return service;
 
@@ -68,10 +68,10 @@
             return $http.put(__env.apiUrl + '/reservations/' + reservation.reservation_id, reservation)
             	.then(handleSuccess, handleError);
         }
-//
-//        function Delete(id) {
-//            return $http.delete(__env.apiUrl + '/reservations/' + id).then(handleSuccess, handleError);
-//        }
+
+        function Delete(id) {
+            return $http.delete(__env.apiUrl + '/reservations/' + id).then(handleSuccess, handleError);
+        }
 
         // private functions
         function handleSuccess(response) {

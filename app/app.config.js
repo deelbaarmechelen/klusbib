@@ -20,9 +20,9 @@ angular.
         when('/consumers', {
             template: '<consumer-list></consumer-list>'
         }).
-//        when('/reservations', {
-//            template: '<reservation-list></reservation-list>'
-//        }).
+        when('/reservations', {
+            template: '<reservation-list></reservation-list>'
+        }).
         when('/profile/:userId', {
             template: '<my-profile></my-profile>'
         }).
