@@ -24,13 +24,12 @@
                 	.then(function (response) {
                 	if (response.success) {
                 		// TODO: send confirmation email to user (+ email address verification?)
-//                        FlashService.Success('Registration successful', true);
                 		var id = Flash.create('success', 'Inschrijving succesvol ingediend', 5000);
                 	} else {
-//                        FlashService.Error(response.message);
                 		vm.dataLoading = false;
                 		console.log("enrolment problem: " + response.message);
-                		var id = Flash.create('danger', 'Inschrijving mislukt. Probeer later opnieuw of stuur ons een bericht', 0);
+                		var id = Flash.create('danger', 'Inschrijving mislukt: ' + response.message 
+                				+ '. Blijft het probleem zich voordoen, stuur ons dan een bericht', 0);
                 	}
                 });
             }

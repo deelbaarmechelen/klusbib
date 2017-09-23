@@ -99,6 +99,9 @@
             if (status == 401) {
             	message = 'Geen toegang. Gelieve eerst (opnieuw) in te loggen (' + data.message + ')';
             }
+            if (status == 409) {
+            	message = 'Conflict met een bestaande gebruiker (' + data.message + ')';
+            }
             console.log(message);
             return { success: false, message: message };
         }
