@@ -19,24 +19,30 @@
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.address.$dirty }">
             <label for="address">Adres</label>
-            <input type="text" name="lastname" id="address" class="form-control" ng-model="vm.user.address" size="50" />
+            <input type="text" name="lastname" id="address" class="form-control" ng-model="vm.user.address" size="50" required />
+            <span ng-show="form.address.$dirty && form.address.$error.required" class="help-block">Adres is vereist</span>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': form.postcode.$dirty && form.postcode.$error.required }">
             <label for="postcode">Postcode</label>
-            <input type="text" name="postcode" id="postcode" class="form-control" ng-model="vm.user.postcode" size="6" />
+            <input type="text" name="postcode" id="postcode" class="form-control" ng-model="vm.user.postcode" size="6" required />
+            <span ng-show="form.postcode.$dirty && form.postcode.$error.required" class="help-block">Postcode is vereist</span>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
             <label for="city">Stad</label>
-            <input type="text" name="city" id="city" class="form-control" ng-model="vm.user.city" size="20"/>
+            <input type="text" name="city" id="city" class="form-control" ng-model="vm.user.city" size="20" required/>
+            <span ng-show="form.city.$dirty && form.city.$error.required" class="help-block">Stad is vereist</span>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
             <label for="phone">Telefoon of GSM</label>
-            <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" size="20"/>
+            <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" size="20" required/>
+            <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block">Telefoon is vereist</span>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
             <label for="registration_number">Registratie nummer</label>
             <input type="text" name="registration_number" id="registration_number" class="form-control" 
-            ng-model="vm.user.registration_number" size="15"/>
+            ng-model="vm.user.registration_number" size="15" required/>
+            <span ng-show="form.registration_number.$dirty && form.registration_number.$error.required" 
+            class="help-block">Registratie nummer is vereist</span>
         </div>
 
 <!--         <div class="form-group" ng-class="{ 'has-error': form.payment_mode.$dirty && form.payment_mode.$error.required }"> -->
@@ -58,10 +64,10 @@
 			Lees ook eerst de <a href="/www/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a> na.
 		</p>
         <label class="form-check-label" for="accept_terms">
-            <input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" ng-model="vm.user.accept_terms" value="1" />
+            <input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" ng-model="vm.user.accept_terms" value="1" required/>
             Verklaart hierbij de Klusbib afspraken te hebben gelezen en ermee akkoord te gaan.
             <span ng-show="form.accept_terms.$dirty && form.accept_terms.$error.required" class="help-block">
-            Lees en aanvaardt de Klusbib afspraken om verder te gaan</span>
+            Lees en aanvaard de Klusbib afspraken om verder te gaan</span>
         </label>
 
 		<div class="form-actions">

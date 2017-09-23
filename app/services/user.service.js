@@ -97,10 +97,10 @@
             var config = response.config;
             var message = 'Er ging iets mis, probeer later eens opnieuw';
             if (status == 401) {
-            	message = 'Geen toegang. Gelieve eerst (opnieuw) in te loggen (' + data.message + ')';
+            	message = 'Geen toegang. Gelieve eerst (opnieuw) in te loggen (' + data.error.message + ')';
             }
             if (status == 409) {
-            	message = 'Conflict met een bestaande gebruiker (' + data.message + ')';
+            	message = 'Conflict met een bestaande gebruiker (' + data.error.message + ')';
             }
             console.log(message);
             return { success: false, message: message };
