@@ -8,7 +8,9 @@ Object.assign(env, window.__env);
 }
 
 var app = angular.module('toollibApp', [
-	'ngRoute',
+	'ui.router',
+	'angularCSS',
+	'uiGmapgoogle-maps',
 	'navigation',
 	'signIn', 
 	'toolList', 

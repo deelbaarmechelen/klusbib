@@ -39,7 +39,9 @@
    <tbody>
 
         <tr ng-repeat="item in $ctrl.tools| filter:{category:$ctrl.filterCategory }"> 
-            <td><a ng-href="#!/tools/{{item.tool_id}}">
+            <td>
+<!--             <a ng-href="#!/tools/{{item.tool_id}}"> -->
+            <a ui-sref="tools({ toolId: item.tool_id })">
             	<img ng-if="item.img" ng-src="{{ $ctrl.resizeImage(item.img, 'x200') }}"/>
             </a></td>
             <td><a ng-href="#!/tools/{{item.tool_id}}">{{item.name}}</a>:<br>{{item.description}}

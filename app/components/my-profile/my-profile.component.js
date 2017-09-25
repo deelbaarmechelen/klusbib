@@ -1,23 +1,26 @@
 angular.
   module('myProfile').
   component('myProfile', {
+	bindings: { user: '<' },
     templateUrl: '/app/components/my-profile/my-profile.template.html',
-    controller: ['$http', '$routeParams', '__env', 'ReservationService','$location','Flash',
-      function MyProfileController($http, $routeParams, __env, ReservationService, $location, Flash) {
+    controller: ['$http', '__env', 'ReservationService','$location','Flash',
+      function MyProfileController($http, __env, ReservationService, $location, Flash) {
           var self = this;
-          self.reservations = [];
-          $http.get(__env.apiUrl + '/users/'+ $routeParams.userId).then(function(response) {
-  	        self.user = response.data;
-  	        self.reservations = filterFutureReservations(self.user.reservations);
-  	        translateReservations(self.reservations);
-          }, function(response) {
-        	  console.log('Error in loading user data: ' + JSON.stringify(response.data));
-        	  if (response.status == 401) {
-        		  $location.path('/signin');
-        	  }
-        	  var id = Flash.create('danger', 
-        			  'Er is een probleem opgetreden bij het laden van de gebruikersgegevens. Probeer later opnieuw', 5000);
-          });
+//          self.reservations = [];
+//          self.reservations = filterFutureReservations(self.user.reservations);
+//          translateReservations(self.reservations);
+//          $http.get(__env.apiUrl + '/users/'+ $routeParams.userId).then(function(response) {
+//  	        self.user = response.data;
+//  	        self.reservations = filterFutureReservations(self.user.reservations);
+//  	        translateReservations(self.reservations);
+//          }, function(response) {
+//        	  console.log('Error in loading user data: ' + JSON.stringify(response.data));
+//        	  if (response.status == 401) {
+//        		  $location.path('/signin');
+//        	  }
+//        	  var id = Flash.create('danger', 
+//        			  'Er is een probleem opgetreden bij het laden van de gebruikersgegevens. Probeer later opnieuw', 5000);
+//          });
           
           self.extend = function (item) {
         	  alert('extend not yet implemented');

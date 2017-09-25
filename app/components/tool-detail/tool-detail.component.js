@@ -21,13 +21,13 @@ angular.module('toolDetail').factory('alert', function($uibModal) {
 angular.
   module('toolDetail').
   component('toolDetail', {
+	bindings: { tool: '<' },
     templateUrl: 'components/tool-detail/tool-detail.template.html',
-    controller: ['$http', '$routeParams','moment','calendarConfig', 'alert','__env', 
+    controller: ['$http', 'moment','calendarConfig', 'alert','__env', 
     	'User','ReservationService', 'Flash','calendarEventTitle',
-      function ToolDetailController($http, $routeParams,moment,calendarConfig, alert, __env, 
+      function ToolDetailController($http, moment,calendarConfig, alert, __env, 
     		  User, ReservationService, Flash, calendarEventTitle) {
           var self = this;
-          self.toolId = $routeParams.toolId;
           self.user = User.get();
           self.isLogged = !!self.user.id
           self.showCalendar = self.isLogged;
@@ -190,8 +190,8 @@ angular.
     	  var secondarycolor = colourNameToHex(color);
     	  return { primary: primarycolor, secondary: secondarycolor};
         }
-		var reloadTool = function () {
-		      $http.get(__env.apiUrl + '/tools/'+ $routeParams.toolId).then(function(response) {
+		var reloadTool = function (toolId) {
+		      $http.get(__env.apiUrl + '/tools/'+ toolId).then(function(response) {
 			        self.tool = response.data;
 			        self.showCategory = function () {
 			        	var selected = $filter('filter')(self.categories, {value: self.tool.category});
@@ -217,6 +217,5 @@ angular.
 			        });
 			  });
 		}
-		reloadTool();
   }]
 });

@@ -1,6 +1,6 @@
 'use strict';
 var appReservationList = angular.module('reservationList', [
-	  'ngRoute',
+//	  'ngRoute',
 	  'ngResource'
 ]);
 

@@ -6,7 +6,10 @@
 		<tbody>
 			<tr>
 				<td>Categorie</td>
-				<td class="wrap"><a href="#!/tools?category={{$ctrl.tool.category}}">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a></td>
+				<td class="wrap">
+<!-- 				<a href="#!/tools?category={{$ctrl.tool.category}}">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a> -->
+				<a ui-sref="tools.category({ category: $ctrl.tool.category })">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a>
+				</td>
 			</tr>
 			<tr ng-if="$ctrl.tool.brand">
 				<td>Merk</td>

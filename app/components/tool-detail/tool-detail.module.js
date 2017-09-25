@@ -1,5 +1,5 @@
 angular.module('toolDetail', [
-  'ngRoute',
+//  'ngRoute',
   'mwl.calendar', 'ui.bootstrap',
   'colorpicker.module', 'ngFlash'
 ]);

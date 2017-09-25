@@ -1,8 +1,9 @@
 angular.module('toolList').component('toolList', {
+	bindings: { tools: '<' },
 	templateUrl : '/app/components/tool-list/tool-list.template.html',
 	controller :
-	[ '$http', '$routeParams','User', 'UserService', '__env',
-		function ToolListController($http, $routeParams, User, UserService, __env) {
+	[ '$http', 'User', 'UserService', '__env',
+		function ToolListController($http, User, UserService, __env) {
 
 		var self = this;
         self.userId = User.get().id;
@@ -12,10 +13,11 @@ angular.module('toolList').component('toolList', {
         	}
         });
         self.showFunctions = false;
-		self.filterCategory = $routeParams.category;
-		$http.get(__env.apiUrl + '/tools?_perPage=100').then(function(response) {
-	        self.tools = response.data;
-	      });
+		self.filterCategory = self.category;
+//		self.filterCategory = 'general';
+//		$http.get(__env.apiUrl + '/tools?_perPage=100').then(function(response) {
+//	        self.tools = response.data;
+//	      });
 
 		this.resizeImage = function (imageUrl, size) {
 			baseUrl = imageUrl.substr(0,imageUrl.lastIndexOf('.'));
