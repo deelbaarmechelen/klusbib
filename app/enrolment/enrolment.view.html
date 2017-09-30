@@ -38,7 +38,8 @@
             <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block">Telefoon is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
-            <label for="registration_number">Registratie nummer</label>
+            <label for="registration_number">Identificatienummer van het Rijksregister <br>
+            <small>(te vinden op de achterkant van je identiteitskaart)</small></label>
             <input type="text" name="registration_number" id="registration_number" class="form-control" 
             ng-model="vm.user.registration_number" size="15" required/>
             <span ng-show="form.registration_number.$dirty && form.registration_number.$error.required" 
