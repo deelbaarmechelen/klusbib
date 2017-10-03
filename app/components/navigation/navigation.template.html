@@ -14,7 +14,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="/">Klusbib</a>
+                <a class="navbar-brand page-scroll" ui-sref="home">Klusbib</a>
 <!-- 				<a href="/" id="top"> <img -->
 <!-- 					src="/assets/img/klusbib_logo.jpg" -->
 <!-- 					alt="Klusbib" /> -->
@@ -29,20 +29,20 @@
                         <a class="page-scroll" ng-href="{{item.href}}">{{item.label}}</a>
                     </li>
                     <li data-ng-if="!user.id">
-                        <a href="/app/#!/lid-worden">Lid worden</a>
+                        <a ui-sref="enrolment">Lid worden</a>
                     </li>
                     <li>
-                        <a href="/app/#!/tools">Inventaris</a>
+                        <a ui-sref="tools">Inventaris</a>
                     </li>
                     <li>
-                        <a href="/app/#!/vrijwilligers">Vrijwilligers</a>
+                        <a ui-sref="volunteer" >Vrijwilligers</a>
                     </li>
 <!--                     <li> -->
 <!--                         <a href="//forum.klusbib.be">Forum</a> -->
 <!--                     </li> -->
-					<li data-ng-if="!user.id" ><a data-ng-href="/app/#!/signin">Inloggen</a></li>
-					<li data-ng-if="!!user.id"><a data-ng-href="/app/#!/profile/{{user.id}}">Mijn Profiel ({{user.id}})</a></li>
-					<li data-ng-if="!!user.id"><a data-ng-href="/app/#!/signin" ng-click="logout()"'>Uitloggen</a></li>
+					<li data-ng-if="!user.id" ><a ui-sref="signin">Inloggen</a></li>
+					<li data-ng-if="!!user.id"><a ui-sref="profile({ userId: user.id })" >Mijn Profiel ({{user.id}})</a></li>
+					<li data-ng-if="!!user.id"><a ui-sref="signin" ng-click="logout()"'>Uitloggen</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

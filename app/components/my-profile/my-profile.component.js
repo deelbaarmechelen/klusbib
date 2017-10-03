@@ -6,6 +6,14 @@ angular.
     controller: ['$http', '__env', 'ReservationService','$location','Flash',
       function MyProfileController($http, __env, ReservationService, $location, Flash) {
           var self = this;
+          this.$onChanges = function(changesObj) {
+			  if (changesObj.user && changesObj.user.currentValue &&
+					  changesObj.user.currentValue.success) {
+				self.user = changesObj.user.currentValue.message;
+				self.reservations = filterFutureReservations(self.user.reservations);
+				translateReservations(self.reservations);
+			  }
+           }
 //          self.reservations = [];
 //          self.reservations = filterFutureReservations(self.user.reservations);
 //          translateReservations(self.reservations);

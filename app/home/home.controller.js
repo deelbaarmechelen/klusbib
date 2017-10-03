@@ -32,6 +32,9 @@
 			{'label': 'Contact', 'href': '/app/#!/#contact'},
 			{'label': 'FAQ', 'href': '/app/#!/#faq'}
 		];
+		$scope.headerImage = {
+			    background: 'url(/app/home/img/vitrine.jpg)'
+		};
      }
 
 })();

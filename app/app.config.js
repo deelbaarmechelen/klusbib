@@ -1,70 +1,69 @@
 // This file should handle routes configuration
-//(function() {
-
-//angular.
-//  module('toollibApp').
-//  config(['$locationProvider', '$routeProvider',
-//    function config($locationProvider, $routeProvider) {
-//      $locationProvider.hashPrefix('!');
-//
-//      $routeProvider.
-//      	when('/', {
-//          controller: 'HomeController',
-//          templateUrl: 'home/home.view.html',
-//          controllerAs: 'vm'
-//      	}).
-//      	when('/signin', {
-//          template: '<sign-in></sign-in>'
-//      	}).
-//        when('/tools', {
-//          template: '<tool-list></tool-list>'
-//        }).
-//        when('/tools/:toolId', {
-//          template: '<tool-detail></tool-detail>'
-//        }).
-//        when('/consumers', {
-//            template: '<consumer-list></consumer-list>'
-//        }).
-//        when('/reservations', {
-//            template: '<reservation-list></reservation-list>'
-//        }).
-//        when('/profile/:userId', {
-//            template: '<my-profile></my-profile>'
-//        }).
-//        when('/lid-worden', {
-//            controller: 'EnrolmentController',
-//            templateUrl: 'enrolment/enrolment.view.html',
-//            controllerAs: 'vm'
-//        }).
-//        when('/vrijwilligers', {
-//            controller: 'VolunteerController',
-//            templateUrl: 'volunteer/volunteer.view.html',
-//            controllerAs: 'vm'
-//        }).
-//        otherwise('/tools');
-//    }
-//  ]);
+(function() {
 
 angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider) {
+
 	 var homeState = {
 	    name: 'home',
+	    views: {
+	    	nav: {
+	    		component: 'navigation',
+	    	},
+	    	main: {
+	    		templateUrl: 'home/home.view.html',
+	    		controller: 'HomeController'
+//	    		css: 'home/css/creative.css'
+	    	}
+	    },
 	    url: '/',
-	    templateUrl: 'home/home.view.html'
-//	    css: 'home/css/creative.css'
+	    resolve: {
+	    	transparant: function () {return true;},
+	    	items: function () {
+	    		var menuItems = [
+					{'label': 'Over ons', 'href': '/app/#!/#about'}, 
+					{'label': 'Waar', 'href': '/app/#!/#where'},
+					{'label': 'Contact', 'href': '/app/#!/#contact'},
+					{'label': 'FAQ', 'href': '/app/#!/#faq'}
+				];
+	    		return menuItems;
+	    	}
+	    }
 	  }
 	  var signInState = {
 			    name: 'signin',
 			    url: '/signin',
-			    template: '<sign-in></sign-in>'
+			    views: {
+			    	nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		component: 'signIn'
+			    	}
+			    },
+			    resolve: {
+			    	inverse: function() {
+			    		return true;
+			        }
+			    }
 	  }
 	  var toolsListState = {
 			    name: 'tools',
 			    url: '/tools',
-			    component: 'toolList',
+			    views: {
+			    	nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		component: 'toolList',
+			    	}
+			    },
 			    resolve: {
-			        tools: function(ToolService) {
-			          return ToolService.GetAll();
-			        }
+			    	tools: function(ToolService) {
+			    		return ToolService.GetAll();
+			    	},
+			    	inverse: function() {
+			    		return true;
+			    	}
 			    }
 	  }
 	  var toolsListCategoryState = {
@@ -81,43 +80,112 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 	  var toolDetailState = {
 			    name: 'toolDetail',
 			    url: '/tools/{toolId}',
-			    component: 'toolDetail',
+			    views: {
+			    	nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		component: 'toolDetail',
+			    	}
+			    },
 			    resolve: {
 			        tool: function(ToolService, $transition$) {
 			          return ToolService.GetById($transition$.params().toolId);
+			    	},
+			    	inverse: function() {
+			    		return true;
 			        }
 			    }
 	  }
 	  var consumersState = {
 			    name: 'consumers',
 			    url: '/consumers',
-			    template: '<consumer-list></consumer-list>'
+			    views: {
+			    	nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		component: 'consumerList',
+			    	}
+			    },
+			    resolve: {
+			    	inverse: function() {
+			    		return true;
+			        }
+			    }
 	  }
 	  var reservationsState = {
 			    name: 'reservations',
 			    url: '/reservations',
-			    template: '<reservation-list></reservation-list>'
+			    views: {
+			    	nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		component: 'reservationList',
+			    	}
+			    },
+			    resolve: {
+			    	inverse: function() {
+			    		return true;
+			        }
+			    }
 	  }
 	  var profileState = {
 			    name: 'profile',
 			    url: '/profile/{userId}',
-			    component: 'myProfile',
+			    views: {
+			    	nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		component: 'myProfile',
+			    	}
+			    },
 				resolve: {
-				      user: function(UserService, $transition$) {
+					user: function(UserService, $transition$) {
 				          return UserService.GetById($transition$.params().userId);
+				    },
+				    inverse: function() {
+				    	return true;
 				    }
 				}
-//			    template: '<my-profile></my-profile>'
 	  }
 	  var enrolmentState = {
 			    name: 'enrolment',
 			    url: '/lid-worden',
-			    templateUrl: 'enrolment/enrolment.view.html'
+			    views: {
+			    	nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		templateUrl: 'enrolment/enrolment.view.html',
+				    	controller: 'EnrolmentController as vm'
+			    	}
+			    },
+			    resolve: {
+			    	inverse: function() {
+			    		return true;
+			        }
+			    }
 			  }
 	  var volunteerState = {
 			    name: 'volunteer',
 			    url: '/vrijwilligers',
-			    templateUrl: 'volunteer/volunteer.view.html'
+			    views: {
+			    	nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		templateUrl: 'volunteer/volunteer.view.html',
+				    	controller: 'VolunteerController'
+			    	}
+			    },
+			    resolve: {
+			    	inverse: function() {
+			    		return true;
+			        }
+			    }
 			  }
 
 	  $stateProvider.state(homeState);
@@ -174,4 +242,4 @@ function colourNameToHex(colour)
 
     return false;
 };
-//}());
+}());

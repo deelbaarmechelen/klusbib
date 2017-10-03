@@ -1,8 +1,8 @@
 angular.module('reservationList').component('reservationList', {
 	templateUrl : '/app/components/reservation-list/reservation-list.template.html',
 	controller :
-	[ '$http', '$routeParams', 'ReservationService', 'UserService', 'Flash','__env',
-		function ReservationListController($http, $routeParams, ReservationService, UserService, Flash,__env) {
+	[ '$http', 'ReservationService', 'UserService', 'Flash','__env',
+		function ReservationListController($http, ReservationService, UserService, Flash,__env) {
 
 		var self = this;
 		$http.get(__env.apiUrl + '/reservations?_perPage=100').then(function(response) {
