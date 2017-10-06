@@ -20,6 +20,10 @@
     "angular-base64": "~2.0.5",
     "angular-bootstrap-affix": "~0.2.2",
     "angular-flash-alert": "~2.4.0",
-    "interact": "~1.2.9"
+    "interact": "~1.2.9",
+    "lodash": "~4.17.4",
+    "angular-simple-logger": "~0.1.7",
+    "angular-google-maps": "~2.4.1",
+    "angular-ui-router": "~1.0.7"
   }
 }
