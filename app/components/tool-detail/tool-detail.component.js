@@ -2,7 +2,7 @@ angular.module('toolDetail').factory('alert', function($uibModal) {
 
 	function show(action, event) {
 		return $uibModal.open({
-			templateUrl : '/app/components/tool-detail/modalContent.html',
+			templateUrl : '/components/tool-detail/modalContent.html',
 			controller : function() {
 				var vm = this;
 				vm.action = action;

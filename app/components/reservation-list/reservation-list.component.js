@@ -1,5 +1,5 @@
 angular.module('reservationList').component('reservationList', {
-	templateUrl : '/app/components/reservation-list/reservation-list.template.html',
+	templateUrl : '/components/reservation-list/reservation-list.template.html',
 	controller :
 	[ '$http', 'ReservationService', 'UserService', 'Flash','__env',
 		function ReservationListController($http, ReservationService, UserService, Flash,__env) {

@@ -2,7 +2,7 @@ angular.
   module('myProfile').
   component('myProfile', {
 	bindings: { user: '<' },
-    templateUrl: '/app/components/my-profile/my-profile.template.html',
+    templateUrl: '/components/my-profile/my-profile.template.html',
     controller: ['$http', '__env', 'ReservationService','$location','Flash',
       function MyProfileController($http, __env, ReservationService, $location, Flash) {
           var self = this;

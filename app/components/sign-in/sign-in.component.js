@@ -1,6 +1,6 @@
 angular.module('signIn').component('signIn', {
 	scope: true,
-	templateUrl : '/app/components/sign-in/sign-in.template.html',
+	templateUrl : '/components/sign-in/sign-in.template.html',
 	controller :
 	[ '$http', '__env', 'Auth', '$localStorage', '$location','User',
 		function SignInController($http, __env, Auth, $localStorage, $location, User) {

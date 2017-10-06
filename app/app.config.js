@@ -10,7 +10,7 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 	    		component: 'navigation',
 	    	},
 	    	main: {
-	    		templateUrl: 'home/home.view.html',
+	    		templateUrl: '/home/home.view.html',
 	    		controller: 'HomeController'
 //	    		css: 'home/css/creative.css'
 	    	}
@@ -20,10 +20,10 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 	    	transparant: function () {return true;},
 	    	items: function () {
 	    		var menuItems = [
-					{'label': 'Over ons', 'href': '/app/#!/#about'}, 
-					{'label': 'Waar', 'href': '/app/#!/#where'},
-					{'label': 'Contact', 'href': '/app/#!/#contact'},
-					{'label': 'FAQ', 'href': '/app/#!/#faq'}
+					{'label': 'Over ons', 'href': '/#!/#about'}, 
+					{'label': 'Waar', 'href': '/#!/#where'},
+					{'label': 'Contact', 'href': '/#!/#contact'},
+					{'label': 'FAQ', 'href': '/#!/#faq'}
 				];
 	    		return menuItems;
 	    	}

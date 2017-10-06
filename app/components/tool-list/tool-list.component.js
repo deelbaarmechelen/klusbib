@@ -1,6 +1,6 @@
 angular.module('toolList').component('toolList', {
 	bindings: { tools: '<' },
-	templateUrl : '/app/components/tool-list/tool-list.template.html',
+	templateUrl : '/components/tool-list/tool-list.template.html',
 	controller :
 	[ '$http', 'User', 'UserService', '__env',
 		function ToolListController($http, User, UserService, __env) {

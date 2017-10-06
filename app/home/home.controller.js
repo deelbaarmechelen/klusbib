@@ -27,13 +27,13 @@
     	};
     	
 		$scope.menuItems = [
-			{'label': 'Over ons', 'href': '/app/#!/#about'}, 
-			{'label': 'Waar', 'href': '/app/#!/#where'},
-			{'label': 'Contact', 'href': '/app/#!/#contact'},
-			{'label': 'FAQ', 'href': '/app/#!/#faq'}
+			{'label': 'Over ons', 'href': '/#!/#about'}, 
+			{'label': 'Waar', 'href': '/#!/#where'},
+			{'label': 'Contact', 'href': '/#!/#contact'},
+			{'label': 'FAQ', 'href': '/#!/#faq'}
 		];
 		$scope.headerImage = {
-			    background: 'url(/app/home/img/vitrine.jpg)'
+			    background: 'url(/home/img/vitrine.jpg)'
 		};
      }
 

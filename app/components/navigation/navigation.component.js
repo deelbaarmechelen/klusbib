@@ -2,7 +2,7 @@
     'use strict';
 
 	angular.module('navigation').component('navigation', {
-		templateUrl : '/app/components/navigation/navigation.template.html',
+		templateUrl : '/components/navigation/navigation.template.html',
 		controller :
 		[ '$scope', 'User',
 			function NavigationController($scope, User) {
