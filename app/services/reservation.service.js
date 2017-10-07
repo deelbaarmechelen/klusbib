@@ -24,6 +24,7 @@
         var service = {};
 
         service.GetAll = GetAll;
+        service.GetAllByPage = GetAllByPage;
 //        service.GetById = GetById;
         service.Create = Create;
         service.Extend = Extend;
@@ -34,16 +35,19 @@
         return service;
 
         function GetAll() {
-            return $http.get(__env.apiUrl + '/reservations').then(handleSuccess, handleError('Error getting all reservations'));
+            return $http.get(__env.apiUrl + '/reservations').then(handleSuccess, handleError);
+        }
+        function GetAllByPage(page, pageSize) {
+            return $http.get(__env.apiUrl + '/reservations?_perPage='+pageSize).then(handleSuccess, handleError);
         }
 //
 //        function GetById(id) {
 //            return $http.get(__env.apiUrl + '/reservations/' + id).then(handleSuccess, handleError('Error getting reservation by id'));
 //        }
 
-        function Create(userId, toolId, startDate, endDate) {
+        function Create(userId, toolId, startDate, endDate, type, state) {
       	    var reservation = {'user_id' : userId, 'tool_id' : toolId, 'title' : 'Reservatie',
-      	    		'state' : 'REQUESTED', 'type' : 'reservation', 
+      	    		'state' : state, 'type' : type, 
       	    		'startsAt' : moment(startDate).format('YYYY-MM-DD'), 'endsAt' : moment(endDate).format('YYYY-MM-DD')};
       	  	console.log('Reservation data: ' + JSON.stringify(reservation));
         	var config = { 
@@ -81,7 +85,7 @@
         // function (data, status, headers, config)??
         function handleError(response, error) {
             console.log(JSON.stringify(response));
-        	var data = response.data;
+            var data = response.data;
             var status = response.status;
             var statusText = response.statusText;
             var headers = response.headers;

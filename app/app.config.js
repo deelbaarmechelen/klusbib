@@ -59,7 +59,11 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    },
 			    resolve: {
 			    	tools: function(ToolService) {
-			    		return ToolService.GetAll();
+			    		return ToolService.GetAll().then(function(response) {
+			    			if (response.success) {
+			    				return response.message;
+			    			}
+			    		});
 			    	},
 			    	inverse: function() {
 			    		return true;
@@ -72,9 +76,13 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    component: 'toolList',
 			    params: 'category',
 			    resolve: {
-			        tools: function(ToolService) {
-			          return ToolService.GetAll();
-			        }
+			    	tools: function(ToolService) {
+			    		return ToolService.GetAll().then(function(response) {
+			    			if (response.success) {
+			    				return response.message;
+			    			}
+			    		});
+			    	},
 			    }
 	  }
 	  var toolDetailState = {
@@ -90,7 +98,11 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    },
 			    resolve: {
 			        tool: function(ToolService, $transition$) {
-			          return ToolService.GetById($transition$.params().toolId);
+			          return ToolService.GetById($transition$.params().toolId).then(function(response) {
+			    			if (response.success) {
+			    				return response.message;
+			    			}
+			          });
 			    	},
 			    	inverse: function() {
 			    		return true;

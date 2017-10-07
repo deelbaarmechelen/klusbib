@@ -7,6 +7,8 @@
 <table class="table table-striped">
    <thead>
          <tr>
+            <th>Lid</th>
+            <th>Materiaal code</th>
             <th>Van</th>
             <th>Tot</th>
             <th>Type</th>
@@ -17,6 +19,8 @@
    <tbody>
 
         <tr ng-repeat="item in $ctrl.reservations"> 
+            <td>{{$ctrl.getUserName(item.user_id)}} ({{item.user_id}})</td>
+            <td>{{$ctrl.getToolNameAndCode(item.tool_id)}} ({{item.tool_id}})</td>
             <td>{{item.startsAt}}</td>
             <td>{{item.endsAt}}</td>
             <td>{{item.type}}</td>
@@ -28,7 +32,30 @@
         </tr>
         <tr class="buttons" ng-if="$ctrl.showFunctions">
             <td>
-                <button ng-click="$ctrl.newReservation()">
+           		<select name="newReservationUserId" ng-model="newReservation.userId">
+           			<option ng-repeat="user in $ctrl.users" value="{{user.user_id}}">{{user.firstname}} {{user.lastname}}</option>
+		    	</select>
+            </td>
+            <td>
+           		<select name="newReservationToolId" ng-model="newReservation.toolId">
+           			<option ng-repeat="tool in $ctrl.tools" value="{{tool.tool_id}}">{{tool.code}} - {{tool.name}}</option>
+		    	</select>
+            </td>
+            <td><input type="date" ng-model="newReservation.startDate"></input></td>
+            <td><input type="date" ng-model="newReservation.endDate"></input></td>
+            <td>
+           		<select name="newReservationType" ng-model="newReservation.type">
+           			<option ng-repeat="type in $ctrl.reservationTypes" value="{{type.id}}">{{type.name}}</option>
+		    	</select>
+            </td>
+            <td>
+           		<select name="newReservationState" ng-model="newReservation.state">
+           			<option ng-repeat="state in $ctrl.reservationStates" value="{{state.id}}">{{state.name}}</option>
+		    	</select>
+            </td>
+            <td>
+                <button ng-click="$ctrl.newReservation(newReservation.userId, newReservation.toolId, newReservation.startDate, newReservation.endDate,
+                newReservation.type, newReservation.state)">
                     Reservatie toevoegen
                 </button>
             </td>
