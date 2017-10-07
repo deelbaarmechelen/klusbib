@@ -17,23 +17,23 @@ angular.module('reservationList').component('reservationList', {
         			self.showFunctions = true;
         		}
         	});
-		UserService.GetAll().then(function(response) {
+		UserService.GetAllOrderBy('firstname', 'asc').then(function(response) {
 			if (response.success) {
     				self.users = response.message;
-    			}
+    		}
 		});
-		ToolService.GetAll().then(function(response) {
+		ToolService.GetAllOrderBy('code', 'asc').then(function(response) {
 			if (response.success) {
     			self.tools = response.message;
     		}
 		});
-        	self.showFunctions = false;
-        	self.canBeConfirmed = function (reservation) {
-        		if (reservation.state == "REQUESTED") {
-        			return true;
-        		}
-        		return false;
+        self.showFunctions = false;
+        self.canBeConfirmed = function (reservation) {
+        	if (reservation.state == "REQUESTED") {
+        		return true;
         	}
+        	return false;
+        }
 		this.confirmReservation = function (reservation, index) {
 			reservation.state = "CONFIRMED";
 			ReservationService.Update(reservation).then(function(response) {

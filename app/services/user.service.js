@@ -24,6 +24,7 @@
         var service = {};
 
         service.GetAll = GetAll;
+        service.GetAllOrderBy = GetAllOrderBy;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
         service.Create = Create;
@@ -36,6 +37,10 @@
             return $http.get(__env.apiUrl + '/users').then(handleSuccess, handleError);
         }
 
+        function GetAllOrderBy(sortfield, direction) {
+            return $http.get(__env.apiUrl + '/users?_sortField=' + sortfield + '&_sortDir=' + direction)
+            	.then(handleSuccess, handleError);
+        }
         function GetById(id) {
             return $http.get(__env.apiUrl + '/users/' + id).then(handleSuccess, handleError);
         }

@@ -24,6 +24,7 @@
         var service = {};
 
         service.GetAll = GetAll;
+        service.GetAllOrderBy = GetAllOrderBy;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
         service.Create = Create;
@@ -35,6 +36,11 @@
         function GetAll() {
         	// FIXME: support more than 100 items
             return $http.get(__env.apiUrl + '/tools?_perPage=100').then(handleSuccess, handleError);
+        }
+        function GetAllOrderBy(sortField, direction) {
+        	// FIXME: support more than 100 items
+            return $http.get(__env.apiUrl + '/tools?_perPage=100&_sortField=' + sortField + '&_sortDir=' + direction)
+            	.then(handleSuccess, handleError);
         }
 
         function GetById(id) {
