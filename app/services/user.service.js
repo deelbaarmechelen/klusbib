@@ -103,7 +103,7 @@
             	message = 'Conflict met een bestaande gebruiker (' + data.error.message + ')';
             }
             console.log(message);
-            return { success: false, message: message };
+            return { 'success': false, 'message': message, 'status': status };
         }
 //        function handleSuccess(res) {
 //            return res.data;

@@ -7,13 +7,32 @@ angular.
       function MyProfileController($http, __env, ReservationService, $location, Flash) {
           var self = this;
           this.$onChanges = function(changesObj) {
-			  if (changesObj.user && changesObj.user.currentValue &&
-					  changesObj.user.currentValue.success) {
-				self.user = changesObj.user.currentValue.message;
-				self.reservations = filterFutureReservations(self.user.reservations);
-				translateReservations(self.reservations);
+			  if (changesObj.user && changesObj.user.currentValue) {
+				  if (changesObj.user.currentValue.success) {
+					  self.user = changesObj.user.currentValue.message;
+					  self.reservations = filterFutureReservations(self.user.reservations);
+					  translateReservations(self.reservations);
+				  } else {
+					  if (changesObj.user.currentValue.status == 401) {
+		        		  $location.path('/signin');
+		        	  }
+		        	  Flash.create('danger', 
+		        			  'Er is een probleem opgetreden bij het laden van de gebruikersgegevens. Probeer later opnieuw', 5000);					  
+				  }
 			  }
-           }
+          }
+          function isAdmin(user) {
+        	  if (user.role === "admin" && user.state === "ACTIVE") {
+        		  return true;
+        	  }
+        	  return false;
+          }
+          self.showReservationsLink = function () {
+        	  if (isAdmin(self.user)) {
+        		  return true;
+        	  }
+        	  return false;
+          }
 //          self.reservations = [];
 //          self.reservations = filterFutureReservations(self.user.reservations);
 //          translateReservations(self.reservations);
