@@ -34,11 +34,11 @@
         return service;
 
         function GetAll() {
-            return $http.get(__env.apiUrl + '/users').then(handleSuccess, handleError);
+            return $http.get(__env.apiUrl + '/users?_perPage=1000').then(handleSuccess, handleError);
         }
 
         function GetAllOrderBy(sortfield, direction) {
-            return $http.get(__env.apiUrl + '/users?_sortField=' + sortfield + '&_sortDir=' + direction)
+            return $http.get(__env.apiUrl + '/users?_perPage=1000&_sortField=' + sortfield + '&_sortDir=' + direction)
             	.then(handleSuccess, handleError);
         }
         function GetById(id) {
