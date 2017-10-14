@@ -74,7 +74,7 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    name: 'tools.category',
 			    url: '',
 			    component: 'toolList',
-			    params: 'category',
+			    params: {category: 'general'},
 			    resolve: {
 			    	tools: function(ToolService) {
 			    		return ToolService.GetAll().then(function(response) {

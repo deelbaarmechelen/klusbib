@@ -1,9 +1,9 @@
 angular.module('toolList').component('toolList', {
-	bindings: { tools: '<' },
+	bindings: { tools: '<', category: '<' },
 	templateUrl : '/components/tool-list/tool-list.template.html',
 	controller :
-	[ '$http', 'User', 'UserService', '__env',
-		function ToolListController($http, User, UserService, __env) {
+	[ '$http', 'User', 'UserService', '__env', '$stateParams',
+		function ToolListController($http, User, UserService, __env, $stateParams) {
 
 		var self = this;
         self.userId = User.get().id;
@@ -12,8 +12,9 @@ angular.module('toolList').component('toolList', {
         		self.showFunctions = true;
         	}
         });
+//        self.category = $stateParams.category;
         self.showFunctions = false;
-		self.filterCategory = self.category;
+		self.filterCategory = $stateParams.category;
 //		self.filterCategory = 'general';
 //		$http.get(__env.apiUrl + '/tools?_perPage=100').then(function(response) {
 //	        self.tools = response.data;
