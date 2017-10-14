@@ -1,0 +1,28 @@
+<div class="col-md-6 col-md-offset-3">
+    <h2>Problemen verhelpen</h2>
+	<flash-message></flash-message>
+	<div>
+		<h3>Ben je je paswoord vergeten?</h3>
+		<p>Vul dan hier je email adres in en wij sturen jou en nieuwe.</p>
+		<h3>Geen bevestiging van inschrijving</h3>
+		<p>Als je geen bevestiging van je inschrijving ontving kan je hier een nieuw bericht laten opsturen.<br>
+		Kijk in dat geval ook zeker je spam folder na!<br>
+		<br>
+		Voor alle andere problemen, neem je best <a href="mailto:info@klusbib.be">contact</a> met ons op 
+		</p>
+		
+	</div>
+    <form name="form" ng-submit="vm.resetPwd()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="form-control" ng-model="vm.email" size="35" required />
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">E-mail is vereist</span>
+        </div>
+
+		<div class="form-actions">
+<!--             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Inschrijven</button> -->
+            <button type="submit" class="btn btn-primary">Verstuur nieuw paswoord</button>
+            <button type="button" class="btn btn-primary" ng-click="vm.resendConfirmation()">Inschrijving bevestigen</button>
+        </div>
+    </form>
+</div>

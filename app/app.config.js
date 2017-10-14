@@ -181,6 +181,24 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			        }
 			    }
 			  }
+	  var resetPwdState = {
+			    name: 'reset-pwd',
+			    url: '/reset-pwd',
+			    views: {
+			    	nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		templateUrl: 'enrolment/reset-pwd.view.html',
+				    	controller: 'EnrolmentController as vm'
+			    	}
+			    },
+			    resolve: {
+			    	inverse: function() {
+			    		return true;
+			        }
+			    }
+			  }
 	  var volunteerState = {
 			    name: 'volunteer',
 			    url: '/vrijwilligers',
@@ -209,6 +227,7 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 	  $stateProvider.state(reservationsState);
 	  $stateProvider.state(profileState);
 	  $stateProvider.state(enrolmentState);
+	  $stateProvider.state(resetPwdState);
 	  $stateProvider.state(volunteerState);
 	  
 	  $urlRouterProvider.otherwise('/')
