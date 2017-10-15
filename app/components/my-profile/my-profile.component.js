@@ -3,8 +3,8 @@ angular.
   component('myProfile', {
 	bindings: { user: '<' },
     templateUrl: '/components/my-profile/my-profile.template.html',
-    controller: ['$http', '__env', 'ReservationService','$location','Flash',
-      function MyProfileController($http, __env, ReservationService, $location, Flash) {
+    controller: ['$http', '__env', 'UserService', 'ReservationService','$location','Flash',
+      function MyProfileController($http, __env, UserService, ReservationService, $location, Flash) {
           var self = this;
           this.$onChanges = function(changesObj) {
 			  if (changesObj.user && changesObj.user.currentValue) {
@@ -32,6 +32,30 @@ angular.
         		  return true;
         	  }
         	  return false;
+          }
+          
+          self.updateUser = function() {
+        	  var userToUpdate = {"user_id":this.user.user_id,
+        			  "firstname":this.user.firstname,
+        			  "lastname":this.user.lastname,
+        			  "email":this.user.email,
+        			  "address":this.user.address,
+        			  "postal_code":this.user.postal_code,
+        			  "city":this.user.city,
+        			  "phone":this.user.phone,
+        			  "mobile":this.user.mobile,
+        			  "registration_number":this.user.registration_number,
+        			  }
+        	  console.log("updating user " + JSON.stringify(userToUpdate));
+        	  
+        	  UserService.Update(userToUpdate).then(function (response) {
+		          	if (response.success) {
+		          		var id = Flash.create('success', 'Aanpassingen bewaard', 5000);
+		          	} else {
+		          		console.log(response.message);
+		                var id = Flash.create('danger', response.message, 5000);
+		          	}
+	          });
           }
 //          self.reservations = [];
 //          self.reservations = filterFutureReservations(self.user.reservations);

@@ -2,30 +2,43 @@
 <flash-message></flash-message>
 <a class="btn btn-primary" ui-sref="reservations()" ng-if="$ctrl.showReservationsLink()">Beheer reservaties</a>
 <h2>Mijn gegevens</h2>
+    <form name="form" ng-submit="$ctrl.updateUser()" role="form">
+
 <table class="table table-striped">
 	<tr>
-		<td>Voornaam</td>
-		<td>{{$ctrl.user.firstname}}</td>
+		<td><label for="firstname">Voornaam</label></td>
+		<td><input type="text" name="firstname" id="firstname" class="form-control" ng-model="$ctrl.user.firstname" required /></td>
 	</tr>
 	<tr>
-		<td>Naam</td>
-		<td>{{$ctrl.user.lastname}}</td>
+		<td><label for="lastname">Achternaam</label></td>
+		<td><input type="text" name="lastname" id="lastname" class="form-control" ng-model="$ctrl.user.lastname" required /></td>
 	</tr>
 	<tr>
-		<td>Adres</td>
-		<td>{{$ctrl.user.address}}<br> {{$ctrl.user.postal_code}} {{$ctrl.user.city}}</td>
+		<td><label for="address">Adres</label></td>
+		<td>
+			<input type="text" name="lastname" id="address" class="form-control" ng-model="$ctrl.user.address" size="50" required /><br>
+		 	<input type="text" name="postcode" id="postcode" ng-model="$ctrl.user.postal_code" size="5" required />
+		  	<input type="text" name="city" id="city" ng-model="$ctrl.user.city" size="50" required/>
+		</td>
 	</tr>
 	<tr>
-		<td>Email</td>
-		<td>{{$ctrl.user.email}}</td>
+		<td><label for="email">Email</label></td>
+		<td><input type="email" name="email" id="email" class="form-control" ng-model="$ctrl.user.email" size="35" required /></td>
 	</tr>
 	<tr>
-		<td>Tel</td>
-		<td>{{$ctrl.user.phone}}</td>
+		<td><label for="phone">Telefoon</label></td>
+		<td><input type="tel" name="phone" id="phone" class="form-control" ng-model="$ctrl.user.phone" size="20"/></td>
 	</tr>
 	<tr>
-		<td>GSM</td>
-		<td>{{$ctrl.user.mobile}}</td>
+		<td><label for="mobile">GSM</label></td>
+		<td><input type="tel" name=""mobile"" id=""mobile"" class="form-control" ng-model="$ctrl.user.mobile" size="20"/></td>
+	</tr>
+	<tr>
+		<td><label for="registration_number">Identificatienummer van het Rijksregister</label>
+			<span id="helpRegistrationNumber" class="help-block">(te vinden op de achterkant van je identiteitskaart)</span>
+		</td>
+		<td><input type="text" name="registration_number" id="registration_number" class="form-control" 
+            ng-model="$ctrl.user.registration_number" size="15" aria-describedby="helpRegistrationNumber" required/>
 	</tr>
 	<tr>
 		<td>Start lidmaatschap</td>
@@ -36,10 +49,11 @@
 		<td>{{$ctrl.user.membership_end_date}}</td>
 	</tr>
 	<tr>
-		<td>Geboortedatum</td>
-		<td>{{$ctrl.user.birth_date}}</td>
+		<td></td>
+		<td><button type="submit" class="btn btn-primary">Aanpassen</button></td>
 	</tr>
 </table>
+</form>
 <h2>Mijn reservaties</h2>
 <table class="table table-striped">
    <thead>

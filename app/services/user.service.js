@@ -5,20 +5,6 @@
         .module('toollibApp')
         .factory('UserService', UserService);
 
-//    angular.module('toollibApp').config(['$httpProvider', function ($httpProvider) {
-//    	$httpProvider.interceptors.push(['$q', '$localStorage', function ($q, $localStorage) {
-//            return {
-//                'request': function (config) {
-//                    config.headers = config.headers || {};
-//                    if ($localStorage.token) {
-//                        config.headers.Authorization = 'Bearer ' + $localStorage.token;
-//                    }
-//                    return config;
-//                }
-//            };
-//        }]);
-//    }]);
-
     UserService.$inject = ['$http', '__env'];
     function UserService($http, __env) {
         var service = {};
@@ -58,34 +44,17 @@
             }
             return $http.post(__env.apiUrl + '/users', user, config)
             	.then(handleSuccess, handleError);
-//            	.then(handleSuccess, handleError('Error creating user'));
         }
 
-//        users: function (token) {
-//            return $resource('/api/users', {}, {
-//                query: {
-//                    method: 'GET',
-//                    isArray:true,
-//                    headers: {
-//                        'Authorization': 'Bearer ' + token
-//                    }
-//                }
-//            });
-//        },
-        
         function Update(user) {
-            return $http.put(__env.apiUrl + '/users/' + user.id, user)
-//            .then(handleSuccess, handleError('Error updating user'));
+            return $http.put(__env.apiUrl + '/users/' + user.user_id, user)
         		.then(handleSuccess, handleError);
         }
 
         function Delete(id) {
             return $http.delete(__env.apiUrl + '/users/' + id)
-//            .then(handleSuccess, handleError('Error deleting user'));
             	.then(handleSuccess, handleError);
         }
-
-        // private functions
 
         // private functions
         function handleSuccess(response) {
@@ -110,15 +79,6 @@
             console.log(message);
             return { 'success': false, 'message': message, 'status': status };
         }
-//        function handleSuccess(res) {
-//            return res.data;
-//        }
-//
-//        function handleError(error) {
-//            return function () {
-//                return { success: false, message: error };
-//            };
-//        }
     }
 
 })();
