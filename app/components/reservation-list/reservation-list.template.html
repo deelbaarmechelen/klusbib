@@ -1,5 +1,5 @@
 <div class="jumbotron">
- 	<h1>Under construction: Klusbib reservaties (admin)</h1>
+ 	<h1>Klusbib reservaties (admin)</h1>
  	<p>Hier vind je een overzicht van de lopende reservaties</p>
 </div>
 <flash-message></flash-message>
@@ -13,6 +13,7 @@
             <th>Tot</th>
             <th>Type</th>
             <th>Status</th>
+            <th>Opmerking</th>
             <th ng-if="$ctrl.showFunctions" >Functies</th>
          </tr>
    </thead>
@@ -23,11 +24,23 @@
             <td>{{$ctrl.getToolNameAndCode(item.tool_id)}} ({{item.tool_id}})</td>
             <td>{{item.startsAt}}</td>
             <td>{{item.endsAt}}</td>
-            <td>{{item.type}}</td>
-            <td>{{item.state}}</td>
+            <td>
+            	<select ng-model="item.type">
+           			<option ng-repeat="type in $ctrl.reservationTypes" value="{{type.id}}">{{type.name}}</option>
+		    	</select>
+ 			</td>
+            <td>
+          		<select ng-model="item.state">
+           			<option ng-repeat="state in $ctrl.reservationStates" value="{{state.id}}">{{state.name}}</option>
+		    	</select>
+            </td>
+            <td><input type="text" ng-model="item.comment" size="50"></input></td>
             <td ng-if="$ctrl.showFunctions">
 			<button ng-click="$ctrl.confirmReservation(item, $index)" ng-if="$ctrl.canBeConfirmed(item)">Bevestigen</button>
-            <button ng-click="$ctrl.deleteReservation(item.reservation_id, $index)" >Verwijderen</button>
+			<button ng-click="$ctrl.extendReservation(item, $index)" ng-if="$ctrl.canBeExtended(item)">Verlengen</button>
+			<button ng-click="$ctrl.cancelReservation(item, $index)" ng-if="$ctrl.canBeCancelled(item)">Annuleren</button>
+			<button ng-click="$ctrl.editReservation(item, $index)">Opslaan</button>
+            <button ng-click="$ctrl.deleteReservation(item.reservation_id, $index)">Verwijderen</button>
             </td>
         </tr>
         <tr class="buttons" ng-if="$ctrl.showFunctions">
@@ -53,9 +66,10 @@
            			<option ng-repeat="state in $ctrl.reservationStates" value="{{state.id}}">{{state.name}}</option>
 		    	</select>
             </td>
+            <td><input type="text" ng-model="newReservation.comment" size="50"></input></td>
             <td>
                 <button ng-click="$ctrl.newReservation(newReservation.userId, newReservation.toolId, newReservation.startDate, newReservation.endDate,
-                newReservation.type, newReservation.state)">
+                newReservation.type, newReservation.state, newReservation.comment)">
                     Reservatie toevoegen
                 </button>
             </td>

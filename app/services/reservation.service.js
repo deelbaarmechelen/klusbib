@@ -45,9 +45,9 @@
 //            return $http.get(__env.apiUrl + '/reservations/' + id).then(handleSuccess, handleError('Error getting reservation by id'));
 //        }
 
-        function Create(userId, toolId, startDate, endDate, type, state) {
+        function Create(userId, toolId, startDate, endDate, type, state, comment) {
       	    var reservation = {'user_id' : userId, 'tool_id' : toolId, 'title' : 'Reservatie',
-      	    		'state' : state, 'type' : type, 
+      	    		'state' : state, 'type' : type, 'comment' : comment, 
       	    		'startsAt' : moment(startDate).format('YYYY-MM-DD'), 'endsAt' : moment(endDate).format('YYYY-MM-DD')};
       	  	console.log('Reservation data: ' + JSON.stringify(reservation));
         	var config = { 
