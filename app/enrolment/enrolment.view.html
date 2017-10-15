@@ -31,12 +31,12 @@
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.postcode.$dirty && form.postcode.$error.required }">
             <label for="postcode">Postcode *</label>
-            <input type="text" name="postcode" id="postcode" class="form-control" ng-model="vm.user.postcode" size="6" required />
+            <input type="text" name="postcode" id="postcode" class="form-control" ng-model="vm.user.postcode" size="5" required />
             <span ng-show="form.postcode.$dirty && form.postcode.$error.required" class="help-block">Postcode is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
             <label for="city">Stad *</label>
-            <input type="text" name="city" id="city" class="form-control" ng-model="vm.user.city" size="20" required/>
+            <input type="text" name="city" id="city" class="form-control" ng-model="vm.user.city" size="50" required/>
             <span ng-show="form.city.$dirty && form.city.$error.required" class="help-block">Stad is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
