@@ -9,6 +9,7 @@ Object.assign(env, window.__env);
 
 var app = angular.module('toollibApp', [
 	'ui.router',
+	'ui.bootstrap',
 	'angularCSS',
 	'uiGmapgoogle-maps',
 	'navigation',

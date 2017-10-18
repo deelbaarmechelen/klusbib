@@ -11,7 +11,8 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" 
+                	class="navbar-toggle collapsed" >
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" ui-sref="home">Klusbib</a>
@@ -22,7 +23,7 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div uib-collapse="navCollapsed" class="nav-collapse collapse navbar-responsive-collapse"> 
                 <ul class="nav navbar-nav navbar-right">
 <!--                     <li ng-repeat="item in $ctrl.menuItems"> -->
                     <li ng-repeat="item in $ctrl.items">
