@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /test/
 Disallow: /e2e-tests/
-Disallow: /app/#!/vrijwilligers
+Disallow: /#!/vrijwilligers
