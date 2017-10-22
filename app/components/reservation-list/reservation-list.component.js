@@ -29,22 +29,56 @@ angular.module('reservationList').component('reservationList', {
 		});
         self.showFunctions = false;
         self.canBeConfirmed = function (reservation) {
-        	if (reservation.state == "REQUESTED") {
-        		return true;
+        	if (reservation.state != "REQUESTED") {
+        		return false;
         	}
-        	return false;
+        	return true;
+        }
+        self.canBeConvertedToLoan = function (reservation) {
+        	if (reservation.state == "CLOSED") {
+        		return false;
+        	} 
+        	if (reservation.state == "CANCELLED") {
+        		return false;
+        	}
+        	if (reservation.type != "reservations") {
+        		return false;
+        	}
+        	return true;
         }
         self.canBeExtended = function (reservation) {
-        	if (reservation.state != "CANCELLED") {
-        		return true;
+        	if (reservation.state == "CANCELLED" || reservation.state == "CLOSED") {
+        		return false;
         	}
-        	return false;
+        	return true;
         }
         self.canBeCancelled = function (reservation) {
-        	if (reservation.state != "CANCELLED") {
-        		return true;
+        	if (reservation.state == "CANCELLED" || reservation.state == "CLOSED") {
+        		return false;
         	}
-        	return false;
+        	return true;
+        }
+        self.canBeClosed = function (reservation) {
+        	if (!(reservation.type == 'loan' || reservation.type == 'maintenance')) {
+        		return false;
+        	}
+        	
+        	if (reservation.state == "CLOSED") {
+        		return false;
+        	}
+        	return true;
+        }
+        self.canBeDeleted = function (reservation) {
+        	// FIXME: implement archiving mechanism on API before allowing removals of loans and maintenance
+        	if (reservation.type != 'reservations') {
+        		return false;
+        	}
+        	// Only closed or cancelled reservations can be removed
+        	if (!(reservation.state == "CLOSED" || 
+        			reservation.state == "CANCELLED")) {
+        		return false;
+        	}
+        	return true;
         }
 		this.confirmReservation = function (reservation, index) {
 			reservation.state = "CONFIRMED";
@@ -91,6 +125,23 @@ angular.module('reservationList').component('reservationList', {
 				$state.reload();
 			})
 		}
+		this.convertToLoan = function (reservation,index) {
+			reservation.type = 'loan';
+			reservation.status = 'CONFIRMED';
+			reservation.startsAt = moment().format('YYYY-MM-DD');
+			var endDate = moment(reservation.endsAt, 'YYYY-MM-DD');
+			endDate.add(7, 'days').calendar();
+			reservation.endsAt = endDate.format('YYYY-MM-DD');
+			ReservationService.Update(reservation).then(function(response) {
+				if (response.success) {
+					var id = Flash.create('success', 'Reservatie omgezet naar ontlening', 5000);
+				} else {
+					var id = Flash.create('danger', 'Reservatie update mislukt', 5000);
+				}
+				$state.reload();
+			})
+		}
+		
 		this.newReservation = function (userId, toolId, startDate, endDate, type, state, comment) {
 			console.log('newReservation userId, toolId, startDate, endDate, type, state, comment' 
 					+userId + toolId + startDate + endDate + type + state + comment);
@@ -102,6 +153,19 @@ angular.module('reservationList').component('reservationList', {
 					var id = Flash.create('danger', 'Reservatie toevoegen mislukt', 5000);
 				}
 			})
+		}
+		this.closeReservation = function (reservation, index) {
+			reservation.state = "CLOSED";
+			reservation.endsAt = moment().format('YYYY-MM-DD'); // defaults to current date
+			ReservationService.Update(reservation).then(function(response) {
+				if (response.success) {
+					var id = Flash.create('success', 'Reservatie beëindigd', 5000);
+					$state.reload();
+				} else {
+					var id = Flash.create('danger', 'Reservatie beëindigen mislukt', 5000);
+				}
+			});
+			
 		}
 		this.deleteReservation = function (reservationId, index) {
 			ReservationService.Delete(reservationId).then(function(response) {
@@ -149,7 +213,8 @@ angular.module('reservationList').component('reservationList', {
 		this.reservationStates = [
 		      {id: 'REQUESTED', name: 'Aanvraag'},
 		      {id: 'CONFIRMED', name: 'Bevestigd'},
-		      {id: 'CANCELLED', name: 'Annulatie'}
+		      {id: 'CANCELLED', name: 'Annulatie'},
+		      {id: 'CLOSED', name: 'Beëindigd'}
 		];
 	} ]
 });

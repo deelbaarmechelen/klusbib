@@ -19,30 +19,6 @@
    </thead>
    <tbody>
 
-        <tr ng-repeat="item in $ctrl.reservations"> 
-            <td>{{$ctrl.getUserName(item.user_id)}} ({{item.user_id}})</td>
-            <td>{{$ctrl.getToolNameAndCode(item.tool_id)}} ({{item.tool_id}})</td>
-            <td>{{item.startsAt}}</td>
-            <td>{{item.endsAt}}</td>
-            <td>
-            	<select ng-model="item.type">
-           			<option ng-repeat="type in $ctrl.reservationTypes" value="{{type.id}}">{{type.name}}</option>
-		    	</select>
- 			</td>
-            <td>
-          		<select ng-model="item.state">
-           			<option ng-repeat="state in $ctrl.reservationStates" value="{{state.id}}">{{state.name}}</option>
-		    	</select>
-            </td>
-            <td><input type="text" ng-model="item.comment" size="50"></input></td>
-            <td ng-if="$ctrl.showFunctions">
-			<button ng-click="$ctrl.confirmReservation(item, $index)" ng-if="$ctrl.canBeConfirmed(item)">Bevestigen</button>
-			<button ng-click="$ctrl.extendReservation(item, $index)" ng-if="$ctrl.canBeExtended(item)">Verlengen</button>
-			<button ng-click="$ctrl.cancelReservation(item, $index)" ng-if="$ctrl.canBeCancelled(item)">Annuleren</button>
-			<button ng-click="$ctrl.editReservation(item, $index)">Opslaan</button>
-            <button ng-click="$ctrl.deleteReservation(item.reservation_id, $index)">Verwijderen</button>
-            </td>
-        </tr>
         <tr class="buttons" ng-if="$ctrl.showFunctions">
             <td>
            		<select name="newReservationUserId" ng-model="newReservation.userId">
@@ -74,5 +50,32 @@
                 </button>
             </td>
         </tr>
+        <tr ng-repeat="item in $ctrl.reservations"> 
+            <td>{{$ctrl.getUserName(item.user_id)}} ({{item.user_id}})</td>
+            <td>{{$ctrl.getToolNameAndCode(item.tool_id)}} ({{item.tool_id}})</td>
+            <td>{{item.startsAt}}</td>
+            <td>{{item.endsAt}}</td>
+            <td>
+            	<select ng-model="item.type">
+           			<option ng-repeat="type in $ctrl.reservationTypes" value="{{type.id}}">{{type.name}}</option>
+		    	</select>
+ 			</td>
+            <td>
+          		<select ng-model="item.state">
+           			<option ng-repeat="state in $ctrl.reservationStates" value="{{state.id}}">{{state.name}}</option>
+		    	</select>
+            </td>
+            <td><input type="text" ng-model="item.comment" size="50"></input></td>
+            <td ng-if="$ctrl.showFunctions">
+			<button ng-click="$ctrl.confirmReservation(item, $index)" ng-if="$ctrl.canBeConfirmed(item)">Bevestigen</button>
+			<button ng-click="$ctrl.convertToLoan(item, $index)" ng-if="$ctrl.canBeConvertedToLoan(item)">Uitlenen</button>
+			<button ng-click="$ctrl.extendReservation(item, $index)" ng-if="$ctrl.canBeExtended(item)">Verlengen</button>
+			<button ng-click="$ctrl.cancelReservation(item, $index)" ng-if="$ctrl.canBeCancelled(item)">Annuleren</button>
+			<button ng-click="$ctrl.editReservation(item, $index)">Opslaan</button>
+            <button ng-click="$ctrl.closeReservation(item, $index)" ng-if="$ctrl.canBeClosed(item)">Beëindigen</button>
+            <button ng-click="$ctrl.deleteReservation(item.reservation_id, $index)" ng-if="$ctrl.canBeDeleted(item)">Verwijderen</button>
+            </td>
+        </tr>
+
    </tbody>
 </table>
