@@ -41,7 +41,7 @@
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
             <label for="phone">Telefoon of GSM *</label>
-            <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" size="20" required/>
+            <input type="tel" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" size="20" required/>
             <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block">Telefoon is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
@@ -69,7 +69,7 @@
 <!--         </div> -->
 
 		<p>
-			Lees ook eerst de <a href="/www/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a> na.
+			Lees ook eerst de <a href="/home/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a> na.
 		</p>
         <label class="form-check-label" for="accept_terms">
             <input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" ng-model="vm.user.accept_terms" value="1" required/>
