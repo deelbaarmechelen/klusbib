@@ -9,7 +9,7 @@
 	</div>
 
     <form name="form" ng-submit="vm.enrolment()" role="form">
-        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.firstname.$dirty && form.firstname.$error.required }">
             <label for="firstname">Voornaam *</label>
             <input type="text" name="firstname" id="firstname" class="form-control" ng-model="vm.user.firstname" required />
             <span ng-show="form.firstname.$dirty && form.firstname.$error.required" class="help-block">Voornaam is vereist</span>
@@ -19,14 +19,15 @@
             <input type="text" name="lastname" id="lastname" class="form-control" ng-model="vm.user.lastname" required />
             <span ng-show="form.lastname.$dirty && form.lastname.$error.required" class="help-block">Acthernaam is vereist</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.email.$touched && (form.email.$error.required || form.email.$invalid) }">
             <label for="email">Email *</label>
             <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" size="35" required />
-            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">E-mail is vereist</span>
+            <span ng-show="form.email.$touched && form.email.$error.required" class="help-block">E-mail is vereist</span>
+            <span ng-show="form.email.$touched && form.email.$invalid" class="help-block">E-mail is ongeldig</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.address.$dirty }">
             <label for="address">Adres *</label>
-            <input type="text" name="lastname" id="address" class="form-control" ng-model="vm.user.address" size="50" required />
+            <input type="text" name="address" id="address" class="form-control" ng-model="vm.user.address" size="50" required />
             <span ng-show="form.address.$dirty && form.address.$error.required" class="help-block">Adres is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.postcode.$dirty && form.postcode.$error.required }">
@@ -44,16 +45,19 @@
             <input type="tel" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" size="20" required/>
             <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block">Telefoon is vereist</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.registration_number.$touched && (form.registration_number.$error.required ||
+         form.registration_number.$invalid) }">
             <label for="registration_number">Identificatienummer van het Rijksregister *</label>
             <span id="helpRegistrationNumber" class="help-block">(te vinden op de achterkant van je identiteitskaart)</span>
-            <input type="text" name="registration_number" id="registration_number" class="form-control" 
-            ng-model="vm.user.registration_number" size="15" aria-describedby="helpRegistrationNumber" required/>
-            <span ng-show="form.registration_number.$dirty && form.registration_number.$error.required" 
+            <input type="text" name="registration_number" id="registration_number" class="form-control"
+            ng-model="vm.user.registration_number" ng-minlength="11" ng-maxlength="11" size="11" aria-describedby="helpRegistrationNumber" required/>
+            <span ng-show="form.registration_number.$touched && form.registration_number.$error.required"
             class="help-block">Registratie nummer is vereist</span>
+            <span ng-show="form.registration_number.$touched && form.registration_number.$invalid"
+                  class="help-block">Registratie nummer is ongeldig (geef enkel de 11 nummers in)</span>
         </div>
 
-<!--         <div class="form-group" ng-class="{ 'has-error': form.payment_mode.$dirty && form.payment_mode.$error.required }"> -->
+        <!--<div class="form-group" ng-class="{ 'has-error': form.payment_mode.$dirty && form.payment_mode.$error.required }">-->
         	<div class="form-check" >
 	        <label class="form-check-label" for="payment_mode">Betalingswijze *</label><br>
             <label class="form-check-label" for="payment_mode_cash">
@@ -66,17 +70,19 @@
             Overschrijving op volgend rekeningnummer:&nbsp;BE55 5230 4844 8444 (Gebruik ‘lidgeld + naam’ als mededeling)</label>
             <span ng-show="form.payment_mode.$dirty && form.payment_mode.$error.required" class="help-block">Kies een betalingswijze</span>
             </div>
-<!--         </div> -->
+        <!--</div>-->
 
 		<p>
 			Lees ook eerst de <a href="/home/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a> na.
 		</p>
+        <div class="form-group" ng-class="{ 'has-error': form.accept_terms.$dirty && form.accept_terms.$error.required }">
         <label class="form-check-label" for="accept_terms">
             <input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" ng-model="vm.user.accept_terms" value="1" required/>
             Verklaart hierbij de Klusbib afspraken te hebben gelezen en ermee akkoord te gaan. *
             <span ng-show="form.accept_terms.$dirty && form.accept_terms.$error.required" class="help-block">
             Lees en aanvaard de Klusbib afspraken om verder te gaan</span>
         </label>
+        </div>
 
 		<div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Inschrijven</button>
