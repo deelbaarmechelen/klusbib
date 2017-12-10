@@ -25,7 +25,7 @@
             <span ng-show="form.email.$touched && form.email.$error.required" class="help-block">E-mail is vereist</span>
             <span ng-show="form.email.$touched && form.email.$invalid" class="help-block">E-mail is ongeldig</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.address.$dirty }">
+        <div class="form-group" ng-class="{ 'has-error': form.address.$dirty && form.address.$error.required }">
             <label for="address">Adres *</label>
             <input type="text" name="address" id="address" class="form-control" ng-model="vm.user.address" size="50" required />
             <span ng-show="form.address.$dirty && form.address.$error.required" class="help-block">Adres is vereist</span>

@@ -70,6 +70,9 @@
             var headers = response.headers;
             var config = response.config;
             var message = 'Er ging iets mis, probeer later eens opnieuw';
+            if (status == 400) {
+                message = 'Foutieve data (' + data + ')';
+            }
             if (status == 401) {
             	message = 'Geen toegang. Gelieve eerst (opnieuw) in te loggen (' + data.error.message + ')';
             }
