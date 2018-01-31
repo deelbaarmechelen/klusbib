@@ -32,8 +32,7 @@ angular.module('toolList').component('toolList', {
 					'general' : 'Algemeen',
 					'car' : 'Auto',
 					'construction' : 'Bouw',
-					'electricity' : 'Elektriciteit',
-					'sanitary' : 'Sanitair',
+					'technics' : 'Technieken',
 					'wood' : 'Schrijnwerk',
 					'garden' : 'Tuin',
 			};
