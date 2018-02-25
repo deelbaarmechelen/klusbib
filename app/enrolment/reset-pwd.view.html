@@ -12,7 +12,7 @@
 		</p>
 		
 	</div>
-    <form name="form" ng-submit="vm.resetPwd()" role="form">
+    <form name="form" ng-submit="vm.resetPwd()" ng-init="vm.init()" role="form">
         <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" class="form-control" ng-model="vm.email" size="35" required />
@@ -23,6 +23,7 @@
 <!--             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Inschrijven</button> -->
             <button type="submit" class="btn btn-primary">Verstuur nieuw paswoord</button>
             <button type="button" class="btn btn-primary" ng-click="vm.resendConfirmation()">Inschrijving bevestigen</button>
+			<button type="button" class="btn btn-primary" ng-click="vm.redirectToLogin()">Inloggen</button>
         </div>
     </form>
 </div>

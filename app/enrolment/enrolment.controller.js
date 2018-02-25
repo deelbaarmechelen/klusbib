@@ -4,15 +4,18 @@
     angular
         .module('toollibApp')
         .controller('EnrolmentController', EnrolmentController);
-    EnrolmentController.$inject = ['TokenService', 'UserService','Flash', 'AuthService'];
+    EnrolmentController.$inject = ['TokenService', 'UserService','Flash', 'AuthService', '$location'];
 
-    function EnrolmentController(TokenService, UserService, Flash, AuthService) {
+    function EnrolmentController(TokenService, UserService, Flash, AuthService, $location) {
         var vm = this;
 
 //        (function initController() {
         	// Add initialisation
 //        })();
-        
+        vm.init = function () {
+            var params = $location.search();
+            vm.email = params.email;
+        };
         vm.enrolment = function () {
         	console.log('start enrolment for user ' + JSON.stringify(vm.user));
         	var token = TokenService.GetGuestToken(success);
@@ -26,6 +29,12 @@
                 		// TODO: send confirmation email to user (+ email address verification?)
                 		var id = Flash.create('success', 'Inschrijving succesvol ingediend', 5000);
                 	} else {
+                		if (response.status == 409) {
+                		    // a user with that email already exists
+                            var id = Flash.create('warning', 'Gebruiker reeds ingeschreven. Log in om je gegevens na te kijken en/of laat een nieuwe bevestiging versturen', 0);
+                            $location.path('/reset-pwd').search({email: vm.user.email});
+                            return;
+                        }
                 		vm.dataLoading = false;
                 		console.log("enrolment problem: " + response.message);
                 		var id = Flash.create('danger', 'Inschrijving mislukt: ' + response.message 
@@ -59,6 +68,9 @@
             		}
             	}
             });
+        }
+        vm.redirectToLogin = function () {
+            $location.path('/signin');
         }
     }
 

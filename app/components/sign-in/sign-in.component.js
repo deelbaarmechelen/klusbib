@@ -13,6 +13,11 @@ angular.module('signIn').component('signIn', {
 	            $location.path("/");
 	        }
 
+	        this.init = function() {
+                var params = $location.search();
+                self.email = params.email;
+            }
+
 			this.signin = function () {
               var formData = {
                   email: this.email,
