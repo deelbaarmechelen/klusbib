@@ -31,7 +31,7 @@
                 	} else {
                 		if (response.status == 409) {
                 		    // a user with that email already exists
-                            var id = Flash.create('warning', 'Gebruiker reeds ingeschreven. Log in om je gegevens na te kijken en/of laat een nieuwe bevestiging versturen', 0);
+                            var id = Flash.create('warning', 'Je bent reeds ingeschreven. Log in om je gegevens na te kijken en/of laat een nieuwe bevestiging versturen', 0);
                             $location.path('/reset-pwd').search({email: vm.user.email});
                             return;
                         }
