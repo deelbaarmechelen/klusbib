@@ -24,6 +24,7 @@
         var service = {};
 
         service.GetAll = GetAll;
+        service.GetAllOpen = GetAllOpen;
         service.GetAllByPage = GetAllByPage;
 //        service.GetById = GetById;
         service.Create = Create;
@@ -35,6 +36,9 @@
         return service;
 
         function GetAll() {
+            return $http.get(__env.apiUrl + '/reservations').then(handleSuccess, handleError);
+        }
+        function GetAllOpen() {
             return $http.get(__env.apiUrl + '/reservations').then(handleSuccess, handleError);
         }
         function GetAllByPage(page, pageSize) {
