@@ -218,19 +218,19 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    }
 			  }
 
-	  $stateProvider.state(homeState);
-	  $stateProvider.state(signInState);
-	  $stateProvider.state(toolsListState);
-	  $stateProvider.state(toolDetailState);
-	  $stateProvider.state(toolsListCategoryState);
-	  $stateProvider.state(consumersState);
-	  $stateProvider.state(reservationsState);
-	  $stateProvider.state(profileState);
-	  $stateProvider.state(enrolmentState);
-	  $stateProvider.state(resetPwdState);
-	  $stateProvider.state(volunteerState);
-	  
-	  $urlRouterProvider.otherwise('/')
+	$stateProvider.state(homeState);
+	$stateProvider.state(signInState);
+	$stateProvider.state(toolsListState);
+	$stateProvider.state(toolDetailState);
+	$stateProvider.state(toolsListCategoryState);
+	$stateProvider.state(consumersState);
+	$stateProvider.state(reservationsState);
+	$stateProvider.state(profileState);
+	$stateProvider.state(enrolmentState);
+	$stateProvider.state(resetPwdState);
+	$stateProvider.state(volunteerState);
+
+	$urlRouterProvider.otherwise('/')
 });
 
 angular.module('toollibApp').config(function(uiGmapGoogleMapApiProvider) {
