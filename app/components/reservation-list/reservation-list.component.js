@@ -5,7 +5,7 @@ angular.module('reservationList').component('reservationList', {
 		function ReservationListController($http, ReservationService, UserService, ToolService, Flash,__env, $state) {
 
 		var self = this;
-		ReservationService.GetAllByPage(1, 100).then(function (response) {
+		ReservationService.GetOpenByPage(1, 100).then(function (response) {
 			if (response.success ) {
 				self.reservations = response.message;
 			} else {

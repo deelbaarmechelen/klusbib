@@ -24,8 +24,9 @@
         var service = {};
 
         service.GetAll = GetAll;
-        service.GetAllOpen = GetAllOpen;
+        service.GetOpen = GetOpen;
         service.GetAllByPage = GetAllByPage;
+        service.GetOpenByPage = GetOpenByPage;
 //        service.GetById = GetById;
         service.Create = Create;
         service.Extend = Extend;
@@ -38,11 +39,14 @@
         function GetAll() {
             return $http.get(__env.apiUrl + '/reservations').then(handleSuccess, handleError);
         }
-        function GetAllOpen() {
-            return $http.get(__env.apiUrl + '/reservations').then(handleSuccess, handleError);
+        function GetOpen() {
+            return $http.get(__env.apiUrl + '/reservations?isOpen=true').then(handleSuccess, handleError);
         }
         function GetAllByPage(page, pageSize) {
             return $http.get(__env.apiUrl + '/reservations?_perPage='+pageSize).then(handleSuccess, handleError);
+        }
+        function GetOpenByPage(page, pageSize) {
+            return $http.get(__env.apiUrl + '/reservations?isOpen=true&_perPage='+pageSize).then(handleSuccess, handleError);
         }
 //
 //        function GetById(id) {
