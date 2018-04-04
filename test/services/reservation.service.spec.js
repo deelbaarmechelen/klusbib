@@ -16,11 +16,11 @@ describe("reservation api service", function () {
         $urlRouterProvider.deferIntercept();
     }));
 
-    beforeEach(inject(function ( _ReservationService_, $httpBackend, $localStorage, ___env_) {
+    beforeEach(inject(function ( _ReservationService_, _$httpBackend_, _$localStorage_, ___env_) {
         reservationService = _ReservationService_;
-        httpBackend = $httpBackend;
+        httpBackend = _$httpBackend_;
         __env = ___env_;
-        localStorageBackend = $localStorage;
+        localStorageBackend = _$localStorage_;
     }));
 
 
