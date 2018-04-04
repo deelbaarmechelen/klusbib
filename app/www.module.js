@@ -3,8 +3,9 @@
 var env = {};
 
 //Import variables if present (from env.js)
-if(window){  
-Object.assign(env, window.__env);
+if(window){
+    env = angular.merge({}, window.__env)
+// Object.assign(env, window.__env);
 }
 
 var app = angular.module('webApp', [
