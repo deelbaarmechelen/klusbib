@@ -25,6 +25,7 @@
     "angular-simple-logger": "~0.1.7",
     "angular-google-maps": "~2.4.1",
     "angular-ui-router": "~1.0.7",
-    "ngstorage": "0.3.6"
+    "ngstorage": "0.3.6",
+    "angular-css": "~1.0.8"
   }
 }
