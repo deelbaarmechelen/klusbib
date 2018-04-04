@@ -47,7 +47,7 @@
     "prestart": "npm config set jobs 1; npm install",
     "start": "http-server -p 5000 -c-1 app",
     "pretest": "npm install",
-    "test": "karma start karma.conf.js",
+    "test":"./node_modules/.bin/karma start --single-run --browsers PhantomJS",
     "test-single-run": "karma start karma.conf.js --single-run",
     "preupdate-webdriver": "npm-f3-install.sh production",
     "update-webdriver": "webdriver-manager update",
