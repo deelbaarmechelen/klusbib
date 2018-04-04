@@ -8,3 +8,5 @@ bower_components/
 .buildpath
 .env
 .idea
+.travis/*.key
+.travis/*.key.pub

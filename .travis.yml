@@ -1,3 +1,18 @@
+sudo: false
+dist: trusty
+
 language: node_js
 node_js:
   - '6.9.4'
+
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+after_success:
+- eval "$(ssh-agent -s)" #start the ssh agent
+- chmod 600 .travis/deploy.key # this key should have push access
+- ssh-add .travis/deploy.key
+- ssh-keyscan klusbib.be >> ~/.ssh/known_hosts
+- git remote add deploy dokku@klusbib.be:www
+- git config --global push.default simple
+#- git push deploy master
