@@ -16,3 +16,4 @@ after_success:
 - ssh-keyscan klusbib.be >> ~/.ssh/known_hosts
 - git remote add deploy dokku@klusbib.be:www
 - git config --global push.default simple
+- git push deploy master
