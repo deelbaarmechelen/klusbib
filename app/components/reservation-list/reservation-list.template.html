@@ -42,7 +42,7 @@
            			<option ng-repeat="state in $ctrl.reservationStates" value="{{state.id}}">{{state.name}}</option>
 		    	</select>
             </td>
-            <td><input type="text" ng-model="newReservation.comment" size="50"></input></td>
+            <td><input type="text" ng-model="newReservation.comment" maxlength="255" ></input></td>
             <td>
                 <button ng-click="$ctrl.newReservation(newReservation.userId, newReservation.toolId, newReservation.startDate, newReservation.endDate,
                 newReservation.type, newReservation.state, newReservation.comment)">

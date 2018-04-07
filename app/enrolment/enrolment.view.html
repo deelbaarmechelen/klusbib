@@ -11,38 +11,38 @@
     <form name="form" ng-submit="vm.enrolment()" role="form">
         <div class="form-group" ng-class="{ 'has-error': form.firstname.$dirty && form.firstname.$error.required }">
             <label for="firstname">Voornaam *</label>
-            <input type="text" name="firstname" id="firstname" class="form-control" ng-model="vm.user.firstname" required />
+            <input type="text" name="firstname" id="firstname" class="form-control" ng-model="vm.user.firstname" maxlength="255" required />
             <span ng-show="form.firstname.$dirty && form.firstname.$error.required" class="help-block">Voornaam is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.lastname.$dirty && form.lastname.$error.required }">
             <label for="lastname">Achternaam *</label>
-            <input type="text" name="lastname" id="lastname" class="form-control" ng-model="vm.user.lastname" required />
+            <input type="text" name="lastname" id="lastname" class="form-control" ng-model="vm.user.lastname" maxlength="255" required />
             <span ng-show="form.lastname.$dirty && form.lastname.$error.required" class="help-block">Acthernaam is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.email.$touched && (form.email.$error.required || form.email.$invalid) }">
             <label for="email">Email *</label>
-            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" size="35" required />
+            <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" size="35" maxlength="255" required />
             <span ng-show="form.email.$touched && form.email.$error.required" class="help-block">E-mail is vereist</span>
             <span ng-show="form.email.$touched && form.email.$invalid" class="help-block">E-mail is ongeldig</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.address.$dirty && form.address.$error.required }">
             <label for="address">Adres *</label>
-            <input type="text" name="address" id="address" class="form-control" ng-model="vm.user.address" size="50" required />
+            <input type="text" name="address" id="address" class="form-control" ng-model="vm.user.address" size="50" maxlength="255" required />
             <span ng-show="form.address.$dirty && form.address.$error.required" class="help-block">Adres is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.postcode.$dirty && form.postcode.$error.required }">
             <label for="postcode">Postcode *</label>
-            <input type="text" name="postcode" id="postcode" class="form-control" ng-model="vm.user.postcode" size="5" required />
+            <input type="text" name="postcode" id="postcode" class="form-control" ng-model="vm.user.postcode" size="5" maxlength="5" required />
             <span ng-show="form.postcode.$dirty && form.postcode.$error.required" class="help-block">Postcode is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
             <label for="city">Stad *</label>
-            <input type="text" name="city" id="city" class="form-control" ng-model="vm.user.city" size="50" required/>
+            <input type="text" name="city" id="city" class="form-control" ng-model="vm.user.city" size="50" maxlength="50" required/>
             <span ng-show="form.city.$dirty && form.city.$error.required" class="help-block">Stad is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
             <label for="phone">Telefoon of GSM *</label>
-            <input type="tel" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" size="20" required/>
+            <input type="tel" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" size="20" maxlength="20" required/>
             <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block">Telefoon is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.registration_number.$touched && (form.registration_number.$error.required ||
