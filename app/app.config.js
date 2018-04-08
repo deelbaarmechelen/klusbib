@@ -48,7 +48,7 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 	  }
 	  var toolsListState = {
 			    name: 'tools',
-			    url: '/tools',
+			    url: '/tools/category/{category}/page/{page}',
 			    views: {
 			    	nav: {
 			    		component: 'navigation'
@@ -57,17 +57,34 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    		component: 'toolList',
 			    	}
 			    },
-			    resolve: {
-			    	tools: function(ToolService) {
-			    		return ToolService.GetAll().then(function(response) {
-			    			if (response.success) {
-			    				return response.message;
-			    			}
-			    		});
-			    	},
-			    	inverse: function() {
-			    		return true;
-			    	}
+          		params: {category: 'general', page: '1'},
+          		resolve: {
+                    inverse: function() {
+                        return true;
+                    },
+                    category: function($stateParams) {
+						return $stateParams.category;
+                    },
+                    currentPage: function($stateParams) {
+                        return parseInt($stateParams.page) || 1;
+                    },
+                    pageSize: function() {
+                        return 25;
+                    },
+                    toolsData: function(ToolService, category, currentPage, pageSize) {
+                        return ToolService.GetByCategoryOrderBy(category, currentPage, pageSize).then(function(response) {
+                            if (response.success) {
+								console.log('Total count:' + response.totalCount);
+                                return {tools: response.message, count:response.totalCount};
+                            }
+                        });
+                    },
+					tools: function (toolsData) {
+                    	return toolsData.tools;
+                    },
+					totalCount: function(toolsData) {
+                    	return toolsData.count;
+					}
 			    }
 	  }
 	  var toolsListCategoryState = {
@@ -76,13 +93,20 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    component: 'toolList',
 			    params: {category: 'general'},
 			    resolve: {
-			    	tools: function(ToolService) {
-			    		return ToolService.GetAll().then(function(response) {
+			    	tools: function(ToolService, $transition$) {
+			    		return ToolService.GetByCategoryOrderBy($transition$.params().category,
+							$transition$.params().page, 5).then(function(response) {
 			    			if (response.success) {
 			    				return response.message;
 			    			}
 			    		});
 			    	},
+                    category: function($transition$) {
+                        return $transition$.params().category;
+                    },
+                    currentPage: function($transition$) {
+                        return $transition$.params().page;
+                    }
 			    }
 	  }
 	  var toolDetailState = {

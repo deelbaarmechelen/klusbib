@@ -1,7 +1,8 @@
 'use strict';
 var appToolList = angular.module('toolList', [
 //	  'ngRoute',
-	  'ngResource'
+	  'ngResource',
+    'ui.bootstrap'
 //	  'ngStorage'
 ]);
 

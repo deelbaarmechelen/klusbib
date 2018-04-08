@@ -22,7 +22,7 @@ angular.module('reservationList').component('reservationList', {
     				self.users = response.message;
     		}
 		});
-		ToolService.GetAllOrderBy('code', 'asc').then(function(response) {
+		ToolService.GetAllOrderBy(1, 100, 'code', 'asc').then(function(response) {
 			if (response.success) {
     			self.tools = response.message;
     		}

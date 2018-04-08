@@ -22,25 +22,39 @@
     ToolService.$inject = ['$http', '__env'];
     function ToolService($http, __env) {
         var service = {};
+        var defaultPageSize = 100;
 
         service.GetAll = GetAll;
         service.GetAllOrderBy = GetAllOrderBy;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
+        service.GetByCategoryOrderBy = GetByCategoryOrderBy;
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
 
         return service;
 
-        function GetAll() {
-        	// FIXME: support more than 100 items
-            return $http.get(__env.apiUrl + '/tools?_perPage=100').then(handleSuccess, handleError);
+        function GetAll(page, perPage) {
+            page = typeof page !== 'undefined' ? page : 1;
+            perPage = typeof perPage !== 'undefined' ? perPage : defaultPageSize;
+            return $http.get(__env.apiUrl + '/tools?_page=' + page + '&_perPage=' + perPage).then(handleSuccess, handleError);
         }
-        function GetAllOrderBy(sortField, direction) {
-        	// FIXME: support more than 100 items
-            return $http.get(__env.apiUrl + '/tools?_perPage=100&_sortField=' + sortField + '&_sortDir=' + direction)
+        function GetAllOrderBy(page, perPage, sortField, direction) {
+            page = typeof page !== 'undefined' ? page : 1;
+            perPage = typeof perPage !== 'undefined' ? perPage : defaultPageSize;
+            sortField = typeof sortField !== 'undefined' ? sortField : 'code';
+            direction = typeof direction !== 'undefined' ? direction : 'asc';
+            return $http.get(__env.apiUrl + '/tools?_page=' + page + '&_perPage=' + perPage + '&_sortField=' + sortField + '&_sortDir=' + direction)
             	.then(handleSuccess, handleError);
+        }
+        function GetByCategoryOrderBy(category, page, perPage, sortField, direction) {
+            page = typeof page !== 'undefined' ? page : 1;
+            perPage = typeof perPage !== 'undefined' ? perPage : defaultPageSize;
+            sortField = typeof sortField !== 'undefined' ? sortField : 'code';
+            direction = typeof direction !== 'undefined' ? direction : 'asc';
+            return $http.get(__env.apiUrl + '/tools?category=' + category + '&_page=' + page + '&_perPage=' + perPage + '&_sortField=' + sortField + '&_sortDir=' + direction)
+                .then(handleSuccess, handleError);
         }
 
         function GetById(id) {
@@ -89,8 +103,8 @@
 
         // private functions
         function handleSuccess(response) {
-            return { success: true, message: response.data };
-//          return response.data;
+            var totalCount = parseInt(response.headers('X-Total-Count')) || 0;
+            return { success: true, message: response.data, totalCount: totalCount };
         }
 
         // function (data, status, headers, config)??

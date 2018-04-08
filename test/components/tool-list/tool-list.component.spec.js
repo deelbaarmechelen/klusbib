@@ -20,6 +20,9 @@ describe('toolList', function() {
             $provide.service('$stateParams', function () {
 
             });
+            $provide.service('$state', function () {
+
+            });
             $provide.factory('UserService', function($q) {
                 var getById = jasmine.createSpy('GetById').and.callFake(function() {
                     var items = [];
