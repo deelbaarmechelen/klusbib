@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "angular-mocks": "^1.6.9",
+    "clean-webpack-plugin": "^0.1.19",
     "gulp-clean-css": "^3.9.3",
     "gulp-header": "^2.0.5",
     "gulp-less": "^4.0.0",
@@ -54,10 +55,13 @@
     "karma-junit-reporter": "^1.2.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-spec-reporter": "0.0.32",
-    "protractor": "^5.3.1"
+    "protractor": "^5.3.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
   },
   "scripts": {
     "update-deps": "yarn install",
+    "build": "webpack --config webpack.config.js",
     "prestart": "yarn install",
     "start": "http-server -p 5000 -c-1 app",
     "pretest": "yarn install --production=false",

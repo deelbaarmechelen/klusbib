@@ -1,4 +1,6 @@
 'use strict';
+import window from './app.env.js';
+
 var env = {};
 //Import variables if present (from env.js)
 if(window){
