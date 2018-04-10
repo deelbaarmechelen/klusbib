@@ -2,96 +2,6 @@
 # yarn lockfile v1
 
 
-"@bower_components/angular-animate@angular/bower-angular-animate#1.6.x":
-  version "1.6.9"
-  resolved "https://codeload.github.com/angular/bower-angular-animate/tar.gz/b9edd1d6c8d9b6d040299d351155ac163a0be437"
-
-"@bower_components/angular-base64@ninjatronic/angular-base64#~2.0.5":
-  version "2.0.5"
-  resolved "https://codeload.github.com/ninjatronic/angular-base64/tar.gz/6f5fef3d29f25a150f96a7f6f7abff57e2d8953a"
-  dependencies:
-    angular ">= 1.0.8"
-
-"@bower_components/angular-bootstrap-affix@maxisam/angular-bootstrap-affix#~0.2.2":
-  version "0.2.2"
-  resolved "https://codeload.github.com/maxisam/angular-bootstrap-affix/tar.gz/c60cd78d7c48b0f3f79f81b18006d629d5bfef54"
-
-"@bower_components/angular-bootstrap-calendar@mattlewis92/angular-bootstrap-calendar#~0.27.5":
-  version "0.27.5"
-  resolved "https://codeload.github.com/mattlewis92/angular-bootstrap-calendar/tar.gz/d2a17595cc4df8855b3aa570a13af6d7dfbf6032"
-  optionalDependencies:
-    angular-touch ">=1.3.0"
-    angular-ui-bootstrap ">=0.14.0"
-    interactjs "^1.2.0"
-
-"@bower_components/angular-bootstrap-colorpicker@buberdds/angular-bootstrap-colorpicker#~3.0.25":
-  version "3.0.32"
-  resolved "https://codeload.github.com/buberdds/angular-bootstrap-colorpicker/tar.gz/7db192ab485f19a7cefad4985f3faf8572270b13"
-
-"@bower_components/angular-bootstrap@angular-ui/bootstrap-bower#~2.4.0":
-  version "2.4.0"
-  resolved "https://codeload.github.com/angular-ui/bootstrap-bower/tar.gz/9ff14930f1ce7a110cbfc8217ddf91845bb67671"
-
-"@bower_components/angular-css@door3/angular-css#~1.0.8":
-  version "1.0.8"
-  resolved "https://codeload.github.com/door3/angular-css/tar.gz/92c75a4c58a0e541d396aa392e652eacf93871f3"
-
-"@bower_components/angular-flash-alert@sachinchoolur/angular-flash#~2.4.0":
-  version "2.4.0"
-  resolved "https://codeload.github.com/sachinchoolur/angular-flash/tar.gz/0e963567027fdf0894253e16efcf7d702c2dbf5a"
-  dependencies:
-    angular "^1.4.8"
-
-"@bower_components/angular-google-maps@angular-ui/angular-google-maps#~2.4.1":
-  version "2.4.1"
-  resolved "https://codeload.github.com/angular-ui/angular-google-maps/tar.gz/4b1c1ff0ac1ce1c5987ab25e507b933feb061d3c"
-  dependencies:
-    angular "1.2 - 1.6"
-    angular-simple-logger ">=0.0.1"
-    google-maps-utility-library-v3-infobox "1.1.14"
-    google-maps-utility-library-v3-keydragzoom "2.0.9"
-    google-maps-utility-library-v3-markerwithlabel "git://github.com/nmccready/google-maps-utility-library-v3-markerwithlabel.git"
-    js-rich-marker "git://github.com/MikaFima/js-rich-marker.git#0383f4bbdad4ddf154772fedbdd27e464600e943"
-    lodash "3.X - 4.X"
-    markerclustererplus "2.1.4"
-
-"@bower_components/angular-jquery@mgcrea/angular-jquery#~0.2.1":
-  version "0.2.1"
-  resolved "https://codeload.github.com/mgcrea/angular-jquery/tar.gz/4bc3c0dd977484cb6c16c4dd873ae0a9a3d88e95"
-
-"@bower_components/angular-mocks@angular/bower-angular-mocks#1.6.x":
-  version "1.6.9"
-  resolved "https://codeload.github.com/angular/bower-angular-mocks/tar.gz/f30234868699ccfdbac6755cd46bf95207bde0b4"
-
-"@bower_components/angular-resource@angular/bower-angular-resource#1.6.x":
-  version "1.6.9"
-  resolved "https://codeload.github.com/angular/bower-angular-resource/tar.gz/534f78d1eaaad1efcbbebc7966620219d3351b0e"
-
-"@bower_components/angular-route@angular/bower-angular-route#1.6.x":
-  version "1.6.9"
-  resolved "https://codeload.github.com/angular/bower-angular-route/tar.gz/93b5dc381eeccf1e3c74dffb9bf8d4df45c95819"
-
-"@bower_components/angular-simple-logger@nmccready/angular-simple-logger#~0.1.7":
-  version "0.1.7"
-  resolved "https://codeload.github.com/nmccready/angular-simple-logger/tar.gz/bd15d5a9875761c9564d0c82698460980bca4c9a"
-  dependencies:
-    angular "^1.2"
-    debug "^2.2.0"
-
-"@bower_components/angular-ui-router@angular-ui/angular-ui-router-bower#~1.0.7":
-  version "1.0.15"
-  resolved "https://codeload.github.com/angular-ui/angular-ui-router-bower/tar.gz/35fb8a9a6c6e345de3238582bc300a5cdd4ff649"
-  dependencies:
-    "@uirouter/core" "5.0.17"
-
-"@bower_components/angular@angular/bower-angular#1.6.x":
-  version "1.6.9"
-  resolved "https://codeload.github.com/angular/bower-angular/tar.gz/2d507370407cecd2aa5c339ba3140966bce6006b"
-
-"@bower_components/bootstrap@twbs/bootstrap#3.3.x":
-  version "3.3.7"
-  resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/0b9c4a4007c44201dce9a6cc1a38407005c26c86"
-
 "@bower_components/google-maps-utility-library-v3-infobox@nmccready/google-maps-utility-library-v3-infobox#^1.1.14":
   version "1.1.14"
   resolved "https://codeload.github.com/nmccready/google-maps-utility-library-v3-infobox/tar.gz/5e5ee5079c49f7f1e789d2a5a8ba144b6a7a778c"
@@ -112,29 +22,9 @@
   version "1.2.9"
   resolved "https://codeload.github.com/taye/interact.js/tar.gz/c6aeb28184d0ddbca6f1a6dc97fd7028300a545a"
 
-"@bower_components/jquery@jquery/jquery-dist#2.2.x":
-  version "2.2.4"
-  resolved "https://codeload.github.com/jquery/jquery-dist/tar.gz/c0185ab7c75aab88762c5aae780b9d83b80eda72"
-
-"@bower_components/js-rich-marker@ashsidhu/js-rich-marker#*":
-  version "0.0.0"
-  resolved "https://codeload.github.com/ashsidhu/js-rich-marker/tar.gz/2c655e82d95fb809d66c4de93f0dab845508aebe"
-
 "@bower_components/lodash@lodash/lodash#~4.17.4":
   version "4.17.5"
   resolved "https://codeload.github.com/lodash/lodash/tar.gz/97e9edc53d2cc55df7adf765a003c800c54a6bda"
-
-"@bower_components/markerclustererplus@mahnunchik/markerclustererplus#^2.1.4":
-  version "2.1.4"
-  resolved "https://codeload.github.com/mahnunchik/markerclustererplus/tar.gz/736b0e3a7d916fbeb2ee5007494f17a5329b11a8"
-
-"@bower_components/moment@moment/moment#~2.17.1":
-  version "2.17.1"
-  resolved "https://codeload.github.com/moment/moment/tar.gz/b8a297c1f99b3918f44dd9e3d7bd59379a876ba6"
-
-"@bower_components/ngstorage@gsklee/ngStorage#0.3.6":
-  version "0.3.6"
-  resolved "https://codeload.github.com/gsklee/ngStorage/tar.gz/e1b41eac494eb35f799ac02bd9d9180d37150402"
 
 "@types/node@^6.0.46":
   version "6.0.104"
@@ -148,9 +38,9 @@
   version "2.53.43"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.43.tgz#2de3d718819bc20165754c4a59afb7e9833f6707"
 
-"@uirouter/core@5.0.17":
-  version "5.0.17"
-  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.17.tgz#c85d422b1e9a45df885be8b84f9b7f53233a7973"
+"@uirouter/core@5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.3.tgz#e2b5b1e45190e20c67ba4e15c013de5d4e0ccab3"
 
 JSONStream@^1.0.3:
   version "1.3.2"
@@ -261,11 +151,68 @@ amqplib@^0.5.2:
     readable-stream "1.x >=1.1.9"
     safe-buffer "^5.0.1"
 
+angular-animate@^1.6.9:
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.9.tgz#a0f926c1ba3190bd8929ef966a7fa79760682622"
+
+angular-base64@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/angular-base64/-/angular-base64-2.0.5.tgz#13255562ad1c8e8ca09b9c4b1f4ef966ac4cd093"
+  dependencies:
+    angular ">= 1.0.8"
+
+angular-bootstrap-affix@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/angular-bootstrap-affix/-/angular-bootstrap-affix-0.2.4.tgz#a3dbc7fedffcafa32d96f940b90b25bf4b95f405"
+
+angular-bootstrap-calendar@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/angular-bootstrap-calendar/-/angular-bootstrap-calendar-1.0.0.tgz#cfe87751aac33bf175bef0d3146e56f09444b52d"
+  optionalDependencies:
+    angular-touch ">=1.3.0"
+    angular-ui-bootstrap ">=0.14.0"
+    interactjs "^1.2.0"
+
+angular-bootstrap-colorpicker@^3.0.32:
+  version "3.0.32"
+  resolved "https://registry.yarnpkg.com/angular-bootstrap-colorpicker/-/angular-bootstrap-colorpicker-3.0.32.tgz#1080b1ab9802c1bae1919badb26417de6758ef3d"
+
+angular-bootstrap@^0.12.2:
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/angular-bootstrap/-/angular-bootstrap-0.12.2.tgz#de9900a7db087a7e9da47304a9c2f77f9c069827"
+
+angular-css@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/angular-css/-/angular-css-1.0.8.tgz#96f63de8ce7dd8415530173bd6229b5603f4e751"
+
+angular-flash-alert@^2.4.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/angular-flash-alert/-/angular-flash-alert-2.5.0.tgz#321d4908d9acf847aa8a219cc7f6e95a502e71d4"
+  dependencies:
+    angular "^1.4.8"
+
+angular-google-maps@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/angular-google-maps/-/angular-google-maps-2.4.1.tgz#a0479f3a99cda690b72df536cf1c77d11e18ee23"
+  dependencies:
+    angular "1.2 - 1.6"
+    angular-simple-logger ">=0.0.1"
+    google-maps-utility-library-v3-infobox "1.1.14"
+    google-maps-utility-library-v3-keydragzoom "2.0.9"
+    google-maps-utility-library-v3-markerwithlabel "git://github.com/nmccready/google-maps-utility-library-v3-markerwithlabel.git"
+    js-rich-marker "git://github.com/MikaFima/js-rich-marker.git#0383f4bbdad4ddf154772fedbdd27e464600e943"
+    lodash "3.X - 4.X"
+    markerclustererplus "2.1.4"
+
 angular-mocks@^1.6.9:
   version "1.6.9"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.9.tgz#4fed8c8293a5080e0919a7ff0dcf0f704864b7ba"
 
-angular-simple-logger@>=0.0.1:
+angular-resource@^1.6.9:
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.6.9.tgz#d02334b7cb96353e245966ad044c0c673df7b685"
+
+angular-simple-logger@>=0.0.1, angular-simple-logger@^0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/angular-simple-logger/-/angular-simple-logger-0.1.7.tgz#4ae48e5eac0973f577845918e56d4933cf66f041"
   dependencies:
@@ -279,6 +226,12 @@ angular-touch@>=1.3.0:
 angular-ui-bootstrap@>=0.14.0:
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-2.5.6.tgz#23937322ec641a6fbee16498cc32452aa199e7c5"
+
+angular-ui-router@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/angular-ui-router/-/angular-ui-router-1.0.3.tgz#bf2494caae95c37cf01af3761d89747cfed2db45"
+  dependencies:
+    "@uirouter/core" "5.0.3"
 
 "angular@1.2 - 1.6", "angular@>= 1.0.8", angular@^1.2, angular@^1.4.8, angular@^1.6.9:
   version "1.6.9"
@@ -587,6 +540,10 @@ boom@5.x.x:
   resolved "https://registry.yarnpkg.com/boom/-/boom-5.2.0.tgz#5dd9da6ee3a5f302077436290cb717d3f4a54e02"
   dependencies:
     hoek "4.x.x"
+
+bootstrap@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a"
 
 bower@^1.8.0:
   version "1.8.4"
@@ -1204,9 +1161,28 @@ domain-browser@~1.1.0:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
 
+domnode-dom@~0.0.X:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/domnode-dom/-/domnode-dom-0.0.4.tgz#4c66d26eaf1e4f1af56ede8593ec4fbfcd9d8e8f"
+  dependencies:
+    domnode "~0.0.3"
+
+domnode@~0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/domnode/-/domnode-0.0.3.tgz#a8bb0d8ea8d494455d0c1fb22e5645c64db0c4be"
+  dependencies:
+    mustache "0.4.0"
+
 double-ended-queue@^2.1.0-0:
   version "2.1.0-0"
   resolved "https://registry.yarnpkg.com/double-ended-queue/-/double-ended-queue-2.1.0-0.tgz#103d3527fd31528f40188130c841efdd78264e5c"
+
+drag-stream@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/drag-stream/-/drag-stream-0.0.3.tgz#3629b97d619b0b46038437d69797bd86a825c5ae"
+  dependencies:
+    domnode-dom "~0.0.X"
+    through "~2.2.1"
 
 duplexer2@^0.1.2, duplexer2@~0.1.0, duplexer2@~0.1.2:
   version "0.1.4"
@@ -1567,6 +1543,10 @@ ftp@~0.3.10:
   dependencies:
     readable-stream "1.1.x"
     xregexp "2.0.0"
+
+fullscreen@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/fullscreen/-/fullscreen-0.0.1.tgz#a368c7f6d4d5d0ea55f021c926cae558370bf04f"
 
 function-bind@^1.0.2:
   version "1.1.1"
@@ -2023,6 +2003,14 @@ insert-module-globals@^7.0.0:
     through2 "^2.0.0"
     xtend "^4.0.0"
 
+interact@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/interact/-/interact-0.0.3.tgz#6d4eae8133683a9799d4760f01626a5f5d51da22"
+  dependencies:
+    drag-stream "0.0.3"
+    fullscreen "0.0.1"
+    pointer-lock "0.0.3"
+
 interactjs@^1.2.0:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/interactjs/-/interactjs-1.3.3.tgz#863dbb04b3867a02ef8f6509dc422873d75840aa"
@@ -2206,6 +2194,10 @@ jasmine@2.8.0:
 jasminewd2@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
+
+js-rich-marker@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/js-rich-marker/-/js-rich-marker-1.1.2.tgz#1ca7ceee4f58117b2850cd200f06684641819687"
 
 "js-rich-marker@git://github.com/MikaFima/js-rich-marker.git#0383f4bbdad4ddf154772fedbdd27e464600e943":
   version "1.0.0"
@@ -2479,7 +2471,7 @@ lodash.uniq@^4.3.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-"lodash@3.X - 4.X", lodash@^4.0.0, lodash@^4.0.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.4, lodash@^4.5.0:
+"lodash@3.X - 4.X", lodash@^4.0.0, lodash@^4.0.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.5.0:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -2560,7 +2552,7 @@ make-error@^1.2.0:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.4.tgz#19978ed575f9e9545d2ff8c13e33b5d18a67d535"
 
-markerclustererplus@2.1.4:
+markerclustererplus@2.1.4, markerclustererplus@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/markerclustererplus/-/markerclustererplus-2.1.4.tgz#901225180dd5d5fc0827753a18eee35afcf9c4f7"
 
@@ -2672,6 +2664,10 @@ module-deps@^4.0.8:
     through2 "^2.0.0"
     xtend "^4.0.0"
 
+moment@^2.22.0:
+  version "2.22.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.0.tgz#7921ade01017dd45186e7fee5f424f0b8663a730"
+
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -2679,6 +2675,10 @@ ms@0.7.1:
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+
+mustache@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/mustache/-/mustache-0.4.0.tgz#49eb3bc60fd41119c50c87aa7067ef63d1592bdd"
 
 nan@^2.3.0:
   version "2.10.0"
@@ -2691,6 +2691,10 @@ negotiator@0.6.1:
 netmask@~1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
+
+ngstorage@^0.3.11:
+  version "0.3.11"
+  resolved "https://registry.yarnpkg.com/ngstorage/-/ngstorage-0.3.11.tgz#1637c45b872d909d9cc7e18b374898d50b2e844f"
 
 node-pre-gyp@^0.6.39:
   version "0.6.39"
@@ -3030,6 +3034,10 @@ plugin-error@^0.1.2:
     arr-diff "^1.0.1"
     arr-union "^2.0.1"
     extend-shallow "^1.1.2"
+
+pointer-lock@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/pointer-lock/-/pointer-lock-0.0.3.tgz#2b0675ca4824c3de50972d1a28309be7ce0a35f7"
 
 portfinder@^1.0.13:
   version "1.0.13"
@@ -3776,6 +3784,10 @@ through2@2.0.3, through2@^2.0.0:
 "through@>=2.2.7 <3":
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
+through@~2.2.1:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/through/-/through-2.2.7.tgz#6e8e21200191d4eb6a99f6f010df46aa1c6eb2bd"
 
 thunkify@~2.1.1:
   version "2.1.2"

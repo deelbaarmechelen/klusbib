@@ -28,12 +28,12 @@
 <!--     <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
 
     <!-- Plugin CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
-<!--     <link href="/node_modules/magnific-popup/dist/magnific-popup.css" rel="stylesheet"> -->
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />-->
+  <link href="/node_modules/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
 
   <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 <!--   // If you are using bootstrap v3 no need to include angular-flash.css -->
-  <link type="text/css" rel="stylesheet" href="/node_modules/@bower_components/angular-flash-alert/dist/angular-flash.min.css" />
+  <link type="text/css" rel="stylesheet" href="/node_modules/angular-flash-alert/dist/angular-flash.min.css" />
   <link type="text/css" rel="stylesheet" href="home/css/app.css" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
@@ -42,33 +42,30 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   -->
 <!--   <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script> -->
-  <script src="/node_modules/@bower_components/angular/angular.js"></script>
-  <script src="/node_modules/@bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<!--   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script> -->
-<!--   <script src="bower_components/angular-route/angular-route.js"></script> -->
-  <script src="/node_modules/@bower_components/angular-resource/angular-resource.js"></script>
-  <script src="/node_modules/@bower_components/angular-base64/angular-base64.js"></script>
+  <script src="/node_modules/@bower_components/lodash/dist/lodash.min.js"></script>
   <script src="/node_modules/@bower_components/interact/dist/interact.min.js"></script>
+  <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-base64/angular-base64.js"></script>
+  <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>-->
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.0/ui-bootstrap-tpls.min.js"></script>-->
+  <script src="/node_modules/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="/node_modules/angular-bootstrap-affix/dist/angular-bootstrap-affix.min.js"></script>
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/js/bootstrap-colorpicker-module.min.js"></script>-->
+  <script src="/node_modules/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js"></script>
+  <script src="/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+  <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="/node_modules/angular-resource/angular-resource.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
   <!--extra script required for some angular-ui objects? pagination? -->
   <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>-->
   <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>-->
-  <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>-->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.0/ui-bootstrap-tpls.min.js"></script>
-  <!--   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script> -->
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/js/bootstrap-colorpicker-module.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-css/1.0.8/angular-css.min.js"></script>
-<!--   <script src="bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js"></script> -->
-  <script src="/node_modules/@bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.js"></script>
-<!--     <script src="dist/js/angular-bootstrap-calendar-tpls.min.js"></script> -->
-  <script src="/node_modules/@bower_components/angular-jquery/dist/angular-jquery.min.js"></script>
-  <script src="/node_modules/@bower_components/angular-bootstrap-affix/dist/angular-bootstrap-affix.min.js"></script>
-  <script src="/node_modules/@bower_components/angular-flash-alert/dist/angular-flash.min.js"></script>
-<!--   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script> -->
-  <script src="/node_modules/@bower_components/lodash/dist/lodash.min.js"></script>
-  <script src="/node_modules/@bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
-  <script src="/node_modules/@bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+  <script src="/node_modules/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.js"></script>
+  <script src="/node_modules/angular-flash-alert/dist/angular-flash.min.js"></script>
+  <script src="/node_modules/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+  <script src="/node_modules/angular-google-maps/dist/angular-google-maps.js"></script>
+  <!--   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script> -->
   <script src="app.env.js"></script>
   <script src="app.module.js"></script>
   <script src="app.controller.js"></script>
@@ -101,8 +98,8 @@
   <script src="components/volunteer-calendar/volunteer-calendar.module.js"></script>
   <script src="components/volunteer-calendar/volunteer-calendar.component.js"></script>
 
-  <link href="/node_modules/@bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
-  <link href="/node_modules/@bower_components/angular-bootstrap-colorpicker/css/colorpicker.min.css" rel="stylesheet">
+  <link href="/node_modules/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+  <link href="/node_modules/angular-bootstrap-colorpicker/css/colorpicker.min.css" rel="stylesheet">
 </head>
 <body>
   <!--[if lt IE 7]>
@@ -112,6 +109,6 @@
 	<ui-view name="main"></ui-view>
 
     <!-- jQuery -->
-    <script src="/node_modules/@bower_components/jquery/dist/jquery.min.js"></script>
+    <!--<script src="/node_modules/@bower_components/jquery/dist/jquery.min.js"></script>-->
 </body>
 </html>
