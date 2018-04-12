@@ -70,7 +70,7 @@ app.config(routing);
 app.config(['uiGmapGoogleMapApiProvider',function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyDI8xAPjlP8imcKL5eyONF2AT2ZJbSE88M',
-        v: '3.28', //defaults to latest 3.X anyhow ( 2.4.1??)
+        v: '3.30', //defaults to latest 3.X anyhow ( 2.4.1??)
         libraries: 'weather,geometry,visualization'
     });
 }])
