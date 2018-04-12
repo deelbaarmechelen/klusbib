@@ -1,14 +1,16 @@
-(function (window) {
-  window.__env = window.__env || {};
+envConfig.$inject = ['window'];
 
-  // API url
-//  window.__env.apiUrl = 'http://klusbibapi';
-  window.__env.apiUrl = 'https://api.klusbib.be';
+export default function envConfig(window) {
+    window.__env = window.__env || {};
 
-  // Base url
-  window.__env.baseUrl = '/';
+    // API url
+    // window.__env.apiUrl = 'http://klusbibapi';
+    window.__env.apiUrl = 'https://api.klusbib.be';
 
-  // Whether or not to enable debug mode
-  // Setting this to false will disable console output
-  window.__env.enableDebug = true;
-}(this));
+    // Base url
+    window.__env.baseUrl = '/';
+
+    // Whether or not to enable debug mode
+    // Setting this to false will disable console output
+    window.__env.enableDebug = true;
+}

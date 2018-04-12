@@ -1,9 +1,10 @@
-angular.module('toolList').component('toolList', {
-	bindings: { tools: '<', category: '<' , currentPage: '<', pageSize: '<', totalCount: '<'},
-	templateUrl : '/components/tool-list/tool-list.template.html',
-	controller :
-	[ '$http', 'User', 'UserService', '__env', '$stateParams', '$state',
-		function ToolListController($http, User, UserService, __env, $stateParams, $state) {
+// angular.module('toolList').component('toolList', {
+// 	bindings: { tools: '<', category: '<' , currentPage: '<', pageSize: '<', totalCount: '<'},
+// 	templateUrl : '/components/tool-list/tool-list.template.html',
+// 	controller :
+ToolListController.$inject = [ '$http', 'User', 'UserService', '__env', '$stateParams', '$state'];
+
+export default function ToolListController($http, User, UserService, __env, $stateParams, $state) {
 
 		var self = this;
         // pagination
@@ -39,14 +40,14 @@ angular.module('toolList').component('toolList', {
         }
 
 		this.resizeImage = function (imageUrl, size) {
-			baseUrl = imageUrl.substr(0,imageUrl.lastIndexOf('.'));
-			ext = imageUrl.substr(imageUrl.lastIndexOf('.')+1);
-			newUrl = baseUrl + '-' + size + '.' + ext;
+			var baseUrl = imageUrl.substr(0,imageUrl.lastIndexOf('.'));
+			var ext = imageUrl.substr(imageUrl.lastIndexOf('.')+1);
+			var newUrl = baseUrl + '-' + size + '.' + ext;
 			return newUrl;
 		}
 		
 		this.translateCategory = function (category) {
-			catMap = {
+			let catMap = {
 					'general' : 'Algemeen',
 					'car' : 'Auto',
 					'construction' : 'Bouw',
@@ -67,5 +68,4 @@ angular.module('toolList').component('toolList', {
 		this.deleteTool = function (toolId, index) {
 			alert ('not yet implemented!');
 		}
-    } ]
-});
+    }

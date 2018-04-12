@@ -148,9 +148,9 @@
                     </p>
                     <h3 >Hoe werkt het?</h3>
                     <p class="text-faded">
-                    Voor een vast bedrag van 20 euro ben je een jaar <a class="light" href="/#!/lid-worden" >lid</a> van Klusbib. Je kan dan tot maximaal 5 werktuigen gedurende 1 week ontlenen, 
+                    Voor een vast bedrag van 20 euro ben je een jaar <a class="light" ui-sref="enrolment({'#': ''})">lid</a> van Klusbib. Je kan dan tot maximaal 5 werktuigen gedurende 1 week ontlenen,
                     met optie tot verlenging met nog een week. <br>
-                    Alle details staan beschreven in de <a class="light" href="/home/docs/KlusbibAfspraken.pdf">klusbib afspraken</a>
+                    Alle details staan beschreven in de <a class="light" href="/docs/KlusbibAfspraken.pdf">klusbib afspraken</a>
                     </p>
                     <h3 >Waar kan ik jullie vinden?</h3>
                     <p class="text-faded">
@@ -158,17 +158,17 @@
                     </p>
                     <h3>Wat kan er zoal ontleend worden?</h3>
                     <p class="text-faded">
-                    Een overzicht van onze werktuigen vind je op de online <a class="light" href="/">inventaris</a>. 
+                    Een overzicht van onze werktuigen vind je op de online <a class="light" ui-sref="tools({'#': ''})">inventaris</a>.
                     </p>
                     <h3 >Ik wil helpen</h3>
                     <p class="text-faded">
                     Wil je graag meewerken aan dit initiatief? Dat komt goed uit, want wij kunnnen je hulp goed gebruiken!
-                    Op de <a class="light" href="/#!/vrijwilligers">vrijwilligers</a> pagina staat een overzicht van de komende 
+                    Op de <a class="light" ui-sref="volunteer({'#': ''})" >vrijwilligers</a> pagina staat een overzicht van de komende
                     activiteiten. Sluit vrijblijvend aan om een beeld te krijgen van hoe het eraan toe gaat achter de schermen.
-                    Neem ook een kijkje naar dit <a class="light" href="/home/docs/KLUSBIB-functieprofielvanhandigevrijwilliger.pdf" >functie profiel</a>
+                    Neem ook een kijkje naar dit <a class="light" href="/docs/KLUSBIB-functieprofielvanhandigevrijwilliger.pdf" >functie profiel</a>
                     </p>
                     <p class="text-faded">
-                    Ook andere talenten kunnen we zeker gebruiken om onze vele andere ideeën uit te werken. Stuur ons een <a class="light" href=#contact>berichtje</a>
+                    Ook andere talenten kunnen we zeker gebruiken om onze vele andere ideeën uit te werken. Stuur ons een <a class="light" ui-sref="home({'#': 'contact'})">berichtje</a>
                     </p>
                     <h3 >Ik heb nog gereedschap liggen</h3>
                     <p class="text-faded">
@@ -189,8 +189,8 @@
                     <h3>Het gereedschap dat ik zoek ligt niet in jullie bib</h3>
                     <p class="text-faded">
                     Laat ons weten waar je naar op zoek bent, dan kijken wij uit of we het aan ons assortiment kunnen toevoegen. <br>
-                    Neem zeker ook een kijkje op ons <a class="light" href="//forum.klusbib.be" >forum (in aanmaak)</a>. Mogelijks zijn er nog anderen op zoek naar 
-                    hetzelfde gereedschap en kan je dat samen aankopen
+                    <!--Neem zeker ook een kijkje op ons <a class="light" href="//forum.klusbib.be" >forum (in aanmaak)</a>. Mogelijks zijn er nog anderen op zoek naar -->
+                    <!--hetzelfde gereedschap en kan je dat samen aankopen-->
                     </p>
                 </div>
             </div>
@@ -205,22 +205,24 @@
                 	</p>
                 	<div class="col-md-3 text-center">
                 	<p>
-                	<a href="http://www.mechelenklimaatstad.be"><img class="sponsor" src="home/img/sponsor/klimaatstad-logo.png" /></a>
+                	<a href="http://www.mechelenklimaatstad.be"><img class="sponsor" src='/img/sponsor/klimaatstad-logo.png' /></a>
                 	</p>
                 	</div>
                 	<div class="col-md-3 text-center">
                 	<p>
-                	<a href="https://klimaatneutraal.mechelen.be"><img class="sponsor" src="home/img/sponsor/mechelen klimaatneutraal.png" /></a>
+                	<a href="https://klimaatneutraal.mechelen.be"><img class="sponsor" src='/img/sponsor/mechelen klimaatneutraal.png' /></a>
                 	</p>
                 	</div>
                 	<div class="col-md-3 text-center">
                 	<p>
-                	<a href="http://www.dekringwinkel.be/ecoso"><img class="sponsor" src="home/img/sponsor/KW_Ecoso_CMYK.jpg" /></a>
+                	<a href="http://www.dekringwinkel.be/ecoso"><img class="sponsor" src='/img/sponsor/KW_Ecoso_CMYK.jpg' /></a>
                 	</p>
                 	</div>
                 	<div class="col-md-3 text-center">
                 	<p>
-                	<a href="http://www.ovam.be"><img class="sponsor" src="home/img/sponsor/ovam-logo.jpg" /></a>
+                	<a href="http://www.ovam.be">
+                        <!--<img src="<%= require('./img/sponsor/ovam-logo.jpg') %>" />-->
+                        <img class="sponsor" src='/img/sponsor/ovam-logo.jpg' /></a>
                 	</p>
                 	</div>
                 </div>

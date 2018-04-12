@@ -1,10 +1,11 @@
-angular.
-  module('myProfile').
-  component('myProfile', {
-	bindings: { user: '<' },
-    templateUrl: '/components/my-profile/my-profile.template.html',
-    controller: ['$http', '__env', 'UserService', 'ReservationService','$location','Flash',
-      function MyProfileController($http, __env, UserService, ReservationService, $location, Flash) {
+// angular.
+//   module('myProfile').
+//   component('myProfile', {
+// 	bindings: { user: '<' },
+//     templateUrl: '/components/my-profile/my-profile.template.html',
+//     controller: ['$http', '__env', 'UserService', 'ReservationService','$location','Flash',
+MyProfileController.$inject = ['$http', '__env', 'UserService', 'ReservationService','$location','Flash'];
+export default function MyProfileController($http, __env, UserService, ReservationService, $location, Flash) {
           var self = this;
           this.$onChanges = function(changesObj) {
 			  if (changesObj.user && changesObj.user.currentValue) {
@@ -119,5 +120,3 @@ angular.
     		  return item;
           }
       }
-    ]
-  });

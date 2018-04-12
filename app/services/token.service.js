@@ -1,12 +1,12 @@
-﻿(function () {
-    'use strict';
-
-    angular
-        .module('toollibApp')
-        .factory('TokenService', TokenService);
+﻿// (function () {
+//     'use strict';
+//
+//     angular
+//         .module('toollibApp')
+//         .factory('TokenService', TokenService);
 
     TokenService.$inject = ['$http', '__env'];
-    function TokenService($http, __env) {
+    export default function TokenService($http, __env) {
         var service = {};
 
         service.GetGuestToken = GetGuestToken;
@@ -28,6 +28,4 @@
                 return { success: false, message: error };
             };
         }
-    }
-
-})();
+    };

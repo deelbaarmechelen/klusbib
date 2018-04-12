@@ -1,12 +1,12 @@
-(function () {
-    'use strict';
-
-    angular
-        .module('toollibApp')
-        .factory('AuthService', AuthService);
-
+// (function () {
+//     'use strict';
+//
+//     angular
+//         .module('toollibApp')
+//         .factory('AuthService', AuthService);
+//
     AuthService.$inject = ['$http', '__env'];
-    function AuthService($http, __env) {
+    export default function AuthService($http, __env) {
         var service = {};
 
         service.resetPwd = resetPwd;
@@ -43,4 +43,3 @@
             return { 'success': false, 'message': message, 'status': status };
         }
     }
-})();

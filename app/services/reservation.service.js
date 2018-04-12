@@ -1,9 +1,9 @@
-﻿(function () {
-    'use strict';
-
-    angular
-        .module('toollibApp')
-        .factory('ReservationService', ReservationService);
+﻿// (function () {
+//     'use strict';
+//
+//     angular
+//         .module('toollibApp')
+//         .factory('ReservationService', ReservationService);
 
 //    angular.module('toollibApp').config(['$httpProvider', function ($httpProvider) {
 //    	$httpProvider.interceptors.push(['$q', '$localStorage', function ($q, $localStorage) {
@@ -20,7 +20,7 @@
 //    }]);
 
     ReservationService.$inject = ['$http', '__env', '$localStorage'];
-    function ReservationService($http, __env, $localStorage) {
+    export default function ReservationService($http, __env, $localStorage) {
         var service = {};
 
         service.GetAll = GetAll;
@@ -106,5 +106,3 @@
             return { success: false, message: message };
         }
     }
-
-})();

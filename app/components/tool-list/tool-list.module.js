@@ -1,15 +1,16 @@
 'use strict';
+import angular from 'angular';
+import ngResource from 'angular-resource';
+import uibootstrap from 'angular-ui-bootstrap';
+import ToolListController from './tool-list.component.js';
+
 var appToolList = angular.module('toolList', [
 //	  'ngRoute',
-	  'ngResource',
-    'ui.bootstrap'
+    ngResource,
+    uibootstrap
 //	  'ngStorage'
 ]);
 
-//appToolList.constant('urls', {
-//    BASE: 'http://app.klusbib.be',
-//    BASE_API: 'http://api.klusbib.be'
-//})
 
 appToolList.config(['$httpProvider', function ($httpProvider) {
 	$httpProvider.interceptors.push(['$q', '$localStorage', function ($q, $localStorage) {
@@ -31,6 +32,13 @@ appToolList.config(['$httpProvider', function ($httpProvider) {
         };
     }]);
 }]);
+
+appToolList.component('toolList', {
+    bindings: { tools: '<', category: '<' , currentPage: '<', pageSize: '<', totalCount: '<'},
+    template : require('./tool-list.template.html'),
+    controller : ToolListController
+});
+export default appToolList.name;
 
 
 

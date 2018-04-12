@@ -1,7 +1,8 @@
 // This file should handle routes configuration
-(function() {
 
-angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider) {
+routing.$inject = ['$stateProvider', '$urlRouterProvider'];
+
+export default function routing($stateProvider, $urlRouterProvider) {
 
 	 var homeState = {
 	    name: 'home',
@@ -10,7 +11,7 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 	    		component: 'navigation',
 	    	},
 	    	main: {
-	    		templateUrl: '/home/home.view.html',
+	    		template: require('./home/home.view.html'),
 	    		controller: 'HomeController'
 //	    		css: 'home/css/creative.css'
 	    	}
@@ -62,51 +63,29 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
                     inverse: function() {
                         return true;
                     },
-                    category: function($stateParams) {
+                    category: ['$stateParams', function($stateParams) {
 						return $stateParams.category;
-                    },
-                    currentPage: function($stateParams) {
+                    }],
+                    currentPage: ['$stateParams', function($stateParams) {
                         return parseInt($stateParams.page) || 1;
-                    },
+                    }],
                     pageSize: function() {
                         return 25;
                     },
-                    toolsData: function(ToolService, category, currentPage, pageSize) {
+                    toolsData: ['ToolService','category', 'currentPage', 'pageSize', function(ToolService, category, currentPage, pageSize) {
                         return ToolService.GetByCategoryOrderBy(category, currentPage, pageSize).then(function(response) {
                             if (response.success) {
 								console.log('Total count:' + response.totalCount);
                                 return {tools: response.message, count:response.totalCount};
                             }
                         });
-                    },
-					tools: function (toolsData) {
+                    }],
+					tools: ['toolsData', function (toolsData) {
                     	return toolsData.tools;
-                    },
-					totalCount: function(toolsData) {
+                    }],
+					totalCount: ['toolsData', function(toolsData) {
                     	return toolsData.count;
-					}
-			    }
-	  }
-	  var toolsListCategoryState = {
-			    name: 'tools.category',
-			    url: '',
-			    component: 'toolList',
-			    params: {category: 'general'},
-			    resolve: {
-			    	tools: function(ToolService, $transition$) {
-			    		return ToolService.GetByCategoryOrderBy($transition$.params().category,
-							$transition$.params().page, 5).then(function(response) {
-			    			if (response.success) {
-			    				return response.message;
-			    			}
-			    		});
-			    	},
-                    category: function($transition$) {
-                        return $transition$.params().category;
-                    },
-                    currentPage: function($transition$) {
-                        return $transition$.params().page;
-                    }
+					}]
 			    }
 	  }
 	  var toolDetailState = {
@@ -121,13 +100,13 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    	}
 			    },
 			    resolve: {
-			        tool: function(ToolService, $transition$) {
+			        tool: ['ToolService', '$transition$', function(ToolService, $transition$) {
 			          return ToolService.GetById($transition$.params().toolId).then(function(response) {
 			    			if (response.success) {
 			    				return response.message;
 			    			}
 			          });
-			    	},
+			    	}],
 			    	inverse: function() {
 			    		return true;
 			        }
@@ -179,9 +158,9 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    	}
 			    },
 				resolve: {
-					user: function(UserService, $transition$) {
+					user: ['UserService', '$transition$', function(UserService, $transition$) {
 				          return UserService.GetById($transition$.params().userId);
-				    },
+				    }],
 				    inverse: function() {
 				    	return true;
 				    }
@@ -195,7 +174,7 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    		component: 'navigation'
 			    	},
 			    	main: {
-			    		templateUrl: 'enrolment/enrolment.view.html',
+			    		template: require('./enrolment/enrolment.view.html'),
 				    	controller: 'EnrolmentController as vm'
 			    	}
 			    },
@@ -213,7 +192,7 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    		component: 'navigation'
 			    	},
 			    	main: {
-			    		templateUrl: 'enrolment/reset-pwd.view.html',
+			    		template: require('./enrolment/reset-pwd.view.html'),
 				    	controller: 'EnrolmentController as vm'
 			    	}
 			    },
@@ -231,7 +210,7 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 			    		component: 'navigation'
 			    	},
 			    	main: {
-			    		templateUrl: 'volunteer/volunteer.view.html',
+			    		template: require('./volunteer/volunteer.view.html'),
 				    	controller: 'VolunteerController'
 			    	}
 			    },
@@ -246,7 +225,6 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 	$stateProvider.state(signInState);
 	$stateProvider.state(toolsListState);
 	$stateProvider.state(toolDetailState);
-	$stateProvider.state(toolsListCategoryState);
 	$stateProvider.state(consumersState);
 	$stateProvider.state(reservationsState);
 	$stateProvider.state(profileState);
@@ -255,15 +233,6 @@ angular.module('toollibApp').config(function($stateProvider, $urlRouterProvider)
 	$stateProvider.state(volunteerState);
 
 	$urlRouterProvider.otherwise('/')
-});
-
-angular.module('toollibApp').config(function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyDI8xAPjlP8imcKL5eyONF2AT2ZJbSE88M',
-        v: '3.28', //defaults to latest 3.X anyhow ( 2.4.1??)
-        libraries: 'weather,geometry,visualization'
-    });
-})
+};
 
 
-}());

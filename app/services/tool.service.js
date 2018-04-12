@@ -1,9 +1,9 @@
-﻿(function () {
-    'use strict';
-
-    angular
-        .module('toollibApp')
-        .factory('ToolService', ToolService);
+﻿// (function () {
+//     'use strict';
+//
+//     angular
+//         .module('toollibApp')
+//         .factory('ToolService', ToolService);
 
 //    angular.module('toollibApp').config(['$httpProvider', function ($httpProvider) {
 //    	$httpProvider.interceptors.push(['$q', '$localStorage', function ($q, $localStorage) {
@@ -20,7 +20,7 @@
 //    }]);
 
     ToolService.$inject = ['$http', '__env'];
-    function ToolService($http, __env) {
+    export default function ToolService($http, __env) {
         var service = {};
         var defaultPageSize = 100;
 
@@ -122,6 +122,4 @@
             console.log(message);
             return { success: false, message: message };
         }
-    }
-
-})();
+    };

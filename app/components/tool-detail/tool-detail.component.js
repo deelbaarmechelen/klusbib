@@ -1,29 +1,14 @@
-angular.module('toolDetail').factory('alert', function ($uibModal) {
 
-    function show(action, event) {
-        return $uibModal.open({
-            templateUrl: '/components/tool-detail/modalContent.html',
-            controller: function () {
-                var vm = this;
-                vm.action = action;
-                vm.event = event;
-            },
-            controllerAs: 'vm'
-        });
-    }
 
-    return {
-        show: show
-    };
+// angular.module('toolDetail').component('toolDetail', {
+//     bindings: {tool: '<'},
+//     templateUrl: 'components/tool-detail/tool-detail.template.html',
+//     controller: ['$http', 'moment', 'calendarConfig', 'alert', '__env',
+//         'User', 'ReservationService', 'Flash', 'calendarEventTitle',
+ToolDetailController.$inject = ['$http', 'moment', 'calendarConfig', 'alert', '__env',
+         'User', 'ReservationService', 'Flash', 'calendarEventTitle'];
 
-});
-
-angular.module('toolDetail').component('toolDetail', {
-    bindings: {tool: '<'},
-    templateUrl: 'components/tool-detail/tool-detail.template.html',
-    controller: ['$http', 'moment', 'calendarConfig', 'alert', '__env',
-        'User', 'ReservationService', 'Flash', 'calendarEventTitle',
-        function ToolDetailController($http, moment, calendarConfig, alert, __env,
+export default function ToolDetailController($http, moment, calendarConfig, alert, __env,
                                       User, ReservationService, Flash, calendarEventTitle) {
             var self = this;
             self.user = User.get();
@@ -86,14 +71,14 @@ angular.module('toolDetail').component('toolDetail', {
                     return;
                 }
 //	  			console.log('imageUrl=' + JSON.stringify(imageUrl));
-                baseUrl = imageUrl.substr(0, imageUrl.lastIndexOf('.'));
-                ext = imageUrl.substr(imageUrl.lastIndexOf('.') + 1);
-                newUrl = baseUrl + '-' + size + '.' + ext;
+                let baseUrl = imageUrl.substr(0, imageUrl.lastIndexOf('.'));
+                let ext = imageUrl.substr(imageUrl.lastIndexOf('.') + 1);
+                let newUrl = baseUrl + '-' + size + '.' + ext;
                 return newUrl;
             }
 
             this.translateCategory = function translateCategory(category) {
-                catMap = {
+                let catMap = {
                     'general': 'Algemeen',
                     'car': 'Auto',
                     'construction': 'Bouw',
@@ -245,5 +230,4 @@ angular.module('toolDetail').component('toolDetail', {
 
                 return false;
             };
-        }]
-});
+        }

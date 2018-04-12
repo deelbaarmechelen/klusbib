@@ -1,12 +1,12 @@
-﻿(function () {
-    'use strict';
-
-    angular
-        .module('toollibApp')
-        .factory('UserService', UserService);
+﻿// (function () {
+//     'use strict';
+//
+//     angular
+//         .module('toollibApp')
+//         .factory('UserService', UserService);
 
     UserService.$inject = ['$http', '__env'];
-    function UserService($http, __env) {
+    export default function UserService($http, __env) {
         var service = {};
 
         service.GetAll = GetAll;
@@ -82,6 +82,6 @@
             console.log(message);
             return { 'success': false, 'message': message, 'status': status };
         }
-    }
+    };
 
-})();
+// })();

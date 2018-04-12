@@ -1,4 +1,6 @@
-'use strict';
+import angular from 'angular';
+import ReservationListController from './reservation-list.component.js';
+
 var appReservationList = angular.module('reservationList', [
 //	  'ngRoute',
 	  'ngResource'
@@ -25,5 +27,9 @@ appReservationList.config(['$httpProvider', function ($httpProvider) {
     }]);
 }]);
 
-
+angular.module('reservationList').component('reservationList', {
+    template : require('./reservation-list.template.html'),
+    controller :ReservationListController
+});
+export default angular.module('reservationList').name;
 

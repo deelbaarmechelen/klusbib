@@ -1,9 +1,10 @@
-angular.module('signIn').component('signIn', {
-	scope: true,
-	templateUrl : '/components/sign-in/sign-in.template.html',
-	controller :
-	[ '$http', '__env', 'Auth', '$localStorage', '$location','User',
-		function SignInController($http, __env, Auth, $localStorage, $location, User) {
+// angular.module('signIn').component('signIn', {
+// 	scope: true,
+// 	templateUrl : '/components/sign-in/sign-in.template.html',
+// 	controller :
+// 	[ '$http', '__env', 'Auth', '$localStorage', '$location','User',
+SignInController.$inject = ['$http', '__env', 'Auth', '$localStorage', '$location','User'];
+		export default function SignInController($http, __env, Auth, $localStorage, $location, User) {
 //    		console.log('Init sign in controller, token=' + $localStorage.token + ',token claims=' 
 //    				+ JSON.stringify(Auth.getTokenClaims()));
 			var self = this;
@@ -46,8 +47,8 @@ angular.module('signIn').component('signIn', {
 					self.error = 'Er is een probleem opgetreden bij je paswoord reset aanvraag, is het ingegeven email adres correct?'
 				})
 			};
-   		} 
-	]
+   		};
+	// ]
     
-});
+// });
 

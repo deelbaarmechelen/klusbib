@@ -1,5 +1,11 @@
-(function() {
-    'use strict';
+import angular from 'angular';
+import coreUtils from './core.js';
+import 'ngstorage';
 
-    angular.module('core', []);
-})();
+// (function() {
+//     'use strict';
+//
+//     angular.module('core', []);
+// })();
+
+export default angular.module('core', ['ngStorage']).factory('User',coreUtils).name;

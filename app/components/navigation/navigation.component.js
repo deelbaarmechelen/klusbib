@@ -5,7 +5,8 @@
 		templateUrl : '/components/navigation/navigation.template.html',
 		controller :
 		[ '$scope', 'User',
-			function NavigationController($scope, User) {
+        // export default class
+		function NavigationController($scope, User) {
 
 				$scope.user = User.get();
 				$scope.logout = function () {

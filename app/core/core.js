@@ -1,7 +1,11 @@
-(function() {
-    'use strict';
+// (function() {
+//     'use strict';
     
-    angular.module('core').factory('User', ['$localStorage', function($localStorage) {
+    // angular.module('core').factory('User', ['$localStorage', function($localStorage) {
+
+coreUtils.$inject = ['$localStorage'];
+
+export default function coreUtils($localStorage) {
 	    var user = {id:null};
 	    
 	    function urlBase64Decode(str) {
@@ -55,5 +59,5 @@
 	        	$localStorage.$reset();
 	        }
 	    };
-    }]);
-}());
+    };
+// }());

@@ -161,7 +161,7 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: url('/home/img/vitrine.jpg');
+  background-image: url('../img/vitrine.jpg');
   text-align: center;
   color: white;
 }

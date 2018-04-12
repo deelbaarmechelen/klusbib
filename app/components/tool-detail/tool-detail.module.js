@@ -1,7 +1,15 @@
+import angular from 'angular';
+import ToolDetailController from './tool-detail.component.js';
+import 'angular-bootstrap-calendar';
+import 'angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css';
+import 'angular-bootstrap-colorpicker';
+import 'angular-bootstrap-colorpicker/css/colorpicker.min.css';
+import uibootstrap from 'angular-ui-bootstrap';
+import ngFlash from 'angular-flash-alert';
+
 angular.module('toolDetail', [
-//  'ngRoute',
-  'mwl.calendar', 'ui.bootstrap',
-  'colorpicker.module', 'ngFlash'
+  'mwl.calendar', uibootstrap,
+  'colorpicker.module', ngFlash
 ]);
 
 
@@ -26,3 +34,30 @@ console.log(calendarConfig); //view all available config
 //calendarConfig.showTimesOnWeekView = true; //Make the week view more like the day view, with the caveat that event end times are ignored.
 //
 }]);
+
+angular.module('toolDetail').factory('alert', function ($uibModal) {
+
+    function show(action, event) {
+        return $uibModal.open({
+            template: require('./modalContent.html'),
+            controller: function () {
+                var vm = this;
+                vm.action = action;
+                vm.event = event;
+            },
+            controllerAs: 'vm'
+        });
+    }
+
+    return {
+        show: show
+    };
+
+});
+
+angular.module('toolDetail').component('toolDetail', {
+    bindings: {tool: '<'},
+    template: require('./tool-detail.template.html'),
+    controller: ToolDetailController
+});
+export default angular.module('toolDetail').name;

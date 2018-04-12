@@ -1,3 +1,6 @@
+import angular from 'angular';
+import MyProfileController from './my-profile.component.js';
+
 angular.module('myProfile', [
 ]);
 
@@ -21,3 +24,11 @@ angular.module('myProfile').config(['$httpProvider', function ($httpProvider) {
         };
     }]);
 }]);
+
+angular.module('myProfile').
+component('myProfile', {
+    bindings: {user: '<'},
+    template: require('./my-profile.template.html'),
+    controller: MyProfileController
+});
+export default angular.module('myProfile').name;

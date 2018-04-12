@@ -1,12 +1,12 @@
-(function () {
-    'use strict';
-
-    angular
-        .module('toollibApp')
-        .controller('EnrolmentController', EnrolmentController);
+// (function () {
+//     'use strict';
+//
+//     angular
+//         .module('toollibApp')
+//         .controller('EnrolmentController', EnrolmentController);
     EnrolmentController.$inject = ['TokenService', 'UserService','Flash', 'AuthService', '$location'];
 
-    function EnrolmentController(TokenService, UserService, Flash, AuthService, $location) {
+export default function EnrolmentController(TokenService, UserService, Flash, AuthService, $location) {
         var vm = this;
 
 //        (function initController() {
@@ -72,6 +72,6 @@
         vm.redirectToLogin = function () {
             $location.path('/signin');
         }
-    }
+    };
 
-})();
+// })();

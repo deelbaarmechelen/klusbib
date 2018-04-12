@@ -1,17 +1,21 @@
-(function () {
-    'use strict';
-
-    angular
-        .module('toollibApp')
-        .controller('HomeController', HomeController);
+// (function () {
+//     'use strict';
+//
+//     angular
+//         .module('toollibApp')
+//         .controller('HomeController', HomeController);
+import vitrine from './img/vitrine.jpg';
+import ovam from './img/sponsor/ovam-logo.jpg';
+// require("./img/sponsor/ovam-logo.jpg");
 
     HomeController.$inject = ['$scope', '$css'];
 
-    function HomeController($scope, $css) {
-    	var vm = this;
+    export default function HomeController($scope, $css) {
+        var vm = this;
     	
     	// add stylesheet(s)
-    	$css.add('home/css/creative.css');
+		// no longer needed as loaded in app.module.js by webpack?
+        // $css.add('./css/creative.css');
 
     	$scope.map = { 
    			center: { latitude: 51.022066, longitude: 4.482764 }, 
@@ -37,4 +41,4 @@
 		};
      }
 
-})();
+// })();

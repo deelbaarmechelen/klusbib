@@ -1,5 +1,9 @@
-appSignin.factory('Auth', ['$http', '$localStorage', '__env',
-	function ($http, $localStorage, __env) {
+// appSignin.factory('Auth', ['$http', '$localStorage', '__env',
+import coreUtils from "../../core/core";
+
+signInFactory.$inject = ['$http', '$localStorage', '__env'];
+
+export default function signInFactory($http, $localStorage, __env) {
 
     function urlBase64Decode(str) {
         var output = str.replace('-', '+').replace('_', '/');
@@ -53,5 +57,5 @@ appSignin.factory('Auth', ['$http', '$localStorage', '__env',
             return tokenClaims;
         }
     };
-}
-]);
+};
+// ]);

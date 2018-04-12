@@ -1,8 +1,8 @@
-angular.module('reservationList').component('reservationList', {
-	templateUrl : '/components/reservation-list/reservation-list.template.html',
-	controller :
-	[ '$http', 'ReservationService', 'UserService', 'ToolService', 'Flash','__env','$state',
-		function ReservationListController($http, ReservationService, UserService, ToolService, Flash,__env, $state) {
+// angular.module('reservationList').component('reservationList', {
+// 	templateUrl : '/components/reservation-list/reservation-list.template.html',
+// 	controller :
+ReservationListController.$inject = [ '$http', 'ReservationService', 'UserService', 'ToolService', 'Flash','__env','$state'];
+export default function ReservationListController($http, ReservationService, UserService, ToolService, Flash,__env, $state) {
 
 		var self = this;
 		ReservationService.GetOpenByPage(1, 100).then(function (response) {
@@ -190,7 +190,11 @@ angular.module('reservationList').component('reservationList', {
 			}
 			var user = self.users.filter(isUserId(userId));
 //			console.log(JSON.stringify(user));
-			return user[0].firstname + ' ' + user[0].lastname;
+			if (Array.isArray(user) && user.length > 0) {
+
+                return user[0].firstname + ' ' + user[0].lastname;
+            }
+            return "onbekend";
 		}
 		this.getToolNameAndCode = function (toolId) {
 			function isToolId(toolId) {
@@ -216,5 +220,4 @@ angular.module('reservationList').component('reservationList', {
 		      {id: 'CANCELLED', name: 'Annulatie'},
 		      {id: 'CLOSED', name: 'Beëindigd'}
 		];
-	} ]
-});
+	}

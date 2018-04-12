@@ -1,14 +1,12 @@
 <h1 align="center">{{ $ctrl.tool.name || 'empty' }}</h1>
 <div class="col-md-3">
-<!--     <a href="#!/tools?category={{$ctrl.tool.category}}">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a> -->
 	<table
 		class="table table-striped table-bordered table-condensed">
 		<tbody>
 			<tr>
 				<td>Categorie</td>
 				<td class="wrap">
-<!-- 				<a href="#!/tools?category={{$ctrl.tool.category}}">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a> -->
-				<a ui-sref="tools.category({ category: $ctrl.tool.category })">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a>
+				<a ui-sref="tools({ category: $ctrl.tool.category })">{{ $ctrl.translateCategory($ctrl.tool.category) }}</a>
 				</td>
 			</tr>
 			<tr ng-if="$ctrl.tool.brand">
