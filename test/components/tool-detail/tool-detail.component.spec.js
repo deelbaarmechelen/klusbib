@@ -1,4 +1,4 @@
-describe('toolDetail', function () {
+xdescribe('toolDetail', function () {
     // Load the module that contains the `toolList` component before each test
     beforeEach(angular.mock.module('mwl.calendar'));
     beforeEach(module('toolDetail'));

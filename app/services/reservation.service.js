@@ -1,59 +1,31 @@
-﻿// (function () {
-//     'use strict';
-//
-//     angular
-//         .module('toollibApp')
-//         .factory('ReservationService', ReservationService);
+﻿    // export default function ReservationService($http, __env, $localStorage) {
 
-//    angular.module('toollibApp').config(['$httpProvider', function ($httpProvider) {
-//    	$httpProvider.interceptors.push(['$q', '$localStorage', function ($q, $localStorage) {
-//            return {
-//                'request': function (config) {
-//                    config.headers = config.headers || {};
-//                    if ($localStorage.token) {
-//                        config.headers.Authorization = 'Bearer ' + $localStorage.token;
-//                    }
-//                    return config;
-//                }
-//            };
-//        }]);
-//    }]);
-
-    ReservationService.$inject = ['$http', '__env', '$localStorage'];
-    export default function ReservationService($http, __env, $localStorage) {
-        var service = {};
-
-        service.GetAll = GetAll;
-        service.GetOpen = GetOpen;
-        service.GetAllByPage = GetAllByPage;
-        service.GetOpenByPage = GetOpenByPage;
-//        service.GetById = GetById;
-        service.Create = Create;
-        service.Extend = Extend;
-        service.Cancel = Cancel;
-        service.Update = Update;
-        service.Delete = Delete;
-
-        return service;
-
-        function GetAll() {
-            return $http.get(__env.apiUrl + '/reservations').then(handleSuccess, handleError);
+export default class ReservationService {
+    // static get $inject() { return ['$http', '__env', '$localStorage']; }
+    constructor($http, __env, $localStorage){
+            this.$http = $http;
+            this.__env = __env;
+            this.$localStorage = $localStorage;
         }
-        function GetOpen() {
-            return $http.get(__env.apiUrl + '/reservations?isOpen=true').then(handleSuccess, handleError);
+
+        GetAll() {
+            return this.$http.get(this.__env.apiUrl + '/reservations').then(this.handleSuccess, this.handleError);
         }
-        function GetAllByPage(page, pageSize) {
-            return $http.get(__env.apiUrl + '/reservations?_perPage='+pageSize).then(handleSuccess, handleError);
+        GetOpen() {
+            return this.$http.get(this.__env.apiUrl + '/reservations?isOpen=true').then(this.handleSuccess, this.handleError);
         }
-        function GetOpenByPage(page, pageSize) {
-            return $http.get(__env.apiUrl + '/reservations?isOpen=true&_perPage='+pageSize).then(handleSuccess, handleError);
+        GetAllByPage(page, pageSize) {
+            return this.$http.get(this.__env.apiUrl + '/reservations?_perPage='+pageSize).then(this.handleSuccess, this.handleError);
+        }
+        GetOpenByPage(page, pageSize) {
+            return this.$http.get(this.__env.apiUrl + '/reservations?isOpen=true&_perPage='+pageSize).then(this.handleSuccess, this.handleError);
         }
 //
 //        function GetById(id) {
-//            return $http.get(__env.apiUrl + '/reservations/' + id).then(handleSuccess, handleError('Error getting reservation by id'));
+//            return $http.get(__env.apiUrl + '/reservations/' + id).then(this.handleSuccess, this.handleError('Error getting reservation by id'));
 //        }
 
-        function Create(userId, toolId, startDate, endDate, type, state, comment) {
+        Create(userId, toolId, startDate, endDate, type, state, comment) {
       	    var reservation = {'user_id' : userId, 'tool_id' : toolId, 'title' : 'Reservatie',
       	    		'state' : state, 'type' : type, 'comment' : comment, 
       	    		'startsAt' : moment(startDate).format('YYYY-MM-DD'), 'endsAt' : moment(endDate).format('YYYY-MM-DD')};
@@ -63,35 +35,35 @@
         				'Authorization': 'Bearer ' + $localStorage.token
         			}
             }
-            return $http.post(__env.apiUrl + '/reservations', reservation, config)
+            return this.$http.post(this.__env.apiUrl + '/reservations', reservation, config)
             	.then(handleSuccess, handleError);
         }
 
-        function Extend(reservation) {
+        Extend(reservation) {
         	
         }
-        function Cancel(reservation) {
+        Cancel(reservation) {
         	// FIXME: cancel updates state or triggers delete instead?
         	reservation.state = 'CANCELLED';
-        	return Update(reservation);
+        	return this.Update(reservation);
         	
         }
-        function Update(reservation) {
-            return $http.put(__env.apiUrl + '/reservations/' + reservation.reservation_id, reservation)
-            	.then(handleSuccess, handleError);
+        Update(reservation) {
+            return this.$http.put(this.__env.apiUrl + '/reservations/' + reservation.reservation_id, reservation)
+            	.then(this.handleSuccess, this.handleError);
         }
 
-        function Delete(id) {
-            return $http.delete(__env.apiUrl + '/reservations/' + id).then(handleSuccess, handleError);
+        Delete(id) {
+            return this.$http.delete(this.__env.apiUrl + '/reservations/' + id).then(this.handleSuccess, this.handleError);
         }
 
         // private functions
-        function handleSuccess(response) {
-            return { success: true, message: response.data };;
+        handleSuccess(response) {
+            return { success: true, message: response.data };
         }
 
         // function (data, status, headers, config)??
-        function handleError(response, error) {
+        handleError(response, error) {
             console.log(JSON.stringify(response));
             var data = response.data;
             var status = response.status;
@@ -106,3 +78,5 @@
             return { success: false, message: message };
         }
     }
+
+    ReservationService.$inject = ['$http', '__env', '$localStorage'];

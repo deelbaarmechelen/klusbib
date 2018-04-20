@@ -1,9 +1,11 @@
-"use strict";
+import ReservationService from '../../app/services/reservation.service.js';
+
+import 'angular-mocks';
 
 describe("reservation api service", function () {
     var reservationService, httpBackend, __env, localStorageBackend;
 
-    beforeEach(module("toollibApp"));
+    // beforeEach(module("toollibApp"));
     // beforeEach(angular.mock.module('toollibApp'));
 
     // When the $state service is loaded, UI-Router tries to load the default route,
@@ -12,16 +14,24 @@ describe("reservation api service", function () {
     // This stops UI-Router from trying to synchronize the URL to the state,
     // thus skipping loading the default route/state.
     // See also https://github.com/angular-ui/ui-router/issues/212
-    beforeEach(module(function($urlRouterProvider) {
-        $urlRouterProvider.deferIntercept();
-    }));
+    // beforeEach(module(function($urlRouterProvider) {
+    //     $urlRouterProvider.deferIntercept();
+    // }));
 
-    beforeEach(inject(function ( _ReservationService_, _$httpBackend_, _$localStorage_, ___env_) {
-        reservationService = _ReservationService_;
-        httpBackend = _$httpBackend_;
-        __env = ___env_;
-        localStorageBackend = _$localStorage_;
-    }));
+    // beforeEach(inject(['$httpBackend','$localStorage','__env',
+    //     function ( _$httpBackend_, _$localStorage_, ___env_) {
+    //             reservationService = new ReservationService();
+    //     // reservationService = _ReservationService_;
+    //     httpBackend = _$httpBackend_;
+    //     __env = ___env_;
+    //     localStorageBackend = _$localStorage_;
+    // }]));
+
+    beforeEach(angular.mock.inject(['$httpBackend','$http', function ($httpBackend, $http ) {
+        httpBackend = $httpBackend;
+        __env = {apiUrl: 'http://localhost'};
+        reservationService = new ReservationService($http, __env, localStorageBackend);
+    }]));
 
 
 

@@ -82,7 +82,7 @@ app.controller('toollibController', ['$scope', 'User', function ToollibControlle
         }
 }]);
 app.controller('HomeController', HomeController);
-app.factory('ToolService', ToolService);
+app.service('ToolService', ToolService);
 app.factory('UserService', UserService);
 app.controller('EnrolmentController', EnrolmentController);
 app.controller('VolunteerController', VolunteerController);
@@ -93,6 +93,6 @@ function VolunteerController() {
 }
 app.factory('TokenService', TokenService);
 app.factory('AuthService', AuthService);
-app.factory('ReservationService', ReservationService);
+app.service('ReservationService', ReservationService);
 
 export default MODULE_NAME;

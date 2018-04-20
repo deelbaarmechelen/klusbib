@@ -2,70 +2,89 @@
 // 	bindings: { tools: '<', category: '<' , currentPage: '<', pageSize: '<', totalCount: '<'},
 // 	templateUrl : '/components/tool-list/tool-list.template.html',
 // 	controller :
-ToolListController.$inject = [ '$http', 'User', 'UserService', '__env', '$stateParams', '$state'];
 
-export default function ToolListController($http, User, UserService, __env, $stateParams, $state) {
+export default class ToolListController {
+// export default function ToolListController($http, User, UserService, __env, $stateParams, $state) {
+    static get $$ngIsClass(){return true;}
 
-		var self = this;
+    constructor($http, User, UserService, __env, $stateParams, $state) {
+    	var self = this;
+    	this.$http=$http;
+    	this.User=User;
+    	this.UserService=UserService;
+    	this.__env=__env;
+    	this.$stateParams=$stateParams;
+    	this.$state=$state;
+
         // pagination
-        self.totalItems = 0;
-        self.currentPage = $stateParams.currentPage;
-        self.maxSize = 3;
-        self.itemsPerPage = 0;
-        self.$onInit = function () {
-            // initialise values after init completed (and bindings are available)
-            self.totalItems = self.totalCount;
-            self.itemsPerPage = self.pageSize;
-        }
+        this.totalItems = 0;
+        this.currentPage = this.$stateParams.currentPage;
+        this.maxSize = 3;
+        this.itemsPerPage = 0;
 
-        self.pageChanged = function() {
-            console.log('Page changed to: ' + self.currentPage);
-            $state.go('tools', {category: self.category, page: self.currentPage});
-        };
+        this.category = this.$stateParams.category;
+        this.showFunctions = false;
 
-        self.userId = User.get().id;
-        if (self.userId !== undefined) {
-            console.log('userId:' + self.userId);
-            self.user = UserService.GetById(self.userId).then(function(response) {
-                if (response.success && response.message.role == "admin") {
-                    self.showFunctions = true;
-                }
+        this.userId = this.User.get().id;
+        if (this.userId !== undefined) {
+            console.log('userId:' + this.userId);
+            // FIXME: async call -> is this ok in a constructor?
+            this.UserService.GetById(this.userId).then(function(response) {
+            	if (response.success) {
+                    self.user = response.message;
+                    if (self.user.role == "admin") {
+                        self.showFunctions = true;
+                    }
+				}
+
             });
         }
-        self.category = $stateParams.category;
-        self.showFunctions = false;
-		self.filterCategory = function(newCategory) {
-            console.log('Filtering category: ' + newCategory);
-            $state.go('tools', {page: '1', category: newCategory});
-        }
+	}
 
-		this.resizeImage = function (imageUrl, size) {
-			var baseUrl = imageUrl.substr(0,imageUrl.lastIndexOf('.'));
-			var ext = imageUrl.substr(imageUrl.lastIndexOf('.')+1);
-			var newUrl = baseUrl + '-' + size + '.' + ext;
-			return newUrl;
-		}
-		
-		this.translateCategory = function (category) {
-			let catMap = {
-					'general' : 'Algemeen',
-					'car' : 'Auto',
-					'construction' : 'Bouw',
-					'technics' : 'Technieken',
-					'wood' : 'Schrijnwerk',
-					'garden' : 'Tuin',
-			};
-			if (category in catMap) {
-				return catMap[category];
-			} else {
-				return category;
-			}
-		}
+	$onInit () {
+		// initialise values after init completed (and bindings are available)
+		this.totalItems = this.totalCount;
+		this.itemsPerPage = this.pageSize;
+	}
 
-		this.newTool = function () {
-			alert ('not yet implemented!');
+	pageChanged () {
+		console.log('Page changed to: ' + this.currentPage);
+		this.$state.go('tools', {category: this.category, page: this.currentPage});
+	};
+	filterCategory (newCategory) {
+		console.log('Filtering category: ' + newCategory);
+		this.$state.go('tools', {page: '1', category: newCategory});
+	}
+
+	resizeImage(imageUrl, size) {
+		var baseUrl = imageUrl.substr(0,imageUrl.lastIndexOf('.'));
+		var ext = imageUrl.substr(imageUrl.lastIndexOf('.')+1);
+		var newUrl = baseUrl + '-' + size + '.' + ext;
+		return newUrl;
+	}
+
+	translateCategory (category) {
+		let catMap = {
+				'general' : 'Algemeen',
+				'car' : 'Auto',
+				'construction' : 'Bouw',
+				'technics' : 'Technieken',
+				'wood' : 'Schrijnwerk',
+				'garden' : 'Tuin',
+		};
+		if (category in catMap) {
+			return catMap[category];
+		} else {
+			return category;
 		}
-		this.deleteTool = function (toolId, index) {
-			alert ('not yet implemented!');
-		}
-    }
+	}
+
+	newTool() {
+		alert ('not yet implemented!');
+	}
+	deleteTool (toolId, index) {
+		alert ('not yet implemented!');
+	}
+}
+
+ToolListController.$inject = [ '$http', 'User', 'UserService', '__env', '$stateParams', '$state'];

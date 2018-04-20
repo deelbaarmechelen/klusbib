@@ -1,9 +1,8 @@
-"use strict";
-
+import ToolService from '../../app/services/tool.service.js';
 describe("tool api service", function () {
     var toolService, httpBackend, __env;
 
-    beforeEach(module("toollibApp"));
+    // beforeEach(module("toollibApp"));
 
     // When the $state service is loaded, UI-Router tries to load the default route,
     // and part of that process is fetching the default route's template.
@@ -11,15 +10,15 @@ describe("tool api service", function () {
     // This stops UI-Router from trying to synchronize the URL to the state,
     // thus skipping loading the default route/state.
     // See also https://github.com/angular-ui/ui-router/issues/212
-    beforeEach(module(function($urlRouterProvider) {
-        $urlRouterProvider.deferIntercept();
-    }));
+    // beforeEach(module(function($urlRouterProvider) {
+    //     $urlRouterProvider.deferIntercept();
+    // }));
 
-    beforeEach(inject(function ( _ToolService_, _$httpBackend_, ___env_) {
-        toolService = _ToolService_;
+    beforeEach(inject(['$http', '$httpBackend', function ( $http, _$httpBackend_) {
         httpBackend = _$httpBackend_;
-        __env = ___env_;
-    }));
+        __env = {apiUrl: 'http://localhost'};
+        toolService = new ToolService($http,__env);
+    }]));
 
 
 
