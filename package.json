@@ -77,7 +77,7 @@
   "scripts": {
     "update-deps": "yarn install",
     "build": "webpack --config webpack.config.js",
-    "prestart": "yarn install",
+    "prestart": "yarn install && yarn build",
     "start": "http-server -p 5000 -c-1 dist",
     "start-dev": "webpack-dev-server --open",
     "pretest": "yarn install --production=false",
