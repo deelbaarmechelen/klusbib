@@ -8,6 +8,7 @@ import _ from '@bower_components/lodash';
 
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
+import 'oclazyload';
 import cssProvider from 'angular-css';
 import ngFlash from 'angular-flash-alert';
 import 'angular-flash-alert/dist/angular-flash.min.css';
@@ -24,7 +25,6 @@ import toolDetail from './components/tool-detail/tool-detail.module.js';
 import consumerList from './components/consumer-list/consumer-list.module.js';
 import myProfile from './components/my-profile/my-profile.module.js';
 import reservationList from './components/reservation-list/reservation-list.module.js';
-import volunteerCalendar from './components/volunteer-calendar/volunteer-calendar.module.js';
 
 import AuthService from './services/auth.service.js';
 import TokenService from './services/token.service.js';
@@ -46,7 +46,7 @@ if(window){
 const MODULE_NAME = 'toollibApp';
 
 
-var app = angular.module(MODULE_NAME, [
+var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     uirouter,
     // uibootstrap,
     ngFlash,
@@ -58,8 +58,7 @@ var app = angular.module(MODULE_NAME, [
 	toolDetail,
     consumerList,
     myProfile,
-	reservationList,
-    volunteerCalendar,
+	reservationList
 //	'enrolment'
 ]);
 //Register environment in AngularJS as constant
@@ -85,12 +84,6 @@ app.controller('HomeController', HomeController);
 app.service('ToolService', ToolService);
 app.factory('UserService', UserService);
 app.controller('EnrolmentController', EnrolmentController);
-app.controller('VolunteerController', VolunteerController);
-
-function VolunteerController() {
-    var vm = this;
-
-}
 app.factory('TokenService', TokenService);
 app.factory('AuthService', AuthService);
 app.service('ReservationService', ReservationService);

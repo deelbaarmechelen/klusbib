@@ -9,7 +9,8 @@ module.exports = {
         // www: __dirname + '/app/www.module.js'
     },
     output: {
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
+        chunkFilename: '[name].bundle.js'
     },
     devtool: 'inline-source-map',
     devServer: {

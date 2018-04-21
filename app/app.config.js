@@ -202,24 +202,19 @@ export default function routing($stateProvider, $urlRouterProvider) {
 			        }
 			    }
 			  }
-	  var volunteerState = {
-			    name: 'volunteer',
-			    url: '/vrijwilligers',
-			    views: {
-			    	nav: {
-			    		component: 'navigation'
-			    	},
-			    	main: {
-			    		template: require('./volunteer/volunteer.view.html'),
-				    	controller: 'VolunteerController'
-			    	}
-			    },
-			    resolve: {
-			    	inverse: function() {
-			    		return true;
-			        }
-			    }
-			  }
+    var volunteerFutureState = {
+        name: 'volunteer.**',
+        url: '/vrijwilligers',
+        // lazy load the volunteer module here
+        lazyLoad: function ($transition$) {
+            var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+            return System.import(/* webpackChunkName: "volunteer.module" */'./volunteer/volunteer.module.js')
+				.then(mod => $ocLazyLoad.load(mod.VOLUNTEER_MODULE))
+                .catch(err => {
+                    throw new Error("Ooops, something went wrong, " + err);
+                });
+        }
+	 }
 
 	$stateProvider.state(homeState);
 	$stateProvider.state(signInState);
@@ -230,7 +225,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
 	$stateProvider.state(profileState);
 	$stateProvider.state(enrolmentState);
 	$stateProvider.state(resetPwdState);
-	$stateProvider.state(volunteerState);
+	$stateProvider.state(volunteerFutureState);
 
 	$urlRouterProvider.otherwise('/')
 };
