@@ -1,7 +1,7 @@
 // import Icon16 from './favicon-16x16.png';
 // import Icon32 from './favicon-32x32.png';
 
-// import 'moment';
+import 'moment';
 import _ from '@bower_components/lodash';
 // import '@bower_components/lodash';
 // import '@bower_components/interact';

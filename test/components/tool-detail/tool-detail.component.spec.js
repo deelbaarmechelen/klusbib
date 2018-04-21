@@ -1,42 +1,38 @@
-xdescribe('toolDetail', function () {
+import ToolDetailController from "../../../app/components/tool-detail/tool-detail.component";
+
+describe('toolDetail', function () {
     // Load the module that contains the `toolList` component before each test
-    beforeEach(angular.mock.module('mwl.calendar'));
-    beforeEach(module('toolDetail'));
+    // beforeEach(angular.mock.module('mwl.calendar'));
+    // beforeEach(module('toolDetail'));
 
-    beforeEach(function() {
-
-        module(function ($provide) {
-            $provide.service('User', function () {
-                var user = {id:null};
-                this.get = function () {return user;};
-            });
-            $provide.service('ReservationService', function () {
-            });
-            // $provide.constant('__env', function () {
-            //     var envMock = {};
-            //
-            //     envMock.apiUrl = 'localhost';
-            //     return envMock;
-            // });
-            $provide.constant('__env',  {apiUrl : 'http://localhost', baseUrl:'/', enableDebug:'true'});
-            $provide.factory('UserService', function($q) {
-                var getById = jasmine.createSpy('GetById').and.callFake(function() {
-                    var items = [];
-                    var passPromise = true;
-                    if (passPromise) {
-                        return $q.when(items);
-                    }
-                    else {
-                        return $q.reject('something went wrong');
-                    }
-                });
-
-                return {
-                    GetById: getById
-                };
-            });
-        });
-    });
+    // beforeEach(function() {
+    //
+    //     module(function ($provide) {
+    //         $provide.service('User', function () {
+    //             var user = {id:null};
+    //             this.get = function () {return user;};
+    //         });
+    //         $provide.service('ReservationService', function () {
+    //         });
+    //         $provide.constant('__env',  {apiUrl : 'http://localhost', baseUrl:'/', enableDebug:'true'});
+    //         $provide.factory('UserService', function($q) {
+    //             var getById = jasmine.createSpy('GetById').and.callFake(function() {
+    //                 var items = [];
+    //                 var passPromise = true;
+    //                 if (passPromise) {
+    //                     return $q.when(items);
+    //                 }
+    //                 else {
+    //                     return $q.reject('something went wrong');
+    //                 }
+    //             });
+    //
+    //             return {
+    //                 GetById: getById
+    //             };
+    //         });
+    //     });
+    // });
 
     // Test the controller
     describe('ToolDetailController', function () {
@@ -45,17 +41,28 @@ xdescribe('toolDetail', function () {
         // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
         // This allows us to inject a service and assign it to a variable with the same name
         // as the service while avoiding a name conflict.
-        beforeEach(inject(function ($componentController, _$httpBackend_, ___env_) {
+        beforeEach(inject(['$http', '$httpBackend', function ($http, _$httpBackend_) {
             $httpBackend = _$httpBackend_;
             // $httpBackend.expectGET('data/tools/wood-1.json')
             //     .respond({
             //         "id": "wood-1", "name": "wipzaag", "description": "Simpele wipzaag",
             //         "link": null, "category": "wood", "img": "dummy.jpg"
             //     });
-            tool = 'wood-1';
-            ctrl = $componentController('toolDetail');
-            __env = ___env_;
-        }));
+            var tool = 'wood-1';
+            // var moment = require('moment');
+            var calendarConfig = {};
+            __env = {apiUrl : 'http://localhost', baseUrl:'/', enableDebug:'true'};
+            var User = {get: function () {
+                    var user = {id:null};
+                    return user;
+                }
+            };
+            var ReservationService = {};
+            var Flash = {};
+            var calendarEventTitle = {};
+            ctrl = new ToolDetailController($http, calendarConfig, __env,
+                User, ReservationService, Flash, calendarEventTitle);
+        }]));
 
         it('should define __env', function () {
             expect(__env).toBeDefined();
@@ -79,11 +86,21 @@ xdescribe('toolDetail', function () {
         // Test calendar
         describe('ToolDetailCalendar', function () {
             var $httpBackend, ctrl, __env;
-            beforeEach(inject(function ($componentController, _$httpBackend_, ___env_) {
+            beforeEach(inject(['$http', '$httpBackend', function ($http, _$httpBackend_) {
                 $httpBackend = _$httpBackend_;
-                ctrl = $componentController('toolDetail');
-                __env = ___env_;
-            }));
+                var calendarConfig = {colorTypes: {important: '#FFF'}};
+                __env = {apiUrl : 'http://localhost', baseUrl:'/', enableDebug:'true'};
+                var User = {get: function () {
+                        var user = {id:null};
+                        return user;
+                    }
+                };
+                var ReservationService = {};
+                var Flash = {};
+                var calendarEventTitle = {};
+                ctrl = new ToolDetailController($http, calendarConfig, __env,
+                    User, ReservationService, Flash, calendarEventTitle);
+            }]));
 
             it('should show calendar by month', function () {
                 expect(ctrl.calendarView).toEqual('month');

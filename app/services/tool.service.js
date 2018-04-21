@@ -46,7 +46,7 @@
             return this.$http.post(this.__env.apiUrl + '/tools', user, config)
             	.then(this.handleSuccess, this.handleError);
         }
-        
+
         Update(user) {
             return this.$http.put(this.__env.apiUrl + '/tools/' + user.id, user)
         		.then(this.handleSuccess, this.handleError);
