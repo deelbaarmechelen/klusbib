@@ -10,7 +10,7 @@ install:
 - yarn global add yarn-check
 - yarn install
 before_script:
-- cp package.json app/ && cd app && yarn-check --skip-unused && cd ..
+- yarn-check --skip-unused
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 after_success:
