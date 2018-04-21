@@ -18,10 +18,10 @@ export default function routing($stateProvider) {
             transparant: function () {return true;},
             items: function () {
                 var menuItems = [
-                    {'label': 'Over ons', 'href': '/#!/home#about'},
-                    {'label': 'Waar', 'href': '/#!/home#where'},
-                    {'label': 'Contact', 'href': '/#!/home#contact'},
-                    {'label': 'FAQ', 'href': '/#!/home#faq'}
+                    {'label': 'Over ons', 'sref': "home({'#': 'about'})"},
+                    {'label': 'Waar', 'sref': "home({'#': 'where'})"},
+                    {'label': 'Contact', 'sref': "home({'#': 'contact'})"},
+                    {'label': 'FAQ', 'sref': "home({'#': 'faq'})"}
                 ];
                 return menuItems;
             }
