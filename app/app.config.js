@@ -4,32 +4,6 @@ routing.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 export default function routing($stateProvider, $urlRouterProvider) {
 
-	 var homeState = {
-	    name: 'home',
-	    views: {
-	    	nav: {
-	    		component: 'navigation',
-	    	},
-	    	main: {
-	    		template: require('./home/home.view.html'),
-	    		controller: 'HomeController'
-//	    		css: 'home/css/creative.css'
-	    	}
-	    },
-	    url: '/',
-	    resolve: {
-	    	transparant: function () {return true;},
-	    	items: function () {
-	    		var menuItems = [
-					{'label': 'Over ons', 'href': '/#!/#about'}, 
-					{'label': 'Waar', 'href': '/#!/#where'},
-					{'label': 'Contact', 'href': '/#!/#contact'},
-					{'label': 'FAQ', 'href': '/#!/#faq'}
-				];
-	    		return menuItems;
-	    	}
-	    }
-	  }
 	  var signInState = {
 			    name: 'signin',
 			    url: '/signin',
@@ -138,6 +112,18 @@ export default function routing($stateProvider, $urlRouterProvider) {
 			        }
 			    }
 			  }
+    var homeFutureState = {
+        name: 'home.**',
+        url: '/home',
+        lazyLoad: function ($transition$) {
+            var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+            return System.import(/* webpackChunkName: "home.module" */'./home/home.module.js')
+                .then(mod => $ocLazyLoad.load(mod.HOME_MODULE))
+                .catch(err => {
+                    throw new Error("Ooops, something went wrong, " + err);
+                });
+        }
+    }
     var toolsFutureState = {
         name: 'tools.**',
         url: '/tools',
@@ -166,7 +152,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
         }
 	 }
 
-	$stateProvider.state(homeState);
+	$stateProvider.state(homeFutureState);
 	$stateProvider.state(signInState);
     $stateProvider.state(consumersState);
     $stateProvider.state(reservationsState);
@@ -176,7 +162,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
     $stateProvider.state(toolsFutureState);
     $stateProvider.state(volunteerFutureState);
 
-	$urlRouterProvider.otherwise('/')
+	$urlRouterProvider.otherwise('/home')
 };
 
 

@@ -4,8 +4,8 @@
 //     angular
 //         .module('toollibApp')
 //         .controller('HomeController', HomeController);
-import vitrine from './img/vitrine.jpg';
-import ovam from './img/sponsor/ovam-logo.jpg';
+// import vitrine from './img/vitrine.jpg';
+// import ovam from './img/sponsor/ovam-logo.jpg';
 // require("./img/sponsor/ovam-logo.jpg");
 
     HomeController.$inject = ['$scope', '$css'];

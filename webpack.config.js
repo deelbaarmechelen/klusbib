@@ -1,14 +1,15 @@
 var webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
         app: __dirname + '/app/app.module.js',
-        // www: __dirname + '/app/www.module.js'
     },
     output: {
+        path: __dirname + '/dist',
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js'
     },
@@ -48,11 +49,20 @@ module.exports = {
             }
         ]
     },
-
+    // disabled: breaks karma unit tests
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: "all"
+    //     }
+    // },
     plugins: [
     // new ExtractTextPlugin("styles.css")
-       new CleanWebpackPlugin(['dist']),
-        // Copy assets from the public folder
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            title: 'Klusbib',
+            template: 'public/index.html'
+        }),
+// Copy assets from the public folder
         // Reference: https://github.com/kevlened/copy-webpack-plugin
         new CopyWebpackPlugin([{
             from: __dirname + '/public'

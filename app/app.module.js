@@ -30,7 +30,6 @@ import UserService from './services/user.service.js';
 import ToolService from './services/tool.service.js';
 import ReservationService from './services/reservation.service.js';
 
-import HomeController from "./home/home.controller.js";
 import './home/css/app.css';
 import './home/css/creative.css';
 import EnrolmentController from './enrolment/enrolment.controller.js';
@@ -76,7 +75,6 @@ app.controller('toollibController', ['$scope', 'User', function ToollibControlle
             User.update(null);
         }
 }]);
-app.controller('HomeController', HomeController);
 app.service('ToolService', ToolService);
 app.factory('UserService', UserService);
 app.controller('EnrolmentController', EnrolmentController);
