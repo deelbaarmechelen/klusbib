@@ -1,9 +1,9 @@
 import angular from 'angular';
+import ngResource from 'angular-resource';
 import ReservationListController from './reservation-list.component.js';
 
 var appReservationList = angular.module('reservationList', [
-//	  'ngRoute',
-	  'ngResource'
+    ngResource
 ]);
 
 appReservationList.config(['$httpProvider', function ($httpProvider) {

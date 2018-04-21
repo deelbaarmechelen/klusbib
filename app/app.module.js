@@ -20,8 +20,6 @@ import envConfig from './app.env.js';
 import routing from './app.config.js';
 import navigation from './components/navigation/navigation.module.js';
 import signIn from './components/sign-in/sign-in.module.js';
-import toolList from './components/tool-list/tool-list.module.js';
-import toolDetail from './components/tool-detail/tool-detail.module.js';
 import consumerList from './components/consumer-list/consumer-list.module.js';
 import myProfile from './components/my-profile/my-profile.module.js';
 import reservationList from './components/reservation-list/reservation-list.module.js';
@@ -54,8 +52,6 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
 	'uiGmapgoogle-maps',
     navigation,
     signIn,
-    toolList,
-	toolDetail,
     consumerList,
     myProfile,
 	reservationList

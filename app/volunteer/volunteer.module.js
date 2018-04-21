@@ -4,7 +4,6 @@ import volunteerRouting from "./volunteer.config.js";
 
 const MODULE_NAME = 'volunteer';
 export const VOLUNTEER_MODULE = angular.module(MODULE_NAME, [volunteerCalendar]);
-// var app = angular.module(MODULE_NAME, [volunteerCalendar]);
 VOLUNTEER_MODULE.config(volunteerRouting);
 
 VOLUNTEER_MODULE.controller('VolunteerController', VolunteerController);

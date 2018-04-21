@@ -47,71 +47,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
 			        }
 			    }
 	  }
-	  var toolsListState = {
-			    name: 'tools',
-			    url: '/tools/category/{category}/page/{page}',
-			    views: {
-			    	nav: {
-			    		component: 'navigation'
-			    	},
-			    	main: {
-			    		component: 'toolList',
-			    	}
-			    },
-          		params: {category: 'general', page: '1'},
-          		resolve: {
-                    inverse: function() {
-                        return true;
-                    },
-                    category: ['$stateParams', function($stateParams) {
-						return $stateParams.category;
-                    }],
-                    currentPage: ['$stateParams', function($stateParams) {
-                        return parseInt($stateParams.page) || 1;
-                    }],
-                    pageSize: function() {
-                        return 25;
-                    },
-                    toolsData: ['ToolService','category', 'currentPage', 'pageSize', function(ToolService, category, currentPage, pageSize) {
-                        return ToolService.GetByCategoryOrderBy(category, currentPage, pageSize).then(function(response) {
-                            if (response.success) {
-								console.log('Total count:' + response.totalCount);
-                                return {tools: response.message, count:response.totalCount};
-                            }
-                        });
-                    }],
-					tools: ['toolsData', function (toolsData) {
-                    	return toolsData.tools;
-                    }],
-					totalCount: ['toolsData', function(toolsData) {
-                    	return toolsData.count;
-					}]
-			    }
-	  }
-	  var toolDetailState = {
-			    name: 'toolDetail',
-			    url: '/tools/{toolId}',
-			    views: {
-			    	nav: {
-			    		component: 'navigation'
-			    	},
-			    	main: {
-			    		component: 'toolDetail',
-			    	}
-			    },
-			    resolve: {
-			        tool: ['ToolService', '$transition$', function(ToolService, $transition$) {
-			          return ToolService.GetById($transition$.params().toolId).then(function(response) {
-			    			if (response.success) {
-			    				return response.message;
-			    			}
-			          });
-			    	}],
-			    	inverse: function() {
-			    		return true;
-			        }
-			    }
-	  }
+
 	  var consumersState = {
 			    name: 'consumers',
 			    url: '/consumers',
@@ -202,6 +138,20 @@ export default function routing($stateProvider, $urlRouterProvider) {
 			        }
 			    }
 			  }
+    var toolsFutureState = {
+        name: 'tools.**',
+        url: '/tools',
+        // lazy load the tools module here
+        lazyLoad: function ($transition$) {
+            var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+            return System.import(/* webpackChunkName: "tools.module" */'./tools/tools.module.js')
+                .then(mod => $ocLazyLoad.load(mod.TOOLS_MODULE))
+                .catch(err => {
+                    throw new Error("Ooops, something went wrong, " + err);
+                });
+        }
+    }
+
     var volunteerFutureState = {
         name: 'volunteer.**',
         url: '/vrijwilligers',
@@ -218,14 +168,13 @@ export default function routing($stateProvider, $urlRouterProvider) {
 
 	$stateProvider.state(homeState);
 	$stateProvider.state(signInState);
-	$stateProvider.state(toolsListState);
-	$stateProvider.state(toolDetailState);
-	$stateProvider.state(consumersState);
-	$stateProvider.state(reservationsState);
-	$stateProvider.state(profileState);
-	$stateProvider.state(enrolmentState);
-	$stateProvider.state(resetPwdState);
-	$stateProvider.state(volunteerFutureState);
+    $stateProvider.state(consumersState);
+    $stateProvider.state(reservationsState);
+    $stateProvider.state(profileState);
+    $stateProvider.state(enrolmentState);
+    $stateProvider.state(resetPwdState);
+    $stateProvider.state(toolsFutureState);
+    $stateProvider.state(volunteerFutureState);
 
 	$urlRouterProvider.otherwise('/')
 };
