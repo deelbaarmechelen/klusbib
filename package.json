@@ -75,7 +75,7 @@
   },
   "scripts": {
     "update-deps": "yarn install",
-    "build": "webpack --config webpack.config.js",
+    "build": "./node_modules/.bin/webpack --config webpack.config.js",
     "prestart": "yarn install && yarn build",
     "start": "http-server -p 5000 -c-1 dist",
     "start-dev": "webpack-dev-server --open",
