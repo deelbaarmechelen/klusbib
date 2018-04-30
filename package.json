@@ -28,12 +28,12 @@
     "angular-resource": "1.6.10",
     "angular-simple-logger": "^0.1.7",
     "angular-ui-router": "^1.0.3",
-    "bootstrap": "4.1.0",
+    "bootstrap": "4.1.1",
     "font-awesome": "^4.6.3",
     "http-server": "^0.11.1",
     "interact": "^0.0.3",
     "js-rich-marker": "^1.1.2",
-    "lodash": "^4.17.5",
+    "lodash": "4.17.10",
     "magnific-popup": "^1.1.0",
     "markerclustererplus": "^2.1.4",
     "moment": "2.22.1",
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "angular-mocks": "1.6.10",
-    "babel-core": "^6.26.0",
+    "babel-core": "6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-es2015": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
@@ -71,7 +71,7 @@
     "raw-loader": "^0.5.1",
     "style-loader": "0.21.0",
     "webpack": "4.6.0",
-    "webpack-cli": "2.0.15",
+    "webpack-cli": "2.1.2",
     "webpack-dev-server": "^3.1.3"
   },
   "scripts": {
