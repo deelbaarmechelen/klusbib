@@ -38,7 +38,8 @@
     "moment": "2.22.1",
     "ngstorage": "^0.3.11",
     "oclazyload": "^1.1.0",
-    "scrollreveal": "^3.1.4"
+    "scrollreveal": "^3.1.4",
+    "stripe": "^5.9.0"
   },
   "devDependencies": {
     "angular-mocks": "1.6.10",

@@ -76,24 +76,6 @@ export default function routing($stateProvider, $urlRouterProvider) {
 				    }
 				}
 	  }
-	  var enrolmentState = {
-			    name: 'enrolment',
-			    url: '/lid-worden',
-			    views: {
-			    	nav: {
-			    		component: 'navigation'
-			    	},
-			    	main: {
-			    		template: require('./enrolment/enrolment.view.html'),
-				    	controller: 'EnrolmentController as vm'
-			    	}
-			    },
-			    resolve: {
-			    	inverse: function() {
-			    		return true;
-			        }
-			    }
-			  }
 	  var resetPwdState = {
 			    name: 'reset-pwd',
 			    url: '/reset-pwd',
@@ -138,6 +120,18 @@ export default function routing($stateProvider, $urlRouterProvider) {
         }
     }
 
+    var enrolmentFutureState = {
+        name: 'enrolment.**',
+        url: '/lid-worden',
+        lazyLoad: function ($transition$) {
+            var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+            return System.import(/* webpackChunkName: "enrolment.module" */'./enrolment/enrolment.module.js')
+                .then(mod => $ocLazyLoad.load(mod.ENROLMENT_MODULE))
+                .catch(err => {
+                    throw new Error("Ooops, something went wrong, " + err);
+                });
+        }
+    }
     var volunteerFutureState = {
         name: 'volunteer.**',
         url: '/vrijwilligers',
@@ -157,7 +151,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
     $stateProvider.state(consumersState);
     $stateProvider.state(reservationsState);
     $stateProvider.state(profileState);
-    $stateProvider.state(enrolmentState);
+    $stateProvider.state(enrolmentFutureState);
     $stateProvider.state(resetPwdState);
     $stateProvider.state(toolsFutureState);
     $stateProvider.state(volunteerFutureState);

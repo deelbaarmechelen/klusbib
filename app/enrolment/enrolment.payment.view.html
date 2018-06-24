@@ -1,0 +1,33 @@
+<div class="col-md-6 col-md-offset-3">
+
+    <form name="form" ng-submit="vm.enrolment_pay()" role="form">
+
+        <!--<div class="form-group" ng-class="{ 'has-error': form.payment_mode.$dirty && form.payment_mode.$error.required }">-->
+        	<div class="form-check" >
+	        <label class="form-check-label">Betalingswijze *</label><br>
+            <label class="form-check-label" for="payment_mode_stripe">
+            <input type="radio" name="payment_mode" id="payment_mode_stripe" class="form-check-input" ng-model="vm.user.payment_mode"
+            	value="STRIPE" ng-click="vm.onStripe('pk_test_3ORAEAvo2DzgXf11uQSKO3y7', 'myemail@klusbib.be')" required />
+            Online betaling
+            </label>
+            <label class="form-check-label" for="payment_mode_transfer">
+            <input type="radio" name="payment_mode" id="payment_mode_transfer" class="form-check-input" ng-model="vm.user.payment_mode"
+            	value="TRANSFER" required />
+            Overschrijving op volgend rekeningnummer:&nbsp;BE79 5230 8088 4133 (Gebruik ‘lidgeld + naam’ als mededeling)
+                <!--<a class="btn btn-primary" href="" ng-click="vm.onStripe('pk_test_3ORAEAvo2DzgXf11uQSKO3y7', 'myemail@klusbib.be')">Stripe Checkout via angularjs</a>-->
+            </label>
+            <label class="form-check-label" for="payment_mode_cash">
+                <input type="radio" name="payment_mode" id="payment_mode_cash" class="form-check-input"  ng-model="vm.user.payment_mode"
+                       value="CASH" required />
+                Cash (je betaalt bij je eerste bezoek)
+            </label>
+            <span ng-show="form.payment_mode.$dirty && form.payment_mode.$error.required" class="help-block">Kies een betalingswijze</span>
+            </div>
+        <!--</div>-->
+
+		<div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Bevestigen</button>
+        </div>
+    </form>
+
+</div>

@@ -32,7 +32,6 @@ import ReservationService from './services/reservation.service.js';
 
 import './home/css/app.css';
 import './home/css/creative.css';
-import EnrolmentController from './enrolment/enrolment.controller.js';
 
 var env = {};
 if(window){
@@ -54,7 +53,6 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     consumerList,
     myProfile,
 	reservationList
-//	'enrolment'
 ]);
 //Register environment in AngularJS as constant
 app.constant('__env', env);
@@ -77,7 +75,6 @@ app.controller('toollibController', ['$scope', 'User', function ToollibControlle
 }]);
 app.service('ToolService', ToolService);
 app.factory('UserService', UserService);
-app.controller('EnrolmentController', EnrolmentController);
 app.factory('TokenService', TokenService);
 app.factory('AuthService', AuthService);
 app.service('ReservationService', ReservationService);

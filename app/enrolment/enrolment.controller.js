@@ -1,17 +1,10 @@
-// (function () {
-//     'use strict';
-//
-//     angular
-//         .module('toollibApp')
-//         .controller('EnrolmentController', EnrolmentController);
-    EnrolmentController.$inject = ['TokenService', 'UserService','Flash', 'AuthService', '$location'];
+import PaymentService from "../services/payment.service";
 
-export default function EnrolmentController(TokenService, UserService, Flash, AuthService, $location) {
+EnrolmentController.$inject = ['TokenService', 'UserService','Flash', 'AuthService', '$location', 'PaymentService'];
+
+export default function EnrolmentController(TokenService, UserService, Flash, AuthService, $location, PaymentService) {
         var vm = this;
 
-//        (function initController() {
-        	// Add initialisation
-//        })();
         vm.init = function () {
             var params = $location.search();
             vm.email = params.email;
@@ -44,6 +37,22 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
             }
 
         };
+
+        vm.enrolment_pay = function () {
+        	alert ('not implemented, should update enrolment with payment method/result');
+            UserService.Update(vm.user)
+				.then(function (response) {
+                if (response.success) {
+                    var id = Flash.create('success', 'Inschrijving succesvol bijgewerkt', 5000);
+                    // TODO: redirect to pay success page!
+                } else {
+                    console.log("enrolment problem: " + response.message);
+                    var id = Flash.create('danger', 'Inschrijving mislukt: ' + response.message
+                        + '. Blijft het probleem zich voordoen, stuur ons dan een bericht', 0);
+                }
+            });
+
+        };
         vm.resetPwd = function() {
         	AuthService.resetPwd(this.email, function () {
 				Flash.create('success', 'Paswoord reset aangevraagd: check je mailbox', 5000);
@@ -72,6 +81,39 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
         vm.redirectToLogin = function () {
             $location.path('/signin');
         }
+
+		// stripe will call this once it has successfully created a token for the payment details
+		vm.onToken = function(token) {
+			console.log(token);
+            PaymentService.Create(token).then(function(response) {
+                if (response.success) {
+                    Flash.create('success', 'Payment successfull', 5000);
+                } else {
+					Flash.create('danger', 'Er is een probleem opgetreden: ' + response.message
+						+ '. De betaling kon niet uitgevoerd worden', 0);
+                }
+            });
+			// now call a service to push the necessary token info to the server to complete the checkout processing
+		};
+
+		vm.onStripe = function(apiKey, userEmail) {
+			var handler = StripeCheckout.configure({
+				key: apiKey,
+				image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+				locale: 'auto',
+				token: vm.onToken
+			});
+
+			handler.open({
+				panelLabel : 'Inschrijving',
+				amount : 2000,
+				currency: 'EUR',
+				name : 'Klusbib',
+				description : 'Lidmaatschap 1 jaar',
+				email : userEmail,
+				zipCode : true,
+				allowRememberMe : false
+			});
+		};
     };
 
-// })();
