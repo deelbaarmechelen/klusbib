@@ -161,7 +161,8 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: url('../img/vitrine.jpg');
+  background-image: url('../img/Klusbib-potterij.jpg');
+  background-repeat: no-repeat;
   text-align: center;
   color: white;
 }
