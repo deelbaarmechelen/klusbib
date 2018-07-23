@@ -45,7 +45,6 @@ const MODULE_NAME = 'toollibApp';
 
 var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     uirouter,
-    // uibootstrap,
     ngFlash,
 	cssProvider,
 	'uiGmapgoogle-maps',

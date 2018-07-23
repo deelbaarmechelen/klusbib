@@ -1,9 +1,10 @@
 // import './navigation.component.js';
 import angular from 'angular';
 import bootstrapAffix from 'angular-bootstrap-affix';
+import uibootstrap from 'angular-ui-bootstrap';
 import coreUtils from './../../core/core.module.js';
 
-export default angular.module('navigation', [bootstrapAffix, coreUtils])
+export default angular.module('navigation', [bootstrapAffix, uibootstrap, coreUtils])
 	.component('navigation', {
     template : require('./navigation.template.html'),
     controller :
