@@ -56,6 +56,24 @@ export default function routing($stateProvider, $urlRouterProvider) {
 			        }
 			    }
 	  }
+	  var toolAdminState = {
+			    name: 'tool-admin',
+			    url: '/tool-admin',
+			    views: {
+			        nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		component: 'toolAdmin',
+                        // component: 'myProfile',
+			    	}
+			    },
+			    resolve: {
+			    	inverse: function() {
+			    		return true;
+			        }
+			    }
+	  }
 	  var profileState = {
 			    name: 'profile',
 			    url: '/profile/{userId}',
@@ -117,7 +135,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
         url: '/home',
         lazyLoad: function ($transition$) {
             var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-            return System.import(/* webpackChunkName: "home.module" */'./home/home.module.js')
+            return import(/* webpackChunkName: "home.module" */'./home/home.module.js')
                 .then(mod => $ocLazyLoad.load(mod.HOME_MODULE))
                 .catch(err => {
                     throw new Error("Ooops, something went wrong, " + err);
@@ -130,7 +148,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
         // lazy load the tools module here
         lazyLoad: function ($transition$) {
             var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-            return System.import(/* webpackChunkName: "tools.module" */'./tools/tools.module.js')
+            return import(/* webpackChunkName: "tools.module" */'./tools/tools.module.js')
                 .then(mod => $ocLazyLoad.load(mod.TOOLS_MODULE))
                 .catch(err => {
                     throw new Error("Ooops, something went wrong, " + err);
@@ -144,7 +162,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
         // lazy load the volunteer module here
         lazyLoad: function ($transition$) {
             var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-            return System.import(/* webpackChunkName: "volunteer.module" */'./volunteer/volunteer.module.js')
+            return import(/* webpackChunkName: "volunteer.module" */'./volunteer/volunteer.module.js')
 				.then(mod => $ocLazyLoad.load(mod.VOLUNTEER_MODULE))
                 .catch(err => {
                     throw new Error("Ooops, something went wrong, " + err);
@@ -156,6 +174,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
 	$stateProvider.state(signInState);
     $stateProvider.state(consumersState);
     $stateProvider.state(reservationsState);
+    $stateProvider.state(toolAdminState);
     $stateProvider.state(profileState);
     $stateProvider.state(enrolmentState);
     $stateProvider.state(resetPwdState);

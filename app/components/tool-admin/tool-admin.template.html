@@ -1,0 +1,159 @@
+
+
+<div class="container well mtp75">
+    <div class="row">
+            <span class="pull-left">
+                <button ng-click="$ctrl.reset()" class="btn btn-danger">Reset</button>
+            </span>
+        <span class="pull-left">
+                <input type="text" ng-model="$ctrl.search.$" class="form-control" placeholder="Search All" />
+            </span>
+        <span class="pull-left">
+                <input type="text" ng-model="$ctrl.search.name" class="form-control" placeholder="Search Name " />
+            </span>
+        <span class="pull-left">
+                <input type="text" ng-model="$ctrl.search.code" class="form-control" placeholder="Search Code" />
+            </span>
+
+
+        <!-- <span class="pull-left">
+            &nbsp;&nbsp;Today Date {{date | date:'yyyy-MM-dd'}}
+        </span> -->
+        <span ng-click="$ctrl.addTool()" class="pull-right btn btn-danger">Add New Tool</span>
+    </div>
+    <br>
+    <div class="row">
+
+            <span class="pull-right">
+                <select class="form-control"
+                        ng-model="$ctrl.actItem"
+                        ng-change="$ctrl.activeStatus($ctrl.actItem)"
+                        ng-options="page for (idx,page) in $ctrl.itemShowCount">
+                </select>
+            </span>
+        <span class="pull-left">
+                Search By Tool Type  <select class="form-control"
+                                             ng-init="$ctrl.search.type = options[0]"
+                                             ng-model="$ctrl.search.type"
+                                             ng-options="typ for (idt,typ) in $ctrl.typeList">
+                    <option value="0">All</option>
+                </select>
+            </span>
+        <span class="pull-left" style="margin-left:20px;">
+                Check Active Tools <input type="checkbox" class="form-control"
+                                          ng-model="$ctrl.uActive"
+                                          ng-change="$ctrl.activeChange()" value="1">
+            </span>
+    </div>
+    <div class="row">
+        <div class="alert alert-warning">
+            <p>Sort key: {{$ctrl.sortKey}}</p>
+            <p>Reverse: {{$ctrl.reverse}}</p>
+            <p>Search String : {{$ctrl.search}}</p>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+
+        <table cellpadding=10 cellspacing=10 border=0 class="table">
+            <tr>
+                <th>No.</th>
+                <th ng-click="$ctrl.sort('name')">Name
+                    <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='name'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
+                </th>
+                <th ng-click="$ctrl.sort('description')">Description
+                    <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='description'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
+                </th>
+                <th ng-click="$ctrl.sort('code')">Code
+                    <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='code'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
+                </th>
+                <th ng-click="$ctrl.sort('active')">Active
+                    <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='active'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
+                </th>
+                <th>UPDATE</th>
+                <th>DELETE</th>
+            </tr>
+
+            <!--<tr dir-paginate="tool in $ctrl.tools|orderBy:sortKey:reverse|filter:$ctrl.search:code|itemsPerPage:$ctrl.actItem" ng-class="$even ? 'even-row' : 'odd-row'">-->
+            <tr dir-paginate="tool in $ctrl.tools|orderBy:$ctrl.sortKey:$ctrl.reverse|filter:$ctrl.search:$ctrl.code|itemsPerPage:$ctrl.actItem" ng-class="$even ? 'even-row' : 'odd-row'">
+                <td>{{$index+1}}</td>
+                <td>{{tool.name | uppercase}}</td>
+                <td>{{tool.description}}</td>
+                <!--<td>{{tool.description | lowercase | limitTo: 2}}</td>-->
+                <td>{{tool.code}}</td>
+                <td>{{tool.active}}</td>
+                <td><div ng-click="$ctrl.editTool(tool)" class="btn btn-primary">E</div></td>
+                <td><span ng-click="$ctrl.deleteTool(tool)" class="btn btn-danger">X</span></td>
+            </tr>
+        </table>
+
+        <div class="pull-right" style="width:20%;">
+            <select class="form-control"
+                    ng-model="$ctrl.actItem"
+                    ng-change="$ctrl.activeStatus($ctrl.actItem)"
+                    ng-options="page for (idx,page) in $ctrl.itemShowCount">
+            </select>
+        </div>
+
+        <div class="text-center">
+            <dir-pagination-controls
+                    max-size="5"
+                    direction-links="true"
+                    boundary-links="true" >
+            </dir-pagination-controls>
+        </div>
+
+    </div> <!-- End OF Row -->
+</div><!-- End OF Container -->
+
+<div class="container" ng-show="$ctrl.ToolFormContainer">
+<!--<div class="container" ng-show="ToolFormContainer">-->
+    <div class="row">
+
+        <div ng-click="$ctrl.closeFrmBtn()">X</div>
+
+        <table class="table">
+            <tr>
+                <td><b><i>{{Action}} Tool</i></b></td>
+                <td><input type="text" disabled="disabled" ng-model="$ctrl.ToolId" /></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" placeholder="Name" ng-model="$ctrl.ToolName" /></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><input type="text" placeholder="Description" ng-model="$ctrl.ToolDescription" /></td>
+            </tr>
+            <tr>
+                <td>Tool Code</td>
+                <td><input type="text" placeholder="Tool Code" ng-model="$ctrl.ToolCode" /></td>
+            </tr>
+            <tr>
+                <td>Active</td>
+                <td>
+                    <input type="checkbox" ng-checked="$ctrl.ToolActiveChecked" ng-model="$ctrl.ToolActive" />
+                </td>
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td>
+                    <div ngf-select ngf-drop="$ctrl.uploadFiles($files)" class="drop-box"
+                         ngf-drag-over-class="'dragover'" ngf-multiple="true"
+                         ngf-pattern="'image/*'">Select or Drop Images here</div>
+                    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                    <droplet ng-model="$ctrl.interface"></droplet>
+                    <input type="button" value="Upload Files" ng-click="$ctrl.interface.uploadFiles()"/>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" class="btn btn-default" value="Save" ng-click="$ctrl.AddUpdateTool()" /></td>
+                <td><input type="button" class="btn btn-danger" value="Cancel" ng-click="$ctrl.Cancel()" /></td>
+            </tr>
+        </table>
+
+    </div> <!-- End OF Row -->
+</div><!-- End OF Container -->
+
+
