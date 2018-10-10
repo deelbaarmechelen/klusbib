@@ -7,8 +7,8 @@ import ToolService from "../../services/tool.service";
 export default function ToolAdminController(ToolService) {
     var self = this;
     self.ToolFormContainer = false;
-    self.itemShowCount = ['5','10','20', '30'];
-    self.typeList = [1,2,3,4,5,6,7,8,9,10];
+    self.itemShowCount = ['5','10','20','50'];
+    //self.typeList = ['All',1,2,3,4,5,6,7,8,9,10];
     self.date = new Date();
 
     GetAllTools();
@@ -38,8 +38,6 @@ export default function ToolAdminController(ToolService) {
             self.ToolName = tool.name;
             self.ToolDescription = tool.description;
             self.ToolCode = tool.code;
-            var isActive = (tool.active == 1) ? true : false;
-            self.ToolActiveChecked = isActive ;
 
             self.Action = "Update";
             self.ToolFormContainer = true;
@@ -61,7 +59,6 @@ export default function ToolAdminController(ToolService) {
         self.ToolName = "";
         self.ToolDescription = "";
         self.ToolCode = "";
-        self.ToolActive = "";
     }
 
     // Hide Add / Update Tool Form
@@ -79,7 +76,6 @@ export default function ToolAdminController(ToolService) {
             name	: self.ToolName,
             description	: self.ToolDescription,
             code		: self.ToolCode,
-            active		: ( (self.ToolActive) ? "1" : "0" )
         };
 
         var getToolAction = self.Action;
@@ -141,12 +137,10 @@ export default function ToolAdminController(ToolService) {
         self.reverse = !self.reverse; //if true make it false and vice versa
     }
 
-    self.activeChange = function() {
-        self.search.active = ( (self.uActive) ? "1" : "0" );
-    };
-
     self.reset = function(){
-        self.search = '';
+        self.search = null;
+        self.sortKey = null;
+        self.reverse = false;
     };
 
 

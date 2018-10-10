@@ -31,19 +31,14 @@
                         ng-options="page for (idx,page) in $ctrl.itemShowCount">
                 </select>
             </span>
-        <span class="pull-left">
-                Search By Tool Type  <select class="form-control"
-                                             ng-init="$ctrl.search.type = options[0]"
-                                             ng-model="$ctrl.search.type"
-                                             ng-options="typ for (idt,typ) in $ctrl.typeList">
-                    <option value="0">All</option>
-                </select>
-            </span>
-        <span class="pull-left" style="margin-left:20px;">
-                Check Active Tools <input type="checkbox" class="form-control"
-                                          ng-model="$ctrl.uActive"
-                                          ng-change="$ctrl.activeChange()" value="1">
-            </span>
+        <!--<span class="pull-left">-->
+                <!--Search By Tool Type  <select class="form-control"-->
+                                             <!--ng-init="$ctrl.search.type = options[0]"-->
+                                             <!--ng-model="$ctrl.search.type"-->
+                                             <!--ng-options="typ for (idt,typ) in $ctrl.typeList">-->
+                    <!--<option value="0">All</option>-->
+                <!--</select>-->
+            <!--</span>-->
     </div>
     <div class="row">
         <div class="alert alert-warning">
@@ -68,27 +63,24 @@
                 <th ng-click="$ctrl.sort('code')">Code
                     <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='code'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
                 </th>
-                <th ng-click="$ctrl.sort('active')">Active
-                    <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='active'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
-                </th>
                 <th>UPDATE</th>
                 <th>DELETE</th>
             </tr>
 
             <!--<tr dir-paginate="tool in $ctrl.tools|orderBy:sortKey:reverse|filter:$ctrl.search:code|itemsPerPage:$ctrl.actItem" ng-class="$even ? 'even-row' : 'odd-row'">-->
-            <tr dir-paginate="tool in $ctrl.tools|orderBy:$ctrl.sortKey:$ctrl.reverse|filter:$ctrl.search:$ctrl.code|itemsPerPage:$ctrl.actItem" ng-class="$even ? 'even-row' : 'odd-row'">
+            <tr dir-paginate="tool in $ctrl.tools|orderBy:$ctrl.sortKey:$ctrl.reverse|filter:$ctrl.search|itemsPerPage:$ctrl.actItem" ng-class="$even ? 'even-row' : 'odd-row'">
                 <td>{{$index+1}}</td>
                 <td>{{tool.name | uppercase}}</td>
                 <td>{{tool.description}}</td>
                 <!--<td>{{tool.description | lowercase | limitTo: 2}}</td>-->
                 <td>{{tool.code}}</td>
-                <td>{{tool.active}}</td>
                 <td><div ng-click="$ctrl.editTool(tool)" class="btn btn-primary">E</div></td>
                 <td><span ng-click="$ctrl.deleteTool(tool)" class="btn btn-danger">X</span></td>
             </tr>
         </table>
 
-        <div class="pull-right" style="width:20%;">
+        <div class="pull-right">
+        <!--<div class="pull-right" style="width:20%;">-->
             <select class="form-control"
                     ng-model="$ctrl.actItem"
                     ng-change="$ctrl.activeStatus($ctrl.actItem)"
