@@ -1,7 +1,8 @@
 ﻿    export default class ToolService{
-        constructor($http, __env) {
+        constructor($http, __env, Upload) {
             this.$http = $http;
             this.__env = __env;
+            this.Upload  = Upload;
             this.defaultPageSize = 100;
         }
 
@@ -52,6 +53,16 @@
         		.then(this.handleSuccess, this.handleError);
         }
 
+        UploadImage(tool, files) {
+            return this.Upload.upload(
+                {
+                    url: this.__env.apiUrl + '/tools/' + tool.tool_id + '/upload', method: 'POST',
+                    data: {newfile: files[0]}
+                }
+            ).then(this.handleSuccess, this.handleError);
+
+         }
+
         Delete(id) {
             return this.$http.delete(this.__env.apiUrl + '/tools/' + id)
             	.then(this.handleSuccess, this.handleError);
@@ -79,4 +90,4 @@
             return { success: false, message: message };
         }
     };
-    ToolService.$inject = ['$http', '__env'];
+    ToolService.$inject = ['$http', '__env', 'Upload'];

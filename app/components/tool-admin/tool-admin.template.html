@@ -1,8 +1,10 @@
+<!--<section class="background colourful"></section>-->
 
 
 <div class="container well mtp75">
     <div class="row">
-            <span class="pull-left">
+
+        <span class="pull-left">
                 <button ng-click="$ctrl.reset()" class="btn btn-danger">Reset</button>
             </span>
         <span class="pull-left">
@@ -16,9 +18,6 @@
             </span>
 
 
-        <!-- <span class="pull-left">
-            &nbsp;&nbsp;Today Date {{date | date:'yyyy-MM-dd'}}
-        </span> -->
         <span ng-click="$ctrl.addTool()" class="pull-right btn btn-danger">Add New Tool</span>
     </div>
     <br>
@@ -31,14 +30,6 @@
                         ng-options="page for (idx,page) in $ctrl.itemShowCount">
                 </select>
             </span>
-        <!--<span class="pull-left">-->
-                <!--Search By Tool Type  <select class="form-control"-->
-                                             <!--ng-init="$ctrl.search.type = options[0]"-->
-                                             <!--ng-model="$ctrl.search.type"-->
-                                             <!--ng-options="typ for (idt,typ) in $ctrl.typeList">-->
-                    <!--<option value="0">All</option>-->
-                <!--</select>-->
-            <!--</span>-->
     </div>
     <div class="row">
         <div class="alert alert-warning">
@@ -123,29 +114,37 @@
                 <td><input type="text" placeholder="Tool Code" ng-model="$ctrl.ToolCode" /></td>
             </tr>
             <tr>
+                <td>Image</td>
+                <td>
+                    <img ng-src="{{ $ctrl.resizeImage($ctrl.ToolImgUrl, '400x') }}"/>
+                    <div ngf-select ngf-drop class="drop-box" ng-model="$ctrl.files"
+                         ngf-drag-over-class="'dragover'" ngf-multiple="true"
+                         ngf-pattern="'image/*'" accept="image/*" >Select or Drop Images here</div>
+                    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+                    <div class="preview">
+                        <div>Preview image:</div>
+                        <img ngf-src="!$ctrl.files[0].$error && $ctrl.files[0]">
+                    </div>
+                    <input type="button" value="Upload Files" ng-click="$ctrl.uploadFiles($ctrl.files)"/>
+
+                </td>
+            </tr>
+            <tr>
                 <td>Active</td>
                 <td>
                     <input type="checkbox" ng-checked="$ctrl.ToolActiveChecked" ng-model="$ctrl.ToolActive" />
                 </td>
             </tr>
             <tr>
-                <td>Image</td>
-                <td>
-                    <div ngf-select ngf-drop="$ctrl.uploadFiles($files)" class="drop-box"
-                         ngf-drag-over-class="'dragover'" ngf-multiple="true"
-                         ngf-pattern="'image/*'">Select or Drop Images here</div>
-                    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-                    <droplet ng-model="$ctrl.interface"></droplet>
-                    <input type="button" value="Upload Files" ng-click="$ctrl.interface.uploadFiles()"/>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="button" class="btn btn-default" value="Save" ng-click="$ctrl.AddUpdateTool()" /></td>
+                <td><input type="button" class="btn btn-default" value="Save" ng-click="$ctrl.AddUpdateTool($ctrl.files)" /></td>
                 <td><input type="button" class="btn btn-danger" value="Cancel" ng-click="$ctrl.Cancel()" /></td>
             </tr>
         </table>
 
     </div> <!-- End OF Row -->
 </div><!-- End OF Container -->
+
+
 
 

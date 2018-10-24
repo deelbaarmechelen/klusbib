@@ -15,6 +15,7 @@ import 'angular-flash-alert/dist/angular-flash.min.css';
 import 'angular-simple-logger';
 // import nemLogging from 'angular-simple-logger';
 import 'angular-google-maps';
+import 'ng-file-upload';
 
 import envConfig from './app.env.js';
 import routing from './app.config.js';
@@ -49,6 +50,7 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     ngFlash,
 	cssProvider,
 	'uiGmapgoogle-maps',
+    'ngFileUpload',
     navigation,
     signIn,
     consumerList,

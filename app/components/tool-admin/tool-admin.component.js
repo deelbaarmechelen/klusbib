@@ -1,10 +1,10 @@
 
-ToolAdminController.$inject = ['ToolService', '$scope'];
+ToolAdminController.$inject = ['ToolService', '$scope', 'Upload', '__env'];
 // export default function ToolAdminController($scope, crudService) {
 // export default function ToolAdminController($http, __env, UserService, ReservationService, $location, Flash) {
 import ToolService from "../../services/tool.service";
 
-export default function ToolAdminController(ToolService) {
+export default function ToolAdminController(ToolService, $scope, Upload, __env) {
     var self = this;
     self.ToolFormContainer = false;
     self.itemShowCount = ['5','10','20','50'];
@@ -31,6 +31,7 @@ export default function ToolAdminController(ToolService) {
 
     self.editTool = function (tool) {
         console.log(tool);
+        ClearFields();
         var getToolData = ToolService.GetById(tool.tool_id);
         getToolData.then( function(_tool) {
             self.tool = _tool;
@@ -38,6 +39,7 @@ export default function ToolAdminController(ToolService) {
             self.ToolName = tool.name;
             self.ToolDescription = tool.description;
             self.ToolCode = tool.code;
+            self.ToolImgUrl = tool.img;
 
             self.Action = "Update";
             self.ToolFormContainer = true;
@@ -59,6 +61,7 @@ export default function ToolAdminController(ToolService) {
         self.ToolName = "";
         self.ToolDescription = "";
         self.ToolCode = "";
+        self.ToolImgUrl = "";
     }
 
     // Hide Add / Update Tool Form
@@ -71,11 +74,13 @@ export default function ToolAdminController(ToolService) {
     }
 
     //Add Update Action
-    self.AddUpdateTool = function () {
+    self.AddUpdateTool = function (files) {
+
         var tool = {
             name	: self.ToolName,
             description	: self.ToolDescription,
             code		: self.ToolCode,
+            file : files[0]
         };
 
         var getToolAction = self.Action;
@@ -83,6 +88,20 @@ export default function ToolAdminController(ToolService) {
         if(getToolAction == "Update"){
 
             tool.tool_id = self.ToolId;
+
+            var uploadToolImage = ToolService.UploadImage(tool, files);
+            uploadToolImage.then (function (response) {
+                    // GetAllTools();
+                    if (response.success == false) {
+                        var msg = response.message;
+                        alert(msg);
+                    }
+                }, function () {
+                    alert('Error in uploading Tool image');
+                }
+            );
+
+
             console.log('update tool ' + JSON.stringify(tool));
             var getToolData = ToolService.Update(tool);
 
@@ -91,6 +110,8 @@ export default function ToolAdminController(ToolService) {
                 if (response.success == false) {
                     var msg = response.message;
                     alert(msg);
+                } else {
+                    self.files = null;
                 }
             }, function () {
                 alert('Error in updating Tool record');
@@ -132,6 +153,16 @@ export default function ToolAdminController(ToolService) {
          }
     }
 
+    self.resizeImage = function(imageUrl, size) {
+        if (typeof imageUrl == 'undefined' || imageUrl == null || imageUrl == '') {
+            return "//:0"; // FIXME: replace by default image
+        }
+        let baseUrl = imageUrl.substr(0, imageUrl.lastIndexOf('.'));
+        let ext = imageUrl.substr(imageUrl.lastIndexOf('.') + 1);
+        let newUrl = baseUrl + '-' + size + '.' + ext;
+        return newUrl;
+    }
+
     self.sort = function(keyname){
         self.sortKey = keyname;   //set the sortKey to the param passed
         self.reverse = !self.reverse; //if true make it false and vice versa
@@ -143,39 +174,16 @@ export default function ToolAdminController(ToolService) {
         self.reverse = false;
     };
 
-
-    // upload later on form submit or something similar
-    self.submit = function() {
-        // if ($scope.form.file.$valid && $scope.file) {
-        //     $scope.upload($scope.file);
-        // }
-    };
-
-    // upload on file select or drop
-    self.upload = function (file) {
-        alert("uploading file" +  file);
-        // Upload.upload({
-        //     url: 'upload/url',
-        //     data: {file: file, 'username': $scope.username}
-        // }).then(function (resp) {
-        //     console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-        // }, function (resp) {
-        //     console.log('Error status: ' + resp.status);
-        // }, function (evt) {
-        //     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        //     console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-        // });
-    };
-    // for multiple files:
-    self.uploadFiles = function($files) {
-        alert("uploading files");
-        // if (files && files.length) {
-        //     for (var i = 0; i < files.length; i++) {
-        //         Upload.upload({..., data: {file: files[i]}, ...})...;
-        //     }
-        //     // or send them all together for HTML5 browsers:
-        //     Upload.upload({..., data: {file: files}, ...})...;
-        // }
+    self.uploadFiles = function(files) {
+        console.log('uploading files ' + JSON.stringify(files))
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                Upload.upload(
+                    { url: __env.apiUrl + '/upload', method: 'POST',
+                    data: {newfile: files[i]}}
+                    );
+            }
+        }
     };
 
 };
