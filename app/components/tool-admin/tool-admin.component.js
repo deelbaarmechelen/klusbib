@@ -40,6 +40,7 @@ export default function ToolAdminController(ToolService, $scope, Upload, __env) 
             self.ToolDescription = tool.description;
             self.ToolCode = tool.code;
             self.ToolImgUrl = tool.img;
+            self.displayedTool = tool;
 
             self.Action = "Update";
             self.ToolFormContainer = true;
@@ -62,6 +63,8 @@ export default function ToolAdminController(ToolService, $scope, Upload, __env) 
         self.ToolDescription = "";
         self.ToolCode = "";
         self.ToolImgUrl = "";
+        self.files = {};
+        self.displayedTool = {};
     }
 
     // Hide Add / Update Tool Form
@@ -89,19 +92,21 @@ export default function ToolAdminController(ToolService, $scope, Upload, __env) 
 
             tool.tool_id = self.ToolId;
 
-            var uploadToolImage = ToolService.UploadImage(tool, files);
-            uploadToolImage.then (function (response) {
-                    // GetAllTools();
-                    if (response.success == false) {
-                        var msg = response.message;
-                        alert(msg);
+            // upload image file
+            if (!angular.equals(self.files , {})) {
+                var uploadToolImage = ToolService.UploadImage(tool, files);
+                uploadToolImage.then(function (response) {
+                        // GetAllTools();
+                        if (response.success == false) {
+                            var msg = response.message;
+                            alert(msg);
+                        }
+                    }, function () {
+                        alert('Error in uploading Tool image');
                     }
-                }, function () {
-                    alert('Error in uploading Tool image');
-                }
-            );
+                );
 
-
+            }
             console.log('update tool ' + JSON.stringify(tool));
             var getToolData = ToolService.Update(tool);
 
@@ -153,8 +158,14 @@ export default function ToolAdminController(ToolService, $scope, Upload, __env) 
          }
     }
 
-    self.resizeImage = function(imageUrl, size) {
+    self.hasToolImage = function(imageUrl) {
         if (typeof imageUrl == 'undefined' || imageUrl == null || imageUrl == '') {
+            return false;
+        }
+        return true;
+    }
+    self.resizeImage = function(imageUrl, size) {
+        if (! self.hasToolImage(imageUrl)) {
             return "//:0"; // FIXME: replace by default image
         }
         let baseUrl = imageUrl.substr(0, imageUrl.lastIndexOf('.'));

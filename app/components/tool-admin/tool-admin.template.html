@@ -1,6 +1,3 @@
-<!--<section class="background colourful"></section>-->
-
-
 <div class="container well mtp75">
     <div class="row">
 
@@ -8,17 +5,17 @@
                 <button ng-click="$ctrl.reset()" class="btn btn-danger">Reset</button>
             </span>
         <span class="pull-left">
-                <input type="text" ng-model="$ctrl.search.$" class="form-control" placeholder="Search All" />
+                <input type="text" ng-model="$ctrl.search.$" class="form-control" placeholder="Zoeken" />
             </span>
         <span class="pull-left">
-                <input type="text" ng-model="$ctrl.search.name" class="form-control" placeholder="Search Name " />
+                <input type="text" ng-model="$ctrl.search.name" class="form-control" placeholder="Zoeken op naam" />
             </span>
         <span class="pull-left">
-                <input type="text" ng-model="$ctrl.search.code" class="form-control" placeholder="Search Code" />
+                <input type="text" ng-model="$ctrl.search.code" class="form-control" placeholder="Zoeken op Code" />
             </span>
 
 
-        <span ng-click="$ctrl.addTool()" class="pull-right btn btn-danger">Add New Tool</span>
+        <span ng-click="$ctrl.addTool()" class="pull-right btn btn-danger">Toevoegen</span>
     </div>
     <br>
     <div class="row">
@@ -31,13 +28,13 @@
                 </select>
             </span>
     </div>
-    <div class="row">
-        <div class="alert alert-warning">
-            <p>Sort key: {{$ctrl.sortKey}}</p>
-            <p>Reverse: {{$ctrl.reverse}}</p>
-            <p>Search String : {{$ctrl.search}}</p>
-        </div>
-    </div>
+    <!--<div class="row">-->
+        <!--<div class="alert alert-warning">-->
+            <!--<p>Sort key: {{$ctrl.sortKey}}</p>-->
+            <!--<p>Reverse: {{$ctrl.reverse}}</p>-->
+            <!--<p>Search String : {{$ctrl.search}}</p>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <br><br>
     <div class="row">
@@ -45,10 +42,10 @@
         <table cellpadding=10 cellspacing=10 border=0 class="table">
             <tr>
                 <th>No.</th>
-                <th ng-click="$ctrl.sort('name')">Name
+                <th ng-click="$ctrl.sort('name')">Naam
                     <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='name'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
                 </th>
-                <th ng-click="$ctrl.sort('description')">Description
+                <th ng-click="$ctrl.sort('description')">Beschrijving
                     <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='description'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
                 </th>
                 <th ng-click="$ctrl.sort('code')">Code
@@ -98,46 +95,106 @@
 
         <table class="table">
             <tr>
-                <td><b><i>{{Action}} Tool</i></b></td>
+                <td><b><i>{{$ctrl.Action}} Tool</i></b></td>
                 <td><input type="text" disabled="disabled" ng-model="$ctrl.ToolId" /></td>
             </tr>
             <tr>
-                <td>Name</td>
+                <td>Naam</td>
                 <td><input type="text" placeholder="Name" ng-model="$ctrl.ToolName" /></td>
             </tr>
             <tr>
-                <td>Description</td>
-                <td><input type="text" placeholder="Description" ng-model="$ctrl.ToolDescription" /></td>
+                <td>Beschrijving</td>
+                <td><input type="text" placeholder="Beschrijving" ng-model="$ctrl.ToolDescription" /></td>
             </tr>
             <tr>
-                <td>Tool Code</td>
-                <td><input type="text" placeholder="Tool Code" ng-model="$ctrl.ToolCode" /></td>
+                <td>Code</td>
+                <td><input type="text" placeholder="Code" ng-model="$ctrl.ToolCode" /></td>
             </tr>
             <tr>
                 <td>Image</td>
                 <td>
-                    <img ng-src="{{ $ctrl.resizeImage($ctrl.ToolImgUrl, '400x') }}"/>
+                    <div class="current">
+                        <div>Huidige foto:</div>
+                        <img ng-if="$ctrl.hasToolImage($ctrl.ToolImgUrl)" ng-src="{{ $ctrl.resizeImage($ctrl.ToolImgUrl, '400x') }}"/>
+                        <a ng-if="!$ctrl.hasToolImage($ctrl.ToolImgUrl)" href="https://www.freeiconspng.com/img/23483" title="Image from freeiconspng.com">
+                            <img src="https://www.freeiconspng.com/uploads/no-image-icon-4.png" width="350" alt="Simple No Png" />
+                        </a>
+                    </div>
                     <div ngf-select ngf-drop class="drop-box" ng-model="$ctrl.files"
                          ngf-drag-over-class="'dragover'" ngf-multiple="true"
-                         ngf-pattern="'image/*'" accept="image/*" >Select or Drop Images here</div>
+                         ngf-resize="{width: 400, height: 400, quality: .8, type: 'image/jpeg',
+               centerCrop: true, pattern='.jpg', restoreExif: false}"
+                         ngf-pattern="'image/*'" accept="image/*" >Select or Drop Images here (only jpg)</div>
                     <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 
                     <div class="preview">
-                        <div>Preview image:</div>
+                        <div>Nieuwe foto (vervangt huidige foto bij opslaan):</div>
                         <img ngf-src="!$ctrl.files[0].$error && $ctrl.files[0]">
                     </div>
-                    <input type="button" value="Upload Files" ng-click="$ctrl.uploadFiles($ctrl.files)"/>
-
                 </td>
             </tr>
             <tr>
-                <td>Active</td>
-                <td>
-                    <input type="checkbox" ng-checked="$ctrl.ToolActiveChecked" ng-model="$ctrl.ToolActive" />
-                </td>
+                <td>Categorie</td>
+                <td><select disabled="disabled" ng-model="$ctrl.displayedTool.category" >
+                        <option>general</option>
+                        <option>car</option>
+                        <option>construction</option>
+                        <option>technics</option>
+                        <option>wood</option>
+                        <option>garden</option>
+                    </select>
             </tr>
             <tr>
-                <td><input type="button" class="btn btn-default" value="Save" ng-click="$ctrl.AddUpdateTool($ctrl.files)" /></td>
+                <td>Merk</td>
+                <td><input type="text" disabled="disabled" placeholder="Merk" ng-model="$ctrl.displayedTool.brand" /></td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td><input type="text" disabled="disabled" placeholder="Type" ng-model="$ctrl.displayedTool.type" /></td>
+            </tr>
+            <tr>
+                <td>Vervangwaarde</td>
+                <td><input type="text" disabled="disabled" placeholder="Vervangwaarde" ng-model="$ctrl.displayedTool.replacement_value" /></td>
+            </tr>
+            <tr>
+                <td>Vereiste ervaring</td>
+                <td><select disabled="disabled" ng-model="$ctrl.displayedTool.experience_level" >
+                    <option>JUNIOR</option>
+                    <option>MEDIOR</option>
+                    <option>SENIOR</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Veiligheidsrisico</td>
+                <td><select disabled="disabled" ng-model="$ctrl.displayedTool.safety_risk" >
+                    <option>LOW</option>
+                    <option>MEDIUM</option>
+                    <option>HIGH</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td><select disabled="disabled" ng-model="$ctrl.displayedTool.state" >
+                    <option>NEW</option>
+                    <option>READY</option>
+                    <option>DISPOSED</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Zichtbaar</td>
+                <td><input type="checkbox" disabled="disabled" ng-model="$ctrl.displayedTool.visible" /></td>
+            </tr>
+            <!-- andere velden:
+            {"owner_id":null,"reception_date":null,"serial":null,"manufacturing_year":null,"manufacturer_url":null,"doc_url":null}
+Eigenaar
+Ontvangen op (JJJJ/MM/DD)
+Serienummer
+Fabrikatie jaar
+Website fabrikant
+Url handleiding
+-->
+            <tr>
+                <td><input type="button" class="btn btn-primary" value="Save" ng-click="$ctrl.AddUpdateTool($ctrl.files)" /></td>
                 <td><input type="button" class="btn btn-danger" value="Cancel" ng-click="$ctrl.Cancel()" /></td>
             </tr>
         </table>
