@@ -16,7 +16,7 @@ export default function ToolAdminController(ToolService, $scope, Upload, __env) 
     //To Get all tools list
     function GetAllTools () {
 
-        var getToolData = ToolService.GetAll(1, 20);
+        var getToolData = ToolService.GetAll(1, 1000);
         getToolData.then(function (tool) {
             self.tools = tool.message;
 
