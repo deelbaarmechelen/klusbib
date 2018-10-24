@@ -15,6 +15,7 @@ import 'angular-flash-alert/dist/angular-flash.min.css';
 import 'angular-simple-logger';
 // import nemLogging from 'angular-simple-logger';
 import 'angular-google-maps';
+import 'ng-file-upload';
 
 import envConfig from './app.env.js';
 import routing from './app.config.js';
@@ -23,6 +24,7 @@ import signIn from './components/sign-in/sign-in.module.js';
 import consumerList from './components/consumer-list/consumer-list.module.js';
 import myProfile from './components/my-profile/my-profile.module.js';
 import reservationList from './components/reservation-list/reservation-list.module.js';
+import toolAdmin from './components/tool-admin/tool-admin.module.js';
 
 import AuthService from './services/auth.service.js';
 import TokenService from './services/token.service.js';
@@ -48,11 +50,13 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     ngFlash,
 	cssProvider,
 	'uiGmapgoogle-maps',
+    'ngFileUpload',
     navigation,
     signIn,
     consumerList,
     myProfile,
-	reservationList
+	reservationList,
+    toolAdmin
 //	'enrolment'
 ]);
 //Register environment in AngularJS as constant
