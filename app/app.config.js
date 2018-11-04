@@ -56,6 +56,24 @@ export default function routing($stateProvider, $urlRouterProvider) {
 			        }
 			    }
 	  }
+	  var toolAdminState = {
+			    name: 'tool-admin',
+			    url: '/tool-admin',
+			    views: {
+			        nav: {
+			    		component: 'navigation'
+			    	},
+			    	main: {
+			    		component: 'toolAdmin',
+                        // component: 'myProfile',
+			    	}
+			    },
+			    resolve: {
+			    	inverse: function() {
+			    		return true;
+			        }
+			    }
+	  }
 	  var profileState = {
 			    name: 'profile',
 			    url: '/profile/{userId}',
@@ -150,6 +168,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
 	$stateProvider.state(signInState);
     $stateProvider.state(consumersState);
     $stateProvider.state(reservationsState);
+    $stateProvider.state(toolAdminState);
     $stateProvider.state(profileState);
     $stateProvider.state(enrolmentFutureState);
     $stateProvider.state(resetPwdState);

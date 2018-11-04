@@ -6,58 +6,56 @@
 //     controller: ['$http', '__env', 'UserService', 'ReservationService','$location','Flash',
 MyProfileController.$inject = ['$http', '__env', 'UserService', 'ReservationService','$location','Flash'];
 export default function MyProfileController($http, __env, UserService, ReservationService, $location, Flash) {
-          var self = this;
-          this.$onChanges = function(changesObj) {
-			  if (changesObj.user && changesObj.user.currentValue) {
-				  if (changesObj.user.currentValue.success) {
-					  self.user = changesObj.user.currentValue.message;
-					  self.reservations = filterFutureReservations(self.user.reservations);
-					  translateReservations(self.reservations);
-				  } else {
-					  if (changesObj.user.currentValue.status == 401) {
-		        		  $location.path('/signin');
-		        	  }
-		        	  Flash.create('danger', 
-		        			  'Er is een probleem opgetreden bij het laden van de gebruikersgegevens. Probeer later opnieuw', 5000);					  
-				  }
-			  }
+        var self = this;
+        this.$onChanges = function(changesObj) {
+          if (changesObj.user && changesObj.user.currentValue) {
+              if (changesObj.user.currentValue.success) {
+                  self.user = changesObj.user.currentValue.message;
+                  self.reservations = filterFutureReservations(self.user.reservations);
+                  translateReservations(self.reservations);
+              } else {
+                  if (changesObj.user.currentValue.status == 401) {
+                      $location.path('/signin');
+                  }
+                  Flash.create('danger',
+                          'Er is een probleem opgetreden bij het laden van de gebruikersgegevens. Probeer later opnieuw', 5000);
+              }
           }
-          function isAdmin(user) {
-        	  if (user.role === "admin" && user.state === "ACTIVE") {
-        		  return true;
-        	  }
-        	  return false;
+        }
+        function isAdmin(user) {
+          if (user.role === "admin" && user.state === "ACTIVE") {
+              return true;
           }
-          self.showReservationsLink = function () {
-        	  if (isAdmin(self.user)) {
-        		  return true;
-        	  }
-        	  return false;
-          }
-          
-          self.updateUser = function() {
-        	  var userToUpdate = {"user_id":this.user.user_id,
-        			  "firstname":this.user.firstname,
-        			  "lastname":this.user.lastname,
-        			  "email":this.user.email,
-        			  "address":this.user.address,
-        			  "postal_code":this.user.postal_code,
-        			  "city":this.user.city,
-        			  "phone":this.user.phone,
-        			  "mobile":this.user.mobile,
-        			  "registration_number":this.user.registration_number,
-        			  }
-        	  console.log("updating user " + JSON.stringify(userToUpdate));
-        	  
-        	  UserService.Update(userToUpdate).then(function (response) {
-		          	if (response.success) {
-		          		var id = Flash.create('success', 'Aanpassingen bewaard', 5000);
-		          	} else {
-		          		console.log(response.message);
-		                var id = Flash.create('danger', response.message, 5000);
-		          	}
-	          });
-          }
+          return false;
+        }
+        self.showAdminLinks = function () {
+            return isAdmin(self.user);
+        }
+        self.showReservationsLink = self.showAdminLinks;
+
+        self.updateUser = function() {
+          var userToUpdate = {"user_id":this.user.user_id,
+                  "firstname":this.user.firstname,
+                  "lastname":this.user.lastname,
+                  "email":this.user.email,
+                  "address":this.user.address,
+                  "postal_code":this.user.postal_code,
+                  "city":this.user.city,
+                  "phone":this.user.phone,
+                  "mobile":this.user.mobile,
+                  "registration_number":this.user.registration_number,
+                  }
+          console.log("updating user " + JSON.stringify(userToUpdate));
+
+          UserService.Update(userToUpdate).then(function (response) {
+                if (response.success) {
+                    var id = Flash.create('success', 'Aanpassingen bewaard', 5000);
+                } else {
+                    console.log(response.message);
+                    var id = Flash.create('danger', response.message, 5000);
+                }
+          });
+        }
 //          self.reservations = [];
 //          self.reservations = filterFutureReservations(self.user.reservations);
 //          translateReservations(self.reservations);

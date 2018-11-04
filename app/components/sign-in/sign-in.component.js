@@ -18,6 +18,13 @@ SignInController.$inject = ['$http', '__env', 'Auth', '$localStorage', '$locatio
                 var params = $location.search();
                 self.email = params.email;
             }
+	        this.isLogged = function() {
+                if (typeof self.user !== 'undefined' &&
+                    typeof self.user.id !== 'undefined' && self.user.id !== null) {
+                    return true;
+                }
+                return false;
+            }
 
 			this.signin = function () {
               var formData = {

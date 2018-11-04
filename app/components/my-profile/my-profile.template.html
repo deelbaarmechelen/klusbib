@@ -1,8 +1,9 @@
 
 <flash-message></flash-message>
 <a class="btn btn-primary" ui-sref="reservations()" ng-if="$ctrl.showReservationsLink()">Beheer reservaties</a>
+<a class="btn btn-primary" ui-sref="tool-admin()" ng-if="$ctrl.showAdminLinks()">Beheer tools</a>
 <h2>Mijn gegevens</h2>
-    <form name="form" ng-submit="$ctrl.updateUser()" role="form">
+<form name="form" ng-submit="$ctrl.updateUser()" role="form">
 
 <table class="table table-striped">
 	<tr>

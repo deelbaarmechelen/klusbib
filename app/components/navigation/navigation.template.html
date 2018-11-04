@@ -29,7 +29,7 @@
                     <li ng-repeat="item in $ctrl.items">
                         <a class="page-scroll" ui-sref="{{item.sref}}">{{item.label}}</a>
                     </li>
-                    <li data-ng-if="!user.id">
+                    <li data-ng-if="!$ctrl.isLogged()">
                         <a ui-sref="enrolment">Lid worden</a>
                     </li>
                     <li>
@@ -41,9 +41,9 @@
 <!--                     <li> -->
 <!--                         <a href="//forum.klusbib.be">Forum</a> -->
 <!--                     </li> -->
-					<li data-ng-if="!user.id" ><a ui-sref="signin">Inloggen</a></li>
-					<li data-ng-if="!!user.id"><a ui-sref="profile({ userId: user.id })" >Mijn Profiel ({{user.id}})</a></li>
-					<li data-ng-if="!!user.id"><a ui-sref="signin" ng-click="logout()"'>Uitloggen</a></li>
+					<li data-ng-if="!$ctrl.isLogged()" ><a ui-sref="signin">Inloggen</a></li>
+					<li data-ng-if="$ctrl.isLogged()"><a ui-sref="profile({ userId: $ctrl.user.id })" >Mijn Profiel ({{$ctrl.user.id}})</a></li>
+					<li data-ng-if="$ctrl.isLogged()"><a ui-sref="signin" ng-click="$ctrl.logout()">Uitloggen</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

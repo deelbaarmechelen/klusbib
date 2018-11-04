@@ -50,23 +50,24 @@
             <label for="registration_number">Identificatienummer van het Rijksregister *</label>
             <span id="helpRegistrationNumber" class="help-block">(te vinden op de achterkant van je identiteitskaart)</span>
             <input type="text" name="registration_number" id="registration_number" class="form-control"
-            ng-model="vm.user.registration_number" ng-minlength="11" ng-maxlength="11" size="11" aria-describedby="helpRegistrationNumber" required/>
+                   ng-model="vm.user.registration_number" ng-minlength="11" ng-maxlength="11" size="11" aria-describedby="helpRegistrationNumber" required/>
             <span ng-show="form.registration_number.$touched && form.registration_number.$error.required"
-            class="help-block">Registratie nummer is vereist</span>
+                  class="help-block">Registratie nummer is vereist</span>
             <span ng-show="form.registration_number.$touched && form.registration_number.$invalid"
                   class="help-block">Registratie nummer is ongeldig (geef enkel de 11 nummers in)</span>
         </div>
 
-		<p>
-			Lees ook eerst de <a href="/home/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a> na.
-		</p>
+
+        <p>
+            Lees ook eerst de <a href="/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a> na.
+        </p>
         <div class="form-group" ng-class="{ 'has-error': form.accept_terms.$dirty && form.accept_terms.$error.required }">
-        <label class="form-check-label" for="accept_terms">
-            <input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" ng-model="vm.user.accept_terms" value="1" required/>
-            Verklaart hierbij de Klusbib afspraken te hebben gelezen en ermee akkoord te gaan. *
-            <span ng-show="form.accept_terms.$dirty && form.accept_terms.$error.required" class="help-block">
+            <label class="form-check-label" for="accept_terms">
+                <input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" ng-model="vm.user.accept_terms" value="1" required/>
+                Verklaart hierbij de Klusbib afspraken te hebben gelezen en ermee akkoord te gaan. *
+                <span ng-show="form.accept_terms.$dirty && form.accept_terms.$error.required" class="help-block">
             Lees en aanvaard de Klusbib afspraken om verder te gaan</span>
-        </label>
+            </label>
         </div>
 
 		<div class="form-actions">

@@ -101,7 +101,7 @@ describe("tool api service", function () {
     });
     // service.Update = Update;
     it("should update tool", function () {
-        var user = {id : 1, name: 'mynewname'};
+        var user = {tool_id : 1, name: 'mynewname'};
         httpBackend.expectPUT(__env.apiUrl + '/tools/1').respond(200, '');
         toolService.Update(user).then(function(response) {
             expect(response).toEqual({ success: true, message:'', totalCount:0});

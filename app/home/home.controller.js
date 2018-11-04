@@ -4,7 +4,6 @@
 //     angular
 //         .module('toollibApp')
 //         .controller('HomeController', HomeController);
-// import vitrine from './img/vitrine.jpg';
 // import ovam from './img/sponsor/ovam-logo.jpg';
 // require("./img/sponsor/ovam-logo.jpg");
 
@@ -37,7 +36,7 @@
 			{'label': 'FAQ', 'href': '/#!/#faq'}
 		];
 		$scope.headerImage = {
-			    background: 'url(/home/img/vitrine.jpg)'
+			    background: 'url(/home/img/Klusbib-potterij.jpg)'
 		};
      }
 
