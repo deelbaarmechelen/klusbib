@@ -10,7 +10,8 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
             vm.email = params.email;
         };
         vm.enrolment = function () {
-        	console.log('start enrolment for user ' + JSON.stringify(vm.user));
+            Flash.clear();
+            console.log('start enrolment for user ' + JSON.stringify(vm.user));
         	var token = TokenService.GetGuestToken(success);
         	
             function success(res) {
@@ -20,17 +21,18 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
                 	.then(function (response) {
                 	if (response.success) {
                 		// TODO: send confirmation email to user (+ email address verification?)
-                		var id = Flash.create('success', 'Inschrijving succesvol ingediend', 5000);
+                		Flash.create('success', 'Inschrijving succesvol ingediend', 5000);
+                        $location.path('/lid-worden/payment');
                 	} else {
                 		if (response.status == 409) {
                 		    // a user with that email already exists
-                            var id = Flash.create('warning', 'Je bent reeds ingeschreven. Log in om je gegevens na te kijken en/of laat een nieuwe bevestiging versturen', 0);
+                            Flash.create('warning', 'Je bent reeds ingeschreven. Log in om je gegevens na te kijken en/of laat een nieuwe bevestiging versturen', 0);
                             $location.path('/reset-pwd').search({email: vm.user.email});
                             return;
                         }
                 		vm.dataLoading = false;
                 		console.log("enrolment problem: " + response.message);
-                		var id = Flash.create('danger', 'Inschrijving mislukt: ' + response.message 
+                		Flash.create('danger', 'Inschrijving mislukt: ' + response.message
                 				+ '. Blijft het probleem zich voordoen, stuur ons dan een bericht', 0);
                 	}
                 });
@@ -39,22 +41,24 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
         };
 
         vm.enrolment_pay = function () {
-        	alert ('not implemented, should update enrolment with payment method/result');
+            Flash.clear();
+            alert ('not implemented, should update enrolment with payment method/result');
             UserService.Update(vm.user)
 				.then(function (response) {
                 if (response.success) {
-                    var id = Flash.create('success', 'Inschrijving succesvol bijgewerkt', 5000);
+                    Flash.create('success', 'Inschrijving succesvol bijgewerkt', 5000);
                     // TODO: redirect to pay success page!
                 } else {
                     console.log("enrolment problem: " + response.message);
-                    var id = Flash.create('danger', 'Inschrijving mislukt: ' + response.message
+                    Flash.create('danger', 'Inschrijving mislukt: ' + response.message
                         + '. Blijft het probleem zich voordoen, stuur ons dan een bericht', 0);
                 }
             });
 
         };
         vm.resetPwd = function() {
-        	AuthService.resetPwd(this.email, function () {
+            Flash.clear();
+            AuthService.resetPwd(this.email, function () {
 				Flash.create('success', 'Paswoord reset aangevraagd: check je mailbox', 5000);
 			} , function () {
 				Flash.create('danger', 'Er is een probleem opgetreden bij je paswoord reset aanvraag,'
@@ -62,7 +66,8 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
 			})
         }
         vm.resendConfirmation = function() {
-        	AuthService.verifyEmail(this.email).then(function(response) {
+            Flash.clear();
+            AuthService.verifyEmail(this.email).then(function(response) {
             	if (response.success) {
             		Flash.create('success', 'Bericht verstuurd: check je mailbox', 5000);
             	} else {
