@@ -50,8 +50,40 @@ export default function routing($stateProvider) {
             }
         }
     }
+    var enrolmentSuccessState = {
+        name: 'enrolment.success',
+        url: '/success',
+        views: {
+            enrolment: {
+                template: require('./enrolment.success.view.html'),
+                controller: 'EnrolmentController as vm'
+            }
+        },
+        resolve: {
+            inverse: function() {
+                return true;
+            }
+        }
+    }
+    var enrolmentFailedState = {
+        name: 'enrolment.failed',
+        url: '/failed',
+        views: {
+            enrolment: {
+                template: require('./enrolment.failed.view.html'),
+                controller: 'EnrolmentController as vm'
+            }
+        },
+        resolve: {
+            inverse: function() {
+                return true;
+            }
+        }
+    }
     $stateProvider.state(enrolmentState);
     $stateProvider.state(enrolmentFormState);
     $stateProvider.state(enrolmentPaymentState);
+    $stateProvider.state(enrolmentSuccessState);
+    $stateProvider.state(enrolmentFailedState);
 
 }
