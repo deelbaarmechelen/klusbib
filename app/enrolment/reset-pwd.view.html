@@ -4,11 +4,19 @@
 	<div>
 		<h3>Ben je je paswoord vergeten?</h3>
 		<p>Vul dan hier je email adres in en wij sturen jou en nieuwe.</p>
-		<h3>Geen bevestiging van inschrijving</h3>
+
+		<h3>Problemen bij inschrijving</h3>
 		<p>Als je geen bevestiging van je inschrijving ontving kan je hier een nieuw bericht laten opsturen.<br>
-		Kijk in dat geval ook zeker je spam folder na!<br>
-		<br>
-		Voor alle andere problemen, neem je best <a href="mailto:info@klusbib.be">contact</a> met ons op 
+			Kijk in dat geval ook zeker je spam folder na!<br>
+			In dit bericht zit een link om je email adres (nogmaals) te bevestigen
+		</p>
+		<p>Ondervond je problemen tijdens je inschrijving, dan kan je ze met onderstaande knop hervatten.
+		</p>
+
+		<h3>Andere problemen</h3>
+		<p>
+			Voor alle andere problemen, neem je best <a href="mailto:info@klusbib.be">contact</a> met ons op.<br>
+			Dan zoeken we samen naar een oplossing
 		</p>
 		
 	</div>
@@ -22,7 +30,8 @@
 		<div class="form-actions">
 <!--             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Inschrijven</button> -->
             <button type="submit" class="btn btn-primary">Verstuur nieuw paswoord</button>
-            <button type="button" class="btn btn-primary" ng-click="vm.resendConfirmation()">Inschrijving bevestigen</button>
+            <button type="button" class="btn btn-primary" ng-click="vm.resendConfirmation()">Email bevestigen</button>
+            <button type="button" class="btn btn-primary" ng-click="vm.checkEnrolment()">Inschrijving hervatten</button>
 			<button type="button" class="btn btn-primary" ng-click="vm.redirectToLogin()">Inloggen</button>
         </div>
     </form>

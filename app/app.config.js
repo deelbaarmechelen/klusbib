@@ -96,7 +96,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
 	  }
 	  var resetPwdState = {
 			    name: 'reset-pwd',
-			    url: '/reset-pwd',
+			    url: '/reset-pwd?email',
 			    views: {
 			    	nav: {
 			    		component: 'navigation'

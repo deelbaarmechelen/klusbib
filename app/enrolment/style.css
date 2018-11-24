@@ -15,3 +15,8 @@
 
 /* active buttons turn light green-blue*/
 #status-buttons a.active span   { background:#00BC8C; }
+
+#status-buttons a.disabled {
+    color: gray;
+    cursor: default;
+}

@@ -6,10 +6,25 @@ export default class PaymentService {
         this.$localStorage = $localStorage;
     }
 
-    Create(token) {
-        var paymentData = {stripeToken: token};
-        return this.$http.post(this.__env.apiUrl + '/payment', paymentData)
+    Create(paymentMode, userId, orderId, redirectUrl, paymentMean = false) {
+        if (paymentMean) {
+            var paymentData = {paymentMode: paymentMode, userId: userId, orderId: orderId, redirectUrl: redirectUrl, paymentMean: paymentMean};
+        } else {
+            var paymentData = {paymentMode: paymentMode, userId: userId, orderId: orderId, redirectUrl: redirectUrl};
+        }
+        return this.$http.post(this.__env.apiUrl + '/payments', paymentData)
             .then(this.handleSuccess, this.handleError);
+    }
+
+    Get(paymentId) {
+        return this.$http.get(this.__env.apiUrl + '/payments/' + paymentId)
+            .then(this.handleSuccess, this.handleError);
+
+    }
+    GetByOrderId(orderId) {
+        return this.$http.get(this.__env.apiUrl + '/payments/' + orderId)
+            .then(this.handleSuccess, this.handleError);
+
     }
 
     // private functions

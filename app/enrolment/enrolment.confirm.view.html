@@ -1,0 +1,21 @@
+<div class="col-md-6 col-md-offset-3">
+
+    <div ng-if="vm.enrolmentSucceeded()" >
+        <h2>Welkom bij Klusbib!</h2>
+        <p>Je inschrijving werd succesvol geregistreerd. </p>
+        <div ng-if="vm.paymentMode === 'TRANSFER'">
+            <p>
+            Je koos voor betaling per overschrijving. We stuurden een bericht met de betalingsgegevens naar je email adres<br>
+            Van zodra we je betaling ontvangen, zullen we je account activeren en kan je starten met gereedschap ontlenen.
+            </p>
+        </div>
+
+    </div>
+    <div ng-if="vm.enrolmentFailed()" >
+        <p>Inschrijving mislukt</p>
+        <p>Er was een probleem bij je inschrijving. Probeer later eens opnieuw</p>
+    </div>
+    <div ng-if="vm.paymentStatus == 'UNKNOWN'" >
+        <p>Aan het verbinden met de server...</p>
+    </div>
+</div>

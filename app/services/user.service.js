@@ -13,6 +13,7 @@
         service.GetAllOrderBy = GetAllOrderBy;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
+        service.GetByEmail = GetByEmail;
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
@@ -29,6 +30,14 @@
         }
         function GetById(id) {
             return $http.get(__env.apiUrl + '/users/' + id).then(handleSuccess, handleError);
+        }
+        function GetByEmail(email, token) {
+            var config = {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }
+            return $http.get(__env.apiUrl + '/users?email=' + email,config).then(handleSuccess, handleError);
         }
 
         function GetByUsername(username) {

@@ -18,6 +18,9 @@ export default function routing($stateProvider) {
                 return true;
             }
         },
+        data: {
+            user: {}
+        },
         redirectTo: 'enrolment.form'
     }
     var enrolmentFormState = {
@@ -50,13 +53,13 @@ export default function routing($stateProvider) {
             }
         }
     }
-    var enrolmentSuccessState = {
-        name: 'enrolment.success',
-        url: '/success',
+    var enrolmentConfirmState = {
+        name: 'enrolment.confirm',
+        url: '/confirm/:orderId',
         views: {
             enrolment: {
-                template: require('./enrolment.success.view.html'),
-                controller: 'EnrolmentController as vm'
+                template: require('./enrolment.confirm.view.html'),
+                controller: 'EnrolmentConfirmController as vm'
             }
         },
         resolve: {
@@ -65,12 +68,12 @@ export default function routing($stateProvider) {
             }
         }
     }
-    var enrolmentFailedState = {
-        name: 'enrolment.failed',
-        url: '/failed',
+    var enrolmentResumeState = {
+        name: 'enrolment.resume',
+        url: '/resume?email',
         views: {
             enrolment: {
-                template: require('./enrolment.failed.view.html'),
+                template: require('./enrolment.resume.view.html'),
                 controller: 'EnrolmentController as vm'
             }
         },
@@ -83,7 +86,7 @@ export default function routing($stateProvider) {
     $stateProvider.state(enrolmentState);
     $stateProvider.state(enrolmentFormState);
     $stateProvider.state(enrolmentPaymentState);
-    $stateProvider.state(enrolmentSuccessState);
-    $stateProvider.state(enrolmentFailedState);
+    $stateProvider.state(enrolmentConfirmState);
+    $stateProvider.state(enrolmentResumeState);
 
 }
