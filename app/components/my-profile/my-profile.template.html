@@ -55,7 +55,8 @@
 	</tr>
 </table>
 </form>
-<h2>Mijn reservaties</h2>
+<div ng-if="$ctrl.reservationsEnabled">
+<h2 >Mijn reservaties</h2>
 <table class="table table-striped">
    <thead>
          <tr>
@@ -80,3 +81,4 @@
         </tr>
    </tbody>
 </table>
+</div>

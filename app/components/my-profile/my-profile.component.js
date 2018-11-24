@@ -22,6 +22,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
               }
           }
         }
+        self.reservationsEnabled = false;
         function isAdmin(user) {
           if (user.role === "admin" && user.state === "ACTIVE") {
               return true;
@@ -31,7 +32,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
         self.showAdminLinks = function () {
             return isAdmin(self.user);
         }
-        self.showReservationsLink = self.showAdminLinks;
+        self.showReservationsLink = self.showAdminLinks && self.reservationsEnabled;
 
         self.updateUser = function() {
           var userToUpdate = {"user_id":this.user.user_id,
