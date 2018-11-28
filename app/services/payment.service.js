@@ -22,14 +22,22 @@ export default class PaymentService {
 
     }
     GetByOrderId(orderId) {
-        return this.$http.get(this.__env.apiUrl + '/payments/' + orderId)
-            .then(this.handleSuccess, this.handleError);
+        return this.$http.get(this.__env.apiUrl + '/payments?orderId=' + orderId)
+            .then(this.handleSuccessGetFirstResult, this.handleError);
 
     }
 
     // private functions
     handleSuccess(response) {
         return { success: true, message: response.data };
+    }
+
+    handleSuccessGetFirstResult(response) {
+        var data = response.data;
+        if (data.length > 0) {
+            return { success: true, message:data[0]}
+        }
+        return { success: false, message: 'Not found', status: 404 };
     }
 
     // function (data, status, headers, config)??

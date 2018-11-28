@@ -11,11 +11,14 @@ export default function EnrolmentConfirmController(Flash, $location, UserService
     vm.orderId = $stateParams.orderId;
 
      PaymentService.GetByOrderId(vm.orderId).then(function(response) {
+        console.log(response);
         if (response.success) {
-            vm.paymentStatus = response.message.paymentStatus;
-            vm.paymentMode = response.message.paymentMode;
+            vm.paymentStatus = response.message.state;
+            vm.paymentMode = response.message.mode;
+            return;
         } else {
             vm.paymentStatus = 'FAILED';
+            return;
         }
      });
      vm.enrolmentSucceeded = function () {
