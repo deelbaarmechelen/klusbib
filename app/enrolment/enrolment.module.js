@@ -3,6 +3,7 @@ import routing from "./enrolment.config.js";
 import EnrolmentController from "./enrolment.controller";
 import EnrolmentConfirmController from "./enrolment.confirm.controller.js";
 import PaymentService from '../services/payment.service.js';
+import EnrolmentService from '../services/enrolment.service.js';
 import angularMoment from 'angular-moment';
 
 import './style.css';
@@ -29,3 +30,4 @@ ENROLMENT_MODULE.directive('myLink', function() {
     };
 });
 ENROLMENT_MODULE.service('PaymentService', PaymentService);
+ENROLMENT_MODULE.service('EnrolmentService', EnrolmentService);

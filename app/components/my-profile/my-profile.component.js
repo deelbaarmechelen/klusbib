@@ -4,8 +4,8 @@
 // 	bindings: { user: '<' },
 //     templateUrl: '/components/my-profile/my-profile.template.html',
 //     controller: ['$http', '__env', 'UserService', 'ReservationService','$location','Flash',
-MyProfileController.$inject = ['$http', '__env', 'UserService', 'ReservationService','$location','Flash'];
-export default function MyProfileController($http, __env, UserService, ReservationService, $location, Flash) {
+MyProfileController.$inject = ['$http', '__env', 'UserService', 'ReservationService','$location','Flash', '$state'];
+export default function MyProfileController($http, __env, UserService, ReservationService, $location, Flash, $state) {
         var self = this;
         this.$onChanges = function(changesObj) {
           if (changesObj.user && changesObj.user.currentValue) {
@@ -56,6 +56,13 @@ export default function MyProfileController($http, __env, UserService, Reservati
                     var id = Flash.create('danger', response.message, 5000);
                 }
           });
+        }
+        self.renewal = function () {
+            if (this.user.state === 'ACTIVE' || this.user.state === 'EXPIRED') {
+                return $state.go('enrolment.renewal', {'userId': this.user.user_id});
+            } else {
+                Flash.create('warning', 'Online hernieuwing niet mogelijk, neem contact met ons op');
+            }
         }
 //          self.reservations = [];
 //          self.reservations = filterFutureReservations(self.user.reservations);

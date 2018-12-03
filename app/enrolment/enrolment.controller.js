@@ -1,8 +1,10 @@
 import PaymentService from "../services/payment.service";
 
-EnrolmentController.$inject = ['TokenService', 'UserService','Flash', 'AuthService', '$location', '$window', '$state', 'PaymentService', 'moment'];
+EnrolmentController.$inject = ['TokenService', 'UserService','Flash', 'AuthService', '$location', '$window', '$state',
+    'PaymentService', 'EnrolmentService', 'moment'];
 
-export default function EnrolmentController(TokenService, UserService, Flash, AuthService, $location, $window, $state, PaymentService, moment) {
+export default function EnrolmentController(TokenService, UserService, Flash, AuthService, $location, $window, $state,
+                                            PaymentService, EnrolmentService, moment) {
     var vm = this;
 
     vm.profileLinkEnabled = true;
@@ -44,6 +46,39 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
 
     };
 
+    vm.renewal = function () {
+        Flash.clear();
+        var token = TokenService.GetGuestToken(success);
+        function success(res) {
+            console.log('token for guest: ' + JSON.stringify(res.data.token));
+            UserService.GetByEmail(vm.email, res.data.token)
+                .then(function (response) {
+                    if (response.success) {
+                        if (response.message.state === 'ACTIVE' || response.message.state === 'EXPIRED') {
+                            $state.get('enrolment').data.user = response.message;
+                            $state.get('enrolment').data.renewal = true;
+                            return $state.go('enrolment.payment');
+                        } else if (response.message.state == 'CHECK_PAYMENT') {
+                            Flash.create('danger', 'Inschrijving nog niet voltooid, hernieuwing niet mogelijk', 0);
+                        } else {
+                            Flash.create('danger', 'Online lidmaatschap hernieuwing niet mogelijk, neem contact met ons op', 0);
+                        }
+                    } else {
+                        if (response.status === 404) {
+                            // user not found, start new enrolment
+                            console.log("user not found: " + response.message);
+                            Flash.create('danger', 'Geen lid gevonden voor dit email adres, hernieuwing niet mogelijk', 0);
+                            return $state.go('enrolment.form');
+                        } else {
+                            console.log("renewal failed: " + response.message);
+                            Flash.create('danger', 'Technisch probleem: ' + response.message
+                                + '. Blijft het probleem zich voordoen, stuur ons dan een bericht', 0);
+                        }
+                    }
+                });
+        }
+
+    }
     vm.checkEnrolment = function () {
         Flash.clear();
         var token = TokenService.GetGuestToken(success);
@@ -90,34 +125,59 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
         $state.get('enrolment.confirm').data.payment_mode = vm.payment_mode;
         var userId = $state.current.data.user.user_id;
         var orderId = userId + '-' + moment().format('YYYYMMDDhhmmss');
+        var renewal = $state.current.data.renewal;
         if (vm.payment_mode == 'TRANSFER') {
             // Manual transfer -> create payment (will trigger email with payment details)
             // and go directly to confirm page
-            PaymentService.Create(vm.payment_mode, userId, orderId)
-                .then(function (response) {
-                    if (response.success) {
-                        return $state.go('^.confirm', {orderId: response.message.orderId});
+            var handleEnrolmentTransferResponse = function (response) {
+                if (response.success) {
+                    return $state.go('^.confirm', {orderId: response.message.orderId});
+                } else {
+                    console.log("payment creation problem: " + response.message);
+                    if (renewal) {
+                        Flash.create('danger', 'Hernieuwing mislukt: ' + response.message
+                            + '. Blijft het probleem zich voordoen, stuur ons dan een bericht', 0);
                     } else {
-                        console.log("payment creation problem: " + response.message);
                         Flash.create('danger', 'Inschrijving mislukt: ' + response.message
                             + '. Blijft het probleem zich voordoen, stuur ons dan een bericht', 0);
                     }
-                });
+                }
+            }
+            if (renewal) {
+                EnrolmentService.Renewal(vm.payment_mode, userId, orderId)
+                    .then(handleEnrolmentTransferResponse);
+            } else {
+                EnrolmentService.Enrolment(vm.payment_mode, userId, orderId)
+                    .then(handleEnrolmentTransferResponse);
+            }
             return;
         }
         if (vm.payment_mode == 'MOLLIE') {
             var redirectUrl = $state.href('enrolment.confirm',{orderId: orderId}, {absolute: true});
-            PaymentService.Create(vm.payment_mode, userId, orderId, redirectUrl)
-                .then(function (response) {
-                    if (response.success) {
-                        $state.get('enrolment.confirm').data.orderId = response.message.orderId;
-                        $window.location.href = response.message.checkoutUrl;
+            var handleEnrolmentMollieResponse = function (response) {
+                if (response.success) {
+                    console.log(response);
+                    $state.get('enrolment.confirm').data.orderId = response.message.orderId;
+                    // if (true) { // 208 = Already reported, go directly to confirmation
+                    if (response.status == 208) { // 208 = Already reported, go to renewal instead?
+                        Flash.create('info', 'Je bent al ingeschreven, wil je je lidmaatschap hernieuwen?', 5000);
+                        // return $state.go('^.confirm', {orderId: response.message.orderId});
                     } else {
-                        console.log("payment creation problem: " + response.message);
-                        Flash.create('danger', 'Inschrijving mislukt: ' + response.message
-                            + '. Blijft het probleem zich voordoen, stuur ons dan een bericht', 0);
+                        $window.location.href = response.message.checkoutUrl;
                     }
-                });
+                } else {
+                    console.log("payment creation problem: " + response.message);
+                    Flash.create('danger', 'Inschrijving mislukt: ' + response.message
+                        + '. Blijft het probleem zich voordoen, stuur ons dan een bericht', 0);
+                }
+            }
+            if (renewal) {
+                EnrolmentService.Renewal(vm.payment_mode, userId, orderId, redirectUrl)
+                    .then(handleEnrolmentMollieResponse);
+            } else {
+                EnrolmentService.Enrolment(vm.payment_mode, userId, orderId, redirectUrl)
+                    .then(handleEnrolmentMollieResponse);
+            }
             return;
         }
         console.log('Unknown payment mode: ' + vm.payment_mode);

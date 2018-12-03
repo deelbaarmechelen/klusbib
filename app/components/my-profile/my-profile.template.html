@@ -1,6 +1,6 @@
 
 <flash-message></flash-message>
-<a class="btn btn-primary" ui-sref="reservations()" ng-if="$ctrl.showReservationsLink()">Beheer reservaties</a>
+<a class="btn btn-primary" ui-sref="reservations()" ng-if="$ctrl.showReservationsLink">Beheer reservaties</a>
 <a class="btn btn-primary" ui-sref="tool-admin()" ng-if="$ctrl.showAdminLinks()">Beheer tools</a>
 <h2>Mijn gegevens</h2>
 <form name="form" ng-submit="$ctrl.updateUser()" role="form">
@@ -51,7 +51,10 @@
 	</tr>
 	<tr>
 		<td></td>
-		<td><button type="submit" class="btn btn-primary">Aanpassen</button></td>
+		<td>
+			<button type="submit" class="btn btn-primary">Aanpassen</button>
+			<button type="button" class="btn btn-primary" ng-click="$ctrl.renewal()">Lidmaatschap hernieuwen</button>
+		</td>
 	</tr>
 </table>
 </form>

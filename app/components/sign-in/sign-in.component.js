@@ -3,15 +3,16 @@
 // 	templateUrl : '/components/sign-in/sign-in.template.html',
 // 	controller :
 // 	[ '$http', '__env', 'Auth', '$localStorage', '$location','User',
-SignInController.$inject = ['$http', '__env', 'Auth', '$localStorage', '$location','User'];
-		export default function SignInController($http, __env, Auth, $localStorage, $location, User) {
+SignInController.$inject = ['$http', '__env', 'Auth', '$localStorage', '$location', '$state', 'User'];
+		export default function SignInController($http, __env, Auth, $localStorage, $location, $state,  User) {
 //    		console.log('Init sign in controller, token=' + $localStorage.token + ',token claims=' 
 //    				+ JSON.stringify(Auth.getTokenClaims()));
 			var self = this;
 			self.user = User.get();
             var successAuth = function (res) {
             	User.updateToken(res.data.token);
-	            $location.path("/");
+	            // $location.path("/");
+                $state.go('profile', {'userId' : self.user.id});
 	        }
 
 	        this.init = function() {
