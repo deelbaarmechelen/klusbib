@@ -16,6 +16,7 @@
                 <img src="img/payment-methods/inghomepay.png" ng-click="vm.enrolmentPayWith('inghomepay')"/>
                 <!--<img src="img/payment-methods/creditcard.png" ng-click="vm.enrolmentPayWith('creditcard')"/>-->
                 <!--<img src="img/payment-methods/banktransfer.png"/>-->
+                <br/>
             <label class="form-check-label" for="payment_mode_transfer">
             <input type="radio" name="payment_mode" id="payment_mode_transfer" class="form-check-input" ng-model="vm.payment_mode"
             	value="TRANSFER" required />
@@ -24,6 +25,8 @@
             <span ng-show="form.payment_mode.$dirty && form.payment_mode.$error.required" class="help-block">Kies een betalingswijze</span>
             </div>
         <!--</div>-->
+
+        <uib-progressbar ng-show="vm.showProgressBar" class="progress-striped active" max="100" value="100" type="warn"><i >even geduld...</i></uib-progressbar>
 
 		<div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Bevestigen</button>

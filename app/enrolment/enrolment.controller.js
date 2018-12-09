@@ -10,6 +10,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     vm.profileLinkEnabled = true;
     vm.paymentLinkEnabled = false;
     vm.confirmLinkEnabled = false;
+    vm.showProgressBar = false;
 
     vm.init = function () {
         var params = $location.search();
@@ -17,6 +18,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     };
     vm.enrolment = function () {
         Flash.clear();
+        vm.showProgressBar = true;
         console.log('start enrolment for user ' + JSON.stringify(vm.user));
         var token = TokenService.GetGuestToken(success);
 
@@ -25,6 +27,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
             vm.user.role = 'member';
             UserService.Create(vm.user, res.data.token)
                 .then(function (response) {
+                vm.showProgressBar = false;
                 if (response.success) {
                     vm.user.user_id = response.message.user_id;
                     $state.get('enrolment').data.user = response.message;
@@ -122,6 +125,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     }
     vm.enrolment_pay = function (paymentMean) {
         Flash.clear();
+        vm.showProgressBar = true;
         $state.get('enrolment.confirm').data.payment_mode = vm.payment_mode;
         var userId = $state.current.data.user.user_id;
         var orderId = userId + '-' + moment().format('YYYYMMDDhhmmss');
@@ -130,6 +134,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
             // Manual transfer -> create payment (will trigger email with payment details)
             // and go directly to confirm page
             var handleEnrolmentTransferResponse = function (response) {
+                vm.showProgressBar = false;
                 if (response.success) {
                     return $state.go('^.confirm', {orderId: response.message.orderId});
                 } else {
@@ -155,6 +160,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
         if (vm.payment_mode == 'MOLLIE') {
             var redirectUrl = $state.href('enrolment.confirm',{orderId: orderId}, {absolute: true});
             var handleEnrolmentMollieResponse = function (response) {
+                vm.showProgressBar = false;
                 if (response.success) {
                     console.log(response);
                     $state.get('enrolment.confirm').data.orderId = response.message.orderId;

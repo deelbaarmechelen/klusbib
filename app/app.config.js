@@ -76,7 +76,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
 	  }
 	  var profileState = {
 			    name: 'profile',
-			    url: '/profile/{userId}',
+			    url: '/profile/{userId}?token',
 			    views: {
 			    	nav: {
 			    		component: 'navigation'
@@ -86,8 +86,11 @@ export default function routing($stateProvider, $urlRouterProvider) {
 			    	}
 			    },
 				resolve: {
-					user: ['UserService', '$transition$', function(UserService, $transition$) {
-				          return UserService.GetById($transition$.params().userId);
+					user: ['UserService', '$transition$', '$localStorage', function(UserService, $transition$, $localStorage) {
+                        if ($transition$.params().token) {
+                            $localStorage.token = $transition$.params().token
+                        }
+						return UserService.GetById($transition$.params().userId);
 				    }],
 				    inverse: function() {
 				    	return true;

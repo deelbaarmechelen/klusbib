@@ -1,7 +1,8 @@
 <div class="col-md-6 col-md-offset-3">
     <div>
-		<p>Om lid te worden, vul je het formulier in en klik op Inschrijven. Je ontvangt dan een email bericht met een link om je adres te verifiëren<br>
-		Van zodra we je lidgeld ontvangen zullen wij je account activeren en kan je ook materiaal ontlenen.
+		<p>Om lid te worden, vul je het formulier in en klik je op Inschrijven. Je ontvangt dan een email bericht met een link om je adres te verifiëren.<br>
+		    Vervolgens kan je de betaling uitvoeren (nog 20€ tot eind 2018, 30€ vanaf 2019). Dit kan online met Bancontact, Belfius, ING Home Pay, KBC/CBC of via overschrijving.<br>
+            Van zodra we je lidgeld ontvangen zullen wij je account activeren en kan je ook materiaal ontlenen.
 		</p>
         <a class="btn btn-primary" ui-sref="signin" >Ben je al lid?</a>
         <a class="btn btn-primary" ui-sref="reset-pwd" >Geen bevestiging ontvangen?</a>
@@ -30,10 +31,10 @@
             <input type="text" name="address" id="address" class="form-control" ng-model="vm.user.address" size="50" maxlength="255" required />
             <span ng-show="form.address.$dirty && form.address.$error.required" class="help-block">Adres is vereist</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.postcode.$dirty && form.postcode.$error.required }">
-            <label for="postcode">Postcode *</label>
-            <input type="text" name="postcode" id="postcode" class="form-control" ng-model="vm.user.postcode" size="5" maxlength="5" required />
-            <span ng-show="form.postcode.$dirty && form.postcode.$error.required" class="help-block">Postcode is vereist</span>
+        <div class="form-group" ng-class="{ 'has-error': form.postal_code.$dirty && form.postal_code.$error.required }">
+            <label for="postal_code">Postcode *</label>
+            <input type="text" name="postal_code" id="postal_code" class="form-control" ng-model="vm.user.postal_code" size="5" maxlength="5" required />
+            <span ng-show="form.postal_code.$dirty && form.postal_code.$error.required" class="help-block">Postcode is vereist</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
             <label for="city">Stad *</label>
@@ -59,18 +60,29 @@
 
 
         <p>
-            Lees ook eerst de <a href="/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a> na.
+            Lees ook eerst de Klusbib afspraken en privacyverklaring:<br>
+            <ul>
+                <li>Versie 2018: <a href="/docs/KlusbibAfspraken2018.pdf" target="_blank">klusbib afspraken</a><br></li>
+        <li>Vanaf 2019: <a href="/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a><br></li>
+        <li><a href="/docs/PrivacyVerklaring.pdf" target="_blank">Privacyverklaring</a></li>
+            </ul>
         </p>
         <div class="form-group" ng-class="{ 'has-error': form.accept_terms.$dirty && form.accept_terms.$error.required }">
             <label class="form-check-label" for="accept_terms">
                 <input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" ng-model="vm.user.accept_terms" value="1" required/>
-                Verklaart hierbij de Klusbib afspraken te hebben gelezen en ermee akkoord te gaan. *
+                Verklaart hierbij de Klusbib afspraken en privacyverklaring te hebben gelezen en ermee akkoord te gaan. *
                 <span ng-show="form.accept_terms.$dirty && form.accept_terms.$error.required" class="help-block">
             Lees en aanvaard de Klusbib afspraken om verder te gaan</span>
             </label>
         </div>
 
-		<div class="form-actions">
+        <uib-progressbar ng-show="vm.showProgressBar" class="progress-striped active" max="100" value="100" type="warn"><i >even geduld...</i></uib-progressbar>
+
+        <!--<div layout="row" layout-sm="column" layout-align="space-around">-->
+            <!--<md-progress-circular md-mode="indeterminate"></md-progress-circular>-->
+        <!--</div>-->
+
+        <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Inschrijven</button>
         </div>
     </form>
