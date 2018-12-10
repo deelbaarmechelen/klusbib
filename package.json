@@ -42,8 +42,7 @@
     "ng-file-upload": "^12.2.13",
     "ngstorage": "^0.3.11",
     "oclazyload": "^1.1.0",
-    "scrollreveal": "4.0.5",
-    "stripe": "^5.9.0"
+    "scrollreveal": "4.0.5"
   },
   "devDependencies": {
     "angular-mocks": "1.7.5",
@@ -76,18 +75,21 @@
     "raw-loader": "^0.5.1",
     "style-loader": "0.23.1",
     "webpack": "4.22.0",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "3.1.2",
-    "webpack-dev-server": "3.1.9"
+    "webpack-dev-server": "3.1.9",
+    "webpack-merge": "^4.1.5"
   },
   "scripts": {
     "update-deps": "yarn install",
-    "build": "node --max-old-space-size=512 ./node_modules/.bin/webpack --config webpack.config.js",
+    "build": "node --max-old-space-size=512 ./node_modules/.bin/webpack -p --config webpack.prod.js",
     "prepublish": "yarn build",
     "start": "http-server -p 5000 -c-1 dist",
-    "start-dev": "webpack-dev-server --open",
+    "start-dev": "webpack-dev-server --open --config webpack.dev.js",
     "pretest": "yarn install --production=false",
     "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS",
     "test-single-run": "karma start karma.conf.js --single-run",
+    "analyze": "./node_modules/.bin/webpack -p  --json --progress --profile > webpack-build-log.json && ./node_modules/.bin/webpack-bundle-analyzer webpack-build-log.json dist",
     "preupdate-webdriver": "yarn install",
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "yarn run update-webdriver",
