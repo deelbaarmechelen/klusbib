@@ -1,6 +1,8 @@
 <div class="col-md-6 col-md-offset-3">
 
     <form name="form" ng-submit="vm.enrolment_pay()" role="form">
+        <h3 ng-if="vm.isRenewal()">Hernieuwing lidmaatschap ({{vm.renewalAmount}} &euro;)</h3>
+        <h3 ng-if="!vm.isRenewal()">Inschrijving Klusbib ({{vm.enrolmentAmount}} &euro;)</h3>
 
         <!--<div class="form-group" ng-class="{ 'has-error': form.payment_mode.$dirty && form.payment_mode.$error.required }">-->
         	<div class="form-check" >

@@ -11,7 +11,15 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     vm.paymentLinkEnabled = false;
     vm.confirmLinkEnabled = false;
     vm.showProgressBar = false;
+    vm.renewalAmount = '20';
+    vm.enrolmentAmount = '20';
 
+    vm.isRenewal = function() {
+        if ($state.current.data && $state.current.data.renewal) {
+            return $state.current.data.renewal;
+        }
+        return false;
+    }
     vm.init = function () {
         var params = $location.search();
         vm.email = params.email;
@@ -178,10 +186,10 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
                 }
             }
             if (renewal) {
-                EnrolmentService.Renewal(vm.payment_mode, userId, orderId, redirectUrl)
+                EnrolmentService.Renewal(vm.payment_mode, userId, orderId, redirectUrl, paymentMean)
                     .then(handleEnrolmentMollieResponse);
             } else {
-                EnrolmentService.Enrolment(vm.payment_mode, userId, orderId, redirectUrl)
+                EnrolmentService.Enrolment(vm.payment_mode, userId, orderId, redirectUrl, paymentMean)
                     .then(handleEnrolmentMollieResponse);
             }
             return;
