@@ -25,10 +25,12 @@ import consumerList from './components/consumer-list/consumer-list.module.js';
 import myProfile from './components/my-profile/my-profile.module.js';
 import reservationList from './components/reservation-list/reservation-list.module.js';
 import toolAdmin from './components/tool-admin/tool-admin.module.js';
+import userAdmin from './components/user-admin/user-admin.module.js';
 
 import AuthService from './services/auth.service.js';
 import TokenService from './services/token.service.js';
 import UserService from './services/user.service.js';
+import EnrolmentService from './services/enrolment.service.js';
 import ToolService from './services/tool.service.js';
 import ReservationService from './services/reservation.service.js';
 
@@ -55,7 +57,8 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     consumerList,
     myProfile,
 	reservationList,
-    toolAdmin
+    toolAdmin,
+    userAdmin
 //	'enrolment'
 ]);
 //Register environment in AngularJS as constant
@@ -79,6 +82,7 @@ app.controller('toollibController', ['$scope', 'User', function ToollibControlle
 }]);
 app.service('ToolService', ToolService);
 app.factory('UserService', UserService);
+app.service('EnrolmentService', EnrolmentService);
 app.factory('TokenService', TokenService);
 app.factory('AuthService', AuthService);
 app.service('ReservationService', ReservationService);

@@ -25,6 +25,11 @@ export default class EnrolmentService {
         return this.$http.post(this.__env.apiUrl + '/enrolment', paymentData)
             .then(this.handleSuccess, this.handleError);
     }
+    ConfirmEnrolmentPayment(paymentMode, userId) {
+        var paymentData = {paymentMode: paymentMode, userId: userId};
+        return this.$http.post(this.__env.apiUrl + '/enrolment_confirm', paymentData)
+            .then(this.handleSuccess, this.handleError);
+    }
 
     // private functions
     handleSuccess(response) {

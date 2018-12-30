@@ -1,0 +1,221 @@
+<div class="container well mtp75">
+    <div class="row">
+
+        <span class="pull-left">
+                <button ng-click="$ctrl.reset()" class="btn btn-danger">Reset</button>
+            </span>
+        <span class="pull-left">
+                <input type="text" ng-model="$ctrl.search.$" class="form-control" placeholder="Zoeken" />
+            </span>
+        <span class="pull-left">
+                <input type="text" ng-model="$ctrl.search.lastname" class="form-control" placeholder="Zoeken op naam" />
+            </span>
+        <span class="pull-left">
+                <input type="text" ng-model="$ctrl.search.firstname" class="form-control" placeholder="Zoeken op voornaam" />
+            </span>
+
+
+        <span ng-click="$ctrl.addUser()" class="pull-right btn btn-danger">Toevoegen</span>
+    </div>
+    <br>
+    <div class="row">
+
+            <span class="pull-right">
+                <select class="form-control"
+                        ng-model="$ctrl.actItem"
+                        ng-change="$ctrl.activeStatus($ctrl.actItem)"
+                        ng-options="page for (idx,page) in $ctrl.itemShowCount">
+                </select>
+            </span>
+    </div>
+    <!--<div class="row">-->
+        <!--<div class="alert alert-warning">-->
+            <!--<p>Sort key: {{$ctrl.sortKey}}</p>-->
+            <!--<p>Reverse: {{$ctrl.reverse}}</p>-->
+            <!--<p>Search String : {{$ctrl.search}}</p>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <br><br>
+    <div class="row">
+
+        <table cellpadding=10 cellspacing=10 border=0 class="table">
+            <tr>
+                <th>No.</th>
+                <th ng-click="$ctrl.sort('lastname')">Naam
+                    <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='lastname'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
+                </th>
+                <!--<th ng-click="$ctrl.sort('description')">Beschrijving-->
+                    <!--<span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='description'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>-->
+                <!--</th>-->
+                <th ng-click="$ctrl.sort('firstname')">Voornaam
+                    <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='firstname'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
+                </th>
+                <th>UPDATE</th>
+                <th>DELETE</th>
+            </tr>
+
+            <tr dir-paginate="user in $ctrl.users|orderBy:$ctrl.sortKey:$ctrl.reverse|filter:$ctrl.search|itemsPerPage:$ctrl.actItem" ng-class="$even ? 'even-row' : 'odd-row'">
+                <td>{{$index+1}}</td>
+                <td>{{user.lastname | uppercase}}</td>
+                <!--<td>{{user.description}}</td>-->
+                <td>{{user.firstname}}</td>
+                <td><div ng-click="$ctrl.editUser(user)" class="btn btn-primary">E</div></td>
+                <td><span ng-click="$ctrl.deleteUser(user)" class="btn btn-danger">X</span></td>
+            </tr>
+        </table>
+
+        <div class="pull-right">
+        <!--<div class="pull-right" style="width:20%;">-->
+            <select class="form-control"
+                    ng-model="$ctrl.actItem"
+                    ng-change="$ctrl.activeStatus($ctrl.actItem)"
+                    ng-options="page for (idx,page) in $ctrl.itemShowCount">
+            </select>
+        </div>
+
+        <div class="text-center">
+            <dir-pagination-controls
+                    max-size="5"
+                    direction-links="true"
+                    boundary-links="true" >
+            </dir-pagination-controls>
+        </div>
+
+    </div> <!-- End OF Row -->
+</div><!-- End OF Container -->
+
+<div class="container" ng-show="$ctrl.UserFormContainer">
+<!--<div class="container" ng-show="UserFormContainer">-->
+    <div class="row">
+
+        <div ng-click="$ctrl.closeFrmBtn()">X</div>
+
+        <table class="table">
+            <tr>
+                <td><b><i>{{$ctrl.Action}} User</i></b></td>
+                <td><input type="text" disabled="disabled" ng-model="$ctrl.displayedUser.user_id" /></td>
+            </tr>
+            <tr>
+                <td>Naam</td>
+                <td><input type="text" placeholder="Name" ng-model="$ctrl.displayedUser.lastname" /></td>
+            </tr>
+            <!--<tr>-->
+                <!--<td>Beschrijving</td>-->
+                <!--<td><input type="text" placeholder="Beschrijving" ng-model="$ctrl.UserDescription" /></td>-->
+            <!--</tr>-->
+            <tr>
+                <td>Voornaam</td>
+                <td><input type="text" placeholder="FirstName" ng-model="$ctrl.displayedUser.firstname" /></td>
+            </tr>
+            <!--<tr>-->
+                <!--<td>Image</td>-->
+                <!--<td>-->
+                    <!--<div class="current">-->
+                        <!--<div>Huidige foto:</div>-->
+                        <!--<img ng-if="$ctrl.hasUserImage($ctrl.UserImgUrl)" ng-src="{{ $ctrl.resizeImage($ctrl.UserImgUrl, '400x') }}"/>-->
+                        <!--<a ng-if="!$ctrl.hasUserImage($ctrl.UserImgUrl)" href="https://www.freeiconspng.com/img/23483" title="Image from freeiconspng.com">-->
+                            <!--<img src="https://www.freeiconspng.com/uploads/no-image-icon-4.png" width="350" alt="Simple No Png" />-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div ngf-select ngf-drop class="drop-box" ng-model="$ctrl.files"-->
+                         <!--ngf-drag-over-class="'dragover'" ngf-multiple="true"-->
+                         <!--ngf-resize="{width: 400, height: 400, quality: .8, type: 'image/jpeg',-->
+               <!--centerCrop: true, pattern='.jpg', restoreExif: false}"-->
+                         <!--ngf-pattern="'image/*'" accept="image/*" >Select or Drop Images here (only jpg)</div>-->
+                    <!--<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>-->
+
+                    <!--<div class="preview">-->
+                        <!--<div>Nieuwe foto (vervangt huidige foto bij opslaan):</div>-->
+                        <!--<img ngf-src="!$ctrl.files[0].$error && $ctrl.files[0]">-->
+                    <!--</div>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <tr>
+                <td>Email</td>
+                <td><input type="text" disabled="disabled" placeholder="Email" ng-model="$ctrl.displayedUser.email" /></td>
+            </tr>
+            <tr>
+                <td>Email status</td>
+                <td><select disabled="disabled" ng-model="$ctrl.displayedUser.email_state" >
+                        <option>CONFIRM_EMAIL</option>
+                        <option>CONFIRMED</option>
+                    </select>
+            </tr>
+            <tr>
+                <td>Rol</td>
+                <td><input type="text" disabled="disabled" placeholder="Rol" ng-model="$ctrl.displayedUser.role" /></td>
+            </tr>
+            <tr>
+                <td>membership_start_date</td>
+                <td><input type="text" disabled="disabled" placeholder="membership_start_date" ng-model="$ctrl.displayedUser.membership_start_date" /></td>
+            </tr>
+            <tr>
+                <td>membership_end_date</td>
+                <td><input type="text" disabled="disabled" placeholder="membership_end_date" ng-model="$ctrl.displayedUser.membership_end_date" /></td>
+            </tr>
+            <tr>
+                <td>payment_mode</td>
+                <td><select disabled="disabled" ng-model="$ctrl.displayedUser.payment_mode" >
+                    <option>MOLLIE</option>
+                    <option>TRANSFER</option>
+                    <option>CASH</option>
+                    <option>OVAM</option>
+                    <option>LETS</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td><select disabled="disabled" ng-model="$ctrl.displayedUser.state" >
+                    <option>ACTIVE</option>
+                    <option>EXPIRED</option>
+                    <option>DISABLED</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Zichtbaar</td>
+                <td><input type="checkbox" disabled="disabled" ng-model="$ctrl.displayedUser.visible" /></td>
+            </tr>
+            <!-- andere velden:
+            {"user_id":0,
+            "state":"ACTIVE",
+            "firstname":"<Voornaam>",
+            "lastname":"<Familienaam>",
+            "email":"bernard@klusbib.be",
+            "email_state":"CONFIRM_EMAIL",
+            "role":"admin",
+            "membership_start_date":"2017-04-01",
+            "membership_end_date":"2019-12-31",
+            "address":"Potterijstraat 5",
+            "postal_code":"2800",
+            "city":"Mechelen",
+            "phone":null,
+            "mobile":null,
+            "registration_number":"77051836172",
+            "payment_mode":"MOLLIE",
+            "accept_terms_date":null,
+            "created_at":"2017-09-01 00:29:12",
+            "updated_at":"2018-12-08 22:22:45"},
+-->
+            <tr>
+                <td>
+                    <input type="button" class="btn btn-primary" value="Save" ng-click="$ctrl.AddUpdateUser($ctrl.files)" /><br>
+                    <select ng-model="$ctrl.displayedUser.confirmation_payment_mode" >
+                        <option>TRANSFER</option>
+                        <option>CASH</option>
+                        <!--<option>OVAM</option>-->
+                        <!--<option>LETS</option>-->
+                    </select>
+                    <input type="button" class="btn btn-primary" value="Confirm Payment" ng-disabled="!$ctrl.canBeConfirmed($ctrl.displayedUser)"
+                           ng-click="$ctrl.ConfirmPayment($ctrl.displayedUser)" />
+                </td>
+                <td><input type="button" class="btn btn-danger" value="Cancel" ng-click="$ctrl.Cancel()" /></td>
+            </tr>
+        </table>
+
+    </div> <!-- End OF Row -->
+</div><!-- End OF Container -->
+
+
+
+

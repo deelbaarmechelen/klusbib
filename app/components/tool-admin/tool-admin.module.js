@@ -1,7 +1,7 @@
 import angular from 'angular';
 import './tool-admin.component';
 import ToolAdminController from "../tool-admin/tool-admin.component";
-import './dirPagination';
+import '../../core/dirPagination';
 
 angular.module('toolAdmin', [
    'angularUtils.directives.dirPagination'
