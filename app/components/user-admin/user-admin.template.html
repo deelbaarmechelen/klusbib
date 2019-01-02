@@ -89,6 +89,7 @@
 <!--<div class="container" ng-show="UserFormContainer">-->
     <div class="row">
 
+        <flash-message></flash-message>
         <div ng-click="$ctrl.closeFrmBtn()">X</div>
 
         <table class="table">
@@ -197,6 +198,11 @@
             "created_at":"2017-09-01 00:29:12",
             "updated_at":"2018-12-08 22:22:45"},
 -->
+            <tr>
+                <td colspan="2">
+                    <uib-progressbar ng-show="$ctrl.showProgressBar" class="progress-striped active" max="100" value="100" type="warn"><i >even geduld...</i></uib-progressbar>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <input type="button" class="btn btn-primary" value="Save" ng-click="$ctrl.AddUpdateUser($ctrl.files)" /><br>

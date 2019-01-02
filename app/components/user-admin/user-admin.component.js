@@ -1,15 +1,13 @@
 
-UserAdminController.$inject = ['UserService', 'EnrolmentService', '$scope', 'Upload', '__env'];
-// export default function UserAdminController($scope, crudService) {
-// export default function UserAdminController($http, __env, UserService, ReservationService, $location, Flash) {
+UserAdminController.$inject = ['UserService', 'EnrolmentService', '$scope', 'Upload', '__env', 'Flash'];
 import UserService from "../../services/user.service";
 
-export default function UserAdminController(UserService, EnrolmentService, $scope, Upload, __env) {
+export default function UserAdminController(UserService, EnrolmentService, $scope, Upload, __env, Flash) {
     var self = this;
     self.UserFormContainer = false;
     self.itemShowCount = ['5','10','20','50'];
-    //self.typeList = ['All',1,2,3,4,5,6,7,8,9,10];
     self.date = new Date();
+    self.showProgressBar = false;
 
     GetAllUsers();
 
@@ -164,15 +162,19 @@ export default function UserAdminController(UserService, EnrolmentService, $scop
 
     self.ConfirmPayment = function (user) {
         console.log('confirm payment for user ' + user.user_id);
+        self.showProgressBar = true;
         var confirmPayment = EnrolmentService.ConfirmEnrolmentPayment(user.confirmation_payment_mode, user.user_id);
         confirmPayment.then (function (response) {
+            self.showProgressBar = false;
             if (response.success == false) {
                 var msg = response.message;
                 alert(msg);
             } else {
+                Flash.create('info', 'Email bericht verzonden met bevestiging inschrijving/verlenging', 0);
                 refreshDisplayedUser(user);
             }
         }, function () {
+            self.showProgressBar = false;
             alert('Error in enrolment confirm payment');
         });
 
