@@ -12,7 +12,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     vm.confirmLinkEnabled = false;
     vm.showProgressBar = false;
     vm.renewalAmount = '20';
-    vm.enrolmentAmount = '20';
+    vm.enrolmentAmount = '30';
 
     vm.isRenewal = function() {
         if ($state.current.data && $state.current.data.renewal) {
