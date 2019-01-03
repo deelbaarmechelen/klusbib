@@ -22,12 +22,6 @@ module.exports = {
                 query: {
                     presets: ['es2015']
                 }
-            },            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader'
-                ]
             },
             {
                 test: /\.(png|svg|jpe?g|gif)$/,
@@ -57,6 +51,7 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: __dirname + '/public'
         }]),
+        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /(nl|be)(?!-)/)
     ],
     mode: 'production'
 }
