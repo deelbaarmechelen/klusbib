@@ -1,4 +1,4 @@
-var webpackConfig = require('./webpack.config.js');
+var webpackConfig = require('./webpack.dev.js');
 
 //jshint strict: false
 module.exports = function (config) {
