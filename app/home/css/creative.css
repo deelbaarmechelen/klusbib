@@ -311,6 +311,20 @@ footer .footer-below {
 }
 .sponsor {
   width: 200px;
+  height: 100.233%;
+  /*padding: 25px;*/
+}
+.sponsor-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 100px 100px;
+  grid-auto-flow: row;
+  grid-gap: 25px;
+  justify-content: space-around;
+  align-content: space-around;
+}
+.sponsor-item {
+  align-self: center;
 }
 .text-primary {
   color: #08B293;
