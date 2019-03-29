@@ -1,0 +1,19 @@
+img.tool-list {
+    width: 200px;
+}
+
+img.tool-detail {
+    width: 400px;
+}
+
+.available {
+    background-color: green;
+}
+
+.in-use {
+    background-color: red;
+}
+
+.maintenance {
+    background-color: orange;
+}

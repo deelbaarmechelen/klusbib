@@ -35,6 +35,7 @@ import ReservationService from './services/reservation.service.js';
 
 import './home/css/app.css';
 import './home/css/creative.css';
+import './static/css/inventory.css';
 
 var env = {};
 if(window){

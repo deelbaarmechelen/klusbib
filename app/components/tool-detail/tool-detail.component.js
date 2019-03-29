@@ -13,58 +13,81 @@ export default class ToolDetailController {
         this.Flash = Flash;
         this.calendarEventTitle = calendarEventTitle;
 
-            var self = this;
-            self.user = User.get();
-            self.isLogged = !!self.user.id
-            self.showCalendar = self.isLogged;
+        var self = this;
+        self.user = User.get();
+        self.isLogged = !!self.user.id
+        self.showCalendar = self.isLogged;
+        // Availability
+        self.showAvailability = false;
 
-            // Reservations
-            self.canAddReservation = self.isLogged;
-            self.requestReservation = function (user, tool, startDate, endDate) {
-                console.log('reservation requested for tool ' + tool.name + ' by user ' + self.user.firstname
-                    + ' from ' + startDate + ' to ' + endDate);
-                this.ReservationService.Create(self.user.id, tool.tool_id, startDate, endDate)
-                    .then(function (response) {
-                        if (response.success) {
-                            self.reloadTool();
-                            // First argument (string) is the type of the flash alert.
-                            // Second argument (string) is the message displays in the flash alert (HTML is ok).
-                            // Third argument (number, optional) is the duration of showing the flash. 0 to not automatically hide flash (user needs to click the cross on top-right corner).
-                            // Fourth argument (object, optional) is the custom class and id to be added for the flash message created.
-                            // Fifth argument (boolean, optional) is the visibility of close button for this flash.
-                            // Returns the unique id of flash message that can be used to call Flash.dismiss(id); to dismiss the flash message.
-                            var id = self.Flash.create('success', 'Reservatie aanvraag succesvol ingediend', 5000);
-                        } else {
-                            var id = self.Flash.create('danger', response.message, 5000);
-                        }
-                    });
+        self.getAvailability  = function (tool) {
+            if (tool.state == 'READY') {
+                return 'Aanwezig';
+            } else if (tool.state == 'IN_USE') {
+                return 'Uitgeleend';
+            } else if (tool.state == 'MAINTENANCE') {
+                return 'Onderhoud';
             }
-            self.startDatePicker = {
-                opened: false
-            };
-            self.openDatePicker = function () {
-                self.startDatePicker.opened = true;
+            return '';
+        }
+        self.getAvailabilityClass  = function (tool) {
+            if (tool.state == 'READY') {
+                return 'badge available';
+            } else if (tool.state == 'IN_USE') {
+                return 'badge in-use';
+            } else if (tool.state == 'MAINTENANCE') {
+                return 'badge maintenance';
             }
-            self.updtReservationEndDate = function () {
-                self.reservationEndDate = this.moment(self.reservationStartDate).add(7, 'days').toDate();
-            }
+            return '';
+        }
+
+        // Reservations
+        self.canAddReservation = self.isLogged;
+        self.requestReservation = function (user, tool, startDate, endDate) {
+            console.log('reservation requested for tool ' + tool.name + ' by user ' + self.user.firstname
+                + ' from ' + startDate + ' to ' + endDate);
+            this.ReservationService.Create(self.user.id, tool.tool_id, startDate, endDate)
+                .then(function (response) {
+                    if (response.success) {
+                        self.reloadTool();
+                        // First argument (string) is the type of the flash alert.
+                        // Second argument (string) is the message displays in the flash alert (HTML is ok).
+                        // Third argument (number, optional) is the duration of showing the flash. 0 to not automatically hide flash (user needs to click the cross on top-right corner).
+                        // Fourth argument (object, optional) is the custom class and id to be added for the flash message created.
+                        // Fifth argument (boolean, optional) is the visibility of close button for this flash.
+                        // Returns the unique id of flash message that can be used to call Flash.dismiss(id); to dismiss the flash message.
+                        var id = self.Flash.create('success', 'Reservatie aanvraag succesvol ingediend', 5000);
+                    } else {
+                        var id = self.Flash.create('danger', response.message, 5000);
+                    }
+                });
+        }
+        self.startDatePicker = {
+            opened: false
+        };
+        self.openDatePicker = function () {
+            self.startDatePicker.opened = true;
+        }
+        self.updtReservationEndDate = function () {
+            self.reservationEndDate = this.moment(self.reservationStartDate).add(7, 'days').toDate();
+        }
 
 
-            self.calendarView = 'month';
-            self.viewDate = new Date();
-            var previousDate = this.moment(self.viewDate);
+        self.calendarView = 'month';
+        self.viewDate = new Date();
+        var previousDate = this.moment(self.viewDate);
 
-            // override default monthView and monthViewTooltip
-            calendarEventTitle.monthView = function (event) {
-                if (event.allDay) {
-                    return event.title + ' (' + this.moment(event.startsAt).format('D-MMM-YYYY') + ' - '
-                        + this.moment(event.endsAt).format('D-MMM-YYYY') + ')';
-                }
-                return event.title + ' (' + calendarDateFilter(event.startsAt, 'time', true) + ')';
+        // override default monthView and monthViewTooltip
+        calendarEventTitle.monthView = function (event) {
+            if (event.allDay) {
+                return event.title + ' (' + this.moment(event.startsAt).format('D-MMM-YYYY') + ' - '
+                    + this.moment(event.endsAt).format('D-MMM-YYYY') + ')';
             }
-            calendarEventTitle.monthViewTooltip = function (event) {
-                return event.title;
-            }
+            return event.title + ' (' + calendarDateFilter(event.startsAt, 'time', true) + ')';
+        }
+        calendarEventTitle.monthViewTooltip = function (event) {
+            return event.title;
+        }
 
 //  		var actions = [{
 //              label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
@@ -77,14 +100,19 @@ export default class ToolDetailController {
 //                alert.show('Deleted', args.calendarEvent);
 //              }
 //            }];
-            var actions = [{}];
+        var actions = [{}];
 
-            self.cellIsOpen = true;
+        self.cellIsOpen = true;
 
     }
     resizeImage (imageUrl, size) {
         if (typeof imageUrl == 'undefined' || imageUrl == null) {
             return;
+        }
+        // only request specific sizes for API images
+        if (!imageUrl.startsWith(this.__env.apiUrl)) {
+            // images from other origins are taken as is
+            return imageUrl;
         }
 //	  			console.log('imageUrl=' + JSON.stringify(imageUrl));
         let baseUrl = imageUrl.substr(0, imageUrl.lastIndexOf('.'));

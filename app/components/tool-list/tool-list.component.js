@@ -57,9 +57,17 @@ export default class ToolListController {
 	}
 
 	resizeImage(imageUrl, size) {
-		var baseUrl = imageUrl.substr(0,imageUrl.lastIndexOf('.'));
-		var ext = imageUrl.substr(imageUrl.lastIndexOf('.')+1);
-		var newUrl = baseUrl + '-' + size + '.' + ext;
+		if (typeof imageUrl == 'undefined' || imageUrl == null) {
+			return;
+		}
+		// only request specific sizes for API images
+		if (!imageUrl.startsWith(__env.apiUrl)) {
+			// images from other origins are taken as is
+			return imageUrl;
+		}
+		let baseUrl = imageUrl.substr(0, imageUrl.lastIndexOf('.'));
+		let ext = imageUrl.substr(imageUrl.lastIndexOf('.') + 1);
+		let newUrl = baseUrl + '-' + size + '.' + ext;
 		return newUrl;
 	}
 

@@ -25,6 +25,10 @@
 				<td>Documentatie</td>
 				<td class="wrap"><a href="{{$ctrl.tool.doc_url}}">{{$ctrl.tool.doc_url}}</a></td>
 			</tr>
+			<!--<tr ng-if="$ctrl.showAvailability">-->
+				<!--<td>Beschikbaarheid</td>-->
+				<!--<td class="wrap"><div ng-class="$ctrl.getAvailabilityClass($ctrl.tool)">{{ $ctrl.getAvailability($ctrl.tool)}}</div></td>-->
+			<!--</tr>-->
 
 		</tbody>
 	</table>
@@ -43,7 +47,7 @@
              </tr>
              <tr>
                  <td>
-					<img ng-src="{{ $ctrl.resizeImage($ctrl.tool.img, '400x') }}"/>
+					<img class="tool-detail" ng-src="{{ $ctrl.resizeImage($ctrl.tool.img, '400x') }}"/>
                  </td>
              </tr>
          </table>
