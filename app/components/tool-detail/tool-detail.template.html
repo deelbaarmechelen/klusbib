@@ -17,6 +17,10 @@
 				<td>Model</td>
 				<td class="wrap">{{ $ctrl.tool.type }}</td>
 			</tr>
+			<tr ng-if="$ctrl.tool.code">
+				<td>Code</td>
+				<td class="wrap">{{ $ctrl.tool.code }}</td>
+			</tr>
 			<tr ng-if="$ctrl.tool.manufacturer_url">
 				<td>Fabrikant</td>
 				<td class="wrap"><a href="{{$ctrl.tool.manufacturer_url}}">{{$ctrl.tool.manufacturer_url}}</a></td>
