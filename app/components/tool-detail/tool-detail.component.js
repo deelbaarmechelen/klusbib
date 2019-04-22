@@ -18,7 +18,7 @@ export default class ToolDetailController {
         self.isLogged = !!self.user.id
         self.showCalendar = self.isLogged;
         // Availability
-        self.showAvailability = false;
+        self.showAvailability = true;
 
         self.getAvailability  = function (tool) {
             if (tool.state == 'READY') {
