@@ -1,9 +1,3 @@
-// angular.
-//   module('myProfile').
-//   component('myProfile', {
-// 	bindings: { user: '<' },
-//     templateUrl: '/components/my-profile/my-profile.template.html',
-//     controller: ['$http', '__env', 'UserService', 'ReservationService','$location','Flash',
 MyProfileController.$inject = ['$http', '__env', 'UserService', 'ReservationService','$location','Flash', '$state'];
 export default function MyProfileController($http, __env, UserService, ReservationService, $location, Flash, $state) {
         var self = this;

@@ -1,5 +1,4 @@
 export default class PaymentService {
-    // static get $inject() { return ['$http', '__env', '$localStorage']; }
     constructor($http, __env, $localStorage){
         this.$http = $http;
         this.__env = __env;

@@ -1,4 +1,3 @@
-// appSignin.factory('Auth', ['$http', '$localStorage', '__env',
 import coreUtils from "../../core/core";
 
 signInFactory.$inject = ['$http', '$localStorage', '__env'];
@@ -58,4 +57,3 @@ export default function signInFactory($http, $localStorage, __env) {
         }
     };
 };
-// ]);
