@@ -7,9 +7,11 @@ export default class EnrolmentService {
 
     Enrolment(paymentMode, userId, orderId, redirectUrl, paymentMean = false) {
         if (paymentMean) {
-            var paymentData = {paymentMode: paymentMode, userId: userId, orderId: orderId, redirectUrl: redirectUrl, paymentMean: paymentMean};
+            var paymentData = {paymentMode: paymentMode, userId: userId, orderId: orderId,
+                redirectUrl: redirectUrl, paymentMean: paymentMean};
         } else {
-            var paymentData = {paymentMode: paymentMode, userId: userId, orderId: orderId, redirectUrl: redirectUrl};
+            var paymentData = {paymentMode: paymentMode, userId: userId, orderId: orderId,
+                redirectUrl: redirectUrl};
         }
         return this.$http.post(this.__env.apiUrl + '/enrolment', paymentData)
             .then(this.handleSuccess, this.handleError);
@@ -17,9 +19,11 @@ export default class EnrolmentService {
 
     Renewal(paymentMode, userId, orderId, redirectUrl, paymentMean = false) {
         if (paymentMean) {
-            var paymentData = {renewal: true, paymentMode: paymentMode, userId: userId, orderId: orderId, redirectUrl: redirectUrl, paymentMean: paymentMean};
+            var paymentData = {renewal: true, paymentMode: paymentMode, userId: userId,
+                orderId: orderId, redirectUrl: redirectUrl, paymentMean: paymentMean};
         } else {
-            var paymentData = {renewal: true, paymentMode: paymentMode, userId: userId, orderId: orderId, redirectUrl: redirectUrl};
+            var paymentData = {renewal: true, paymentMode: paymentMode, userId: userId,
+                orderId: orderId, redirectUrl: redirectUrl};
         }
         return this.$http.post(this.__env.apiUrl + '/enrolment', paymentData)
             .then(this.handleSuccess, this.handleError);

@@ -24,7 +24,44 @@
             	value="TRANSFER" required />
             Overschrijving op volgend rekeningnummer:&nbsp;BE79 5230 8088 4133 (Gebruik ‘lidgeld + naam’ als mededeling)
             </label>
-            <span ng-show="form.payment_mode.$dirty && form.payment_mode.$error.required" class="help-block">Kies een betalingswijze</span>
+            <div ng-if="vm.isAdmin()" >
+            <label class="form-check-label" for="payment_mode_cash">
+                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_cash" class="form-check-input" ng-model="vm.payment_mode"
+                    value="CASH" required />
+                Cash betaling
+            </label>
+            <label class="form-check-label" for="payment_mode_payconiq">
+                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_payconiq" class="form-check-input" ng-model="vm.payment_mode"
+                       value="PAYCONIQ" required />
+                Payconiq betaling
+            </label>
+            <label class="form-check-label" for="payment_mode_mbon">
+                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_mbon" class="form-check-input" ng-model="vm.payment_mode"
+                       value="MBON" required />
+                Mechelen bon betaling
+            </label>
+            <label class="form-check-label" for="payment_mode_lets">
+                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_lets" class="form-check-input" ng-model="vm.payment_mode"
+                       value="LETS" required />
+                LETS bijdrage in blussers
+            </label>
+            <label class="form-check-label" for="payment_mode_ovam">
+                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_ovam" class="form-check-input" ng-model="vm.payment_mode"
+                       value="OVAM" required />
+                OVAM werknemer
+            </label>
+            <label class="form-check-label" for="payment_mode_sponsoring">
+                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_sponsoring" class="form-check-input" ng-model="vm.payment_mode"
+                       value="SPONSORING" required />
+                Sponsoring
+            </label>
+            <label class="form-check-label" for="payment_mode_other">
+                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_other" class="form-check-input" ng-model="vm.payment_mode"
+                       value="OTHER" required />
+                Andere
+            </label>
+            </div>
+                <span ng-show="form.payment_mode.$dirty && form.payment_mode.$error.required" class="help-block">Kies een betalingswijze</span>
             </div>
         <!--</div>-->
 

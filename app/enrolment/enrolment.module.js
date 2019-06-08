@@ -29,5 +29,6 @@ ENROLMENT_MODULE.directive('myLink', function() {
         }
     };
 });
+
 ENROLMENT_MODULE.service('PaymentService', PaymentService);
 ENROLMENT_MODULE.service('EnrolmentService', EnrolmentService);

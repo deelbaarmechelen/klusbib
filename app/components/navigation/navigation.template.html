@@ -29,7 +29,7 @@
                     <li ng-repeat="item in $ctrl.items">
                         <a class="page-scroll" ui-sref="{{item.sref}}">{{item.label}}</a>
                     </li>
-                    <li data-ng-if="!$ctrl.isLogged()">
+                    <li data-ng-if="$ctrl.showEnrolment()">
                         <a ui-sref="enrolment">Lid worden</a>
                     </li>
                     <li>

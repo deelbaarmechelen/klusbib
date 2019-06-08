@@ -1,10 +1,10 @@
 import PaymentService from "../services/payment.service";
 
 EnrolmentController.$inject = ['TokenService', 'UserService','Flash', 'AuthService', '$location', '$window', '$state',
-    'PaymentService', 'EnrolmentService', 'moment'];
+    'PaymentService', 'EnrolmentService', 'moment', 'User'];
 
 export default function EnrolmentController(TokenService, UserService, Flash, AuthService, $location, $window, $state,
-                                            PaymentService, EnrolmentService, moment) {
+                                            PaymentService, EnrolmentService, moment, User) {
     var vm = this;
 
     vm.profileLinkEnabled = true;
@@ -13,13 +13,29 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     vm.showProgressBar = false;
     vm.renewalAmount = '20';
     vm.enrolmentAmount = '30';
-
+    vm.admin = false;
+    vm.loggedUser = function() {
+        var user = User.get();
+        UserService.GetById(user.id).then(function (response) {
+            if (response.success) {
+                console.log('user lookup succeeded');
+                if (response.message.role === "admin" && response.message.state === "ACTIVE") {
+                    vm.admin = true;
+                }
+            } else {
+                console.log('error retrieving user with id ' + user.id);
+            }
+        });
+    }();
     vm.isRenewal = function() {
         if ($state.current.data && $state.current.data.renewal) {
             return $state.current.data.renewal;
         }
         return false;
-    }
+    };
+    vm.isAdmin = function() {
+        return vm.admin;
+    };
     vm.init = function () {
         var params = $location.search();
         vm.email = params.email;
@@ -33,6 +49,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
         function success(res) {
             console.log('token for guest: ' + JSON.stringify(res.data.token));
             vm.user.role = 'member';
+            vm.user.webenrolment = true;
             UserService.Create(vm.user, res.data.token)
                 .then(function (response) {
                 vm.showProgressBar = false;
@@ -138,7 +155,15 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
         var userId = $state.current.data.user.user_id;
         var orderId = userId + '-' + moment().format('YYYYMMDDhhmmss');
         var renewal = $state.current.data.renewal;
-        if (vm.payment_mode == 'TRANSFER') {
+        if (vm.payment_mode == 'TRANSFER'
+            || vm.payment_mode == 'CASH'
+            || vm.payment_mode == 'MBON'
+            || vm.payment_mode == 'LETS'
+            || vm.payment_mode == 'PAYCONIQ'
+            || vm.payment_mode == 'OVAM'
+            || vm.payment_mode == 'SPONSORING'
+            || vm.payment_mode == 'OTHER'
+        ) {
             // Manual transfer -> create payment (will trigger email with payment details)
             // and go directly to confirm page
             var handleEnrolmentTransferResponse = function (response) {
@@ -194,6 +219,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
             }
             return;
         }
+
         console.log('Unknown payment mode: ' + vm.payment_mode);
         Flash.create('danger', 'Fout: Onbekende betalingswijze', 5000);
 
