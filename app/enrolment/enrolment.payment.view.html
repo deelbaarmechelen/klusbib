@@ -24,6 +24,11 @@
             	value="TRANSFER" required />
             Overschrijving op volgend rekeningnummer:&nbsp;BE79 5230 8088 4133 (Gebruik ‘lidgeld + naam’ als mededeling)
             </label>
+            <label class="form-check-label" for="payment_mode_stroom">
+            <input type="radio" name="payment_mode" id="payment_mode_stroom" class="form-check-input" ng-model="vm.payment_mode"
+            	value="STROOM" required />
+            Inschrijving via Stroom project, mijn naam en adresgegevens mogen met hen gedeeld worden.
+            </label>
             <div ng-if="vm.isAdmin()" >
             <label class="form-check-label" for="payment_mode_cash">
                 <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_cash" class="form-check-input" ng-model="vm.payment_mode"

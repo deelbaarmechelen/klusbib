@@ -74,6 +74,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
 
     };
 
+    // from https://www.klusbib.be/#!/reset-pwd?email=bernardenmartine@gmail.com
     vm.renewal = function () {
         Flash.clear();
         var token = TokenService.GetGuestToken(success);
@@ -162,10 +163,13 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
             || vm.payment_mode == 'PAYCONIQ'
             || vm.payment_mode == 'OVAM'
             || vm.payment_mode == 'SPONSORING'
+            || vm.payment_mode == 'STROOM'
             || vm.payment_mode == 'OTHER'
         ) {
             // Manual transfer -> create payment (will trigger email with payment details)
             // and go directly to confirm page
+            // Stroom enrolment -> will trigger confirm email to Stroom contact, go directly to confirm page
+            // Other payment modes -> managed by volunteer in Klusbib, go directly to confirm page
             var handleEnrolmentTransferResponse = function (response) {
                 vm.showProgressBar = false;
                 if (response.success) {
