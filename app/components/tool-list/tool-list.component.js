@@ -26,7 +26,7 @@ export default class ToolListController {
         this.showFunctions = false;
 
         this.userId = this.User.get().id;
-        if (this.userId !== undefined) {
+        if (this.userId !== undefined && this.userId !== null) {
             console.log('userId:' + this.userId);
             // FIXME: async call -> is this ok in a constructor?
             this.UserService.GetById(this.userId).then(function(response) {
