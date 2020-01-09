@@ -1,8 +1,8 @@
 
-UserAdminController.$inject = ['UserService', 'EnrolmentService', '$scope', 'Upload', '__env', 'Flash'];
+UserAdminController.$inject = ['UserService', 'EnrolmentService', '$scope', 'Upload', '__env', 'Flash', '$state'];
 import UserService from "../../services/user.service";
 
-export default function UserAdminController(UserService, EnrolmentService, $scope, Upload, __env, Flash) {
+export default function UserAdminController(UserService, EnrolmentService, $scope, Upload, __env, Flash, $state) {
     var self = this;
     self.UserFormContainer = false;
     self.itemShowCount = ['5','10','20','50'];
@@ -154,7 +154,8 @@ export default function UserAdminController(UserService, EnrolmentService, $scop
             return false;
         }
         if (user.confirmation_payment_mode != "CASH"
-            && user.confirmation_payment_mode != "TRANSFER") {
+            && user.confirmation_payment_mode != "TRANSFER"
+            && user.confirmation_payment_mode != "STROOM") {
             return false;
         }
         return true;
@@ -180,6 +181,28 @@ export default function UserAdminController(UserService, EnrolmentService, $scop
 
     }
 
+    self.CanBeRenewed = function (user) {
+        if (!user) {
+            return false;
+        }
+        if (user.state != "ACTIVE"
+            && user.state != "EXPIRED") {
+            return false;
+        }
+        return true;
+    }
+    self.Renewal = function (user) {
+        if (user.state === 'ACTIVE' || user.state === 'EXPIRED') {
+            // $state.get('enrolment').data.user = user;
+            // $state.get('enrolment').data.renewal = true;
+            // FIXME: how to pass parameters to enrolment.payment, params now added to $stateParams, but not transmitted to 'data' of enrolment parent?
+            return $state.go('enrolment.payment', {'user' : user, 'renewal':true});
+        } else if (user.state == 'CHECK_PAYMENT') {
+            Flash.create('danger', 'Inschrijving nog niet voltooid, hernieuwing niet mogelijk', 0);
+        } else {
+            Flash.create('danger', 'Online lidmaatschap hernieuwing niet mogelijk, neem contact met ons op', 0);
+        }
+    }
     self.deleteUser = function (user) {
         //console.log(user.user_id);
         var ans = confirm('Are you sure to delete it?');

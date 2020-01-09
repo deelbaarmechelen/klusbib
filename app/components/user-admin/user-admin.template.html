@@ -141,6 +141,7 @@
                 <td><select disabled="disabled" ng-model="$ctrl.displayedUser.email_state" >
                         <option>CONFIRM_EMAIL</option>
                         <option>CONFIRMED</option>
+                        <option>BOUNCED</option>
                     </select>
             </tr>
             <tr>
@@ -158,11 +159,17 @@
             <tr>
                 <td>payment_mode</td>
                 <td><select disabled="disabled" ng-model="$ctrl.displayedUser.payment_mode" >
+                    <option>UNKNOWN</option>
+                    <option>OTHER</option>
+                    <option>SPONSORING</option>
                     <option>MOLLIE</option>
                     <option>TRANSFER</option>
                     <option>CASH</option>
                     <option>OVAM</option>
                     <option>LETS</option>
+                    <option>MBON</option>
+                    <option>PAYCONIQ</option>
+                    <option>STROOM</option>
                 </select></td>
             </tr>
             <tr>
@@ -171,6 +178,7 @@
                     <option>ACTIVE</option>
                     <option>EXPIRED</option>
                     <option>DISABLED</option>
+                    <option>CHECK_PAYMENT</option>
                 </select></td>
             </tr>
             <tr>
@@ -209,12 +217,14 @@
                     <select ng-model="$ctrl.displayedUser.confirmation_payment_mode" >
                         <option>TRANSFER</option>
                         <option>CASH</option>
+                        <option>STROOM</option>
                         <!--<option>OVAM</option>-->
                         <!--<option>LETS</option>-->
                     </select>
                     <input type="button" class="btn btn-primary" value="Confirm Payment" ng-disabled="!$ctrl.canBeConfirmed($ctrl.displayedUser)"
                            ng-click="$ctrl.ConfirmPayment($ctrl.displayedUser)" />
-                </td>
+<!--                    <input type="button" class="btn btn-primary" value="Renew membership" ng-disabled="!$ctrl.CanBeRenewed($ctrl.displayedUser)"-->
+<!--                           ng-click="$ctrl.Renewal($ctrl.displayedUser)" />                </td>-->
                 <td><input type="button" class="btn btn-danger" value="Cancel" ng-click="$ctrl.Cancel()" /></td>
             </tr>
         </table>
