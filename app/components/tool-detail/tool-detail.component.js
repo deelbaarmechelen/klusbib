@@ -5,7 +5,7 @@ export default class ToolDetailController {
         User, ReservationService, Flash, calendarEventTitle ) {
 
         this.$http = $http;
-        this.moment = require('moment');;
+        this.moment = require('moment');
         this.calendarConfig = calendarConfig;
         this.__env = __env;
         this.User = User;
@@ -16,7 +16,7 @@ export default class ToolDetailController {
         var self = this;
         self.user = User.get();
         self.isLogged = !!self.user.id
-        self.showCalendar = self.isLogged;
+
         // Availability
         self.showAvailability = true;
 
@@ -49,7 +49,7 @@ export default class ToolDetailController {
             this.ReservationService.Create(self.user.id, tool.tool_id, startDate, endDate)
                 .then(function (response) {
                     if (response.success) {
-                        self.reloadTool();
+                        self.reloadTool(tool.tool_id);
                         // First argument (string) is the type of the flash alert.
                         // Second argument (string) is the message displays in the flash alert (HTML is ok).
                         // Third argument (number, optional) is the duration of showing the flash. 0 to not automatically hide flash (user needs to click the cross on top-right corner).
@@ -58,7 +58,7 @@ export default class ToolDetailController {
                         // Returns the unique id of flash message that can be used to call Flash.dismiss(id); to dismiss the flash message.
                         var id = self.Flash.create('success', 'Reservatie aanvraag succesvol ingediend', 5000);
                     } else {
-                        var id = self.Flash.create('danger', response.message, 5000);
+                        var id = self.Flash.create('danger', response.message, 0);
                     }
                 });
         }
@@ -73,6 +73,9 @@ export default class ToolDetailController {
         }
 
 
+        // Calendar
+        // self.showCalendar = self.isLogged;
+        self.showCalendar = false;
         self.calendarView = 'month';
         self.viewDate = new Date();
         var previousDate = this.moment(self.viewDate);
@@ -210,12 +213,12 @@ export default class ToolDetailController {
                 }
                 var event = {
                     title: reservation.title,
-                    color: assignEventColor(reservation),
+                    color: self.assignEventColor(reservation),
                     startsAt: new Date(self.moment(reservation.startsAt, "YYYY-MM-DD")),
                     endsAt: new Date(self.moment(reservation.endsAt, "YYYY-MM-DD")),
                     draggable: false,
                     resizable: false,
-                    actions: actions,
+                    actions: self.actions,
                     allDay: true
                 }
                 self.events.push(event);
@@ -229,12 +232,12 @@ export default class ToolDetailController {
         } else if ('reservation' === reservation.type) {
             color = 'blue';
         }
-        var primarycolor = colourNameToHex('dark' + color);
-        var secondarycolor = colourNameToHex(color);
+        var primarycolor = this.colourNameToHex('dark' + color);
+        var secondarycolor = this.colourNameToHex(color);
         return {primary: primarycolor, secondary: secondarycolor};
     }
     colourNameToHex(colour) {
-        var colours = {"aliceblue":"#f0f8ff","antiquewhite":"#faebd7","aqua":"#00ffff","aquamarine":"#7fffd4","azure":"#f0ffff",
+        var colourMap = {"aliceblue":"#f0f8ff","antiquewhite":"#faebd7","aqua":"#00ffff","aquamarine":"#7fffd4","azure":"#f0ffff",
             "beige":"#f5f5dc","bisque":"#ffe4c4","black":"#000000","blanchedalmond":"#ffebcd","blue":"#0000ff","blueviolet":"#8a2be2","brown":"#a52a2a","burlywood":"#deb887",
             "cadetblue":"#5f9ea0","chartreuse":"#7fff00","chocolate":"#d2691e","coral":"#ff7f50","cornflowerblue":"#6495ed","cornsilk":"#fff8dc","crimson":"#dc143c","cyan":"#00ffff",
             "darkblue":"#00008b","darkcyan":"#008b8b","darkgoldenrod":"#b8860b","darkgray":"#a9a9a9","darkgreen":"#006400","darkkhaki":"#bdb76b","darkmagenta":"#8b008b","darkolivegreen":"#556b2f",
@@ -259,12 +262,12 @@ export default class ToolDetailController {
             "wheat":"#f5deb3","white":"#ffffff","whitesmoke":"#f5f5f5",
             "yellow":"#ffff00","yellowgreen":"#9acd32"};
 
-        if (typeof colours[colour.toLowerCase()] != 'undefined')
-            return colours[colour.toLowerCase()];
+        if (typeof colourMap[colour.toLowerCase()] != 'undefined')
+            return colourMap[colour.toLowerCase()];
 
         return false;
-    };
-        }
+    }
+}
 
 ToolDetailController.$inject = ['$http', 'calendarConfig', '__env',
     'User', 'ReservationService', 'Flash', 'calendarEventTitle'];

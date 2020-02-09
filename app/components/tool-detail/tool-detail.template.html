@@ -1,3 +1,4 @@
+<flash-message></flash-message>
 <h1 align="center">{{ $ctrl.tool.name || 'empty' }}</h1>
 <div class="col-md-3">
 	<table
@@ -30,7 +31,7 @@
 				<td class="wrap"><a href="{{$ctrl.tool.doc_url}}">{{$ctrl.tool.doc_url}}</a></td>
 			</tr>
 			<tr ng-if="$ctrl.showAvailability">
-				<td>Beschikbaarheid (IN TEST)</td>
+				<td>Beschikbaarheid</td>
 				<td class="wrap"><div ng-class="$ctrl.getAvailabilityClass($ctrl.tool)">{{ $ctrl.getAvailability($ctrl.tool)}}</div></td>
 			</tr>
 
@@ -71,7 +72,6 @@
              </span>
          </div>
      </form>
-     <div ng-if="$ctrl.showCalendar">
 
 
     <div ng-if="$ctrl.canAddReservation">
@@ -104,6 +104,7 @@
 				class="btn btn-primary">Reserveren</button>
 	</div>
 
+	<div ng-if="$ctrl.showCalendar">
    	<h2 class="text-center">{{ $ctrl.calendarTitle }}</h2>
    	<flash-message></flash-message>
    	<button

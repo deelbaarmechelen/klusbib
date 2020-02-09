@@ -32,6 +32,7 @@ import UserService from './services/user.service.js';
 import EnrolmentService from './services/enrolment.service.js';
 import ToolService from './services/tool.service.js';
 import ReservationService from './services/reservation.service.js';
+import LendingService from './services/lending.service.js';
 
 import './home/css/app.css';
 import './home/css/creative.css';
@@ -86,5 +87,6 @@ app.service('EnrolmentService', EnrolmentService);
 app.factory('TokenService', TokenService);
 app.factory('AuthService', AuthService);
 app.service('ReservationService', ReservationService);
+app.service('LendingService', LendingService);
 
 export default MODULE_NAME;

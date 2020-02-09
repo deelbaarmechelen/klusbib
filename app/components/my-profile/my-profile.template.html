@@ -59,12 +59,36 @@
 	</tr>
 </table>
 </form>
+<div ng-if="$ctrl.lendingsEnabled">
+<h2 >Mijn ontleningen</h2>
+<table class="table table-striped">
+   <thead>
+         <tr>
+            <th>ID</th>
+            <th>Toestel</th>
+            <th>Begin</th>
+            <th>Einde</th>
+         </tr>
+   </thead>
+   <tbody>
+        <tr ng-repeat="item in $ctrl.lendings">
+            <td><a ng-if="item.tool_id" ng-href="/#!/tools/{{item.tool_id}}">{{item.tool.code}}</a></td>
+            <td>{{item.tool.name}}</td>
+            <td>{{item.start_date | date:'yyyy-MM-dd'}}</td>
+            <td>{{item.due_date}}</td>
+            <td>
+<!--             	<button ng-click="$ctrl.extend(item)">Verleng</button> -->
+            </td>
+        </tr>
+   </tbody>
+</table>
+</div>
 <div ng-if="$ctrl.reservationsEnabled">
 <h2 >Mijn reservaties</h2>
 <table class="table table-striped">
    <thead>
          <tr>
-            <th>Titel</th>
+            <th>ID</th>
             <th>Toestel</th>
             <th>Begin</th>
             <th>Einde</th>
@@ -72,15 +96,15 @@
          </tr>
    </thead>
    <tbody>
-        <tr ng-repeat="item in $ctrl.reservations"> 
-            <td>{{item.title}}</td>
-            <td><a ng-href="/#!/tools/{{item.tool_id}}">{{item.tool_id}}</a></td>
+        <tr ng-repeat="item in $ctrl.reservations"> <!-- TODO: add filter to hide cancelled reservations? -->
+            <td><a ng-if="item.tool_id" ng-href="/#!/tools/{{item.tool_id}}">{{item.tool_code}}</td>
+            <td>{{item.tool_name}}</td>
             <td>{{item.startsAt}}</td>
             <td>{{item.endsAt}}</td>
             <td>{{item.state}}</td>
             <td>
 <!--             	<button ng-click="$ctrl.extend(item)">Verleng</button> -->
-            	<button ng-click="$ctrl.cancel(item)">Annuleer</button>
+            	<button class="btn btn-primary" ng-click="$ctrl.cancel(item)">Annuleer</button>
             </td>
         </tr>
    </tbody>

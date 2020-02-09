@@ -3,6 +3,7 @@ export default class ReservationService {
         this.$http = $http;
         this.__env = __env;
         this.$localStorage = $localStorage;
+        this.moment = require('moment');
     }
 
     GetAll() {
@@ -25,15 +26,15 @@ export default class ReservationService {
     Create(userId, toolId, startDate, endDate, type, state, comment) {
         var reservation = {'user_id' : userId, 'tool_id' : toolId, 'title' : 'Reservatie',
                 'state' : state, 'type' : type, 'comment' : comment,
-                'startsAt' : moment(startDate).format('YYYY-MM-DD'), 'endsAt' : moment(endDate).format('YYYY-MM-DD')};
+                'startsAt' : this.moment(startDate).format('YYYY-MM-DD'), 'endsAt' : this.moment(endDate).format('YYYY-MM-DD')};
         console.log('Reservation data: ' + JSON.stringify(reservation));
         var config = {
                 headers: {
-                    'Authorization': 'Bearer ' + $localStorage.token
+                    'Authorization': 'Bearer ' + this.$localStorage.token
                 }
         }
         return this.$http.post(this.__env.apiUrl + '/reservations', reservation, config)
-            .then(handleSuccess, handleError);
+            .then(this.handleSuccess, this.handleError);
     }
 
     Extend(reservation) {
