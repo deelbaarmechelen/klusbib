@@ -1,29 +1,34 @@
-<div class="jumbotron">
- 	<h1>Klusbib inventaris</h1>
- 	<p>Hier vind je een overzicht van de werktuigen in onze bib</p>
+<h1>Klusbib inventaris - {{$ctrl.translateCategory($ctrl.category)}}</h1>
+<p>Hier vind je een overzicht van de werktuigen in onze bib</p>
+<div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Filter Toolbar">
+    <div class="btn-group" role="group" aria-label="Filter buttons">
+        <button class="btn btn-primary" ng-click="$ctrl.filterCategory('all')">
+            {{$ctrl.translateCategory('all')}}
+        </button>
+        <button class="btn btn-primary" ng-click="$ctrl.filterCategory('general')">
+            {{$ctrl.translateCategory('general')}}
+        </button>
+        <button class="btn btn-primary" ng-click="$ctrl.filterCategory('car')">
+            {{$ctrl.translateCategory('car')}}
+        </button>
+        <button class="btn btn-primary" ng-click="$ctrl.filterCategory('construction')">
+            {{$ctrl.translateCategory('construction')}}
+        </button>
+        <button class="btn btn-primary" ng-click="$ctrl.filterCategory('technics')">
+            {{$ctrl.translateCategory('technics')}}
+        </button>
+        <button class="btn btn-primary" ng-click="$ctrl.filterCategory('wood')">
+            {{$ctrl.translateCategory('wood')}}
+        </button>
+        <button class="btn btn-primary" ng-click="$ctrl.filterCategory('garden')">
+            {{$ctrl.translateCategory('garden')}}
+        </button>
+    </div>
+    <div class="input-group" role="group" aria-label="Search box">
+        <input type="text" class="form-control" placeholder="Zoeken:" aria-label="Search box" ng-model="searchText">
+    </div>
 </div>
-      	
-<button ng-click="$ctrl.filterCategory('general')">
-    {{$ctrl.translateCategory('general')}} 
-</button>
-<button ng-click="$ctrl.filterCategory('car')">
-    {{$ctrl.translateCategory('car')}} 
-</button>
-<button ng-click="$ctrl.filterCategory('construction')">
-    {{$ctrl.translateCategory('construction')}}
-</button>
-<button ng-click="$ctrl.filterCategory('technics')">
-    {{$ctrl.translateCategory('technics')}}
-</button>
-<button ng-click="$ctrl.filterCategory('wood')">
-    {{$ctrl.translateCategory('wood')}}
-</button>
-<button ng-click="$ctrl.filterCategory('garden')">
-    {{$ctrl.translateCategory('garden')}}
-</button>
 <br>
-<h2>{{$ctrl.translateCategory($ctrl.category)}}</h2>
-
 <div ng-if="$ctrl.totalItems > $ctrl.itemsPerPage" uib-pagination boundary-links="true" total-items="$ctrl.totalItems" items-per-page="$ctrl.itemsPerPage"
      ng-model="$ctrl.currentPage" ng-change='$ctrl.pageChanged()' class="pagination-sm"
      previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" num-pages="numPages" ></div>
@@ -36,8 +41,7 @@
          </tr>
    </thead>
    <tbody>
-
-        <tr ng-repeat="item in $ctrl.tools| filter:{category:$ctrl.filterCategory }"> 
+        <tr ng-repeat="item in $ctrl.tools | filter: {name: searchText}">
             <td>
             <a ui-sref="toolDetail({ toolId: item.tool_id })">
             	<img class="tool-list" ng-if="item.img" ng-src="{{ $ctrl.resizeImage(item.img, 'x200') }}"/>
@@ -45,16 +49,15 @@
             <td><a ui-sref="toolDetail({ toolId: item.tool_id })">{{item.name}}</a><br>
                 {{item.description}}
             </td>
-            <td><button ng-click="$ctrl.deleteTool(item.tool_id, $index)" ng-if=$ctrl.showFunctions>Verwijderen</button></td>
+            <td><button class="btn btn-primary" ng-click="$ctrl.deleteTool(item.tool_id, $index)" ng-if=$ctrl.showFunctions>Verwijderen</button></td>
         </tr>
         <tr class="buttons" ng-if=$ctrl.showFunctions>
             <td>
-                <button ng-click="$ctrl.newTool()">
+                <button class="btn btn-primary" ng-click="$ctrl.newTool()">
                     Werktuig toevoegen
                 </button>
             </td>
         </tr>
-
    </tbody>
 </table>
 <div ng-if="$ctrl.totalItems > $ctrl.itemsPerPage" uib-pagination boundary-links="true" total-items="$ctrl.totalItems" items-per-page="$ctrl.itemsPerPage"

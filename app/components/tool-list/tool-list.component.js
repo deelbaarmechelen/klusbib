@@ -73,6 +73,7 @@ export default class ToolListController {
 
 	translateCategory (category) {
 		let catMap = {
+				'all' : 'Alles',
 				'general' : 'Algemeen',
 				'car' : 'Auto',
 				'construction' : 'Bouw',

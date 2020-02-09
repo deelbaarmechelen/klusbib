@@ -20,6 +20,9 @@ export default class ToolService{
             .then(this.handleSuccess, this.handleError);
     }
     GetByCategoryOrderBy(category, page, perPage, sortField, direction) {
+        if (typeof category === 'undefined' || category === 'all') {
+            return this.GetAllOrderBy(page, perPage, sortField, direction);
+        }
         page = typeof page !== 'undefined' ? page : 1;
         perPage = typeof perPage !== 'undefined' ? perPage : this.defaultPageSize;
         sortField = typeof sortField !== 'undefined' ? sortField : 'code';

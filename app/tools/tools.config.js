@@ -12,7 +12,7 @@ export default function routing($stateProvider) {
                 component: 'toolList',
             }
         },
-        params: {category: 'general', page: '1'},
+        params: {category: 'all', page: '1'},
         resolve: {
             inverse: function() {
                 return true;
