@@ -25,7 +25,8 @@
         </button>
     </div>
     <div class="input-group" role="group" aria-label="Search box">
-        <input type="text" class="form-control" placeholder="Zoeken:" aria-label="Search box" ng-model="searchText">
+        <input type="text" id="searchBox" class="form-control" placeholder="Zoeken:" aria-label="Search box"
+               ng-model="$ctrl.searchText" ng-change='$ctrl.queryChanged()' focus-on-condition="$ctrl.searchText !== ''">
     </div>
 </div>
 <br>
@@ -41,7 +42,8 @@
          </tr>
    </thead>
    <tbody>
-        <tr ng-repeat="item in $ctrl.tools | filter: {name: searchText}">
+        <tr ng-repeat="item in $ctrl.tools">
+<!--        <tr ng-repeat="item in $ctrl.tools | filter: {name: searchText}">-->
             <td>
             <a ui-sref="toolDetail({ toolId: item.tool_id })">
             	<img class="tool-list" ng-if="item.img" ng-src="{{ $ctrl.resizeImage(item.img, 'x200') }}"/>

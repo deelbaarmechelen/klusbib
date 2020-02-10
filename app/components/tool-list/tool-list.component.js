@@ -7,7 +7,7 @@ export default class ToolListController {
 // export default function ToolListController($http, User, UserService, __env, $stateParams, $state) {
     static get $$ngIsClass(){return true;}
 
-    constructor($http, User, UserService, __env, $stateParams, $state) {
+    constructor($http, User, UserService, __env, $stateParams, $state, $timeout) {
     	var self = this;
     	this.$http=$http;
     	this.User=User;
@@ -15,6 +15,7 @@ export default class ToolListController {
     	this.__env=__env;
     	this.$stateParams=$stateParams;
     	this.$state=$state;
+    	this.$timeout=$timeout;
 
         // pagination
         this.totalItems = 0;
@@ -23,12 +24,14 @@ export default class ToolListController {
         this.itemsPerPage = 0;
 
         this.category = this.$stateParams.category;
+        this.searchText = this.$stateParams.query;
+
+
         this.showFunctions = false;
 
         this.userId = this.User.get().id;
         if (this.userId !== undefined && this.userId !== null) {
             console.log('userId:' + this.userId);
-            // FIXME: async call -> is this ok in a constructor?
             this.UserService.GetById(this.userId).then(function(response) {
             	if (response.success) {
                     self.user = response.message;
@@ -47,7 +50,12 @@ export default class ToolListController {
 		this.itemsPerPage = this.pageSize;
 	}
 
-	pageChanged () {
+	queryChanged () {
+		console.log('Query changed to: ' + this.searchText);
+		// FIXME: How to suppress 'Transition Rejection - The transition has been superseded by a different transition'-errors?
+		this.$state.go('tools', {category: this.category, page: this.currentPage, query: this.searchText});
+	};
+    pageChanged () {
 		console.log('Page changed to: ' + this.currentPage);
 		this.$state.go('tools', {category: this.category, page: this.currentPage});
 	};
@@ -96,4 +104,4 @@ export default class ToolListController {
 	}
 }
 
-ToolListController.$inject = [ '$http', 'User', 'UserService', '__env', '$stateParams', '$state'];
+ToolListController.$inject = [ '$http', 'User', 'UserService', '__env', '$stateParams', '$state', '$timeout'];

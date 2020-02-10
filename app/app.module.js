@@ -89,4 +89,39 @@ app.factory('AuthService', AuthService);
 app.service('ReservationService', ReservationService);
 app.service('LendingService', LendingService);
 
+app.directive('focusOnCondition', ['$timeout',
+    function ($timeout) {
+        var checkDirectivePrerequisites = function (attrs) {
+            if (!attrs.focusOnCondition && attrs.focusOnCondition != "") {
+                throw "FocusOnCondition missing attribute to evaluate";
+            }
+        }
+
+        return {
+            restrict: "A",
+            link: function (scope, element, attrs, ctrls) {
+                checkDirectivePrerequisites(attrs);
+
+                scope.$watch(attrs.focusOnCondition, function (currentValue, lastValue) {
+                    if(currentValue == true) {
+                        $timeout(function () {
+                            element[0].focus();
+                        });
+                    }
+                });
+            }
+        };
+    }
+]);
+// use defaultErrorHandler to modify default error handling behaviour e.g. suppress superseded transition error
+// The built-in defaultErrorHandler prints the error to the console
+// app.run(function($state) {
+//     // window.myAppErrorLog = [];
+//     $state.defaultErrorHandler(function(error) {
+//         // This is a naive example of how to silence the default error handler.
+//         // window.myAppErrorLog.push(error);
+//
+//         console.error(error.message + ' ' + error.);
+//     });
+// })
 export default MODULE_NAME;

@@ -12,7 +12,7 @@ export default function routing($stateProvider) {
                 component: 'toolList',
             }
         },
-        params: {category: 'all', page: '1'},
+        params: {category: 'all', page: '1', query: null},
         resolve: {
             inverse: function() {
                 return true;
@@ -26,8 +26,14 @@ export default function routing($stateProvider) {
             pageSize: function() {
                 return 25;
             },
-            toolsData: ['ToolService','category', 'currentPage', 'pageSize', function(ToolService, category, currentPage, pageSize) {
-                return ToolService.GetByCategoryOrderBy(category, currentPage, pageSize).then(function(response) {
+            // FIXME: $stateparams deprecation - https://ui-router.github.io/guide/ng1/migrate-to-1_0#stateparams-deprecation
+            query: ['$stateParams', function($stateParams) {
+                return $stateParams.query || null;
+            }],
+            toolsData: ['ToolService','category', 'currentPage', 'pageSize', 'query', function(ToolService, category, currentPage, pageSize, query) {
+                let sortField;
+                let direction;
+                return ToolService.GetByCategoryAnqQueryOrderBy(category, currentPage, pageSize, sortField, direction,query).then(function(response) {
                     if (response.success) {
                         console.log('Total count:' + response.totalCount);
                         return {tools: response.message, count:response.totalCount};

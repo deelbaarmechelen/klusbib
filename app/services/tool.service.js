@@ -19,6 +19,18 @@ export default class ToolService{
         return this.$http.get(this.__env.apiUrl + '/tools?_page=' + page + '&_perPage=' + perPage + '&_sortField=' + sortField + '&_sortDir=' + direction)
             .then(this.handleSuccess, this.handleError);
     }
+    GetByQueryOrderBy(page, perPage, sortField, direction, query) {
+        if (typeof query === 'undefined' || query == null) {
+            return this.GetAllOrderBy(page, perPage, sortField, direction);
+        }
+        page = typeof page !== 'undefined' ? page : 1;
+        perPage = typeof perPage !== 'undefined' ? perPage : this.defaultPageSize;
+        sortField = typeof sortField !== 'undefined' ? sortField : 'code';
+        direction = typeof direction !== 'undefined' ? direction : 'asc';
+        return this.$http.get(this.__env.apiUrl + '/tools?_page=' + page + '&_perPage=' + perPage
+            + '&_sortField=' + sortField + '&_sortDir=' + direction + '&_query=' + query)
+            .then(this.handleSuccess, this.handleError);
+    }
     GetByCategoryOrderBy(category, page, perPage, sortField, direction) {
         if (typeof category === 'undefined' || category === 'all') {
             return this.GetAllOrderBy(page, perPage, sortField, direction);
@@ -28,6 +40,21 @@ export default class ToolService{
         sortField = typeof sortField !== 'undefined' ? sortField : 'code';
         direction = typeof direction !== 'undefined' ? direction : 'asc';
         return this.$http.get(this.__env.apiUrl + '/tools?category=' + category + '&_page=' + page + '&_perPage=' + perPage + '&_sortField=' + sortField + '&_sortDir=' + direction)
+            .then(this.handleSuccess, this.handleError);
+    }
+    GetByCategoryAnqQueryOrderBy(category, page, perPage, sortField, direction, query) {
+        if (typeof query === 'undefined' || query == null) {
+            return this.GetByCategoryOrderBy(category, page, perPage, sortField, direction);
+        }
+        if (typeof category === 'undefined' || category === 'all') {
+            return this.GetByQueryOrderBy(page, perPage, sortField, direction, query);
+        }
+        page = typeof page !== 'undefined' ? page : 1;
+        perPage = typeof perPage !== 'undefined' ? perPage : this.defaultPageSize;
+        sortField = typeof sortField !== 'undefined' ? sortField : 'code';
+        direction = typeof direction !== 'undefined' ? direction : 'asc';
+        return this.$http.get(this.__env.apiUrl + '/tools?category=' + category + '&_page=' + page + '&_perPage=' + perPage
+            + '&_sortField=' + sortField + '&_sortDir=' + direction + '&_query=' + query)
             .then(this.handleSuccess, this.handleError);
     }
 
