@@ -11,7 +11,6 @@
             <th>Materiaal code</th>
             <th>Van</th>
             <th>Tot</th>
-            <th>Type</th>
             <th>Status</th>
             <th>Opmerking</th>
             <th ng-if="$ctrl.showFunctions" >Functies</th>
@@ -33,11 +32,6 @@
             <td><input type="date" ng-model="newReservation.startDate"></input></td>
             <td><input type="date" ng-model="newReservation.endDate"></input></td>
             <td>
-           		<select name="newReservationType" ng-model="newReservation.type">
-           			<option ng-repeat="type in $ctrl.reservationTypes" value="{{type.id}}">{{type.name}}</option>
-		    	</select>
-            </td>
-            <td>
            		<select name="newReservationState" ng-model="newReservation.state">
            			<option ng-repeat="state in $ctrl.reservationStates" value="{{state.id}}">{{state.name}}</option>
 		    	</select>
@@ -55,11 +49,6 @@
             <td>{{$ctrl.getToolNameAndCode(item.tool_id)}} ({{item.tool_id}})</td>
             <td>{{item.startsAt}}</td>
             <td>{{item.endsAt}}</td>
-            <td>
-            	<select ng-model="item.type">
-           			<option ng-repeat="type in $ctrl.reservationTypes" value="{{type.id}}">{{type.name}}</option>
-		    	</select>
- 			</td>
             <td>
           		<select ng-model="item.state">
            			<option ng-repeat="state in $ctrl.reservationStates" value="{{state.id}}">{{state.name}}</option>

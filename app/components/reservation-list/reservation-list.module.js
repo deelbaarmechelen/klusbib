@@ -28,6 +28,7 @@ appReservationList.config(['$httpProvider', function ($httpProvider) {
 }]);
 
 angular.module('reservationList').component('reservationList', {
+    bindings: {user: '<'},
     template : require('./reservation-list.template.html'),
     controller :ReservationListController
 });
