@@ -58,7 +58,7 @@
             <td ng-if="$ctrl.showFunctions">
 			<button ng-click="$ctrl.confirmReservation(item, $index)" ng-if="$ctrl.canBeConfirmed(item)">Bevestigen</button>
 			<button ng-click="$ctrl.convertToLoan(item, $index)" ng-if="$ctrl.canBeConvertedToLoan(item)">Uitlenen</button>
-			<button ng-click="$ctrl.extendReservation(item, $index)" ng-if="$ctrl.canBeExtended(item)">Verlengen</button>
+<!--			<button ng-click="$ctrl.extendReservation(item, $index)" ng-if="$ctrl.canBeExtended(item)">Verlengen</button>-->
 			<button ng-click="$ctrl.cancelReservation(item, $index)" ng-if="$ctrl.canBeCancelled(item)">Annuleren</button>
 			<button ng-click="$ctrl.editReservation(item, $index)">Opslaan</button>
             <button ng-click="$ctrl.closeReservation(item, $index)" ng-if="$ctrl.canBeClosed(item)">Beëindigen</button>
