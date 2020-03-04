@@ -1,10 +1,13 @@
 // angular.module('reservationList').component('reservationList', {
 // 	templateUrl : '/components/reservation-list/reservation-list.template.html',
 // 	controller :
-ReservationListController.$inject = [ '$http', 'ReservationService', 'UserService', 'ToolService', 'Flash','__env','$state'];
-export default function ReservationListController($http, ReservationService, UserService, ToolService, Flash,__env, $state) {
+ReservationListController.$inject = [ '$http', 'ReservationService', 'User', 'UserService', 'ToolService', 'Flash','__env','$state'];
+export default function ReservationListController($http, ReservationService, User, UserService, ToolService, Flash,__env, $state) {
 
 		var self = this;
+		let loggedUser = User.get();
+		self.userId = loggedUser.id;
+
 		ReservationService.GetOpenByPage(1, 100).then(function (response) {
 			if (response.success ) {
 				self.reservations = response.message;
