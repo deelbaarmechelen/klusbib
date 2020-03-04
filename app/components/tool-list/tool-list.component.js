@@ -53,7 +53,7 @@ export default class ToolListController {
 	queryChanged () {
 		console.log('Query changed to: ' + this.searchText);
 		// FIXME: How to suppress 'Transition Rejection - The transition has been superseded by a different transition'-errors?
-		this.$state.go('tools', {category: this.category, page: this.currentPage, query: this.searchText});
+		this.$state.go('tools', {category: this.category, page: 1, query: this.searchText});
 	};
     pageChanged () {
 		console.log('Page changed to: ' + this.currentPage);
