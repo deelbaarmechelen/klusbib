@@ -33,7 +33,7 @@
     "http-server": "^0.11.1",
     "interact": "^0.0.3",
     "js-rich-marker": "^1.1.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "magnific-popup": "^1.1.0",
     "markerclustererplus": "^2.1.4",
     "moment": "2.24.0",
