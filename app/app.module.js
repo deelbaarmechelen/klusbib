@@ -13,7 +13,6 @@ import ngFlash from 'angular-flash-alert';
 import 'angular-flash-alert/dist/angular-flash.min.css';
 import 'angular-simple-logger';
 // import nemLogging from 'angular-simple-logger';
-import 'angular-google-maps';
 import 'ui-leaflet';
 import 'ng-file-upload';
 
@@ -52,7 +51,6 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     uirouter,
     ngFlash,
 	cssProvider,
-	'uiGmapgoogle-maps',
     'ui-leaflet',
     'ngFileUpload',
     navigation,
@@ -68,14 +66,6 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
 app.constant('__env', env);
 
 app.config(routing);
-
-app.config(['uiGmapGoogleMapApiProvider',function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyDI8xAPjlP8imcKL5eyONF2AT2ZJbSE88M',
-        v: '3.30', //defaults to latest 3.X anyhow ( 2.4.1??)
-        libraries: 'weather,geometry,visualization'
-    });
-}])
 
 app.controller('toollibController', ['$scope', 'User', function ToollibController($scope, User){
         $scope.user = User.get();
