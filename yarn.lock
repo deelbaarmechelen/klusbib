@@ -442,7 +442,7 @@ angular-resource@^1.7.8:
   resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.7.9.tgz#fa53623fae2c60debe2410d692447dcb0ba02396"
   integrity sha512-rXXhCE2qT31Pn4Sl+2XL+ntv4zxnA2OzY+clCl8/pOp/s/gIzxpQlEtXipo3QK8Qur3glbIkeF/bJw+gjVAdUw==
 
-angular-simple-logger@>=0.0.1, angular-simple-logger@^0.1.7:
+angular-simple-logger@>=0.0.1, angular-simple-logger@^0.1.7, angular-simple-logger@~0.1.4:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/angular-simple-logger/-/angular-simple-logger-0.1.7.tgz#4ae48e5eac0973f577845918e56d4933cf66f041"
   integrity sha1-SuSOXqwJc/V3hFkY5W1JM89m8EE=
@@ -472,7 +472,7 @@ angular-ui-router@^1.0.22:
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.9.tgz#bc812932e18909038412d594a5990f4bb66c0619"
   integrity sha512-6igWH2GIsxV+J38wNWCh8oyjaZsrIPIDO35twloIUyjlF2Yit6UyLAWujHP05ma/LFxTsx4NtYibRoMNBXPR1A==
 
-angular@^1.7.8:
+angular@1.x, angular@^1.7.8:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.9.tgz#e52616e8701c17724c3c238cfe4f9446fd570bc4"
   integrity sha512-5se7ZpcOtu0MBFlzGv5dsM1quQDoDeUTwZrWjGtTNA7O88cD8TEk5IEKCTDa3uECV9XnvKREVUr7du1ACiWGFQ==
@@ -5293,6 +5293,11 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
+leaflet@0.7.x:
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-0.7.7.tgz#1e352ba54e63d076451fa363c900890cb2cf75ee"
+  integrity sha1-HjUrpU5j0HZFH6NjyQCJDLLPde4=
+
 "less@2.6.x || ^3.7.1":
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/less/-/less-3.8.1.tgz#f31758598ef5a1930dd4caefa9e4340641e71e1d"
@@ -8619,6 +8624,15 @@ uglifyjs-webpack-plugin@2.1.2:
     uglify-js "^3.0.0"
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
+
+ui-leaflet@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/ui-leaflet/-/ui-leaflet-1.0.3.tgz#bea43c6ac0eb8c468483cf72c5cefc34c7a37cf3"
+  integrity sha1-vqQ8asDrjEaEg89yxc78NMejfPM=
+  dependencies:
+    angular "1.x"
+    angular-simple-logger "~0.1.4"
+    leaflet "0.7.x"
 
 uid-number@^0.0.6:
   version "0.0.6"

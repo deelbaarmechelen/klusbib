@@ -1,4 +1,5 @@
 <header></header>
+
 <div id="page-top" data-ng-controller="HomeController">
 	<div data-ng-view></div>
 	
@@ -37,11 +38,12 @@
                 <div class="col-md-8 col-md-offset-2 text-center">
                    <h2 class="section-heading">Ons adres</h2>
                     <hr class="primary">
+                    <leaflet id="map" center="map.center" markers="map.markers" class="w3-round-large w3-greyscale" style="height: 400px;"></leaflet>
  	    	        <!-- Add Google Maps -->
- 	    	        <ui-gmap-google-map class="w3-round-large w3-greyscale" 
- 	    	        	center='map.center' zoom='map.zoom' draggable="true">
-						<ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id"></ui-gmap-marker> 	    	        
- 	    	        </ui-gmap-google-map>
+<!-- 	    	        <ui-gmap-google-map class="w3-round-large w3-greyscale" -->
+<!-- 	    	        	center='map.center' zoom='map.zoom' draggable="true">-->
+<!--						<ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id"></ui-gmap-marker> 	    	        -->
+<!-- 	    	        </ui-gmap-google-map>-->
 <!-- 		        	<div id="map" class="w3-round-large w3-greyscale" style="height: 400px;"></div> -->
 		        	<p>
 		        		<i class="fa fa-map-marker fa-3x"></i>

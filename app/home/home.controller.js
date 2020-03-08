@@ -9,26 +9,30 @@
 
     HomeController.$inject = ['$scope', '$css'];
 
-    export default function HomeController($scope, $css) {
+    export default function HomeController($scope, $css,) {
         var vm = this;
     	
     	// add stylesheet(s)
 		// no longer needed as loaded in app.module.js by webpack?
         // $css.add('./css/creative.css');
 
-    	$scope.map = { 
-   			center: { latitude: 51.022066, longitude: 4.482764 }, 
-   			zoom: 17 
-    	};
-    	$scope.marker = {
-			id: 0,
-			coords: {
-				latitude: 51.022066,
-				longitude: 4.482764
+		$scope.map = {
+			center : {
+				lat: 51.022066,
+				lng: 4.482764,
+				zoom: 17
 			},
-			options: { draggable: true }
-    	};
-    	
+			markers : {
+				klusbibMarker: {
+					lat: 51.022066,
+					lng: 4.482764
+				},
+			}
+		},
+		$scope.defaults = {
+			scrollWheelZoom: false
+		}
+
 		$scope.menuItems = [
 			{'label': 'Over ons', 'href': '/#!/#about'}, 
 			{'label': 'Waar', 'href': '/#!/#where'},
