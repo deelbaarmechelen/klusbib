@@ -7,7 +7,7 @@
     "node": "8.11.1",
     "yarn": ">= 1.0.0"
   },
-  "repository": "https://github.com/renardeau/klusbib",
+  "repository": "https://github.com/deelbaarmechelen/klusbib",
   "license": "AGPLv3",
   "dependencies": {
     "@bower_components/google-maps-utility-library-v3-infobox": "nmccready/google-maps-utility-library-v3-infobox#^1.1.14",
