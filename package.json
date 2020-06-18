@@ -15,7 +15,7 @@
     "@bower_components/google-maps-utility-library-v3-markerwithlabel": "git://github.com/nmccready/google-maps-utility-library-v3-markerwithlabel.git#*",
     "@bower_components/lodash": "lodash/lodash#^4.17.4",
     "@mollie/api-client": "2.2.0",
-    "angular": "^1.7.8",
+    "angular": "^1.8.0",
     "angular-animate": "^1.7.8",
     "angular-base64": "^2.0.5",
     "angular-bootstrap": "^0.12.2",
