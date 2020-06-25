@@ -34,6 +34,12 @@ export default class EnrolmentService {
             .then(this.handleSuccess, this.handleError);
     }
 
+    DeclineEnrolmentPayment(paymentMode, userId) {
+        var paymentData = {paymentMode: paymentMode, userId: userId};
+        return this.$http.post(this.__env.apiUrl + '/enrolment_decline', paymentData)
+            .then(this.handleSuccess, this.handleError);
+    }
+
     // private functions
     handleSuccess(response) {
         return { success: true, message: response.data , status: response.status};

@@ -223,6 +223,8 @@
                     </select>
                     <input type="button" class="btn btn-primary" value="Confirm Payment" ng-disabled="!$ctrl.canBeConfirmed($ctrl.displayedUser)"
                            ng-click="$ctrl.ConfirmPayment($ctrl.displayedUser)" />
+                    <input type="button" class="btn btn-primary" value="Decline Payment" ng-disabled="!$ctrl.canBeDeclined($ctrl.displayedUser)"
+                           ng-click="$ctrl.DeclinePayment($ctrl.displayedUser)" />
 <!--                    <input type="button" class="btn btn-primary" value="Renew membership" ng-disabled="!$ctrl.CanBeRenewed($ctrl.displayedUser)"-->
 <!--                           ng-click="$ctrl.Renewal($ctrl.displayedUser)" />                </td>-->
                 <td><input type="button" class="btn btn-danger" value="Cancel" ng-click="$ctrl.Cancel()" /></td>

@@ -181,6 +181,33 @@ export default function UserAdminController(UserService, EnrolmentService, $scop
 
     }
 
+    self.canBeDeclined = function (user) {
+        if (!user) {
+            return false;
+        }
+        return user.confirmation_payment_mode == "STROOM";
+    }
+
+    self.DeclinePayment = function (user) {
+        console.log('decline payment for user ' + user.user_id);
+        self.showProgressBar = true;
+        var declinePayment = EnrolmentService.DeclineEnrolmentPayment(user.confirmation_payment_mode, user.user_id);
+        declinePayment.then (function (response) {
+            self.showProgressBar = false;
+            if (response.success == false) {
+                var msg = response.message;
+                alert(msg);
+            } else {
+                Flash.create('info', 'Email bericht verzonden met weigering inschrijving/verlenging', 0);
+                refreshDisplayedUser(user);
+            }
+        }, function () {
+            self.showProgressBar = false;
+            alert('Error in enrolment decline payment');
+        });
+
+    }
+
     self.CanBeRenewed = function (user) {
         if (!user) {
             return false;
