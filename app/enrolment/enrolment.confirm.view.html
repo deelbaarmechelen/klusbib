@@ -1,22 +1,30 @@
-<div class="col-md-6 col-md-offset-3">
+<div ng-if="vm.enrolmentSucceeded()" >
+    <h2>Welkom bij Klusbib!</h2>
+    <div ng-if="vm.isRenewal()">
+    <p>Je lidmaatschap verlenging werd succesvol geregistreerd. </p>
+    </div><div ng-if="!vm.isRenewal()">
+    <p>Je inschrijving werd succesvol geregistreerd. </p>
+    </div>
+    <div ng-if="vm.paymentMode === 'TRANSFER'">
+        <p>
+        Je koos voor betaling per overschrijving. We stuurden een bericht met de betalingsgegevens naar je email adres<br>
+        Van zodra we je betaling ontvangen, zullen we je account activeren en kan je starten met gereedschap ontlenen.
+        </p>
+    </div>
+    <div ng-if="vm.paymentMode === 'STROOM'">
+        <p>
+        Je gaf aan in te schrijven via het Stroom project.<br>
+        Wij nemen contact voor je op met de project verantwoordelijke om je inschrijving verder te verwerken, zelf dien je hier niets voor te doen<br>
+        Van zodra je inschrijving bevestigd is zullen we je account activeren en kan je starten met gereedschap ontlenen.
+        </p>
+    </div>
 
-    <div ng-if="vm.enrolmentSucceeded()" >
-        <h2>Welkom bij Klusbib!</h2>
-        <p>Je inschrijving werd succesvol geregistreerd. </p>
-        <div ng-if="vm.paymentMode === 'TRANSFER'">
-            <p>
-            Je koos voor betaling per overschrijving. We stuurden een bericht met de betalingsgegevens naar je email adres<br>
-            Van zodra we je betaling ontvangen, zullen we je account activeren en kan je starten met gereedschap ontlenen.
-            </p>
-        </div>
-
-    </div>
-    <div ng-if="vm.enrolmentFailed()" >
-        <p>Inschrijving mislukt</p>
-        <p>Er was een probleem bij de verwerking van je inschrijving. Neem contact met ons op zodat we samen kunnen bekijken wat er mis liep<br>
-        Stuur je bericht naar <a href="info@klusbib.be">info@klusbib.be</a></p>
-    </div>
-    <div ng-if="vm.paymentStatus == 'UNKNOWN'" >
-        <p>Aan het verbinden met de server...</p>
-    </div>
+</div>
+<div ng-if="vm.enrolmentFailed()" >
+    <p>Inschrijving mislukt</p>
+    <p>Er was een probleem bij de verwerking van je inschrijving. Neem contact met ons op zodat we samen kunnen bekijken wat er mis liep<br>
+    Stuur je bericht naar <a href="info@klusbib.be">info@klusbib.be</a></p>
+</div>
+<div ng-if="vm.paymentStatus == 'UNKNOWN'" >
+    <p>Aan het verbinden met de server...</p>
 </div>

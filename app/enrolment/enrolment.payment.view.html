@@ -1,80 +1,78 @@
-<div class="col-md-6 col-md-offset-3">
 
-    <form name="form" ng-submit="vm.enrolment_pay()" role="form">
-        <h3 ng-if="vm.isRenewal()">Hernieuwing lidmaatschap ({{vm.renewalAmount}} &euro;)</h3>
-        <h3 ng-if="!vm.isRenewal()">Inschrijving Klusbib ({{vm.enrolmentAmount}} &euro;)</h3>
+<form name="form" ng-submit="vm.enrolment_pay()" role="form">
+    <h3 ng-if="vm.isRenewal()">Hernieuwing lidmaatschap ({{vm.renewalAmount}} &euro;)</h3>
+    <h3 ng-if="!vm.isRenewal()">Inschrijving Klusbib ({{vm.enrolmentAmount}} &euro;)</h3>
 
-        <!--<div class="form-group" ng-class="{ 'has-error': form.payment_mode.$dirty && form.payment_mode.$error.required }">-->
-        	<div class="form-check" >
-	        <label class="form-check-label">Betalingswijze *</label><br>
-            <label class="form-check-label" for="payment_mode_mollie">
-            <input type="radio" name="payment_mode" id="payment_mode_mollie" class="form-check-input" ng-model="vm.payment_mode"
-            	value="MOLLIE" required />
-            Online betaling
-            </label><br/>
-                <img src="img/payment-methods/bancontact.png" ng-click="vm.enrolmentPayWith('bancontact')"/>
-                <img src="img/payment-methods/kbc.png" ng-click="vm.enrolmentPayWith('kbc')"/>
-                <img src="img/payment-methods/belfius.png" ng-click="vm.enrolmentPayWith('belfius')"/>
-                <img src="img/payment-methods/inghomepay.png" ng-click="vm.enrolmentPayWith('inghomepay')"/>
-                <!--<img src="img/payment-methods/creditcard.png" ng-click="vm.enrolmentPayWith('creditcard')"/>-->
-                <!--<img src="img/payment-methods/banktransfer.png"/>-->
-                <br/>
-            <label class="form-check-label" for="payment_mode_transfer">
-            <input type="radio" name="payment_mode" id="payment_mode_transfer" class="form-check-input" ng-model="vm.payment_mode"
-            	value="TRANSFER" required />
-            Overschrijving op volgend rekeningnummer:&nbsp;BE79 5230 8088 4133 (Gebruik ‘lidgeld + naam’ als mededeling)
-            </label>
-            <label class="form-check-label" for="payment_mode_stroom">
-            <input type="radio" name="payment_mode" id="payment_mode_stroom" class="form-check-input" ng-model="vm.payment_mode"
-            	value="STROOM" required />
-            Inschrijving via <a href="https://makers.mechelen.be/klusbib-2.0">Stroom</a> project, mijn naam en adresgegevens mogen met hen gedeeld worden (enkel voor buurt Bethaniënpolder-Auwegemvaart).
-            </label>
-            <div ng-if="vm.isAdmin()" >
-            <label class="form-check-label" for="payment_mode_cash">
-                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_cash" class="form-check-input" ng-model="vm.payment_mode"
-                    value="CASH" required />
-                Cash betaling
-            </label>
-            <label class="form-check-label" for="payment_mode_payconiq">
-                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_payconiq" class="form-check-input" ng-model="vm.payment_mode"
-                       value="PAYCONIQ" required />
-                Payconiq betaling
-            </label>
-            <label class="form-check-label" for="payment_mode_mbon">
-                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_mbon" class="form-check-input" ng-model="vm.payment_mode"
-                       value="MBON" required />
-                Mechelen bon betaling
-            </label>
-            <label class="form-check-label" for="payment_mode_lets">
-                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_lets" class="form-check-input" ng-model="vm.payment_mode"
-                       value="LETS" required />
-                LETS bijdrage in blussers
-            </label>
-            <label class="form-check-label" for="payment_mode_ovam">
-                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_ovam" class="form-check-input" ng-model="vm.payment_mode"
-                       value="OVAM" required />
-                OVAM werknemer
-            </label>
-            <label class="form-check-label" for="payment_mode_sponsoring">
-                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_sponsoring" class="form-check-input" ng-model="vm.payment_mode"
-                       value="SPONSORING" required />
-                Sponsoring
-            </label>
-            <label class="form-check-label" for="payment_mode_other">
-                <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_other" class="form-check-input" ng-model="vm.payment_mode"
-                       value="OTHER" required />
-                Andere
-            </label>
-            </div>
-                <span ng-show="form.payment_mode.$dirty && form.payment_mode.$error.required" class="help-block">Kies een betalingswijze</span>
-            </div>
-        <!--</div>-->
-
-        <uib-progressbar ng-show="vm.showProgressBar" class="progress-striped active" max="100" value="100" type="warn"><i >even geduld...</i></uib-progressbar>
-
-		<div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Bevestigen</button>
+    <!--<div class="form-group" ng-class="{ 'has-error': form.payment_mode.$dirty && form.payment_mode.$error.required }">-->
+        <div class="form-check" >
+        <label class="form-check-label">Betalingswijze *</label><br>
+        <label class="form-check-label" for="payment_mode_mollie">
+        <input type="radio" name="payment_mode" id="payment_mode_mollie" class="form-check-input" ng-model="vm.payment_mode"
+            value="MOLLIE" required />
+        Online betaling
+        </label><br/>
+            <img src="img/payment-methods/bancontact.png" ng-click="vm.enrolmentPayWith('bancontact')"/>
+            <img src="img/payment-methods/kbc.png" ng-click="vm.enrolmentPayWith('kbc')"/>
+            <img src="img/payment-methods/belfius.png" ng-click="vm.enrolmentPayWith('belfius')"/>
+            <img src="img/payment-methods/inghomepay.png" ng-click="vm.enrolmentPayWith('inghomepay')"/>
+            <!--<img src="img/payment-methods/creditcard.png" ng-click="vm.enrolmentPayWith('creditcard')"/>-->
+            <!--<img src="img/payment-methods/banktransfer.png"/>-->
+            <br/>
+        <label class="form-check-label" for="payment_mode_transfer">
+        <input type="radio" name="payment_mode" id="payment_mode_transfer" class="form-check-input" ng-model="vm.payment_mode"
+            value="TRANSFER" required />
+        Overschrijving op volgend rekeningnummer:&nbsp;BE79 5230 8088 4133 (Gebruik ‘lidgeld + naam’ als mededeling)
+        </label>
+        <label class="form-check-label" for="payment_mode_stroom">
+        <input type="radio" name="payment_mode" id="payment_mode_stroom" class="form-check-input" ng-model="vm.payment_mode"
+            value="STROOM" required />
+        Inschrijving via <a href="https://makers.mechelen.be/klusbib-2.0">Stroom</a> project, mijn naam en adresgegevens mogen met hen gedeeld worden (enkel voor buurt Bethaniënpolder-Auwegemvaart).
+        </label>
+        <div ng-if="vm.isAdmin()" >
+        <label class="form-check-label" for="payment_mode_cash">
+            <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_cash" class="form-check-input" ng-model="vm.payment_mode"
+                value="CASH" required />
+            Cash betaling
+        </label>
+        <label class="form-check-label" for="payment_mode_payconiq">
+            <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_payconiq" class="form-check-input" ng-model="vm.payment_mode"
+                   value="PAYCONIQ" required />
+            Payconiq betaling
+        </label>
+        <label class="form-check-label" for="payment_mode_mbon">
+            <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_mbon" class="form-check-input" ng-model="vm.payment_mode"
+                   value="MBON" required />
+            Mechelen bon betaling
+        </label>
+        <label class="form-check-label" for="payment_mode_lets">
+            <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_lets" class="form-check-input" ng-model="vm.payment_mode"
+                   value="LETS" required />
+            LETS bijdrage in blussers
+        </label>
+        <label class="form-check-label" for="payment_mode_ovam">
+            <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_ovam" class="form-check-input" ng-model="vm.payment_mode"
+                   value="OVAM" required />
+            OVAM werknemer
+        </label>
+        <label class="form-check-label" for="payment_mode_sponsoring">
+            <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_sponsoring" class="form-check-input" ng-model="vm.payment_mode"
+                   value="SPONSORING" required />
+            Sponsoring
+        </label>
+        <label class="form-check-label" for="payment_mode_other">
+            <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_other" class="form-check-input" ng-model="vm.payment_mode"
+                   value="OTHER" required />
+            Andere
+        </label>
         </div>
-    </form>
+            <span ng-show="form.payment_mode.$dirty && form.payment_mode.$error.required" class="help-block">Kies een betalingswijze</span>
+        </div>
+    <!--</div>-->
 
-</div>
+    <uib-progressbar ng-show="vm.showProgressBar" class="progress-striped active" max="100" value="100" type="warn"><i >even geduld...</i></uib-progressbar>
+
+    <div class="form-actions">
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Bevestigen</button>
+    </div>
+</form>
+

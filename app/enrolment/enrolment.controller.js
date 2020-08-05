@@ -74,7 +74,7 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
 
     };
 
-    // from https://www.klusbib.be/#!/reset-pwd?email=bernardenmartine@gmail.com
+    // from https://www.klusbib.be/#!/reset-pwd?email=my@email.com
     vm.renewal = function () {
         Flash.clear();
         var token = TokenService.GetGuestToken(success);
