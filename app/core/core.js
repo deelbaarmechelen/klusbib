@@ -1,6 +1,6 @@
-coreUtils.$inject = ['$localStorage'];
+coreUtils.$inject = ['$localStorage', 'jwtHelper'];
 
-export default function coreUtils($localStorage) {
+export default function coreUtils($localStorage, jwtHelper) {
 	var user = {id:null};
 
 	function urlBase64Decode(str) {
@@ -48,6 +48,17 @@ export default function coreUtils($localStorage) {
 		},
 		get: function () {
 			return user;
+		},
+		validToken: function() {
+			if (typeof $localStorage.token === 'undefined') {
+				return false;
+			}
+			var isExpired = jwtHelper.isTokenExpired($localStorage.token);
+			if (isExpired) {
+				user.id = null;
+				$localStorage.$reset();
+			}
+			return isExpired;
 		},
 		logout: function() {
 			user.id = null;
