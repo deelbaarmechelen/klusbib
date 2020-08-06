@@ -25,6 +25,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
           }
       }
     }
+    Flash.clear(); // page (re)load -> clear all messages
     self.reservationsEnabled = true;
     self.lendingsEnabled = true;
     function isAdmin(user) {

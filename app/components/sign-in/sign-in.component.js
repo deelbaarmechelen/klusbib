@@ -1,10 +1,11 @@
-SignInController.$inject = ['$http', '__env', 'Auth', '$localStorage', '$location', '$state', 'User'];
-export default function SignInController($http, __env, Auth, $localStorage, $location, $state,  User) {
+SignInController.$inject = ['$http', '__env', 'Auth', '$localStorage', '$location', '$state', 'User', 'Flash'];
+export default function SignInController($http, __env, Auth, $localStorage, $location, $state,  User, Flash) {
 //    		console.log('Init sign in controller, token=' + $localStorage.token + ',token claims=' 
 //    				+ JSON.stringify(Auth.getTokenClaims()));
 	var self = this;
 	self.user = User.get();
 	var successAuth = function (res) {
+		Flash.clear(); // new login: clear all previous messages
 		User.updateToken(res.data.token);
 		// $location.path("/");
 		$state.go('profile', {'userId' : self.user.id});
