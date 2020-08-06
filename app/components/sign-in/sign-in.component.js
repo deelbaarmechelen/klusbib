@@ -3,7 +3,9 @@ export default function SignInController($http, __env, Auth, $localStorage, $loc
 //    		console.log('Init sign in controller, token=' + $localStorage.token + ',token claims=' 
 //    				+ JSON.stringify(Auth.getTokenClaims()));
 	var self = this;
+	User.validToken();
 	self.user = User.get();
+	Flash.clear();
 	var successAuth = function (res) {
 		Flash.clear(); // new login: clear all previous messages
 		User.updateToken(res.data.token);
@@ -30,25 +32,31 @@ export default function SignInController($http, __env, Auth, $localStorage, $loc
 	  };
 	  Auth.signin(formData.email, formData.password, successAuth, function (response) {
 		  if (response.status == '401') {
-			  self.error = 'Invalid credentials!';
+			  Flash.create('danger', 'Ongeldig login of paswoord', 5000);
+			  //self.error = 'Invalid credentials!';
 		  } else if (response.status == '403') {
-			  self.error = 'Operation not allowed. Contact system administrator...';
+			  Flash.create('danger', 'Geen toegang. Contacteer systeem beheerder', 5000);
+			  // self.error = 'Operation not allowed. Contact system administrator...';
 		  } else {
-			  self.error = 'Unexpected error, contact system administrator if this problem persists'
+			  Flash.create('danger', 'Technisch probleem. Probeer opnieuw of contacteer systeem beheerder als het probleem zich blijft voordoen', 5000);
+			  // self.error = 'Unexpected error, contact system administrator if this problem persists'
 		  }
 	  })
 	};
 	this.signout = function () {
 		Auth.signout(function () {
 			User.logout();
-			self.error = 'Successfully logged out!';
+			Flash.create('success', 'Je bent nu uitgelogd', 5000);
+			//self.error = 'Successfully logged out!';
 		});
 	}
 	this.resetPwd = function () {
 		Auth.resetPwd(this.email, function () {
-			self.error = 'Paswoord reset aangevraagd: check je mailbox'
+			Flash.create('success', 'Paswoord reset aangevraagd: check je mailbox', 5000);
+			// self.error = 'Paswoord reset aangevraagd: check je mailbox'
 		} , function () {
-			self.error = 'Er is een probleem opgetreden bij je paswoord reset aanvraag, is het ingegeven email adres correct?'
+			Flash.create('danger', 'Er is een probleem opgetreden bij je paswoord reset aanvraag, is het ingegeven email adres correct?', 5000);
+			// self.error = 'Er is een probleem opgetreden bij je paswoord reset aanvraag, is het ingegeven email adres correct?'
 		})
 	};
 };
