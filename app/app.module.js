@@ -15,6 +15,7 @@ import 'angular-simple-logger';
 // import nemLogging from 'angular-simple-logger';
 import 'ui-leaflet';
 import 'ng-file-upload';
+import 'angular-loading-bar';
 
 import envConfig from './app.env.js';
 import routing from './app.config.js';
@@ -53,6 +54,7 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
 	cssProvider,
     'ui-leaflet',
     'ngFileUpload',
+    'angular-loading-bar',
     navigation,
     signIn,
     consumerList,
