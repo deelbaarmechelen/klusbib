@@ -22,43 +22,48 @@
         <input type="radio" name="payment_mode" id="payment_mode_transfer" class="form-check-input" ng-model="vm.payment_mode"
             value="TRANSFER" required />
         Overschrijving op volgend rekeningnummer:&nbsp;BE79 5230 8088 4133 (Gebruik ‘lidgeld + naam’ als mededeling)
-        </label>
+        </label><br/>
         <label class="form-check-label" for="payment_mode_stroom">
         <input type="radio" name="payment_mode" id="payment_mode_stroom" class="form-check-input" ng-model="vm.payment_mode"
             value="STROOM" required />
         Inschrijving via <a href="https://makers.mechelen.be/klusbib-2.0">Stroom</a> project, mijn naam en adresgegevens mogen met hen gedeeld worden (enkel voor buurt Bethaniënpolder-Auwegemvaart). Je aanvraag wordt ter goedkeuring aan projectverantwoordelijke voorgelegd.
-        </label>
+        </label><br/>
         <div ng-if="vm.isAdmin()" >
+        <label class="form-check-label" for="payment_mode_transfer_done">
+            <input type="radio" name="payment_mode" id="payment_mode_transfer_done" class="form-check-input" ng-model="vm.payment_mode"
+                   value="TRANSFER_DONE" required />
+            Overschrijving (betaling reeds volbracht)
+        </label><br/>
         <label class="form-check-label" for="payment_mode_cash">
             <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_cash" class="form-check-input" ng-model="vm.payment_mode"
                 value="CASH" required />
             Cash betaling
-        </label>
+        </label><br/>
         <label class="form-check-label" for="payment_mode_payconiq">
             <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_payconiq" class="form-check-input" ng-model="vm.payment_mode"
                    value="PAYCONIQ" required />
             Payconiq betaling
-        </label>
+        </label><br/>
         <label class="form-check-label" for="payment_mode_mbon">
             <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_mbon" class="form-check-input" ng-model="vm.payment_mode"
                    value="MBON" required />
             Mechelen bon betaling
-        </label>
+        </label><br/>
         <label class="form-check-label" for="payment_mode_lets">
             <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_lets" class="form-check-input" ng-model="vm.payment_mode"
                    value="LETS" required />
             LETS bijdrage in blussers
-        </label>
+        </label><br/>
         <label class="form-check-label" for="payment_mode_ovam">
             <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_ovam" class="form-check-input" ng-model="vm.payment_mode"
                    value="OVAM" required />
             OVAM werknemer
-        </label>
+        </label><br/>
         <label class="form-check-label" for="payment_mode_sponsoring">
             <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_sponsoring" class="form-check-input" ng-model="vm.payment_mode"
                    value="SPONSORING" required />
             Sponsoring
-        </label>
+        </label><br/>
         <label class="form-check-label" for="payment_mode_other">
             <input ng-if="vm.isAdmin()" type="radio" name="payment_mode" id="payment_mode_other" class="form-check-input" ng-model="vm.payment_mode"
                    value="OTHER" required />

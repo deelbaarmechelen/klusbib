@@ -39,6 +39,9 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     vm.init = function () {
         var params = $location.search();
         vm.email = params.email;
+        if ($state.current.data ) { // reset state
+            $state.current.data = null;
+        }
     };
     vm.enrolment = function () {
         Flash.clear();
@@ -153,10 +156,14 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
         Flash.clear();
         vm.showProgressBar = true;
         $state.get('enrolment.confirm').data.payment_mode = vm.payment_mode;
+        if (vm.payment_mode === 'TRANSFER_DONE') {
+            $state.get('enrolment.confirm').data.paymentCompleted = true;
+        }
         var userId = $state.current.data.user.user_id;
         var orderId = userId + '-' + moment().format('YYYYMMDDhhmmss');
         var renewal = $state.current.data.renewal;
         if (vm.payment_mode == 'TRANSFER'
+            || vm.payment_mode == 'TRANSFER_DONE'
             || vm.payment_mode == 'CASH'
             || vm.payment_mode == 'MBON'
             || vm.payment_mode == 'LETS'

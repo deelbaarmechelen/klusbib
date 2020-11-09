@@ -15,7 +15,7 @@ export default class ToolDetailController {
 
         var self = this;
         self.user = User.get();
-        self.isLogged = !!self.user.id
+        self.isLogged = !!self.user && (!!self.user.id || self.user.id == 0); // user id 0 is a valid user!
 
         // Availability
         self.showAvailability = true;
