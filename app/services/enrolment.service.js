@@ -6,24 +6,36 @@ export default class EnrolmentService {
     }
 
     Enrolment(paymentMode, userId, orderId, redirectUrl, paymentMean = false) {
+        let paymentCompleted = 'false';
+        if (paymentMode == "TRANSFER_DONE") {
+            paymentCompleted = 'true';
+            paymentMode = "TRANSFER";
+        }
+        let paymentData;
         if (paymentMean) {
-            var paymentData = {paymentMode: paymentMode, userId: userId, orderId: orderId,
-                redirectUrl: redirectUrl, paymentMean: paymentMean};
+            paymentData = {paymentMode: paymentMode, userId: userId, orderId: orderId,
+                redirectUrl: redirectUrl, paymentMean: paymentMean, paymentCompleted: paymentCompleted};
         } else {
-            var paymentData = {paymentMode: paymentMode, userId: userId, orderId: orderId,
-                redirectUrl: redirectUrl};
+            paymentData = {paymentMode: paymentMode, userId: userId, orderId: orderId,
+                redirectUrl: redirectUrl, paymentCompleted: paymentCompleted};
         }
         return this.$http.post(this.__env.apiUrl + '/enrolment', paymentData)
             .then(this.handleSuccess, this.handleError);
     }
 
     Renewal(paymentMode, userId, orderId, redirectUrl, paymentMean = false) {
+        let paymentCompleted = 'false';
+        if (paymentMode == "TRANSFER_DONE") {
+            paymentCompleted = 'true';
+            paymentMode = "TRANSFER";
+        }
+        let paymentData;
         if (paymentMean) {
-            var paymentData = {renewal: true, paymentMode: paymentMode, userId: userId,
-                orderId: orderId, redirectUrl: redirectUrl, paymentMean: paymentMean};
+            paymentData = {renewal: true, paymentMode: paymentMode, userId: userId,
+                orderId: orderId, redirectUrl: redirectUrl, paymentMean: paymentMean, paymentCompleted: paymentCompleted};
         } else {
-            var paymentData = {renewal: true, paymentMode: paymentMode, userId: userId,
-                orderId: orderId, redirectUrl: redirectUrl};
+            paymentData = {renewal: true, paymentMode: paymentMode, userId: userId,
+                orderId: orderId, redirectUrl: redirectUrl, paymentCompleted: paymentCompleted};
         }
         return this.$http.post(this.__env.apiUrl + '/enrolment', paymentData)
             .then(this.handleSuccess, this.handleError);
@@ -53,7 +65,7 @@ export default class EnrolmentService {
         var statusText = response.statusText;
         var headers = response.headers;
         var config = response.config;
-        var message = 'Er ging iets mis, probeer later eens opnieuw';
+        var message = 'Er ging iets mis, probeer later eens opnieuw (' + data + ')';
 
         console.log(message);
         return { success: false, message: message };

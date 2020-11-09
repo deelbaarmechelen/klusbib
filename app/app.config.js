@@ -115,23 +115,32 @@ export default function routing($stateProvider, $urlRouterProvider) {
 				}
 	  }
 	  var resetPwdState = {
-			    name: 'reset-pwd',
-			    url: '/reset-pwd?email',
-			    views: {
-			    	nav: {
-			    		component: 'navigation'
-			    	},
-			    	main: {
-			    		template: require('./enrolment/reset-pwd.view.html'),
-				    	controller: 'EnrolmentController as vm'
-			    	}
-			    },
-			    resolve: {
-			    	inverse: function() {
-			    		return true;
-			        }
-			    }
-			  }
+			name: 'reset-pwd',
+			url: '/reset-pwd?email',
+			views: {
+				nav: {
+					component: 'navigation'
+				},
+				main: {
+					template: require('./enrolment/reset-pwd.view.html'),
+					controller: 'EnrolmentController as vm'
+				}
+			},
+			resolve: {
+				inverse: function() {
+					return true;
+				}
+			},
+			lazyLoad: function ($transition$) {
+			  var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+			  return import(/* webpackPrefetch: true , webpackChunkName: "enrolment.module" */ './enrolment/enrolment.module.js')
+				  // return System.import(/* webpackChunkName: "enrolment.module" */'./enrolment/enrolment.module.js')
+				  .then(mod => $ocLazyLoad.load(mod.ENROLMENT_MODULE))
+				  .catch(err => {
+					  throw new Error("Ooops, something went wrong, " + err);
+				  });
+			}
+	  }
     var homeFutureState = {
         name: 'home.**',
         url: '/home',

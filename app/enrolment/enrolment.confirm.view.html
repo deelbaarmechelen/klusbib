@@ -5,7 +5,7 @@
     </div><div ng-if="!vm.isRenewal()">
     <p>Je inschrijving werd succesvol geregistreerd. </p>
     </div>
-    <div ng-if="vm.paymentMode === 'TRANSFER'">
+    <div ng-if="vm.paymentMode === 'TRANSFER' && !vm.paymentCompleted">
         <p>
         Je koos voor betaling per overschrijving. We stuurden een bericht met de betalingsgegevens naar je email adres<br>
         Van zodra we je betaling ontvangen, zullen we je account activeren en kan je starten met gereedschap ontlenen.

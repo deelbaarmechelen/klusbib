@@ -8,6 +8,7 @@ export default function EnrolmentConfirmController(Flash, $location, UserService
     vm.confirmLinkEnabled = false;
     vm.paymentStatus = 'UNKNOWN';
     vm.paymentMode = $state.current.data.payment_mode;
+    vm.paymentCompleted = $state.current.data.paymentCompleted;
     vm.orderId = $stateParams.orderId;
 
      PaymentService.GetByOrderId(vm.orderId).then(function(response) {
