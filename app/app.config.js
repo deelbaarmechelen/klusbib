@@ -22,6 +22,23 @@ export default function routing($stateProvider, $urlRouterProvider) {
 			    }
 	  }
 
+	var setPwdState = {
+		name: 'setpwd',
+		url: '/setpwd',
+		views: {
+			nav: {
+				component: 'navigation'
+			},
+			main: {
+				component: 'setPassword'
+			}
+		},
+		resolve: {
+			inverse: function() {
+				return true;
+			}
+		}
+	}
 	  var consumersState = {
 			    name: 'consumers',
 			    url: '/consumers',
@@ -185,6 +202,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
 
 	$stateProvider.state(homeFutureState);
 	$stateProvider.state(signInState);
+	$stateProvider.state(setPwdState);
     $stateProvider.state(consumersState);
     $stateProvider.state(reservationsState);
     $stateProvider.state(toolAdminState);

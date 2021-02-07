@@ -18,6 +18,7 @@ import envConfig from './app.env.js';
 import routing from './app.config.js';
 import navigation from './components/navigation/navigation.module.js';
 import signIn from './components/sign-in/sign-in.module.js';
+import setPassword from './components/set-pwd/set-pwd.module';
 import consumerList from './components/consumer-list/consumer-list.module.js';
 import myProfile from './components/my-profile/my-profile.module.js';
 import reservationList from './components/reservation-list/reservation-list.module.js';
@@ -54,6 +55,7 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     'angular-loading-bar',
     navigation,
     signIn,
+    setPassword,
     consumerList,
     myProfile,
 	reservationList,

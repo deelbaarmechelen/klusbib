@@ -61,11 +61,12 @@ export default class EnrolmentService {
     handleError(response, error) {
         console.log(JSON.stringify(response));
         var data = response.data;
+        var reason = data.message ? data.message : data;
         var status = response.status;
         var statusText = response.statusText;
         var headers = response.headers;
         var config = response.config;
-        var message = 'Er ging iets mis, probeer later eens opnieuw (' + data + ')';
+        var message = 'Er ging iets mis, probeer later eens opnieuw (' + reason + ')';
 
         console.log(message);
         return { success: false, message: message };
