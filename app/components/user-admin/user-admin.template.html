@@ -5,17 +5,17 @@
                 <button ng-click="$ctrl.reset()" class="btn btn-danger">Reset</button>
             </span>
         <span class="pull-left">
-                <input type="text" ng-model="$ctrl.search.$" class="form-control" placeholder="Zoeken" />
+                <input id="search" type="text" ng-model="$ctrl.search.$" class="form-control" placeholder="Zoeken" />
             </span>
         <span class="pull-left">
-                <input type="text" ng-model="$ctrl.search.lastname" class="form-control" placeholder="Zoeken op naam" />
+                <input id="search-by-lastname" type="text" ng-model="$ctrl.search.lastname" class="form-control" placeholder="Zoeken op naam" />
             </span>
         <span class="pull-left">
-                <input type="text" ng-model="$ctrl.search.firstname" class="form-control" placeholder="Zoeken op voornaam" />
+                <input id="search-by-firstname" type="text" ng-model="$ctrl.search.firstname" class="form-control" placeholder="Zoeken op voornaam" />
             </span>
 
 
-        <span ng-click="$ctrl.addUser()" class="pull-right btn btn-danger">Toevoegen</span>
+        <span id="add-user" ng-click="$ctrl.addUser()" class="pull-right btn btn-danger">Toevoegen</span>
     </div>
     <br>
     <div class="row">
@@ -42,17 +42,17 @@
         <table cellpadding=10 cellspacing=10 border=0 class="table">
             <tr>
                 <th>No.</th>
-                <th ng-click="$ctrl.sort('lastname')">Naam
+                <th id="hdr-lastname" ng-click="$ctrl.sort('lastname')">Naam
                     <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='lastname'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
                 </th>
                 <!--<th ng-click="$ctrl.sort('description')">Beschrijving-->
                     <!--<span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='description'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>-->
                 <!--</th>-->
-                <th ng-click="$ctrl.sort('firstname')">Voornaam
+                <th id="hdr-firstname" ng-click="$ctrl.sort('firstname')">Voornaam
                     <span class="glyphicon sort-icon" ng-show="$ctrl.sortKey=='firstname'" ng-class="{'glyphicon-chevron-up':$ctrl.reverse,'glyphicon-chevron-down':!$ctrl.reverse}"></span>
                 </th>
-                <th>UPDATE</th>
-                <th>DELETE</th>
+                <th id="hdr-update">UPDATE</th>
+                <th id="hdr-delete">DELETE</th>
             </tr>
 
             <tr dir-paginate="user in $ctrl.users|orderBy:$ctrl.sortKey:$ctrl.reverse|filter:$ctrl.search|itemsPerPage:$ctrl.actItem" ng-class="$even ? 'even-row' : 'odd-row'">
@@ -60,8 +60,8 @@
                 <td>{{user.lastname | uppercase}}</td>
                 <!--<td>{{user.description}}</td>-->
                 <td>{{user.firstname}}</td>
-                <td><div ng-click="$ctrl.editUser(user)" class="btn btn-primary">E</div></td>
-                <td><span ng-click="$ctrl.deleteUser(user)" class="btn btn-danger">X</span></td>
+                <td><div id="edit-user-{{user.user_id}}" ng-click="$ctrl.editUser(user)" class="btn btn-primary">E</div></td>
+                <td><span id="delete-user-{{user.user_id}}" ng-click="$ctrl.deleteUser(user)" class="btn btn-danger">X</span></td>
             </tr>
         </table>
 
@@ -95,11 +95,11 @@
         <table class="table">
             <tr>
                 <td><b><i>{{$ctrl.Action}} User</i></b></td>
-                <td><input type="text" disabled="disabled" ng-model="$ctrl.displayedUser.user_id" /></td>
+                <td><input id="edit-user-id" type="text" disabled="disabled" ng-model="$ctrl.displayedUser.user_id" /></td>
             </tr>
             <tr>
                 <td>Naam</td>
-                <td><input type="text" placeholder="Name" ng-model="$ctrl.displayedUser.lastname" /></td>
+                <td><input id="edit-lastname" type="text" placeholder="Name" ng-model="$ctrl.displayedUser.lastname" /></td>
             </tr>
             <!--<tr>-->
                 <!--<td>Beschrijving</td>-->
@@ -107,7 +107,7 @@
             <!--</tr>-->
             <tr>
                 <td>Voornaam</td>
-                <td><input type="text" placeholder="FirstName" ng-model="$ctrl.displayedUser.firstname" /></td>
+                <td><input id="edit-firstname" type="text" placeholder="FirstName" ng-model="$ctrl.displayedUser.firstname" /></td>
             </tr>
             <!--<tr>-->
                 <!--<td>Image</td>-->
@@ -134,11 +134,11 @@
             <!--</tr>-->
             <tr>
                 <td>Email</td>
-                <td><input type="text" disabled="disabled" placeholder="Email" ng-model="$ctrl.displayedUser.email" /></td>
+                <td><input id="edit-email" type="text" disabled="disabled" placeholder="Email" ng-model="$ctrl.displayedUser.email" /></td>
             </tr>
             <tr>
                 <td>Email status</td>
-                <td><select disabled="disabled" ng-model="$ctrl.displayedUser.email_state" >
+                <td><select id="edit-email-state" disabled="disabled" ng-model="$ctrl.displayedUser.email_state" >
                         <option>CONFIRM_EMAIL</option>
                         <option>CONFIRMED</option>
                         <option>BOUNCED</option>
@@ -146,19 +146,19 @@
             </tr>
             <tr>
                 <td>Rol</td>
-                <td><input type="text" disabled="disabled" placeholder="Rol" ng-model="$ctrl.displayedUser.role" /></td>
+                <td><input id="edit-role" type="text" disabled="disabled" placeholder="Rol" ng-model="$ctrl.displayedUser.role" /></td>
             </tr>
             <tr>
                 <td>membership_start_date</td>
-                <td><input type="text" disabled="disabled" placeholder="membership_start_date" ng-model="$ctrl.displayedUser.membership_start_date" /></td>
+                <td><input id="edit-membership-start-date" type="text" disabled="disabled" placeholder="membership_start_date" ng-model="$ctrl.displayedUser.membership_start_date" /></td>
             </tr>
             <tr>
                 <td>membership_end_date</td>
-                <td><input type="text" disabled="disabled" placeholder="membership_end_date" ng-model="$ctrl.displayedUser.membership_end_date" /></td>
+                <td><input id="edit-membership-end-date" type="text" disabled="disabled" placeholder="membership_end_date" ng-model="$ctrl.displayedUser.membership_end_date" /></td>
             </tr>
             <tr>
                 <td>payment_mode</td>
-                <td><select disabled="disabled" ng-model="$ctrl.displayedUser.payment_mode" >
+                <td><select id="edit-payment-mode" disabled="disabled" ng-model="$ctrl.displayedUser.payment_mode" >
                     <option>UNKNOWN</option>
                     <option>OTHER</option>
                     <option>SPONSORING</option>
@@ -174,7 +174,7 @@
             </tr>
             <tr>
                 <td>Status</td>
-                <td><select disabled="disabled" ng-model="$ctrl.displayedUser.state" >
+                <td><select id="edit-state" disabled="disabled" ng-model="$ctrl.displayedUser.state" >
                     <option>ACTIVE</option>
                     <option>EXPIRED</option>
                     <option>DISABLED</option>
@@ -183,7 +183,7 @@
             </tr>
             <tr>
                 <td>Zichtbaar</td>
-                <td><input type="checkbox" disabled="disabled" ng-model="$ctrl.displayedUser.visible" /></td>
+                <td><input id="edit-visible" type="checkbox" disabled="disabled" ng-model="$ctrl.displayedUser.visible" /></td>
             </tr>
             <!-- andere velden:
             {"user_id":0,
@@ -213,21 +213,21 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" class="btn btn-primary" value="Save" ng-click="$ctrl.AddUpdateUser($ctrl.files)" /><br>
-                    <select ng-model="$ctrl.displayedUser.confirmation_payment_mode" >
+                    <input id="btn-save" type="button" class="btn btn-primary" value="Save" ng-click="$ctrl.AddUpdateUser($ctrl.files)" /><br>
+                    <select id="confirmation-payment-mode" ng-model="$ctrl.displayedUser.confirmation_payment_mode" >
                         <option>TRANSFER</option>
                         <option>CASH</option>
                         <option>STROOM</option>
                         <!--<option>OVAM</option>-->
                         <!--<option>LETS</option>-->
                     </select>
-                    <input type="button" class="btn btn-primary" value="Confirm Payment" ng-disabled="!$ctrl.canBeConfirmed($ctrl.displayedUser)"
+                    <input id="btn-confirm-payment" type="button" class="btn btn-primary" value="Confirm Payment" ng-disabled="!$ctrl.canBeConfirmed($ctrl.displayedUser)"
                            ng-click="$ctrl.ConfirmPayment($ctrl.displayedUser)" />
-                    <input type="button" class="btn btn-primary" value="Decline Payment" ng-disabled="!$ctrl.canBeDeclined($ctrl.displayedUser)"
+                    <input id="btn-decline-payment" type="button" class="btn btn-primary" value="Decline Payment" ng-disabled="!$ctrl.canBeDeclined($ctrl.displayedUser)"
                            ng-click="$ctrl.DeclinePayment($ctrl.displayedUser)" />
 <!--                    <input type="button" class="btn btn-primary" value="Renew membership" ng-disabled="!$ctrl.CanBeRenewed($ctrl.displayedUser)"-->
 <!--                           ng-click="$ctrl.Renewal($ctrl.displayedUser)" />                </td>-->
-                <td><input type="button" class="btn btn-danger" value="Cancel" ng-click="$ctrl.Cancel()" /></td>
+                <td><input id="btn-cancel" type="button" class="btn btn-danger" value="Cancel" ng-click="$ctrl.Cancel()" /></td>
             </tr>
         </table>
 
