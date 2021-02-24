@@ -16,16 +16,18 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     vm.admin = false;
     vm.loggedUser = function() {
         var user = User.get();
-        UserService.GetById(user.id).then(function (response) {
-            if (response.success) {
-                console.log('user lookup succeeded');
-                if (response.message.role === "admin" && response.message.state === "ACTIVE") {
-                    vm.admin = true;
+        if (typeof(user.id) !== 'undefined') {
+            UserService.GetById(user.id).then(function (response) {
+                if (response.success) {
+                    console.log('user lookup succeeded');
+                    if (response.message.role === "admin" && response.message.state === "ACTIVE") {
+                        vm.admin = true;
+                    }
+                } else {
+                    console.log('error retrieving user with id ' + user.id);
                 }
-            } else {
-                console.log('error retrieving user with id ' + user.id);
-            }
-        });
+            });
+        }
     }();
     vm.isRenewal = function() {
         if ($state.current.data && $state.current.data.renewal) {
