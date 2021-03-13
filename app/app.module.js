@@ -31,6 +31,7 @@ import UserService from './services/user.service.js';
 import EnrolmentService from './services/enrolment.service.js';
 import ToolService from './services/tool.service.js';
 import ReservationService from './services/reservation.service.js';
+import DeliveryService from './services/delivery.service.js';
 import LendingService from './services/lending.service.js';
 
 import './home/css/app.css';
@@ -81,6 +82,7 @@ app.factory('TokenService', TokenService);
 app.factory('AuthService', AuthService);
 app.service('ReservationService', ReservationService);
 app.service('LendingService', LendingService);
+app.service('DeliveryService', DeliveryService);
 
 app.directive('focusOnCondition', ['$timeout',
     function ($timeout) {
