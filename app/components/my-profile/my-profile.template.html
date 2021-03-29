@@ -97,7 +97,9 @@
    </thead>
    <tbody>
         <tr ng-repeat="item in $ctrl.reservations"> <!-- TODO: add filter to hide cancelled reservations? -->
-			<td ng-if="$ctrl.deliveriesEnabled"><input type="checkbox" name="item_selected" id="item_selected" class="form-check-input" ng-model="item.selected" value="1"/></td>
+			<td ng-if="$ctrl.deliveriesEnabled">
+				<input type="checkbox" name="item_selected" id="item_selected" class="form-check-input" ng-model="item.selected" ng-disabled="!item.deliverable" value="1"/>
+			</td>
             <td><a ng-if="item.tool_id" ng-href="/#!/tools/{{item.tool_id}}">{{item.tool_code}}</td>
             <td>{{item.tool_name}}</td>
             <td>{{item.startsAt}}</td>
@@ -108,11 +110,9 @@
             	<button class="btn btn-primary" ng-click="$ctrl.cancel(item)">Annuleer</button>
             </td>
         </tr>
-   		<tr><td>
-			<button ng-if="$ctrl.deliveriesEnabled" id="btn-delivery-request" type="submit" ng-click="$ctrl.deliveryRequest($ctrl.reservations)" class="btn btn-primary">Levering aanvragen</button>
-		</td></tr>
    </tbody>
 </table>
+<button ng-if="$ctrl.deliveriesEnabled" id="btn-delivery-request" type="submit" ng-click="$ctrl.deliveryRequest($ctrl.reservations)" class="btn btn-primary">Levering aanvragen</button>
 
 </div>
 <div ng-if="$ctrl.deliveriesEnabled">
@@ -124,14 +124,26 @@
 	Alles ingevuld? Klik dan op 'Bevestigen'. Je aanvraag wordt nu verstuurd naar de ECOkoeriers voor verdere verwerking</p>
 	<p>
 		Let wel:
-		<ul><li>
-		Voor een aantal toestellen en verbruiksmaterialen rekenen we kosten aan. Bij een levering is het echter enkel mogelijk met Payconiq te betalen
-		</li>
-		<li>Leveringen worden telkens klaar gezet op woensdag</li>
+		<ul>
+			<li>
+				Voor een aantal toestellen en verbruiksmaterialen rekenen we kosten aan. Bij een levering is het echter enkel mogelijk met Payconiq te betalen
+			</li>
+			<li>Leveringen worden telkens klaar gezet op woensdag</li>
+			<li>Niet alle toestellen komen in aanmerking, sommige reservaties kunnen dan ook niet aanvinkbaar zijn</li>
 		</ul>
 	</p>
 	<!-- TODO: create a form to submit delivery request -->
 	<table class="table table-striped">
+		<colgroup>
+			<col span="1" style="width: 5%;">
+			<col span="1" style="width: 25%;">
+			<col span="1" style="width: 15%;">
+			<col span="1" style="width: 15%;">
+			<col span="1" style="width: 10%;">
+			<col span="1" style="width: 10%;">
+			<col span="1" style="width: 10%;">
+			<col span="1" style="width: 10%;">
+		</colgroup>
 		<thead>
 		<tr>
 			<th>ID</th>
@@ -143,22 +155,24 @@
 			<th>Status</th>
 		</tr>
 		</thead>
-		<tr ng-repeat="(key, delivery) in $ctrl.deliveries"> <!-- TODO: add filter to hide cancelled deliveries? -->
+		<tr ng-repeat="(key, delivery) in $ctrl.deliveries">
 			<td>{{key+1}}</td>
 			<td>
 				<ul>
 					<li ng-repeat="tool in delivery.items track by $index">
-						{{tool.tool_code}} {{tool.tool_name}}
+						{{tool.sku}} {{tool.tool_name}}<br/>
+						Afmetingen: {{tool.size}}<br/>
+						Forfait prijs: {{tool.fee}}
 					</li>
 				</ul>
 			</td>
 			<td>
-				<textarea rows="3" cols="50" name="remark" id="consumers"
+				<textarea rows="3" name="remark" id="consumers"
 						  ng-model="delivery.consumers" ng-minlength="0" ng-maxlength="255"  >
 				</textarea>
 			</td>
 			<td>
-				<textarea rows="3" cols="50" name="remark" id="comment"
+				<textarea rows="3" name="remark" id="comment"
 					   ng-model="delivery.comment" ng-minlength="0" ng-maxlength="255"  >
 				</textarea>
 			</td>
@@ -171,13 +185,14 @@
 				</div>
 			</td>
 			<td>{{delivery.drop_off_address}}</td>
-			<td>{{delivery.state}}</td>
+			<td>{{delivery.translated_state}}</td>
 			<td>
-				<button ng-if="delivery.state=='NEW'" class="btn btn-primary" ng-click="$ctrl.confirmDeliveryRequest(delivery)">Bevestigen</button>
+				<button ng-if="$ctrl.isNewDelivery(delivery)" class="btn btn-primary" ng-click="$ctrl.confirmDeliveryRequest(delivery)">Bevestigen</button>
 				<button class="btn btn-primary" ng-click="$ctrl.cancelDeliveryRequest(delivery)">Annuleer</button>
 			</td>
 		</tr>
 	</table>
+
 	<div class="form-actions">
 	</div>
 </div>

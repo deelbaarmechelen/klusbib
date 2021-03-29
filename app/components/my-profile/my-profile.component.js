@@ -17,7 +17,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
                       // var id = Flash.create('danger', response.message, 5000);
                   }
               });
-              self.deliveries = filterFutureDeliveries(self.user.deliveries);
+              self.deliveries = filterCancelledDeliveries(self.user.deliveries);
               translateDeliveries(self.deliveries);
               self.projects = self.user.projects;
               self.deliveriesEnabled = enableDeliveries();
@@ -83,7 +83,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
                 var id = Flash.create('danger', response.message, 0);
             }
       });
-    }
+    };
     self.renewal = function () {
         if (this.user.state === 'ACTIVE' || this.user.state === 'EXPIRED') {
             return $state.go('enrolment.renewal', {'userId': this.user.user_id});
@@ -120,69 +120,85 @@ export default function MyProfileController($http, __env, UserService, Reservati
       return items.filter(function(item){
           return new Date(item.endsAt) >= currentDate;
         });
-    }
-    var filterFutureDeliveries = function (items) {
+    };
+    var filterCancelledDeliveries = function (items) {
         if(!angular.isArray(items)) return [];
 
         return items.filter(function (item) {
             return item.state != 'CANCELLED'
         });
-    }
+    };
     var translateReservations = function (items) {
       if(!angular.isArray(items)) return [];
 
       return items.map(translateReservationState);
-    }
+    };
     var translateReservationState = function(item) {
         return translateCommonState(item);
-    }
+    };
     var translateDeliveries = function (items) {
         if(!angular.isArray(items)) return [];
 
         return items.map(translateDeliveryState);
-    }
+    };
     var translateDeliveryState = function(item) {
         item = translateCommonState(item);
         if (item.state == 'NEW') {
-            item.state = 'Nieuw';
+            item.translated_state = 'Nieuw';
         }
         return item;
-    }
+    };
     var translateCommonState = function(item){
-      if (item.state == 'REQUESTED') {
-          item.state = 'Aangevraagd';
-      }
-      if (item.state == 'CONFIRMED') {
-          item.state = 'Bevestigd';
-      }
-      if (item.state == 'CANCELLED') {
-          item.state = 'Annulatie';
-      }
-      return item;
-    }
+        item.translated_state = item.state;
+        if (item.state == 'REQUESTED') {
+            item.translated_state = 'Aangevraagd';
+        }
+        if (item.state == 'CONFIRMED') {
+            item.translated_state = 'Bevestigd';
+        }
+        if (item.state == 'CANCELLED') {
+            item.translated_state = 'Annulatie';
+        }
+        return item;
+    };
 
     // deliveries
     self.deliveryRequest = function (reservations) {
         console.log('delivery request  ' + JSON.stringify(reservations));
         let drop_off_address = self.user.address + ', ' + self.user.postal_code + ' ' + self.user.city;
+        let availableDeliveryDates = [];
         let delivery = {
             state : 'NEW',
             items : [],
-            drop_off_address: drop_off_address,
-            delivery_options: availableDeliveryOptions()
+            drop_off_address: drop_off_address
         };
         reservations.forEach(function(item, key) {
             if (item.selected === true) {
                 console.log(item, key);
-                delivery.items.push(copy(item));
+                let newItem = copy(item);
+                newItem.name = item.tool_name;
+                newItem.sku = item.tool_code;
+                newItem.fee = item.tool_fee;
+                newItem.size = item.tool_size;
+                delivery.items.push(newItem);
             }
         });
+        delivery.items.forEach(function(item, key) {
+            availableDeliveryOptions().forEach(function (deliveryDate, dateKey){
+                let possibleDate = self.moment(deliveryDate.date);
+                if (possibleDate >= self.moment(item.startsAt) && possibleDate <= self.moment(item.endsAt)) {
+                    availableDeliveryDates.push({date: possibleDate.format('YYYY-MM-DD'), formatted: possibleDate.format('YYYY-MM-DD')});
+                }
+            });
+        });
+        delivery.delivery_options = availableDeliveryDates;
+        translateDeliveryState(delivery);
         self.deliveries.push(delivery);
         console.log(self.deliveries);
-    }
+    };
     self.isNewDelivery = function(delivery) {
         return delivery.state =='NEW';
-    }
+    };
 
     self.confirmDeliveryRequest = function(delivery) {
         console.log('delivery confirmation  ' + JSON.stringify(delivery));
@@ -201,7 +217,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
                 }
             });
 
-    }
+    };
     self.cancelDeliveryRequest = function(delivery) {
         const index = self.deliveries.indexOf(delivery);
         if (index > -1) {
@@ -211,7 +227,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
             }
             self.deliveries.splice(index, 1);
         }
-    }
+    };
 
     function availableDeliveryOptions() {
         let deliveryOptions = [];
