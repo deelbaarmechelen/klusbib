@@ -139,6 +139,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
     var translateDeliveries = function (items) {
         if(!angular.isArray(items)) return [];
 
+        items.map(translateDeliveryType);
         return items.map(translateDeliveryState);
     };
     var translateDeliveryState = function(item) {
@@ -161,6 +162,15 @@ export default function MyProfileController($http, __env, UserService, Reservati
         }
         return item;
     };
+    var translateDeliveryType = function(item) {
+        if (item.type == 'DROPOFF') {
+            item.translated_type = 'Levering';
+        }
+        if (item.type == 'PICKUP') {
+            item.translated_type = 'Ophaling';
+        }
+        return item;
+    };
 
     // deliveries
     self.deliveryRequest = function (reservations) {
@@ -170,7 +180,8 @@ export default function MyProfileController($http, __env, UserService, Reservati
         let delivery = {
             state : 'NEW',
             items : [],
-            drop_off_address: drop_off_address
+            drop_off_address: drop_off_address,
+            type: 'DROPOFF'
         };
         reservations.forEach(function(item, key) {
             if (item.selected === true) {
@@ -193,11 +204,56 @@ export default function MyProfileController($http, __env, UserService, Reservati
         });
         delivery.delivery_options = availableDeliveryDates;
         translateDeliveryState(delivery);
+        translateDeliveryType(delivery);
         self.deliveries.push(delivery);
         console.log(self.deliveries);
     };
     self.isNewDelivery = function(delivery) {
-        return delivery.state =='NEW';
+        return delivery.state =='NEW' && delivery.type == 'DROPOFF';
+    };
+    self.isDelivery = function(delivery) {
+        return delivery.type === 'DROPOFF';
+    };
+    self.pickupRequest = function(lendings) {
+        console.log('pickup request  ' + JSON.stringify(lendings));
+        let pick_up_address = self.user.address + ', ' + self.user.postal_code + ' ' + self.user.city;
+        let availablePickupDates = [];
+        let delivery = {
+            state : 'NEW',
+            items : [],
+            pick_up_address: pick_up_address,
+            type: 'PICKUP'
+        };
+        lendings.forEach(function(item, key) {
+            if (item.selected === true) {
+                console.log(item, key);
+                let newItem = copy(item.tool);
+                newItem.sku = newItem.code;
+                newItem.lending_id = item.lending_id;
+                newItem.lending_start_date = item.start_date;
+                newItem.lending_due_date = item.due_date;
+                delivery.items.push(newItem);
+            }
+        });
+        delivery.items.forEach(function(item, key) {
+            availablePickupOptions().forEach(function (deliveryDate, dateKey){
+                let possibleDate = self.moment(deliveryDate.date);
+                if (possibleDate <= self.moment(item.lending_due_date)) {
+                    availablePickupDates.push({date: possibleDate.format('YYYY-MM-DD'), formatted: possibleDate.format('YYYY-MM-DD')});
+                }
+            });
+        });
+        delivery.pickup_options = availablePickupDates;
+        translateDeliveryState(delivery);
+        translateDeliveryType(delivery);
+        self.deliveries.push(delivery);
+        console.log(self.deliveries);
+    };
+    self.isNewPickUp = function(delivery) {
+        return delivery.state =='NEW' && delivery.type == 'PICKUP';
+    };
+    self.isPickUp = function(delivery) {
+        return delivery.type === 'PICKUP';
     };
 
     self.confirmDeliveryRequest = function(delivery) {
@@ -205,6 +261,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
         delivery.pick_up_address = 'Potterij 5, 2800 Mechelen';
         delivery.pick_up_date = null;
         delivery.state = 'REQUESTED';
+        delivery.type = 'DROPOFF';
         DeliveryService.Create(delivery, this.user.user_id)
             .then(function (response) {
                 if (response.success) {
@@ -216,8 +273,26 @@ export default function MyProfileController($http, __env, UserService, Reservati
                     var id = Flash.create('danger', response.message, 0);
                 }
             });
-
     };
+    self.confirmPickUpRequest = function(delivery) {
+        console.log('pick up confirmation  ' + JSON.stringify(delivery));
+        delivery.drop_off_address = 'Potterij 5, 2800 Mechelen';
+        delivery.drop_off_date = null;
+        delivery.state = 'REQUESTED';
+        delivery.type = 'PICKUP';
+        DeliveryService.Create(delivery, this.user.user_id)
+            .then(function (response) {
+                if (response.success) {
+                    translateDeliveryState(delivery);
+                    // FIXME: update value on screen still requires reload...
+                    var id = Flash.create('success', 'Ophaling aangevraagd', 5000);
+                } else {
+                    console.log(response.message);
+                    var id = Flash.create('danger', response.message, 0);
+                }
+            });
+    };
+
     self.cancelDeliveryRequest = function(delivery) {
         const index = self.deliveries.indexOf(delivery);
         if (index > -1) {
@@ -229,6 +304,10 @@ export default function MyProfileController($http, __env, UserService, Reservati
         }
     };
 
+    /**
+     * List of possible pickup dates in the coming 2 weeks
+     * @returns {[]}
+     */
     function availableDeliveryOptions() {
         let deliveryOptions = [];
         //let firstPossibleDate = self.moment().add(2, 'days'); // TODO: update date based on reservation start?
@@ -242,6 +321,24 @@ export default function MyProfileController($http, __env, UserService, Reservati
             }
         }
         return deliveryOptions;
+    }
+
+    /**
+     * List of possible pickup dates in the coming 2 weeks
+     * @returns {[]}
+     */
+    function availablePickupOptions() {
+        let pickupOptions = [];
+        let firstPossibleDate = self.moment().add(2, 'days');
+        pickupOptions.push({date: firstPossibleDate.format('YYYY-MM-DD'), formatted: firstPossibleDate.format('YYYY-MM-DD')}) // first possible date
+        let i = 0;
+        for (i = 1; i < 14; i++) {
+            let possibleDate = self.moment(firstPossibleDate).add(i, 'days');
+            if (isWeekDay(possibleDate)) {
+                pickupOptions.push({date: possibleDate.format('YYYY-MM-DD'), formatted: possibleDate.format('YYYY-MM-DD')})
+            }
+        }
+        return pickupOptions;
     }
 
     /**

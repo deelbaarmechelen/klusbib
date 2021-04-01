@@ -29,7 +29,7 @@ export default class DeliveryService {
         "drop_off_address" : "there",
         "drop_off_date" : "2020-10-26"
     }*/
-    Create(deliveryData, userId, state, comment) {
+    Create(deliveryData, userId) {
         var delivery = {'user_id' : userId,
                 'state' : deliveryData.state,
                 'comment' : deliveryData.comment,
