@@ -11,7 +11,7 @@ export default class LendingService {
         return this.$http.get(this.__env.apiUrl + endpoint).then(this.handleSuccess, this.handleError);
     }
     GetActiveByUser(userId) {
-        return this.$http.get(this.__env.apiUrl + endpoint + '?active=true&user_id=' + userId).then(this.handleSuccess, this.handleError);
+        return this.$http.get(this.__env.apiUrl + endpoint + '?active=true&_expandUser=true&_expandTool=true&user_id=' + userId).then(this.handleSuccess, this.handleError);
     }
     GetAllByPage(page, pageSize) {
         return this.$http.get(this.__env.apiUrl + endpoint + '?_perPage='+pageSize).then(this.handleSuccess, this.handleError);

@@ -63,6 +63,7 @@
 <table class="table table-striped">
    <thead>
          <tr>
+		    <th ng-if="$ctrl.deliveriesEnabled"></th>
             <th>ID</th>
             <th>Toestel</th>
             <th>Begin</th>
@@ -71,6 +72,9 @@
    </thead>
    <tbody>
         <tr ng-repeat="item in $ctrl.lendings">
+			<td ng-if="$ctrl.deliveriesEnabled">
+				<input type="checkbox" name="item_selected" id="lending_selected" class="form-check-input" ng-model="item.selected" ng-disabled="!item.tool.deliverable" value="1"/>
+			</td>
             <td><a ng-if="item.tool_id" ng-href="/#!/tools/{{item.tool_id}}">{{item.tool.code}}</a></td>
             <td>{{item.tool.name}}</td>
             <td>{{item.start_date | date:'yyyy-MM-dd'}}</td>
@@ -81,13 +85,14 @@
         </tr>
    </tbody>
 </table>
+	<button ng-if="$ctrl.deliveriesEnabled" id="btn-pickup-request" type="submit" ng-click="$ctrl.pickupRequest($ctrl.lendings)" class="btn btn-primary">Ophaling aanvragen</button>
 </div>
 <div ng-if="$ctrl.reservationsEnabled">
 <h2 >Mijn reservaties</h2>
 <table class="table table-striped">
    <thead>
          <tr>
-			 <th ng-if="$ctrl.deliveriesEnabled"></th>
+		    <th ng-if="$ctrl.deliveriesEnabled"></th>
             <th>ID</th>
             <th>Toestel</th>
             <th>Begin</th>
@@ -96,9 +101,9 @@
          </tr>
    </thead>
    <tbody>
-        <tr ng-repeat="item in $ctrl.reservations"> <!-- TODO: add filter to hide cancelled reservations? -->
+        <tr ng-repeat="item in $ctrl.reservations">
 			<td ng-if="$ctrl.deliveriesEnabled">
-				<input type="checkbox" name="item_selected" id="item_selected" class="form-check-input" ng-model="item.selected" ng-disabled="!item.deliverable" value="1"/>
+				<input type="checkbox" name="item_selected" id="reservation_selected" class="form-check-input" ng-model="item.selected" ng-disabled="!item.deliverable" value="1"/>
 			</td>
             <td><a ng-if="item.tool_id" ng-href="/#!/tools/{{item.tool_id}}">{{item.tool_code}}</td>
             <td>{{item.tool_name}}</td>
@@ -153,6 +158,7 @@
 			<th>Datum</th>
 			<th>Address</th>
 			<th>Status</th>
+			<th>Type</th>
 		</tr>
 		</thead>
 		<tr ng-repeat="(key, delivery) in $ctrl.deliveries">
@@ -180,14 +186,29 @@
 				<select ng-if="$ctrl.isNewDelivery(delivery)" id="deliveryDate" ng-model="delivery.drop_off_date">
 					<option ng-repeat="option in delivery.delivery_options" value="{{option.date}}">{{option.formatted}}</option>
 				</select>
-				<div ng-if="!$ctrl.isNewDelivery(delivery)" >
+				<select ng-if="$ctrl.isNewPickUp(delivery)" id="pickUpDate" ng-model="delivery.pick_up_date">
+					<option ng-repeat="option in delivery.pickup_options" value="{{option.date}}">{{option.formatted}}</option>
+				</select>
+				<div ng-if="!$ctrl.isNewDelivery(delivery) && $ctrl.isDelivery(delivery)" >
 					{{delivery.drop_off_date}}
 				</div>
+				<div ng-if="!$ctrl.isNewPickUp(delivery) && $ctrl.isPickUp(delivery)" >
+					{{delivery.pick_up_date}}
+				</div>
 			</td>
-			<td>{{delivery.drop_off_address}}</td>
+			<td>
+				<div ng-if="$ctrl.isDelivery(delivery)" >
+					{{delivery.drop_off_address}}
+				</div>
+				<div ng-if="$ctrl.isPickUp(delivery)" >
+					{{delivery.pick_up_address}}
+				</div>
+			</td>
 			<td>{{delivery.translated_state}}</td>
+			<td>{{delivery.translated_type}}</td>
 			<td>
 				<button ng-if="$ctrl.isNewDelivery(delivery)" class="btn btn-primary" ng-click="$ctrl.confirmDeliveryRequest(delivery)">Bevestigen</button>
+				<button ng-if="$ctrl.isNewPickUp(delivery)" class="btn btn-primary" ng-click="$ctrl.confirmPickUpRequest(delivery)">Bevestigen</button>
 				<button class="btn btn-primary" ng-click="$ctrl.cancelDeliveryRequest(delivery)">Annuleer</button>
 			</td>
 		</tr>
