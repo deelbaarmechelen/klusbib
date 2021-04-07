@@ -1,5 +1,7 @@
-MyProfileController.$inject = ['$http', '__env', 'UserService', 'ReservationService', 'LendingService', 'DeliveryService', '$location','Flash', '$state'];
-export default function MyProfileController($http, __env, UserService, ReservationService, LendingService, DeliveryService, $location, Flash, $state) {
+MyProfileController.$inject = ['$http', '__env', 'UserService', 'ReservationService', 'LendingService', 'DeliveryService',
+    '$location','Flash', '$state'];
+export default function MyProfileController($http, __env, UserService, ReservationService, LendingService, DeliveryService,
+                                            $location, Flash, $state) {
     var self = this;
     self.moment = require('moment');
     this.$onChanges = function(changesObj) {
@@ -9,9 +11,27 @@ export default function MyProfileController($http, __env, UserService, Reservati
               self.user = changesObj.user.currentValue.message;
               self.reservations = filterFutureReservations(self.user.reservations);
               translateReservations(self.reservations);
+              self.reservations.reservationSelected = function () {
+                  for (var i = 0; i < self.reservations.length; i++) {
+                      if (self.reservations[i].selected) {
+                          return true;
+                      }
+                  };
+                  return false;
+              };
+
               LendingService.GetActiveByUser(self.user.user_id).then(function (response) {
                   if (response.success) {
                       self.lendings = response.message;
+                      self.lendings.lendingSelected = function () {
+                          for (var i = 0; i < self.lendings.length; i++) {
+                              if (self.lendings[i].selected) {
+                                  return true;
+                              }
+                          };
+                          return false;
+                      };
+
                   } else {
                       console.log(response.message);
                       // var id = Flash.create('danger', response.message, 5000);
@@ -214,6 +234,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
     self.isDelivery = function(delivery) {
         return delivery.type === 'DROPOFF';
     };
+
     self.pickupRequest = function(lendings) {
         console.log('pickup request  ' + JSON.stringify(lendings));
         let pick_up_address = self.user.address + ', ' + self.user.postal_code + ' ' + self.user.city;

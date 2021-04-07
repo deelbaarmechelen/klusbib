@@ -3,6 +3,7 @@
 
 import 'moment';
 import angular from 'angular';
+require('angular-moment');
 import uirouter from 'angular-ui-router';
 import 'oclazyload';
 import cssProvider from 'angular-css';
@@ -46,11 +47,11 @@ if(window){
 
 const MODULE_NAME = 'toollibApp';
 
-
 var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     uirouter,
     ngFlash,
 	cssProvider,
+    'angularMoment',
     'ui-leaflet',
     'ngFileUpload',
     'angular-loading-bar',
@@ -66,6 +67,7 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
 ]);
 //Register environment in AngularJS as constant
 app.constant('__env', env);
+app.constant('moment', require('moment'));
 
 app.config(routing);
 
@@ -119,4 +121,5 @@ app.directive('focusOnCondition', ['$timeout',
 //         console.error(error.message + ' ' + error.);
 //     });
 // })
+
 export default MODULE_NAME;

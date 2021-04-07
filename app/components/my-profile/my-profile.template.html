@@ -85,7 +85,8 @@
         </tr>
    </tbody>
 </table>
-	<button ng-if="$ctrl.deliveriesEnabled" id="btn-pickup-request" type="submit" ng-click="$ctrl.pickupRequest($ctrl.lendings)" class="btn btn-primary">Ophaling aanvragen</button>
+	<button ng-if="$ctrl.deliveriesEnabled" id="btn-pickup-request" type="submit" ng-click="$ctrl.pickupRequest($ctrl.lendings)"
+			ng-disabled="!$ctrl.lendings.lendingSelected()" class="btn btn-primary">Ophaling aanvragen</button>
 </div>
 <div ng-if="$ctrl.reservationsEnabled">
 <h2 >Mijn reservaties</h2>
@@ -117,24 +118,27 @@
         </tr>
    </tbody>
 </table>
-<button ng-if="$ctrl.deliveriesEnabled" id="btn-delivery-request" type="submit" ng-click="$ctrl.deliveryRequest($ctrl.reservations)" class="btn btn-primary">Levering aanvragen</button>
+<button ng-if="$ctrl.deliveriesEnabled" id="btn-delivery-request" type="submit" ng-click="$ctrl.deliveryRequest($ctrl.reservations)"
+		ng-disabled="!$ctrl.reservations.reservationSelected()" class="btn btn-primary">Levering aanvragen</button>
 
 </div>
 <div ng-if="$ctrl.deliveriesEnabled">
 	<h2>Mijn leveringen</h2>
 	<p>Dankzij een samenwerking met <a href="https://www.mechelen.be">Stad Mechelen</a> en <a href="https://www.ecokoeriers.be/">ECOkoeriers</a>
 	kunnen we een proefproject opstarten rond leveringen aan huis. <br/>
-	Indien je wenst deel te nemen aan dit project, dan kan je een levering aanvragen door een aantal van je reservaties aan te vinken en
-	vervolgens op 'Levering aanvragen' te klikken.	Je aanvraag wordt dan opgenomen in de lijst hieronder waar je deze kan aanvullen met extra informatie. <br/>
+	Indien je wenst deel te nemen aan dit project, kan je een levering aanvragen door een aantal van je reservaties aan te vinken en
+	vervolgens op 'Levering aanvragen' te klikken.	Voor ophalingen vink je één of meerdere toestellen aan uit je ontleningen en klik je op 'Ophaling aanvragen'.
+	Je aanvraag wordt dan opgenomen in de lijst hieronder waar je deze kan aanvullen met extra informatie zoals de gewenste lever/ophaaldatum. <br/>
 	Alles ingevuld? Klik dan op 'Bevestigen'. Je aanvraag wordt nu verstuurd naar de ECOkoeriers voor verdere verwerking</p>
 	<p>
 		Let wel:
 		<ul>
 			<li>
-				Voor een aantal toestellen en verbruiksmaterialen rekenen we kosten aan. Bij een levering is het echter enkel mogelijk met Payconiq te betalen
+				Voor een aantal toestellen en verbruiksmaterialen rekenen we kosten aan. Bij een levering is het echter enkel mogelijk met Payconiq te betalen.<br>
+				De aangerekende tarieven zijn te raadplegen in de <a href="/docs/PrijslijstKlusbib.pdf">Klusbib prijslijst</a>
 			</li>
 			<li>Leveringen worden telkens klaar gezet op woensdag</li>
-			<li>Niet alle toestellen komen in aanmerking, sommige reservaties kunnen dan ook niet aanvinkbaar zijn</li>
+			<li>Niet alle toestellen komen in aanmerking, sommige ontleningen/reservaties kunnen dan ook niet aanvinkbaar zijn</li>
 		</ul>
 	</p>
 	<!-- TODO: create a form to submit delivery request -->
@@ -161,14 +165,14 @@
 			<th>Type</th>
 		</tr>
 		</thead>
-		<tr ng-repeat="(key, delivery) in $ctrl.deliveries">
+		<tr ng-repeat="(key, delivery) in $ctrl.deliveries | recentAndUpcomingDeliveries:7:30">
 			<td>{{key+1}}</td>
 			<td>
 				<ul>
 					<li ng-repeat="tool in delivery.items track by $index">
 						{{tool.sku}} {{tool.tool_name}}<br/>
 						Afmetingen: {{tool.size}}<br/>
-						Forfait prijs: {{tool.fee}}
+						<div ng-if="$ctrl.isDelivery(delivery)">Forfait prijs: {{tool.fee}}</div>
 					</li>
 				</ul>
 			</td>
