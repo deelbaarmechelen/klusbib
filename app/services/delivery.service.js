@@ -31,14 +31,15 @@ export default class DeliveryService {
     }*/
     Create(deliveryData, userId) {
         var delivery = {'user_id' : userId,
-                'state' : deliveryData.state,
-                'comment' : deliveryData.comment,
-                'pick_up_date': deliveryData.pick_up_date,
-                'pick_up_address': deliveryData.pick_up_address,
-                'drop_off_date' : deliveryData.drop_off_date,
-                'drop_off_address': deliveryData.drop_off_address,
-                'consumers': deliveryData.consumers,
-                'items': deliveryData.items
+            'state' : deliveryData.state,
+            'type' : deliveryData.type,
+            'comment' : deliveryData.comment,
+            'pick_up_date': deliveryData.pick_up_date,
+            'pick_up_address': deliveryData.pick_up_address,
+            'drop_off_date' : deliveryData.drop_off_date,
+            'drop_off_address': deliveryData.drop_off_address,
+            'consumers': deliveryData.consumers,
+            'items': deliveryData.items
         };
         console.log('Delivery data: ' + JSON.stringify(delivery));
         var config = {
