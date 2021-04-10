@@ -20,6 +20,13 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
             UserService.GetById(user.id).then(function (response) {
                 if (response.success) {
                     console.log('user lookup succeeded');
+                    if (typeof(response.message.active_membership) !== 'undefined'
+                        && typeof(response.message.active_membership.subscription) !== 'undefined'
+                        && typeof(response.message.active_membership.subscription.price) !== 'undefined') {
+                        console.log('updating subscription amount');
+                        vm.enrolmentAmount = response.message.active_membership.subscription.price;
+                        vm.renewalAmount = response.message.active_membership.subscription.next_subscription_price;
+                    }
                     if (response.message.role === "admin" && response.message.state === "ACTIVE") {
                         vm.admin = true;
                     }
