@@ -9,6 +9,7 @@ export default function UserService($http, __env) {
     service.GetByEmail = GetByEmail;
     service.Create = Create;
     service.Update = Update;
+    service.UpdateTerms = UpdateTerms;
     service.Delete = Delete;
 
     return service;
@@ -52,6 +53,15 @@ export default function UserService($http, __env) {
         return $http.put(__env.apiUrl + '/users/' + user.user_id, user)
             .then(handleSuccess, handleError);
     }
+    function UpdateTerms(user, token) {
+        var config = {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        }
+        return $http.put(__env.apiUrl + '/users/' + user.user_id + '/terms', user, config)
+            .then(handleSuccess, handleError);
+    }
 
     function Delete(id) {
         return $http.delete(__env.apiUrl + '/users/' + id)
@@ -60,7 +70,7 @@ export default function UserService($http, __env) {
 
     // private functions
     function handleSuccess(response) {
-        return { success: true, message: response.data };;
+        return { success: true, message: response.data };
     }
 
     // function (data, status, headers, config)??

@@ -40,7 +40,7 @@ export default function signInFactory($http, $localStorage, __env, $location) {
         	var auth = btoa(login + ":" + password), 
             	headers = {"Authorization": "Basic " + auth};
         	var data = '["tools.all", "users.all", "reservations.all", "consumers.all"]';
-            $http.post(__env.apiUrl + '/token', data, {headers: headers}).then(success,error)
+            $http.post(__env.apiUrl + '/token', data, {headers: headers, cache: false}).then(success,error);
         },
         signout: function (success) {
         	$localStorage.$reset();
@@ -50,7 +50,7 @@ export default function signInFactory($http, $localStorage, __env, $location) {
         resetPwd: function (email, success, error) {
             var data = {"email": email, "redirect_url": baseUrl + '/#!/setpwd' };
             console.log(data);
-            $http.post(__env.apiUrl + '/auth/reset', data).then(success,error)
+            $http.post(__env.apiUrl + '/auth/reset', data).then(success,error);
         },
         getTokenClaims: function () {
         	tokenClaims = getClaimsFromToken();
