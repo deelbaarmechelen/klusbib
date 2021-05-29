@@ -20,22 +20,21 @@ export default function coreUtils($localStorage, jwtHelper) {
 		return window.atob(output);
 	}
 
-	function getClaimsFromToken() {
-		var token = $localStorage.token;
-		var user = {};
+	function getClaimsFromToken(token) {
+		var tokenClaims = {};
 		if (typeof token !== 'undefined') {
 			var encoded = token.split('.')[1];
-			user = JSON.parse(urlBase64Decode(encoded));
+			tokenClaims = JSON.parse(urlBase64Decode(encoded));
 		}
-		return user;
+		return tokenClaims;
 	}
 
 	var updateUserFromToken = function () {
-		var tokenClaims = getClaimsFromToken();
+		var tokenClaims = getClaimsFromToken($localStorage.token);
 		user.id = tokenClaims["sub"];
 	}
 
-	var tokenClaims = getClaimsFromToken();
+	var tokenClaims = getClaimsFromToken($localStorage.token);
 	user.id = tokenClaims["sub"];
 	return {
 		updateToken: function (token) {
@@ -59,6 +58,10 @@ export default function coreUtils($localStorage, jwtHelper) {
 				$localStorage.$reset();
 			}
 			return isExpired;
+		},
+		getUserIdFromToken: function(token) {
+			var tokenClaims = getClaimsFromToken(token);
+			return tokenClaims["sub"];
 		},
 		logout: function() {
 			user.id = null;

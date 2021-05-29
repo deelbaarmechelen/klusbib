@@ -33,6 +33,34 @@
                         </div>
                     </div>
                 </form>
+                <form class="form-horizontal" role="form" ng-submit="$ctrl.acceptTerms()"
+                    data-ng-if="$ctrl.termsVisible">
+                    <p>
+                        De Klusbib afspraken en/of privacyverklaring zijn gewijzigd. Gelieve deze te aanvaarden om verder te gaan:<br>
+                    <!-- TODO: list the main changes in documents on a separate page? -->
+                    <ul>
+                        <li><a href="/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a><br></li>
+                        <li><a href="/docs/PrivacyVerklaring.pdf" target="_blank">Privacyverklaring</a></li>
+                    </ul>
+                    <div  ng-class="{ 'has-error': form.accept_terms.$dirty && form.accept_terms.$error.required }">
+                        <label class="form-check-label" for="accept_terms">
+                            <input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" ng-model="$ctrl.acceptedTerms" value="1" required/>
+                            Verklaart hierbij de Klusbib afspraken en privacyverklaring te hebben gelezen en ermee akkoord te gaan.
+                            <span ng-show="form.accept_terms.$dirty && form.accept_terms.$error.required" class="help-block">
+        Lees en aanvaard de Klusbib afspraken om verder te gaan</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id="accept_terms" type="submit" class="btn btn-primary pull-right"
+                                    data-ng-disabled="!$ctrl.acceptedTerms">Akkoord</button>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                        Iets niet duidelijk, of niet akkoord? Neem <a href="mailto:info@klusbib.be">contact</a> met ons op!
+                    </p>
+                </form>
             </div>
         </div>
     </div>
