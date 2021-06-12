@@ -61,8 +61,10 @@
     <p>
         Lees ook eerst de Klusbib afspraken en privacyverklaring:<br>
         <ul>
-    <li><a href="/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a><br></li>
-    <li><a href="/docs/PrivacyVerklaring.pdf" target="_blank">Privacyverklaring</a></li>
+            <li ng-if="vm.oldTerms"><a href="/docs/KlusbibAfspraken.pdf" target="_blank">klusbib afspraken</a><br></li>
+            <li ng-if="vm.oldTerms"><a href="/docs/PrivacyVerklaring.pdf" target="_blank">Privacyverklaring</a></li>
+            <li ng-if="vm.newTerms"><a href="/docs/KlusbibAfspraken-20210701.pdf" target="_blank">klusbib afspraken</a><br></li>
+            <li ng-if="vm.newTerms"><a href="/docs/PrivacyVerklaring-20210701.pdf" target="_blank">Privacyverklaring</a></li>
         </ul>
     </p>
     <div class="form-group" ng-class="{ 'has-error': form.accept_terms.$dirty && form.accept_terms.$error.required }">

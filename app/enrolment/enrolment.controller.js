@@ -14,6 +14,12 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     vm.renewalAmount = '20';
     vm.enrolmentAmount = '30';
     vm.admin = false;
+
+    vm.moment = require('moment');
+    const latestTermsDate = vm.moment('2021-07-01', 'YYYY-MM-DD');
+    vm.oldTerms = vm.moment().isBefore(latestTermsDate);
+    vm.newTerms = vm.moment().isSameOrAfter(latestTermsDate);;
+
     vm.loggedUser = function() {
         var user = User.get();
         if (typeof(user.id) !== 'undefined') {
