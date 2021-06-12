@@ -58,6 +58,50 @@
 	</tr>
 </table>
 </form>
+<div ng-if="$ctrl.showTermChanges()">
+<h2>Wijziging Klusbib Afspraken</h2>
+	<form name="form" ng-submit="$ctrl.acceptTerms()" role="form">
+	<p>Vanaf 1 juli 2021 voeren we een aantal wijzigingen door aan de Klusbib Afspraken en Privacyverklaring</p>
+	<p>Dit zijn de voornaamste wijzigingen:<br>
+	<ul>
+		<li>Toevoegen van EcoKoeriers Mechelen als partner waarmee wij je gegevens kunnen delen (enkel in het kader van een levering of ophaling)</li>
+		<li>Verduidelijking van de extra kosten die aangerekend kunnen worden in het kader van een lidmaatschap. <br>
+			<ul>
+				<li>Forfaitaire verbruikskost: vast bedrag dat aangerekend wordt voor werktuigen met een hogere slijtagekost</li>
+				<li>Verbruiksmaterialen: kunnen aangeboden worden, maar maken geen deel uit van het abonnement</li>
+				<li>Kosten verbonden aan een levering of ophaling. In een piloot project zou dit evenwel gratis aangeboden worden door onze partner</li>
+				<li>Verlengingen en extra werktuigen: 1 € per week en per werktuig</li>
+			</ul>
+			Zie ook <a href="/docs/PrijslijstKlusbib.pdf">prijslijst</a>
+		</li>
+		<li>Schrappen van de donatie regeling<br>
+			Bij donaties boden we in de opstart fase de mogelijkheid aan om eigen materiaal ter beschikking te stellen
+			aan andere Klusbib leden en er tevens nog gedurende 5 jaar eigenaar van te blijven.<br>
+			Deze regeling is zeker nuttig geweest, maar is nu minder relevant en brengt extra complexiteit met zich mee.
+			We nemen er nu afscheid van, maar komen uiteraard eerder gemaakte afspraken nog na
+		</li>
+	</ul>
+	</p>
+	<p>Aangepaste documenten:
+		<ul>
+			<li><a href="/docs/KlusbibAfspraken-20210701.pdf">klusbib afspraken</a> (geldig vanaf 1 juli 2021)</li>
+			<li><a href="/docs/PrivacyVerklaring-20210701.pdf">privacy verklaring</a> (geldig vanaf 1 juli 2021)</li>
+		</ul>
+	Voor huidige versie, zie <a href="/docs/KlusbibAfspraken.pdf">klusbib afspraken</a> en <a href="/docs/PrivacyVerklaring.pdf">privacy verklaring</a>
+	</p>
+	<p>Mogen wij je vragen te bevestigen voor akkoord?</p>
+	<div class="form-group" ng-class="{ 'has-error': form.accept_terms.$dirty && form.accept_terms.$error.required }">
+		<label class="form-check-label" for="accept_terms">
+			<input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" ng-model="vm.user.accept_terms" value="1" required/>
+			Verklaart hierbij de nieuwe Klusbib afspraken en privacyverklaring te hebben gelezen en ermee akkoord te gaan.
+		</label>
+	</div>
+
+	<div class="form-actions">
+		<button id="btn-confirm-terms" type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Bevestigen</button>
+	</div>
+	</form>
+</div>
 <div ng-if="$ctrl.lendingsEnabled">
 <h2 >Mijn ontleningen</h2>
 <table class="table table-striped">

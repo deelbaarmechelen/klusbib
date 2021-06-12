@@ -10,6 +10,7 @@ export default function UserService($http, __env) {
     service.Create = Create;
     service.Update = Update;
     service.UpdateTerms = UpdateTerms;
+    service.UpdateTermsToVersion = UpdateTermsToVersion;
     service.Delete = Delete;
 
     return service;
@@ -60,6 +61,11 @@ export default function UserService($http, __env) {
             }
         }
         return $http.put(__env.apiUrl + '/users/' + user.user_id + '/terms', user, config)
+            .then(handleSuccess, handleError);
+    }
+    function UpdateTermsToVersion(user_id, termsVersion) {
+        let data = {"accept_terms_date" : termsVersion };
+        return $http.put(__env.apiUrl + '/users/' + user_id + '/terms', data)
             .then(handleSuccess, handleError);
     }
 

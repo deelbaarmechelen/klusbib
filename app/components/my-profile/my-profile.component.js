@@ -4,6 +4,8 @@ export default function MyProfileController($http, __env, UserService, Reservati
                                             $location, Flash, $state) {
     var self = this;
     self.moment = require('moment');
+    const latestTermsDate = self.moment('2021-07-01', 'YYYY-MM-DD');
+    //self.showTermChanges = false;
     this.$onChanges = function(changesObj) {
         // actions to perform when user changes
       if (changesObj.user && changesObj.user.currentValue) {
@@ -112,6 +114,28 @@ export default function MyProfileController($http, __env, UserService, Reservati
         }
     }
 
+    self.showTermChanges = function () {
+        let acceptedTermsDate = self.moment(self.user.accept_terms_date, 'YYYY-MM-DD');
+        return latestTermsDate.isAfter(acceptedTermsDate);
+    }
+    self.acceptTerms = function () {
+        console.log('terms accepted');
+        UserService.UpdateTermsToVersion(self.user.user_id, latestTermsDate.format('YYYY-MM-DD')).then(function (response) {
+            if (response.success) {
+                console.log('user terms updated');
+                self.user.accept_terms_date = response.message.accept_terms_date;
+                $state.reload();
+            } else {
+                console.log('error updating user terms for user with id ' + user.id);
+                Flash.create('danger',
+                    'Er is een probleem opgetreden, probeer het later opnieuw', 5000);
+            }
+        });
+    }
+
+    self.confirmTerms = function () {
+        UserService.UpdateTerms(self.user, token);
+    }
     self.extend = function (item) {
       alert('extend not yet implemented');
     }
