@@ -2,6 +2,7 @@
 <flash-message></flash-message>
 <!--<a class="btn btn-primary" ui-sref="tool-admin()" ng-if="$ctrl.showAdminLinks()">Beheer tools</a>-->
 <a class="btn btn-primary" ui-sref="user-admin()" ng-if="$ctrl.showAdminLinks()">Beheer gebruikers</a>
+<section id="user_data">
 <h2>Mijn gegevens</h2>
 <form name="form" ng-submit="$ctrl.updateUser()" role="form">
 
@@ -58,7 +59,9 @@
 	</tr>
 </table>
 </form>
+</section>
 <div ng-if="$ctrl.showTermChanges()">
+<section id="term_changes">
 <h2>Wijziging Klusbib Afspraken</h2>
 	<form name="form" ng-submit="$ctrl.acceptTerms()" role="form">
 	<p>Vanaf 1 juli 2021 voeren we een aantal wijzigingen door aan de Klusbib Afspraken en Privacyverklaring</p>
@@ -101,9 +104,12 @@
 		<button id="btn-confirm-terms" type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Bevestigen</button>
 	</div>
 	</form>
+</section>
 </div>
 <div ng-if="$ctrl.lendingsEnabled">
-<h2 >Mijn ontleningen</h2>
+<section id="lendings">
+
+	<h2 >Mijn ontleningen</h2>
 <table class="table table-striped">
    <thead>
          <tr>
@@ -131,9 +137,11 @@
 </table>
 	<button ng-if="$ctrl.deliveriesEnabled" id="btn-pickup-request" type="submit" ng-click="$ctrl.pickupRequest($ctrl.lendings)"
 			ng-disabled="!$ctrl.lendings.lendingSelected()" class="btn btn-primary">Ophaling aanvragen</button>
+</section>
 </div>
 <div ng-if="$ctrl.reservationsEnabled">
-<h2 >Mijn reservaties</h2>
+<section id="reservations">
+	<h2 >Mijn reservaties</h2>
 <table class="table table-striped">
    <thead>
          <tr>
@@ -164,9 +172,11 @@
 </table>
 <button ng-if="$ctrl.deliveriesEnabled" id="btn-delivery-request" type="submit" ng-click="$ctrl.deliveryRequest($ctrl.reservations)"
 		ng-disabled="!$ctrl.reservations.reservationSelected()" class="btn btn-primary">Levering aanvragen</button>
+</section>
 
 </div>
 <div ng-if="$ctrl.deliveriesEnabled">
+<section id="deliveries">
 	<h2>Mijn leveringen</h2>
 	<p>Dankzij een samenwerking met <a href="https://www.mechelen.be">Stad Mechelen</a> en <a href="https://www.ecokoeriers.be/">ECOkoeriers</a>
 	kunnen we een proefproject opstarten rond leveringen aan huis. <br/>
@@ -186,7 +196,6 @@
 			<li>Niet alle toestellen komen in aanmerking, sommige ontleningen/reservaties kunnen dan ook niet aanvinkbaar zijn</li>
 		</ul>
 	</p>
-	<!-- TODO: create a form to submit delivery request -->
 	<table class="table table-striped">
 		<colgroup>
 			<col span="1" style="width: 5%;">
@@ -262,7 +271,13 @@
 			</td>
 		</tr>
 	</table>
+	<button class="btn btn-primary" ng-click="$ctrl.goto('user_data')">Mijn Gegevens</button>
+	<button class="btn btn-primary" ng-click="$ctrl.goto('lendings')">Mijn Ontleningen</button>
+	<button class="btn btn-primary" ng-click="$ctrl.goto('reservations')">Mijn Reservaties</button>
 
 	<div class="form-actions">
 	</div>
+</section>
 </div>
+<!--<button id="btn-top" type="submit" style="float: right;" ng-click="$ctrl.gotoTop()"-->
+<!--		class="btn btn-primary">Top</button>-->
