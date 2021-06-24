@@ -1,7 +1,7 @@
 MyProfileController.$inject = ['$http', '__env', 'UserService', 'ReservationService', 'LendingService', 'DeliveryService',
-    '$location','Flash', '$state'];
+    '$location','Flash', '$state', '$anchorScroll'];
 export default function MyProfileController($http, __env, UserService, ReservationService, LendingService, DeliveryService,
-                                            $location, Flash, $state) {
+                                            $location, Flash, $state, $anchorScroll) {
     var self = this;
     self.moment = require('moment');
     const latestTermsDate = self.moment('2021-07-01', 'YYYY-MM-DD');
@@ -251,6 +251,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
         translateDeliveryType(delivery);
         self.deliveries.push(delivery);
         console.log(self.deliveries);
+        $state.go('profile', {'#': 'deliveries'});
     };
     self.isNewDelivery = function(delivery) {
         return delivery.state =='NEW' && delivery.type == 'DROPOFF';
@@ -293,6 +294,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
         translateDeliveryType(delivery);
         self.deliveries.push(delivery);
         console.log(self.deliveries);
+        $state.go('profile', {'#': 'deliveries'});
     };
     self.isNewPickUp = function(delivery) {
         return delivery.state =='NEW' && delivery.type == 'PICKUP';
@@ -406,5 +408,17 @@ export default function MyProfileController($http, __env, UserService, Reservati
     }
     function copy(x) {
         return JSON.parse( JSON.stringify(x) );
+    }
+
+    self.scrollTo = function(target) {
+        var el = document.getElementById(target);
+        el.scrollIntoView(true);
+    }
+    self.gotoTop = function() {
+        $state.go('profile');
+        scrollTo('user_data');
+    }
+    self.goto = function(target) {
+        $state.go('profile', {'#': target});
     }
 }

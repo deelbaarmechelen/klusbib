@@ -2,7 +2,7 @@
 export default class ToolDetailController {
 
     constructor($http, calendarConfig,  __env,
-        User, ReservationService, Flash, calendarEventTitle ) {
+        User, ReservationService, Flash, calendarEventTitle, $state ) {
 
         this.$http = $http;
         this.moment = require('moment');
@@ -12,6 +12,7 @@ export default class ToolDetailController {
         this.ReservationService = ReservationService;
         this.Flash = Flash;
         this.calendarEventTitle = calendarEventTitle;
+        this.$state = $state;
 
         var self = this;
         self.user = User.get();
@@ -57,6 +58,8 @@ export default class ToolDetailController {
                         // Fifth argument (boolean, optional) is the visibility of close button for this flash.
                         // Returns the unique id of flash message that can be used to call Flash.dismiss(id); to dismiss the flash message.
                         var id = self.Flash.create('success', 'Reservatie aanvraag succesvol ingediend', 5000);
+                        // TODO: redirect to profile page
+                        self.$state.go('profile', {'#': 'reservations', 'userId' : self.user.id});
                     } else {
                         var id = self.Flash.create('danger', response.message, 0);
                     }
@@ -270,4 +273,4 @@ export default class ToolDetailController {
 }
 
 ToolDetailController.$inject = ['$http', 'calendarConfig', '__env',
-    'User', 'ReservationService', 'Flash', 'calendarEventTitle'];
+    'User', 'ReservationService', 'Flash', 'calendarEventTitle', '$state'];
