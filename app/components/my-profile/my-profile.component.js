@@ -361,7 +361,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
         let firstPossibleDate = nextWednesday(self.moment());
         deliveryOptions.push({date: firstPossibleDate.format('YYYY-MM-DD'), formatted: firstPossibleDate.format('YYYY-MM-DD')}) // first possible date
         let i = 0;
-        for (i = 1; i < 14; i++) {
+        for (i = 1; i < 30; i++) {
             let possibleDate = self.moment(firstPossibleDate).add(i, 'days');
             if (isWeekDay(possibleDate)) {
                 deliveryOptions.push({date: possibleDate.format('YYYY-MM-DD'), formatted: possibleDate.format('YYYY-MM-DD')})
@@ -379,7 +379,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
         let firstPossibleDate = self.moment().add(2, 'days');
         pickupOptions.push({date: firstPossibleDate.format('YYYY-MM-DD'), formatted: firstPossibleDate.format('YYYY-MM-DD')}) // first possible date
         let i = 0;
-        for (i = 1; i < 14; i++) {
+        for (i = 1; i < 30; i++) {
             let possibleDate = self.moment(firstPossibleDate).add(i, 'days');
             if (isWeekDay(possibleDate)) {
                 pickupOptions.push({date: possibleDate.format('YYYY-MM-DD'), formatted: possibleDate.format('YYYY-MM-DD')})
