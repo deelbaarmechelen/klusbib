@@ -5,7 +5,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
     var self = this;
     self.moment = require('moment');
     const latestTermsDate = self.moment('2021-07-01', 'YYYY-MM-DD');
-    //self.showTermChanges = false;
+
     this.$onChanges = function(changesObj) {
         // actions to perform when user changes
       if (changesObj.user && changesObj.user.currentValue) {
