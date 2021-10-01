@@ -26,6 +26,8 @@ export default class ToolDetailController {
                 return 'Aanwezig';
             } else if (tool.state == 'IN_USE') {
                 return 'Uitgeleend';
+            } else if (tool.state == 'RESERVED') {
+                return 'Reservatie';
             } else if (tool.state == 'MAINTENANCE') {
                 return 'Onderhoud';
             }
@@ -36,6 +38,8 @@ export default class ToolDetailController {
                 return 'badge available';
             } else if (tool.state == 'IN_USE') {
                 return 'badge in-use';
+            } else if (tool.state == 'RESERVED') {
+                return 'badge reserved';
             } else if (tool.state == 'MAINTENANCE') {
                 return 'badge maintenance';
             }
