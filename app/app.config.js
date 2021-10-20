@@ -225,7 +225,7 @@ export default function routing($stateProvider, $urlRouterProvider) {
     $stateProvider.state(enrolmentFutureState);
     $stateProvider.state(resetPwdState);
     $stateProvider.state(toolsFutureState);
-    $stateProvider.state(volunteerFutureState);
+    // $stateProvider.state(volunteerFutureState);
 
 	$urlRouterProvider.otherwise('/home')
 };
