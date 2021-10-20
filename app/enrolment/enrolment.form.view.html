@@ -47,14 +47,14 @@
     </div>
     <div class="form-group" ng-class="{ 'has-error': form.registration_number.$touched && (form.registration_number.$error.required ||
      form.registration_number.$invalid) }">
-        <label for="registration_number">Identificatienummer van het Rijksregister *</label>
+        <label for="registration_number">Rijksregisternummer *</label>
         <span id="helpRegistrationNumber" class="help-block">(te vinden op de achterkant van je identiteitskaart)</span>
         <input type="text" name="registration_number" id="registration_number" class="form-control"
                ng-model="vm.user.registration_number" ng-minlength="11" ng-maxlength="11" size="11" aria-describedby="helpRegistrationNumber" required/>
         <span ng-show="form.registration_number.$touched && form.registration_number.$error.required"
-              class="help-block">Registratie nummer is vereist</span>
+              class="help-block">Rijksregisternummer is vereist</span>
         <span ng-show="form.registration_number.$touched && form.registration_number.$invalid"
-              class="help-block">Registratie nummer is ongeldig (geef enkel de 11 nummers in)</span>
+              class="help-block">Rijksregisternummer is ongeldig (geef enkel de 11 nummers in)</span>
     </div>
 
 
