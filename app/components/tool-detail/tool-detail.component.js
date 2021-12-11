@@ -69,6 +69,16 @@ export default class ToolDetailController {
                     }
                 });
         }
+        self.dateOptions = {
+            minDate : new Date(),
+            dateDisabled: disabled // call disabled(data) function for each date to check if it should be disabled
+        };
+        // Disable selection for days we're closed
+        function disabled(data) {
+            var date = data.date,
+                mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 2 || date.getDay() === 4);
+        }
         self.startDatePicker = {
             opened: false
         };
@@ -84,6 +94,7 @@ export default class ToolDetailController {
         // self.showCalendar = self.isLogged;
         self.showCalendar = false;
         self.calendarView = 'month';
+        // self.excludedDays = [0, 2, 4];
         self.viewDate = new Date();
         var previousDate = this.moment(self.viewDate);
 
