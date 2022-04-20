@@ -23,6 +23,7 @@
     to-fast-properties "^2.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@cypress/listr-verbose-renderer@0.4.1":
 =======
 "@bower_components/google-maps-utility-library-v3-infobox@nmccready/google-maps-utility-library-v3-infobox#^1.1.14":
@@ -45,6 +46,8 @@
   version "4.17.15"
   resolved "https://codeload.github.com/lodash/lodash/tar.gz/ddfd9b11a0126db2302cb70ec9973b66baec0975"
 
+=======
+>>>>>>> e101507 (remove obsolete angular-google-maps dependency)
 "@cypress/listr-verbose-renderer@^0.4.1":
 >>>>>>> 0e4b03f (UI testing with cypress)
   version "0.4.1"
@@ -618,6 +621,7 @@ angular-flash-alert@^2.4.0:
   dependencies:
     angular "^1.4.8"
 
+<<<<<<< HEAD
 angular-google-maps@^2.4.1:
   version "2.4.1"
   resolved "https://registry.npmjs.org/angular-google-maps/-/angular-google-maps-2.4.1.tgz"
@@ -632,6 +636,8 @@ angular-google-maps@^2.4.1:
     lodash "3.X - 4.X"
     markerclustererplus "2.1.4"
 
+=======
+>>>>>>> e101507 (remove obsolete angular-google-maps dependency)
 angular-jwt@^0.1.11:
   version "0.1.11"
   resolved "https://registry.npmjs.org/angular-jwt/-/angular-jwt-0.1.11.tgz"
@@ -659,7 +665,7 @@ angular-resource@^1.7.8:
   resolved "https://registry.npmjs.org/angular-resource/-/angular-resource-1.8.3.tgz"
   integrity sha512-x3+4w2SyIDEIe6PUBTzcjDFI5MhZNWAPELUxkYK0QMOkOo4w3BN/qhpd+fO1deFiDS23mZKqT8kfctO1IDkCDA==
 
-angular-simple-logger@>=0.0.1, angular-simple-logger@^0.1.7, angular-simple-logger@~0.1.4:
+angular-simple-logger@^0.1.7, angular-simple-logger@~0.1.4:
   version "0.1.7"
   resolved "https://registry.npmjs.org/angular-simple-logger/-/angular-simple-logger-0.1.7.tgz"
   integrity sha512-PJhFNsaygeToEbDMax7anNpfr0Ba79qttY5v/TJyDSFOhLnktiMoWovlzApbJkp/Q5kQh0hjAAD/ts++Idqh1A==
@@ -684,11 +690,14 @@ angular-ui-router@^1.0.22:
   dependencies:
     "@uirouter/core" "6.0.8"
 
+<<<<<<< HEAD
 "angular@1.2 - 1.6":
   version "1.6.10"
   resolved "https://registry.npmjs.org/angular/-/angular-1.6.10.tgz"
   integrity sha512-PCZ5/hVdvPQiYyH0VwsPjrErPHRcITnaXxhksceOXgtJeesKHLA7KDu4X/yvcAi+1zdGgGF+9pDxkJvghXI9Wg==
 
+=======
+>>>>>>> e101507 (remove obsolete angular-google-maps dependency)
 angular@1.x, "angular@>= 1.0.8", angular@^1.2, angular@^1.4.8, angular@^1.8.0:
   version "1.8.3"
   resolved "https://registry.npmjs.org/angular/-/angular-1.8.3.tgz"
@@ -2822,11 +2831,14 @@ code-point-at@^1.0.0:
   resolved "https://registry.npmjs.org/code-point-at/-/code-point-at-1.1.0.tgz"
   integrity sha512-RpAVKQA5T63xEj6/giIbUEtZwJ4UFIc3ZtvEkiaUERylqe8xb5IvqcgOurZLahv93CLKfxcw5YI+DZcUBRyLXA==
 
+<<<<<<< HEAD
 coffee-script@1.10.0:
   version "1.10.0"
   resolved "https://registry.npmjs.org/coffee-script/-/coffee-script-1.10.0.tgz"
   integrity sha512-ef2EsKe2bCuX3VGXfPCNGqni3wgrL8Bu0tDdY8mUDa+QnDR1GNcsC4QhxwG4az6l5y5W0wKUc1Pn/F3MCyafjg==
 
+=======
+>>>>>>> e101507 (remove obsolete angular-google-maps dependency)
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/collection-visit/-/collection-visit-1.0.0.tgz"
@@ -5479,6 +5491,7 @@ glogg@^1.0.0:
   dependencies:
     sparkles "^1.0.0"
 
+<<<<<<< HEAD
 google-maps-utility-library-v3-infobox@1.1.14:
   version "1.1.14"
   resolved "https://registry.npmjs.org/google-maps-utility-library-v3-infobox/-/google-maps-utility-library-v3-infobox-1.1.14.tgz"
@@ -5506,6 +5519,8 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
 =======
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2:
 =======
+=======
+>>>>>>> e101507 (remove obsolete angular-google-maps dependency)
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0:
 >>>>>>> 0e4b03f (UI testing with cypress)
   version "4.2.4"
@@ -6887,12 +6902,16 @@ js-rich-marker@^1.1.2:
   resolved "https://registry.npmjs.org/js-rich-marker/-/js-rich-marker-1.1.2.tgz"
   integrity sha512-DB3gd6dEdkEKj4A9qFOtGIdmqfjBXRAeCxrejH0oTuLWE5ar2Gq3u1M57MTcQVdSRIS/1V/Y2tDVgrYDsv128w==
 
+<<<<<<< HEAD
 "js-rich-marker@git://github.com/MikaFima/js-rich-marker.git#0383f4bbdad4ddf154772fedbdd27e464600e943":
   version "1.0.0"
   resolved "git+ssh://git@github.com/MikaFima/js-rich-marker.git#0383f4bbdad4ddf154772fedbdd27e464600e943"
   integrity sha512-/SvIwTKwjM95BsceLPgVAK0IdmQKlQfJEOQ6ZDLegzTFVmJlxjCQmQdzb09e79tjiUjs3GTaElRv4T6MIufc+A==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^3.0.2:
+=======
+js-tokens@^3.0.0, js-tokens@^3.0.2:
+>>>>>>> e101507 (remove obsolete angular-google-maps dependency)
   version "3.0.2"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-3.0.2.tgz"
   integrity sha512-RjTcuD4xjtthQkaWH7dFlH85L+QaVtSoOyGdZ3g6HFhS9dFNDfLyqgm2NFe2X6cQpeFmt0452FJjFG5UameExg==
@@ -7455,6 +7474,7 @@ lodash.uniq@^4.3.0, lodash.uniq@^4.5.0:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 "lodash@3.X - 4.X", lodash@^4.0.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.5.0:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
@@ -7464,6 +7484,9 @@ lodash.uniq@^4.3.0, lodash.uniq@^4.5.0:
 =======
 "lodash@3.X - 4.X", lodash@^4.0.1, lodash@^4.17.11, lodash@^4.17.19, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5:
 >>>>>>> 0e4b03f (UI testing with cypress)
+=======
+lodash@^4.0.1, lodash@^4.17.11, lodash@^4.17.19, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5:
+>>>>>>> e101507 (remove obsolete angular-google-maps dependency)
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
@@ -7682,7 +7705,7 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-markerclustererplus@2.1.4, markerclustererplus@^2.1.4:
+markerclustererplus@^2.1.4:
   version "2.1.4"
   resolved "https://registry.npmjs.org/markerclustererplus/-/markerclustererplus-2.1.4.tgz"
   integrity sha512-5puqGiaFybkc/IhFoJQbSA3VvlmX2hDFbSLpbua/PzKmJ6i7esztDxP47y7Ub5iKy6yIpRm8g6sy3tGlkSJfVg==

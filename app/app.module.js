@@ -1,7 +1,8 @@
 // import Icon16 from './favicon-16x16.png';
 // import Icon32 from './favicon-32x32.png';
 
-import 'moment';
+//import 'moment';
+import moment from 'moment';
 import angular from 'angular';
 require('angular-moment');
 import uirouter from 'angular-ui-router';
