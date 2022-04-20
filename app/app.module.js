@@ -3,7 +3,6 @@
 
 import moment from 'moment';
 // import _ from '@bower_components/lodash';
-import '@bower_components/lodash'; // still used by angular-google-maps...
 // import _ from 'lodash';
 import angular from 'angular';
 require('angular-moment');

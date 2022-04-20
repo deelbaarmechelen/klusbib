@@ -18,26 +18,6 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@bower_components/google-maps-utility-library-v3-infobox@nmccready/google-maps-utility-library-v3-infobox#^1.1.14":
-  version "1.1.14"
-  resolved "https://codeload.github.com/nmccready/google-maps-utility-library-v3-infobox/tar.gz/5e5ee5079c49f7f1e789d2a5a8ba144b6a7a778c"
-  dependencies:
-    coffee-script "1.10.0"
-
-"@bower_components/google-maps-utility-library-v3-keydragzoom@nmccready/google-maps-utility-library-v3-keydragzoom#^2.0.9":
-  version "2.0.9"
-  resolved "https://codeload.github.com/nmccready/google-maps-utility-library-v3-keydragzoom/tar.gz/fbe9742a9190064f682e725491fa3e1333ad4e04"
-  dependencies:
-    coffee-script "1.10.0"
-
-"@bower_components/google-maps-utility-library-v3-markerwithlabel@nmccready/google-maps-utility-library-v3-markerwithlabel#^1.1.10":
-  version "1.1.10"
-  resolved "https://codeload.github.com/nmccready/google-maps-utility-library-v3-markerwithlabel/tar.gz/1449782ad82059d761c648b862bae444cc15ee5c"
-
-"@bower_components/lodash@lodash/lodash#^4.17.4":
-  version "4.17.15"
-  resolved "https://codeload.github.com/lodash/lodash/tar.gz/ddfd9b11a0126db2302cb70ec9973b66baec0975"
-
 "@cypress/listr-verbose-renderer@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@cypress/listr-verbose-renderer/-/listr-verbose-renderer-0.4.1.tgz#a77492f4b11dcc7c446a34b3e28721afd33c642a"
@@ -466,20 +446,6 @@ angular-flash-alert@^2.4.0:
   dependencies:
     angular "^1.4.8"
 
-angular-google-maps@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/angular-google-maps/-/angular-google-maps-2.4.1.tgz#a0479f3a99cda690b72df536cf1c77d11e18ee23"
-  integrity sha1-oEefOpnNppC3LfU2zxx30R4Y7iM=
-  dependencies:
-    angular "1.2 - 1.6"
-    angular-simple-logger ">=0.0.1"
-    google-maps-utility-library-v3-infobox "1.1.14"
-    google-maps-utility-library-v3-keydragzoom "2.0.9"
-    google-maps-utility-library-v3-markerwithlabel "git://github.com/nmccready/google-maps-utility-library-v3-markerwithlabel.git"
-    js-rich-marker "git://github.com/MikaFima/js-rich-marker.git#0383f4bbdad4ddf154772fedbdd27e464600e943"
-    lodash "3.X - 4.X"
-    markerclustererplus "2.1.4"
-
 angular-jwt@^0.1.11:
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/angular-jwt/-/angular-jwt-0.1.11.tgz#a72b7583c7cf2f2d7acda169a4114141c83f9c91"
@@ -507,7 +473,7 @@ angular-resource@^1.7.8:
   resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.7.9.tgz#fa53623fae2c60debe2410d692447dcb0ba02396"
   integrity sha512-rXXhCE2qT31Pn4Sl+2XL+ntv4zxnA2OzY+clCl8/pOp/s/gIzxpQlEtXipo3QK8Qur3glbIkeF/bJw+gjVAdUw==
 
-angular-simple-logger@>=0.0.1, angular-simple-logger@^0.1.7, angular-simple-logger@~0.1.4:
+angular-simple-logger@^0.1.7, angular-simple-logger@~0.1.4:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/angular-simple-logger/-/angular-simple-logger-0.1.7.tgz#4ae48e5eac0973f577845918e56d4933cf66f041"
   integrity sha1-SuSOXqwJc/V3hFkY5W1JM89m8EE=
@@ -531,11 +497,6 @@ angular-ui-router@^1.0.22:
   integrity sha512-NCjwfGWQiqBx22OyAm6hsAWvlo431uUlY2ccg9kXkvb3zCLQGSJ6pGo1AGLtRAKdZvrEHiIExhawyrVPkYp0VA==
   dependencies:
     "@uirouter/core" "6.0.4"
-
-"angular@1.2 - 1.6":
-  version "1.6.9"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.9.tgz#bc812932e18909038412d594a5990f4bb66c0619"
-  integrity sha512-6igWH2GIsxV+J38wNWCh8oyjaZsrIPIDO35twloIUyjlF2Yit6UyLAWujHP05ma/LFxTsx4NtYibRoMNBXPR1A==
 
 angular@1.x, "angular@>= 1.0.8", angular@^1.2, angular@^1.4.8, angular@^1.8.0:
   version "1.8.0"
@@ -2318,11 +2279,6 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
-
-coffee-script@1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.10.0.tgz#12938bcf9be1948fa006f92e0c4c9e81705108c0"
-  integrity sha1-EpOLz5vhlI+gBvkuDEyegXBRCMA=
 
 collection-visit@^1.0.0:
   version "1.0.0"
@@ -4403,24 +4359,6 @@ glogg@^1.0.0:
   dependencies:
     sparkles "^1.0.0"
 
-google-maps-utility-library-v3-infobox@1.1.14:
-  version "1.1.14"
-  resolved "https://registry.yarnpkg.com/google-maps-utility-library-v3-infobox/-/google-maps-utility-library-v3-infobox-1.1.14.tgz#69c888cef8bff869c32275e3413d90cc09392914"
-  integrity sha1-aciIzvi/+GnDInXjQT2QzAk5KRQ=
-  dependencies:
-    coffee-script "1.10.0"
-
-google-maps-utility-library-v3-keydragzoom@2.0.9:
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/google-maps-utility-library-v3-keydragzoom/-/google-maps-utility-library-v3-keydragzoom-2.0.9.tgz#2dfa05fed2976d82fc1cc39fcc6175c01ec06477"
-  integrity sha1-LfoF/tKXbYL8HMOfzGF1wB7AZHc=
-  dependencies:
-    coffee-script "1.10.0"
-
-"google-maps-utility-library-v3-markerwithlabel@git://github.com/nmccready/google-maps-utility-library-v3-markerwithlabel.git":
-  version "1.1.10"
-  resolved "git://github.com/nmccready/google-maps-utility-library-v3-markerwithlabel.git#1e1ae841596ce41fb5cfaff301477393c5621d3d"
-
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
@@ -5522,10 +5460,6 @@ js-rich-marker@^1.1.2:
   resolved "https://registry.yarnpkg.com/js-rich-marker/-/js-rich-marker-1.1.2.tgz#1ca7ceee4f58117b2850cd200f06684641819687"
   integrity sha1-HKfO7k9YEXsoUM0gDwZoRkGBloc=
 
-"js-rich-marker@git://github.com/MikaFima/js-rich-marker.git#0383f4bbdad4ddf154772fedbdd27e464600e943":
-  version "1.0.0"
-  resolved "git://github.com/MikaFima/js-rich-marker.git#0383f4bbdad4ddf154772fedbdd27e464600e943"
-
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
@@ -5996,7 +5930,7 @@ lodash.uniq@^4.3.0, lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-"lodash@3.X - 4.X", lodash@^4.0.1, lodash@^4.17.11, lodash@^4.17.19, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5:
+lodash@^4.0.1, lodash@^4.17.11, lodash@^4.17.19, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
@@ -6141,7 +6075,7 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-markerclustererplus@2.1.4, markerclustererplus@^2.1.4:
+markerclustererplus@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/markerclustererplus/-/markerclustererplus-2.1.4.tgz#901225180dd5d5fc0827753a18eee35afcf9c4f7"
   integrity sha1-kBIlGA3V1fwIJ3U6GO7jWvz5xPc=
