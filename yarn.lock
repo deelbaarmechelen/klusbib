@@ -37,9 +37,9 @@
   dependencies:
     coffee-script "1.10.0"
 
-"@bower_components/google-maps-utility-library-v3-markerwithlabel@git://github.com/nmccready/google-maps-utility-library-v3-markerwithlabel.git#*":
+"@bower_components/google-maps-utility-library-v3-markerwithlabel@nmccready/google-maps-utility-library-v3-markerwithlabel#^1.1.10":
   version "1.1.10"
-  resolved "git://github.com/nmccready/google-maps-utility-library-v3-markerwithlabel.git#1449782ad82059d761c648b862bae444cc15ee5c"
+  resolved "https://codeload.github.com/nmccready/google-maps-utility-library-v3-markerwithlabel/tar.gz/1449782ad82059d761c648b862bae444cc15ee5c"
 
 "@bower_components/lodash@lodash/lodash#^4.17.4":
   version "4.17.15"
