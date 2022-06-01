@@ -1,6 +1,8 @@
 /// <reference types="Cypress" />
 "use strict";
 
+require getToken from 'utils.js';
+
 let token;
 
 describe('User admin', () => {
