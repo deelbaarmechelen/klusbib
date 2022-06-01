@@ -77,7 +77,7 @@ describe('Enrolment', () => {
         cy.get('#btn-confirm')
             .should('not.be.disabled')
             .click();
-        cy.wait(4000); // wait for server to process enrolment
+        cy.wait(5000); // wait for server to process enrolment
         cy.url().should('include', '/lid-worden/confirm');
     });
 })
