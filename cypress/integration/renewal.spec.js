@@ -24,11 +24,8 @@ describe('Renewal', () => {
         }
     });
 
-<<<<<<< HEAD
-    it.skip('test commands', ()=> {
-=======
+//    it.skip('test commands', ()=> {
     it('test commands', ()=> {
->>>>>>> production
         cy.getToken().createUser({
             "firstname": "Transfer",
             "lastname": "Confirm",

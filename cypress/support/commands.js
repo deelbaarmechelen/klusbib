@@ -24,6 +24,8 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+const dayjs = require('dayjs');
+
 Cypress.Commands.add('getToken', (a, b) => {
     cy.request({
         url: Cypress.env('apiUrl') + '/token',
@@ -81,7 +83,7 @@ Cypress.Commands.add('enrolUser', {
         },
         body: {
             "userId": user.user_id,
-            "orderId": user.user_id + Cypress.moment().format('YYYYMMDDhhmmss'),
+            "orderId": user.user_id + dayjs().format('YYYYMMDDhhmmss'),
             "paymentMode": paymentMode,
             "paymentCompleted": paymentCompleted
         }

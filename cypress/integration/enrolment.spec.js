@@ -42,7 +42,7 @@ describe('Enrolment', () => {
         cy.get('#btn-confirm')
             .should('not.be.disabled')
             .click();
-        cy.url().should('include', 'www.mollie.com/payscreen/select-method');
+        cy.url().should('include', 'www.mollie.com/checkout/select-method');
         // Note: not possible to test any further as a third party is involved.
         //       Disabling websecurity allows to proceed, but not to click on any links
         // cy.get('.grid-button-mistercash')
@@ -79,31 +79,5 @@ describe('Enrolment', () => {
             .click();
         cy.wait(4000); // wait for server to process enrolment
         cy.url().should('include', '/lid-worden/confirm');
-    })
-    it('Starts stroom membership', () => {
-        cy.get('#firstname')
-            .type('Stroom')
-            .should('have.value', 'Stroom');
-        cy.get('#lastname').type('User');
-        cy.get('#email').type('stroom@klusbib.be');
-        cy.get('#address').type('Here 123');
-        cy.get('#postal_code').type('2800');
-        cy.get('#city').type('Mechelen');
-        cy.get('#phone').type('0475123456');
-        // Compute registration number check digit with 'echo (97- (intval('2'.'000101001') % 97) );'
-        cy.get('#registration_number').type('00010100105');
-        cy.get('#accept_terms').check();
-        cy.get('#btn-enrolment')
-            .should('not.be.disabled')
-            .click();
-        cy.url().should('include', '/lid-worden/payment');
-        cy.get('#btn-confirm')
-            .should('be.disabled');
-        cy.get('#payment_mode_stroom').check();
-        cy.get('#btn-confirm')
-            .should('not.be.disabled')
-            .click();
-        cy.wait(4000); // wait for server to process enrolment
-        cy.url().should('include', '/lid-worden/confirm');
-    })
+    });
 })
