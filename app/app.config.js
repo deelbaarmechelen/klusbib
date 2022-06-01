@@ -173,20 +173,6 @@ export default function routing($stateProvider, $urlRouterProvider) {
                 });
         }
     }
-    var volunteerFutureState = {
-        name: 'volunteer.**',
-        url: '/vrijwilligers',
-        // lazy load the volunteer module here
-        lazyLoad: function ($transition$) {
-            var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-			return import(/* webpackPrefetch: true , webpackChunkName: "volunteer.module" */ './volunteer/volunteer.module.js')
-            // return System.import(/* webpackChunkName: "volunteer.module" */'./volunteer/volunteer.module.js')
-				.then(mod => $ocLazyLoad.load(mod.VOLUNTEER_MODULE))
-                .catch(err => {
-                    throw new Error("Ooops, something went wrong, " + err);
-                });
-        }
-	 }
 
 	$stateProvider.state(homeFutureState);
 	$stateProvider.state(signInState);
@@ -198,7 +184,6 @@ export default function routing($stateProvider, $urlRouterProvider) {
     $stateProvider.state(enrolmentFutureState);
     $stateProvider.state(resetPwdState);
     $stateProvider.state(toolsFutureState);
-    $stateProvider.state(volunteerFutureState);
 
 	$urlRouterProvider.otherwise('/home')
 };

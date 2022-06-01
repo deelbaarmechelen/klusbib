@@ -2,9 +2,6 @@
 // import Icon32 from './favicon-32x32.png';
 
 import 'moment';
-// import _ from '@bower_components/lodash';
-import '@bower_components/lodash'; // still used by angular-google-maps...
-// import _ from 'lodash';
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import 'oclazyload';
