@@ -1,4 +1,6 @@
 var webpackConfig = require('./webpack.dev.js');
+const puppeteer = require('puppeteer');
+process.env.CHROME_BIN = puppeteer.executablePath();
 
 //jshint strict: false
 module.exports = function (config) {
@@ -23,7 +25,7 @@ module.exports = function (config) {
             './test/tests.webpack.js': ['webpack', 'sourcemap']
         },
         // browsers: ['Chrome', 'Firefox'],
-        browsers: ['PhantomJS'],
+        browsers: ['ChromeHeadless'],
         // browsers: ['Chrome'],
 
         reporters: ['spec'],
