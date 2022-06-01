@@ -169,14 +169,14 @@ export default function UserAdminController(UserService, EnrolmentService, $scop
             self.showProgressBar = false;
             if (response.success == false) {
                 var msg = response.message;
-                alert(msg);
+                Flash.create('danger', msg, 0);
             } else {
                 Flash.create('info', 'Email bericht verzonden met bevestiging inschrijving/verlenging', 0);
                 refreshDisplayedUser(user);
             }
         }, function () {
             self.showProgressBar = false;
-            alert('Error in enrolment confirm payment');
+            Flash.create('danger', 'Error in enrolment confirm payment', 0);
         });
 
     }

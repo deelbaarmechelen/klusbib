@@ -1,0 +1,38 @@
+<flash-message></flash-message>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong>Kies een nieuw paswoord</strong>
+            </div>
+            <p>
+                Kies een nieuw paswoord en klik op 'Wijzigen' om verder te gaan
+            </p>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" ng-init = "$ctrl.init()" ng-submit="$ctrl.setPwd()">
+                    <div class="form-group">
+                        <label for="new_password" class="col-sm-2 control-label">Nieuw paswoord</label>
+
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="new-password" placeholder="Nieuw paswoord"
+                                   ng-model="$ctrl.new_password" maxlength="255" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password" class="col-sm-2 control-label">Bevestig paswoord</label>
+
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="confirm-password" placeholder="Herhaal paswoord"
+                                   data-ng-model="$ctrl.confirm_password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id="change-pwd" type="submit" class="btn btn-primary pull-right">Wijzigen</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,7 +8,7 @@ First, we need the application to be running via the web-server.
 From the project's root directory run:
 
 ```
-npm start
+yarn start-dev
 ```
 
 The application should now be available at http://localhost:8000/index.html.

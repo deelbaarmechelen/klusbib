@@ -14,18 +14,33 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     vm.renewalAmount = '20';
     vm.enrolmentAmount = '30';
     vm.admin = false;
+
+    vm.moment = require('moment');
+    const latestTermsDate = vm.moment('2021-07-01', 'YYYY-MM-DD');
+    vm.oldTerms = vm.moment().isBefore(latestTermsDate);
+    vm.newTerms = vm.moment().isSameOrAfter(latestTermsDate);;
+
     vm.loggedUser = function() {
         var user = User.get();
-        UserService.GetById(user.id).then(function (response) {
-            if (response.success) {
-                console.log('user lookup succeeded');
-                if (response.message.role === "admin" && response.message.state === "ACTIVE") {
-                    vm.admin = true;
+        if (typeof(user.id) !== 'undefined') {
+            UserService.GetById(user.id).then(function (response) {
+                if (response.success) {
+                    console.log('user lookup succeeded');
+                    if (typeof(response.message.active_membership) !== 'undefined'
+                        && typeof(response.message.active_membership.subscription) !== 'undefined'
+                        && typeof(response.message.active_membership.subscription.price) !== 'undefined') {
+                        console.log('updating subscription amount');
+                        vm.enrolmentAmount = response.message.active_membership.subscription.price;
+                        vm.renewalAmount = response.message.active_membership.subscription.next_subscription_price;
+                    }
+                    if (response.message.role === "admin" && response.message.state === "ACTIVE") {
+                        vm.admin = true;
+                    }
+                } else {
+                    console.log('error retrieving user with id ' + user.id);
                 }
-            } else {
-                console.log('error retrieving user with id ' + user.id);
-            }
-        });
+            });
+        }
     }();
     vm.isRenewal = function() {
         if ($state.current.data && $state.current.data.renewal) {
@@ -39,6 +54,9 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
     vm.init = function () {
         var params = $location.search();
         vm.email = params.email;
+        if ($state.current.data ) { // reset state
+            $state.current.data = null;
+        }
     };
     vm.enrolment = function () {
         Flash.clear();
@@ -153,10 +171,14 @@ export default function EnrolmentController(TokenService, UserService, Flash, Au
         Flash.clear();
         vm.showProgressBar = true;
         $state.get('enrolment.confirm').data.payment_mode = vm.payment_mode;
+        if (vm.payment_mode === 'TRANSFER_DONE') {
+            $state.get('enrolment.confirm').data.paymentCompleted = true;
+        }
         var userId = $state.current.data.user.user_id;
         var orderId = userId + '-' + moment().format('YYYYMMDDhhmmss');
         var renewal = $state.current.data.renewal;
         if (vm.payment_mode == 'TRANSFER'
+            || vm.payment_mode == 'TRANSFER_DONE'
             || vm.payment_mode == 'CASH'
             || vm.payment_mode == 'MBON'
             || vm.payment_mode == 'LETS'

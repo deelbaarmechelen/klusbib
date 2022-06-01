@@ -2,10 +2,9 @@
 // import Icon32 from './favicon-32x32.png';
 
 import 'moment';
-// import _ from '@bower_components/lodash';
-import '@bower_components/lodash'; // still used by angular-google-maps...
-// import _ from 'lodash';
+//import moment from 'moment';
 import angular from 'angular';
+require('angular-moment');
 import uirouter from 'angular-ui-router';
 import 'oclazyload';
 import cssProvider from 'angular-css';
@@ -21,6 +20,7 @@ import envConfig from './app.env.js';
 import routing from './app.config.js';
 import navigation from './components/navigation/navigation.module.js';
 import signIn from './components/sign-in/sign-in.module.js';
+import setPassword from './components/set-pwd/set-pwd.module';
 import consumerList from './components/consumer-list/consumer-list.module.js';
 import myProfile from './components/my-profile/my-profile.module.js';
 import reservationList from './components/reservation-list/reservation-list.module.js';
@@ -33,6 +33,7 @@ import UserService from './services/user.service.js';
 import EnrolmentService from './services/enrolment.service.js';
 import ToolService from './services/tool.service.js';
 import ReservationService from './services/reservation.service.js';
+import DeliveryService from './services/delivery.service.js';
 import LendingService from './services/lending.service.js';
 
 import './home/css/app.css';
@@ -47,16 +48,17 @@ if(window){
 
 const MODULE_NAME = 'toollibApp';
 
-
 var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     uirouter,
     ngFlash,
 	cssProvider,
+    'angularMoment',
     'ui-leaflet',
     'ngFileUpload',
     'angular-loading-bar',
     navigation,
     signIn,
+    setPassword,
     consumerList,
     myProfile,
 	reservationList,
@@ -66,6 +68,7 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
 ]);
 //Register environment in AngularJS as constant
 app.constant('__env', env);
+app.constant('moment', require('moment'));
 
 app.config(routing);
 
@@ -82,6 +85,7 @@ app.factory('TokenService', TokenService);
 app.factory('AuthService', AuthService);
 app.service('ReservationService', ReservationService);
 app.service('LendingService', LendingService);
+app.service('DeliveryService', DeliveryService);
 
 app.directive('focusOnCondition', ['$timeout',
     function ($timeout) {
@@ -118,4 +122,5 @@ app.directive('focusOnCondition', ['$timeout',
 //         console.error(error.message + ' ' + error.);
 //     });
 // })
+
 export default MODULE_NAME;

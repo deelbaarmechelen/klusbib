@@ -3,31 +3,31 @@
 <div id="page-top" data-ng-controller="HomeController">
 	<div data-ng-view></div>
 
-    <section id="warning" style="padding:20px">
-        <div class="container ">
-            <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-            <h2 class="section-heading">! Aandacht !</h2>
-            <hr class="primary">
-                <p>
-                    Naar aanleiding van de corona crisis zijn een aantal extra maatregelen van kracht, volg de instructies ter plaatse. Het dragen van een mondmasker is verplicht tijdens je bezoek.<br>
-                    Voor zover mogelijk, graag op voorhand je toestellen reserveren, zodat we ze voor jou al klaar kunnen zetten.
-                    Stuur ons een berichtje met vermelding van je naam, gewenste toestel(len) en periode <a href="mailto:info@klusbib.be"><i class="fa fa-envelope-o fa-2x sr-contact"></i></a><br>
-<!--                    Stuur ons een berichtje om datum en uur af te spreken <a href="mailto:info@klusbib.be"><i class="fa fa-envelope-o fa-2x sr-contact"></i></a><br>-->
-                    Voor alle laatste updates verwijzen we graag naar onze facebook pagina <a href="https://www.facebook.com/DeelbaarMechelen/"><i class="fa fa-facebook fa-2x"></i></a></p>
-            </div>
-            </div>
-        </div>
-    </section>
+<!--    <section id="warning" style="padding:20px">-->
+<!--        <div class="container ">-->
+<!--            <div class="row">-->
+<!--            <div class="col-lg-8 col-lg-offset-2 text-center">-->
+<!--            <h2 class="section-heading">Aandacht</h2>-->
+<!--            <hr class="primary">-->
+<!--                <p>-->
+<!--                    Naar aanleiding van de corona crisis zijn een aantal extra maatregelen van kracht, volg de instructies ter plaatse. <br/>-->
+<!--                    Het dragen van een mondmasker is verplicht tijdens je bezoek.<br>-->
+<!--                    &lt;!&ndash;Voor zover mogelijk, graag op voorhand je toestellen reserveren, zodat we ze voor jou al klaar kunnen zetten.-->
+<!--                    Stuur ons een berichtje met vermelding van je naam, gewenste toestel(len) en periode <a href="mailto:info@klusbib.be"><i class="fa fa-envelope-o fa-2x sr-contact"></i></a><br>&ndash;&gt;-->
+<!--                    Voor alle laatste updates verwijzen we graag naar onze facebook pagina <a href="https://www.facebook.com/DeelbaarMechelen/"><i class="fa fa-facebook fa-2x"></i></a></p>-->
+<!--            </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
     <section class="bg-primary" id="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h1 id="homeHeading">Welkom bij Klusbib!</h1>
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h1 id="homeHeading">Welkom bij Klusbib</h1>
                     <h2 class="subtitle">Ons adres: Potterijstraat 5 te Mechelen
                     </h2>
-                <hr>
-<!--                     <h2 class="section-heading">Klusbib</h2> -->
+                    <hr>
+    <!--                     <h2 class="section-heading">Klusbib</h2> -->
                     <hr class="light">
                     <p class="text-faded">de betaalbare en ecologische bibliotheek voor	werktuigen in Mechelen</p>
                     <p> Klusbib is een gereedschapsbibliotheek waar Mechelaars allerhande gereedschap voor huis en tuin kunnen ontlenen</p>
@@ -35,22 +35,12 @@
                     (Vanaf het tweede jaar rekenen we 20 euro voor het lidmaatschap)</p>
                     <hr class="light">
                     <p> Openingsuren: </p>
-                    <div class="col-lg-6 text-center">
-                        <p>November tot Februari<br>
-                            Maandag 19u - 20u<br>
-                            Woensdag 13u - 16u<br>
-                            Vrijdag 19u - 20u<br>
-                            Zaterdag 9u - 10u</p>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <p>Maart tot Oktober<br>
-                            Maandag 18u30 - 20u30<br>
-                            Woensdag 13u - 16u<br>
-                            Vrijdag 18u30 - 20u30<br>
-                            Zaterdag 9u - 10u</p>
-                    </div>
+                    <p> Maandag 18u30 - 20u30<br>
+                        Woensdag 13u - 15u30<br>
+                        Vrijdag 18u30 - 20u30<br>
+                        Zaterdag 9u - 10u</p>
                     <p>Klusbib is een initiatief van Deelbaar Mechelen vzw (ondernemingsnummer:
-                    <a class="light" href="http://kbopub.economie.fgov.be/kbopub/toonondernemingps.html?lang=nl&ondernemingsnummer=674379236">0674.379.236</a>)</p>
+                        <a class="light" href="http://kbopub.economie.fgov.be/kbopub/toonondernemingps.html?lang=nl&ondernemingsnummer=674379236">0674.379.236</a>)</p>
                 </div>
             </div>
         </div>
@@ -59,16 +49,10 @@
    <section id="where" >
          <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
+                <div class="col-md-10 col-md-offset-1 text-center">
                    <h2 class="section-heading">Ons adres</h2>
                     <hr class="primary">
                     <leaflet id="map" center="map.center" markers="map.markers" class="w3-round-large w3-greyscale" style="height: 400px;"></leaflet>
- 	    	        <!-- Add Google Maps -->
-<!-- 	    	        <ui-gmap-google-map class="w3-round-large w3-greyscale" -->
-<!-- 	    	        	center='map.center' zoom='map.zoom' draggable="true">-->
-<!--						<ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id"></ui-gmap-marker> 	    	        -->
-<!-- 	    	        </ui-gmap-google-map>-->
-<!-- 		        	<div id="map" class="w3-round-large w3-greyscale" style="height: 400px;"></div> -->
 		        	<p>
 		        		<i class="fa fa-map-marker fa-3x"></i>
         				Potterijstraat 5 te Mechelen
@@ -85,7 +69,7 @@
     <section id="contact">
          <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
                 
                     <h2 class="section-heading">Laat van je horen!</h2>
                     <hr class="primary">
@@ -146,7 +130,7 @@
     <section class="bg-primary" id="faq">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
                     <h2 class="section-heading">Veelgestelde vragen</h2>
                     <hr class="light">
                     <h3 >Waarom een klusbib?</h3>
@@ -160,18 +144,21 @@
                     allerhande gereedschap dat slechts zelden gebruikt wordt. Een win-win dus waar de uitdagingen voor een sociale en 
                     klimaatvriendelijke stad hand in hand gaan.</p>
                     <h3>Wie zijn we?</h3>
-                    <p class="text-faded">Dit initiatief wordt gedragen door enkele Mechelaars die vorig jaar samenkwamen 
-                    omdat ze geloofden in de toekomst van de deeleconomie <br>
+                    <p class="text-faded">Dit initiatief wordt gedragen door enkele Mechelaars die de handen uit de mouwen staken
+                    omdat ze geloven in de toekomst van de deeleconomie <br>
                     Klusbib is een initiatief van Deelbaar Mechelen vzw, welke volledig draait op vrijwilligers
                     </p>
                     <h3 >Hoe werkt het?</h3>
                     <p class="text-faded">
                         Voor een vast bedrag van 30 euro ben je een jaar <a class="light" ui-sref="enrolment({'#': ''})">lid</a> van Klusbib. Je kan dan tot maximaal 5 werktuigen gedurende 1 week ontlenen,
-                        met optie tot verlenging met nog een week.
+                        met optie tot verlenging met nog een week.<br>
+                        Voor het tweede en de daaropvolgende jaren rekenen we 20 euro aan
                     </p>
                     <p class="text-faded">
-                        Voor het tweede en de daaropvolgende jaren rekenen we 20 euro aan<br>
-                        Alle details staan beschreven in de <a class="light" href="/docs/KlusbibAfspraken.pdf">klusbib afspraken</a>
+                        De meeste toestellen kunnen dan gratis ontleend worden. <br>
+                        Voor een aantal toestellen vragen we wel een vaste verbruikskost om de slijtage te dekken en ook verbruiksmaterialen worden apart aangerekend
+                        (zie ook <a class="light" href="/docs/PrijslijstKlusbib.pdf">prijslijst</a>)<br>
+                        Alle details zijn terug te vinden in de <a class="light" href="/docs/KlusbibAfspraken-20210701.pdf">klusbib afspraken</a> en <a class="light" href="/docs/PrivacyVerklaring-20210701.pdf">privacy verklaring</a>.<br>
                     </p>
                     <h3 >Waar kan ik jullie vinden?</h3>
                     <p class="text-faded">
@@ -180,6 +167,11 @@
                     <h3>Wat kan er zoal ontleend worden?</h3>
                     <p class="text-faded">
                     Een overzicht van onze werktuigen vind je op de online <a class="light" ui-sref="tools({'#': ''})">inventaris</a>.
+                    </p>
+                    <h3 >Kunnen verenigingen ook aansluiten?</h3>
+                    <p class="text-faded">
+                        Jazeker! Verenigingen kunnen lid worden voor 75 euro (50 euro vanaf het tweede jaar). Je duidt dan 1 contactpersoon aan voor de administratie
+                        en tot 3 medewerkers die materiaal in naam van je vereniging mogen komen ontlenen
                     </p>
                     <h3 >Ik wil helpen</h3>
                     <p class="text-faded">

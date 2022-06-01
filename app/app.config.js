@@ -22,6 +22,23 @@ export default function routing($stateProvider, $urlRouterProvider) {
 			    }
 	  }
 
+	var setPwdState = {
+		name: 'setpwd',
+		url: '/setpwd',
+		views: {
+			nav: {
+				component: 'navigation'
+			},
+			main: {
+				component: 'setPassword'
+			}
+		},
+		resolve: {
+			inverse: function() {
+				return true;
+			}
+		}
+	}
 	  var consumersState = {
 			    name: 'consumers',
 			    url: '/consumers',
@@ -115,23 +132,32 @@ export default function routing($stateProvider, $urlRouterProvider) {
 				}
 	  }
 	  var resetPwdState = {
-			    name: 'reset-pwd',
-			    url: '/reset-pwd?email',
-			    views: {
-			    	nav: {
-			    		component: 'navigation'
-			    	},
-			    	main: {
-			    		template: require('./enrolment/reset-pwd.view.html'),
-				    	controller: 'EnrolmentController as vm'
-			    	}
-			    },
-			    resolve: {
-			    	inverse: function() {
-			    		return true;
-			        }
-			    }
-			  }
+			name: 'reset-pwd',
+			url: '/reset-pwd?email',
+			views: {
+				nav: {
+					component: 'navigation'
+				},
+				main: {
+					template: require('./enrolment/reset-pwd.view.html'),
+					controller: 'EnrolmentController as vm'
+				}
+			},
+			resolve: {
+				inverse: function() {
+					return true;
+				}
+			},
+			lazyLoad: function ($transition$) {
+			  var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+			  return import(/* webpackPrefetch: true , webpackChunkName: "enrolment.module" */ './enrolment/enrolment.module.js')
+				  // return System.import(/* webpackChunkName: "enrolment.module" */'./enrolment/enrolment.module.js')
+				  .then(mod => $ocLazyLoad.load(mod.ENROLMENT_MODULE))
+				  .catch(err => {
+					  throw new Error("Ooops, something went wrong, " + err);
+				  });
+			}
+	  }
     var homeFutureState = {
         name: 'home.**',
         url: '/home',
@@ -173,23 +199,10 @@ export default function routing($stateProvider, $urlRouterProvider) {
                 });
         }
     }
-    var volunteerFutureState = {
-        name: 'volunteer.**',
-        url: '/vrijwilligers',
-        // lazy load the volunteer module here
-        lazyLoad: function ($transition$) {
-            var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-			return import(/* webpackPrefetch: true , webpackChunkName: "volunteer.module" */ './volunteer/volunteer.module.js')
-            // return System.import(/* webpackChunkName: "volunteer.module" */'./volunteer/volunteer.module.js')
-				.then(mod => $ocLazyLoad.load(mod.VOLUNTEER_MODULE))
-                .catch(err => {
-                    throw new Error("Ooops, something went wrong, " + err);
-                });
-        }
-	 }
 
 	$stateProvider.state(homeFutureState);
 	$stateProvider.state(signInState);
+	$stateProvider.state(setPwdState);
     $stateProvider.state(consumersState);
     $stateProvider.state(reservationsState);
     $stateProvider.state(toolAdminState);
@@ -198,7 +211,6 @@ export default function routing($stateProvider, $urlRouterProvider) {
     $stateProvider.state(enrolmentFutureState);
     $stateProvider.state(resetPwdState);
     $stateProvider.state(toolsFutureState);
-    $stateProvider.state(volunteerFutureState);
 
 	$urlRouterProvider.otherwise('/home')
 };

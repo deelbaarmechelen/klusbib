@@ -2,7 +2,7 @@
 export default class ToolDetailController {
 
     constructor($http, calendarConfig,  __env,
-        User, ReservationService, Flash, calendarEventTitle ) {
+        User, ReservationService, Flash, calendarEventTitle, $state ) {
 
         this.$http = $http;
         this.moment = require('moment');
@@ -12,10 +12,11 @@ export default class ToolDetailController {
         this.ReservationService = ReservationService;
         this.Flash = Flash;
         this.calendarEventTitle = calendarEventTitle;
+        this.$state = $state;
 
         var self = this;
         self.user = User.get();
-        self.isLogged = !!self.user.id
+        self.isLogged = !!self.user && (!!self.user.id || self.user.id == 0); // user id 0 is a valid user!
 
         // Availability
         self.showAvailability = true;
@@ -25,6 +26,8 @@ export default class ToolDetailController {
                 return 'Aanwezig';
             } else if (tool.state == 'IN_USE') {
                 return 'Uitgeleend';
+            } else if (tool.state == 'RESERVED') {
+                return 'Reservatie';
             } else if (tool.state == 'MAINTENANCE') {
                 return 'Onderhoud';
             }
@@ -35,6 +38,8 @@ export default class ToolDetailController {
                 return 'badge available';
             } else if (tool.state == 'IN_USE') {
                 return 'badge in-use';
+            } else if (tool.state == 'RESERVED') {
+                return 'badge reserved';
             } else if (tool.state == 'MAINTENANCE') {
                 return 'badge maintenance';
             }
@@ -57,10 +62,22 @@ export default class ToolDetailController {
                         // Fifth argument (boolean, optional) is the visibility of close button for this flash.
                         // Returns the unique id of flash message that can be used to call Flash.dismiss(id); to dismiss the flash message.
                         var id = self.Flash.create('success', 'Reservatie aanvraag succesvol ingediend', 5000);
+                        // TODO: redirect to profile page
+                        self.$state.go('profile', {'#': 'reservations', 'userId' : self.user.id});
                     } else {
                         var id = self.Flash.create('danger', response.message, 0);
                     }
                 });
+        }
+        self.dateOptions = {
+            minDate : new Date(),
+            dateDisabled: disabled // call disabled(data) function for each date to check if it should be disabled
+        };
+        // Disable selection for days we're closed
+        function disabled(data) {
+            var date = data.date,
+                mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 2 || date.getDay() === 4);
         }
         self.startDatePicker = {
             opened: false
@@ -77,6 +94,7 @@ export default class ToolDetailController {
         // self.showCalendar = self.isLogged;
         self.showCalendar = false;
         self.calendarView = 'month';
+        // self.excludedDays = [0, 2, 4];
         self.viewDate = new Date();
         var previousDate = this.moment(self.viewDate);
 
@@ -270,4 +288,4 @@ export default class ToolDetailController {
 }
 
 ToolDetailController.$inject = ['$http', 'calendarConfig', '__env',
-    'User', 'ReservationService', 'Flash', 'calendarEventTitle'];
+    'User', 'ReservationService', 'Flash', 'calendarEventTitle', '$state'];

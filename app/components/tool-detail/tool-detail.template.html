@@ -75,13 +75,13 @@
 
 
     <div ng-if="$ctrl.canAddReservation">
-    	<h2>Reserveren (in test fase)</h2>
+    	<h2>Reserveren</h2>
 			<p class="input-group" style="max-width: 300px">
 				<span class="input-group-addon" id="start-date-label">Van</span> <input
 					type="text" class="form-control" uib-datepicker-popup
 					ng-model="$ctrl.reservationStartDate"
 					is-open="$ctrl.startDatePicker.opened"
-					datepicker-options="dateOptions" close-text="Sluiten"
+					datepicker-options="$ctrl.dateOptions" close-text="Sluiten"
 					aria-describedby="start-date-label"
 					ng-change="$ctrl.updtReservationEndDate()"
 					ng-init="$ctrl.reservationStartDate = $ctrl.now(); $ctrl.updtReservationEndDate()" />
@@ -146,7 +146,9 @@
 	   	on-event-click="$ctrl.eventClicked(calendarEvent)"
 	    on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
 	    cell-is-open="true"
-	    on-timespan-click="$ctrl.timespanClicked(calendarDate, calendarCell)">
+	    on-timespan-click="$ctrl.timespanClicked(calendarDate, calendarCell)"
+<!--		excluded-days="$ctrl.excludedDays"-->
+	>
 	</mwl-calendar>
 	</div>				
 	<br><br><br>

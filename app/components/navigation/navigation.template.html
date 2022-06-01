@@ -35,12 +35,6 @@
                     <li>
                         <a ui-sref="tools">Inventaris</a>
                     </li>
-                    <li>
-                        <a ui-sref="volunteer" >Vrijwilligers</a>
-                    </li>
-<!--                     <li> -->
-<!--                         <a href="//forum.klusbib.be">Forum</a> -->
-<!--                     </li> -->
 					<li data-ng-if="!$ctrl.isLogged()" ><a ui-sref="signin">Inloggen</a></li>
 					<li data-ng-if="$ctrl.isLogged()"><a ui-sref="profile({ userId: $ctrl.user.id })" >Mijn Profiel ({{$ctrl.user.id}})</a></li>
 					<li data-ng-if="$ctrl.isLogged()"><a ui-sref="signin" ng-click="$ctrl.logout()">Uitloggen</a></li>

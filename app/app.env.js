@@ -4,8 +4,7 @@ export default function envConfig(window) {
     window.__env = window.__env || {};
 
     // API url
-    // window.__env.apiUrl = 'http://klusbibapi';
-    window.__env.apiUrl = 'https://api.klusbib.be';
+    window.__env.apiUrl = 'https://api.test.klusbib.be';
 
     // Base url
     window.__env.baseUrl = '/';
