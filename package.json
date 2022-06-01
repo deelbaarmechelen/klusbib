@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "description": "A tool library",
   "engines": {
-    "node": "8.11.1",
-    "yarn": ">= 1.0.0"
+    "npm": "8.x",
+    "node": "16.x",
+    "yarn": "1.x"
   },
   "repository": "https://github.com/deelbaarmechelen/klusbib",
   "license": "AGPLv3",
@@ -102,6 +103,19 @@
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "yarn run update-webdriver",
     "protractor": "protractor e2e-tests/protractor.conf.js",
+    "cypress:open": "cypress open",
+    "db:api:test:reset": "ssh cypress.test.klusbib dokku run api vendor/bin/phinx seed:run -s DatabaseResetSeeder -s ProjectsTableSeeder -s UsersTableSeeder -e dev",
+    "db:inventory:test:reset": "ssh cypress.test.klusbib dokku run inventory php artisan --force module:seed Klusbib",
+    "db:reset": "run-script-os",
+    "db:reset:windows": "dotenv -- cross-var %API_PATH%\\vendor\\bin\\phinx rollback --configuration %API_PATH%\\phinx.php -e dev -t 0 && dotenv -- cross-var %API_PATH%\\vendor\\bin\\phinx seed:run --configuration %API_PATH%\\phinx.php -s DatabaseResetSeeder -e dev",
+    "db:migrate": "run-script-os",
+    "db:migrate:windows": "dotenv -- cross-var %API_PATH%\\vendor\\bin\\phinx migrate --configuration %API_PATH%\\phinx.php -e dev && dotenv -- cross-var %API_PATH%\\vendor\\bin\\phinx seed:run --configuration %API_PATH%\\phinx.php -s ProjectsTableSeeder -e dev",
+    "db:seed": "run-script-os",
+    "db:seed:windows": "dotenv -- cross-var %API_PATH%\\vendor\\bin\\phinx seed:run --configuration %API_PATH%\\phinx.php -s UsersTableSeeder -e dev",
+    "db:seed:default": "dotenv -- cross-var %API_PATH%/vendor/bin/phinx seed:run --configuration %API_PATH%/phinx.php -s UsersTableSeeder -e dev",
+    "db:seed:reset": "run-script-os",
+    "db:seed:reset:windows": "dotenv -- cross-var %API_PATH%\\vendor\\bin\\phinx seed:run --configuration %API_PATH%\\phinx.php -s DatabaseResetSeeder -s ProjectsTableSeeder -s UsersTableSeeder -e dev",
+    "db:seed:reset:default": "dotenv -- cross-var %API_PATH%/vendor/bin/phinx seed:run --configuration %API_PATH%/phinx.php -s DatabaseResetSeeder -s ProjectsTableSeeder -s UsersTableSeeder -e dev",
     "update-index-async": "node -e \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/node_modules/@bower_components/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=node_modules/@bower_components/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\""
   }
 }

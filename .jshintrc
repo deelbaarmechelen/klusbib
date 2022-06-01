@@ -1,6 +1,7 @@
 
 {
   "strict": "global",
+  "esversion": 6,
   "globals": {
     // Angular
     "angular": false,
