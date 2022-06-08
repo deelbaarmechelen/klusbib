@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -19,38 +20,52 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
-                query: {
+                options: {
                     presets: ['@babel/preset-env']
                 }
             },
             {
                 test: /\.(png|svg|jpe?g|gif)$/,
-                use: [
-                    'file-loader'
-                ]
+                type: 'asset/resource'
+                // use: [
+                //     'file-loader'
+                // ]
             },
             {
-                // HTML LOADER
-                // Reference: https://github.com/webpack/raw-loader
-                // Allow loading html through js
                 test: /\.html$/,
-                loader: 'raw-loader'
-                // loader: 'html-loader'
+                type: 'asset/source',
+                // exclude: __dirname + 'public/index.html'
             }
+            // {
+            //     // HTML LOADER
+            //     // Reference: https://github.com/webpack/raw-loader
+            //     // Allow loading html through js
+            //     test: /\.html$/,
+            //     loader: 'raw-loader',
+            //     type: 'javascript/auto'
+            //     // loader: 'html-loader'
+            // }
         ]
     },
     plugins: [
-    // new ExtractTextPlugin("styles.css")
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'Klusbib',
-            template: 'public/index.html'
+            filename: path.resolve(__dirname, 'dist/index.html'),
+            template: 'public/index.ejs'
         }),
-// Copy assets from the public folder
+        // Copy assets from the public folder
         // Reference: https://github.com/kevlened/copy-webpack-plugin
-        new CopyWebpackPlugin([{
-            from: __dirname + '/public'
-        }]),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: __dirname + '/public',
+                    globOptions: {
+                        ignore: ["**/public/index.ejs"],
+                    },
+                }
+            ]
+        }),
         new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /(nl|be)(?!-)/)
     ],
     mode: 'production'

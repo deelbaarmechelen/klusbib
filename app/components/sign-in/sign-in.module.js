@@ -13,7 +13,7 @@ export default angular.module('signIn', [
 ]).factory('Auth', signInFactory)
 .component('signIn', {
     scope: true,
-    template: require('./sign-in.template.html'),
+    template: require('./sign-in.template.html').default,
     controller: signInController
 }).name;
 

@@ -36,7 +36,7 @@ appToolList.config(['$httpProvider', function ($httpProvider) {
 appToolList.component('toolList', {
     bindings: { tools: '<', category: '<' , currentPage: '<', pageSize: '<', totalCount: '<'},
     controller : ToolListController,
-    template : require('./tool-list.template.html')
+    template : require('./tool-list.template.html').default
 });
 export default appToolList.name;
 

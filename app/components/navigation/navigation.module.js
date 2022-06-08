@@ -11,7 +11,7 @@ var appNavigation = angular.module('navigation', [
 ]);
 
 appNavigation.component('navigation', {
-    template : require('./navigation.template.html'),
+    template : require('./navigation.template.html').default,
     controller : navigationController,
     bindings: {
         items: '<items', // or items: '<' it depends on what binding you need

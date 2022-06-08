@@ -14,7 +14,7 @@ export default angular.module('setPassword', [
 ])
 .component('setPassword', {
     scope: true,
-    template: require('./set-pwd.template.html'),
+    template: require('./set-pwd.template.html').default,
     controller: SetPasswordController
 }).name;
 

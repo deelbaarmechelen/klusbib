@@ -9,7 +9,7 @@ export default function volunteerRouting($stateProvider) {
                 component: 'navigation'
             },
             main: {
-                template: require('./volunteer.view.html'),
+                template: require('./volunteer.view.html').default,
                 controller: 'VolunteerController'
             }
         },

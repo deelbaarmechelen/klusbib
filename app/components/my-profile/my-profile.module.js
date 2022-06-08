@@ -28,7 +28,7 @@ angular.module('myProfile').config(['$httpProvider', function ($httpProvider) {
 angular.module('myProfile').
 component('myProfile', {
     bindings: {user: '<'},
-    template: require('./my-profile.template.html'),
+    template: require('./my-profile.template.html').default,
     controller: MyProfileController
 });
 

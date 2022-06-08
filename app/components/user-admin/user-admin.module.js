@@ -9,7 +9,7 @@ angular.module('userAdmin', [
 angular.module('userAdmin').
 component('userAdmin', {
     // bindings: {user: '<'},
-    template: require('./user-admin.template.html'),
+    template: require('./user-admin.template.html').default,
     controller: UserAdminController
 });
 export default angular.module('userAdmin').name;

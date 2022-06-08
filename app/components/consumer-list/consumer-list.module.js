@@ -4,7 +4,7 @@ import angular from 'angular';
 angular.module('consumerList', []);
 
 angular.module('consumerList').component('consumerList', {
-    template : require('./consumer-list.template.html'),
+    template : require('./consumer-list.template.html').default,
     controller :
         [ '$http', '__env', function ToolListController($http, __env) {
             var self = this;

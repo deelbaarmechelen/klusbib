@@ -9,7 +9,7 @@ export default function routing($stateProvider) {
                 component: 'navigation'
             },
             main: {
-                template: require('./enrolment.view.html'),
+                template: require('./enrolment.view.html').default,
                 controller: 'EnrolmentController as vm'
             }
         },
@@ -29,7 +29,7 @@ export default function routing($stateProvider) {
         url: '/form',
         views: {
             enrolment: {
-                template: require('./enrolment.form.view.html'),
+                template: require('./enrolment.form.view.html').default,
                 controller: 'EnrolmentController as vm'
             }
         },
@@ -44,7 +44,7 @@ export default function routing($stateProvider) {
         url: '/payment',
         views: {
             enrolment: {
-                template: require('./enrolment.payment.view.html'),
+                template: require('./enrolment.payment.view.html').default,
                 controller: 'EnrolmentController as vm'
             }
         },
@@ -59,7 +59,7 @@ export default function routing($stateProvider) {
         url: '/confirm/:orderId',
         views: {
             enrolment: {
-                template: require('./enrolment.confirm.view.html'),
+                template: require('./enrolment.confirm.view.html').default,
                 controller: 'EnrolmentConfirmController as vm'
             }
         },
@@ -74,7 +74,7 @@ export default function routing($stateProvider) {
         url: '/resume?email',
         views: {
             enrolment: {
-                template: require('./enrolment.resume.view.html'),
+                template: require('./enrolment.resume.view.html').default,
                 controller: 'EnrolmentController as vm'
             }
         },
@@ -90,7 +90,7 @@ export default function routing($stateProvider) {
         // parent: 'enrolment.payment',
         views: {
             enrolment: {
-                template: require('./enrolment.payment.view.html'),
+                template: require('./enrolment.payment.view.html').default,
                 controller: 'EnrolmentController as vm'
             }
         },

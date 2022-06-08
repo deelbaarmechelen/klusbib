@@ -10,7 +10,7 @@ angular.module('toolAdmin').
 component('toolAdmin', {
     // bindings: {tool: '<'},
     // template: require('./index_demo.html'),
-    template: require('./tool-admin.template.html'),
+    template: require('./tool-admin.template.html').default,
     controller: ToolAdminController
 });
 export default angular.module('toolAdmin').name;
