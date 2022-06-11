@@ -7,3 +7,4 @@ export const HOME_MODULE = angular.module(MODULE_NAME, []);
 
 HOME_MODULE.config(routing);
 HOME_MODULE.controller('HomeController', HomeController);
+export default HOME_MODULE.name;

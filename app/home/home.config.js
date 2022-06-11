@@ -8,7 +8,7 @@ export default function routing($stateProvider) {
                 component: 'navigation',
             },
             main: {
-                template: require('./home.view.html').default,
+                template: require('./home.view.html'),
                 controller: 'HomeController'
 //	    		css: 'home/css/creative.css'
             }

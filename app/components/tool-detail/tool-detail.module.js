@@ -57,7 +57,7 @@ angular.module('toolDetail').factory('alert', function ($uibModal) {
 
 angular.module('toolDetail').component('toolDetail', {
     bindings: {tool: '<'},
-    template: require('./tool-detail.template.html').default,
+    template: require('./tool-detail.template.html'),
     controller: ToolDetailController
 });
 export default angular.module('toolDetail').name;

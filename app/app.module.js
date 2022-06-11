@@ -21,11 +21,11 @@ import routing from './app.config.js';
 import navigation from './components/navigation/navigation.module.js';
 import signIn from './components/sign-in/sign-in.module.js';
 import setPassword from './components/set-pwd/set-pwd.module';
-import consumerList from './components/consumer-list/consumer-list.module.js';
-import myProfile from './components/my-profile/my-profile.module.js';
-import reservationList from './components/reservation-list/reservation-list.module.js';
-import toolAdmin from './components/tool-admin/tool-admin.module.js';
-import userAdmin from './components/user-admin/user-admin.module.js';
+// import myProfile from './components/my-profile/my-profile.module.js';
+// import reservationList from './components/reservation-list/reservation-list.module.js';
+//import toolAdmin from './components/tool-admin/tool-admin.module.js';
+//import userAdmin from './components/user-admin/user-admin.module.js';
+import homeModule from './home/home.module.js';
 
 import AuthService from './services/auth.service.js';
 import TokenService from './services/token.service.js';
@@ -48,7 +48,8 @@ if(window){
 
 const MODULE_NAME = 'toollibApp';
 
-var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
+var app = angular.module(MODULE_NAME, [
+    'oc.lazyLoad',
     uirouter,
     ngFlash,
 	cssProvider,
@@ -57,13 +58,13 @@ var app = angular.module(MODULE_NAME, ['oc.lazyLoad',
     'ngFileUpload',
     'angular-loading-bar',
     navigation,
+    homeModule,
     signIn,
     setPassword,
-    consumerList,
-    myProfile,
-	reservationList,
-    toolAdmin,
-    userAdmin
+    // myProfile,
+	// reservationList,
+//    toolAdmin,
+//    userAdmin
 //	'enrolment'
 ]);
 //Register environment in AngularJS as constant
