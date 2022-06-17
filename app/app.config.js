@@ -67,32 +67,6 @@ export default function routing($stateProvider, $urlRouterProvider) {
                 });
         }
     }
-    var toolAdminFutureState = {
-        name: 'tool-admin',
-        url: '/tool-admin',
-        views: {
-            nav: {
-                component: 'navigation'
-            },
-            main: {
-                component: 'toolAdmin',
-                // component: 'myProfile',
-            }
-        },
-        resolve: {
-            inverse: function () {
-                return true;
-            }
-        },
-		lazyLoad: function ($transition$) {
-			var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-			return import(/* webpackChunkName: "tool-admin.module" */ './components/tool-admin/tool-admin.module.js')
-				.then(mod => $ocLazyLoad.load(mod.TOOL-ADMIN_MODULE))
-				.catch(err => {
-					throw new Error("Ooops, something went wrong, " + err);
-				});
-		}
-    }
     var userAdminFutureState = {
         name: 'user-admin',
         url: '/user-admin',
@@ -109,14 +83,14 @@ export default function routing($stateProvider, $urlRouterProvider) {
                 return true;
             }
         },
-		lazyLoad: function ($transition$) {
-			var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-			return import(/* webpackChunkName: "user-admin.module" */ './components/user-admin/user-admin.module.js')
-				.then(mod => $ocLazyLoad.load(mod.USER-ADMIN_MODULE))
-				.catch(err => {
-					throw new Error("Ooops, something went wrong, " + err);
-				});
-		}
+		// lazyLoad: function ($transition$) {
+		// 	var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+		// 	return import(/* webpackChunkName: "user-admin.module" */ './components/user-admin/user-admin.module.js')
+		// 		.then(mod => $ocLazyLoad.load(mod.USER-ADMIN_MODULE))
+		// 		.catch(err => {
+		// 			throw new Error("Ooops, something went wrong, " + err);
+		// 		});
+		// }
     }
     var profileFutureState = {
         name: 'profile',
@@ -139,14 +113,14 @@ export default function routing($stateProvider, $urlRouterProvider) {
             inverse: function () {
                 return true;
             }
-        },
-        lazyLoad: function ($transition$) {
-            var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-            return import(/* webpackPrefetch: true , webpackChunkName: "my-profile.module" */'./components/my-profile/my-profile.module.js')
-                .then(mod => $ocLazyLoad.load(mod.MY-PROFILE_MODULE))
-                .catch(err => {
-                    throw new Error("Ooops, something went wrong, " + err);
-                });
+        // },
+        // lazyLoad: function ($transition$) {
+        //     var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        //     return import(/* webpackPrefetch: true , webpackChunkName: "my-profile.module" */'./components/my-profile/my-profile.module.js')
+        //         .then(mod => $ocLazyLoad.load(mod.MYPROFILE_MODULE))
+        //         .catch(err => {
+        //             throw new Error("Ooops, something went wrong, " + err);
+        //         });
         }
     }
     var resetPwdFutureState = {
@@ -190,6 +164,20 @@ export default function routing($stateProvider, $urlRouterProvider) {
         }
     }
 
+    var adminFutureState = {
+        name: 'admin.**',
+        url: '/admin'
+        // lazy load the admin module here
+        // lazyLoad: function ($transition$) {
+        //     var $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        //     return import(/* webpackPrefetch: true , webpackChunkName: "admin.module" */'./admin/admin.module.js')
+        //         .then(mod => $ocLazyLoad.load(mod.ADMIN_MODULE))
+        //         .catch(err => {
+        //             throw new Error("Ooops, something went wrong, " + err);
+        //         });
+        // }
+    }
+
     var enrolmentFutureState = {
         name: 'enrolment.**',
         url: '/lid-worden',
@@ -207,12 +195,12 @@ export default function routing($stateProvider, $urlRouterProvider) {
     $stateProvider.state(signInState);
     $stateProvider.state(setPwdState);
     $stateProvider.state(reservationsFutureState);
-    $stateProvider.state(toolAdminFutureState);
     $stateProvider.state(userAdminFutureState);
     $stateProvider.state(profileFutureState);
     $stateProvider.state(enrolmentFutureState);
     $stateProvider.state(resetPwdFutureState);
     $stateProvider.state(toolsFutureState);
+    //$stateProvider.state(adminFutureState);
 
     $urlRouterProvider.otherwise('/home')
 };

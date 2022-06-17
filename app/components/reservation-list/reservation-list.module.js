@@ -2,11 +2,11 @@ import angular from 'angular';
 import ngResource from 'angular-resource';
 import ReservationListController from './reservation-list.component.js';
 
-var appReservationList = angular.module('reservationList', [
+let RESERVALTION_LIST = angular.module('reservationList', [
     ngResource
 ]);
 
-appReservationList.config(['$httpProvider', function ($httpProvider) {
+RESERVALTION_LIST.config(['$httpProvider', function ($httpProvider) {
 	$httpProvider.interceptors.push(['$q', '$localStorage', function ($q, $localStorage) {
         return {
             'request': function (config) {
@@ -27,10 +27,11 @@ appReservationList.config(['$httpProvider', function ($httpProvider) {
     }]);
 }]);
 
-angular.module('reservationList').component('reservationList', {
+RESERVALTION_LIST.component('reservationList', {
     bindings: {user: '<'},
     template : require('./reservation-list.template.html').default,
     controller :ReservationListController
 });
-export default angular.module('reservationList').name;
+export {RESERVALTION_LIST};
+//export default angular.module('reservationList').name;
 

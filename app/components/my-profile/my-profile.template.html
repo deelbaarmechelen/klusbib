@@ -1,7 +1,6 @@
 
 <flash-message></flash-message>
-<!--<a class="btn btn-primary" ui-sref="tool-admin()" ng-if="$ctrl.showAdminLinks()">Beheer tools</a>-->
-<a class="btn btn-primary" ui-sref="user-admin()" ng-if="$ctrl.showAdminLinks()">Beheer gebruikers</a>
+<a class="btn btn-primary" ui-sref="user-admin" ng-if="$ctrl.showAdminLinks()">Beheer gebruikers</a>
 <section id="user_data">
 <h2>Mijn gegevens</h2>
 <form name="form" ng-submit="$ctrl.updateUser()" role="form">

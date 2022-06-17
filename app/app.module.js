@@ -21,11 +21,11 @@ import routing from './app.config.js';
 import navigation from './components/navigation/navigation.module.js';
 import signIn from './components/sign-in/sign-in.module.js';
 import setPassword from './components/set-pwd/set-pwd.module';
-// import myProfile from './components/my-profile/my-profile.module.js';
+import myProfile from './components/my-profile/my-profile.module.js';
 // import reservationList from './components/reservation-list/reservation-list.module.js';
-//import toolAdmin from './components/tool-admin/tool-admin.module.js';
-//import userAdmin from './components/user-admin/user-admin.module.js';
+import userAdmin from './components/user-admin/user-admin.module.js';
 import homeModule from './home/home.module.js';
+//import adminModule from './admin/admin.module.js';
 
 import AuthService from './services/auth.service.js';
 import TokenService from './services/token.service.js';
@@ -61,10 +61,10 @@ var app = angular.module(MODULE_NAME, [
     homeModule,
     signIn,
     setPassword,
-    // myProfile,
+    myProfile,
 	// reservationList,
-//    toolAdmin,
-//    userAdmin
+    //adminModule,
+    userAdmin
 //	'enrolment'
 ]);
 //Register environment in AngularJS as constant

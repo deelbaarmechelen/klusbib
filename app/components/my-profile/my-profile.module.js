@@ -1,10 +1,10 @@
 import angular from 'angular';
 import MyProfileController from './my-profile.component.js';
 
-angular.module('myProfile', [
+let MYPROFILE_MODULE = angular.module('myProfile', [
 ]);
 
-angular.module('myProfile').config(['$httpProvider', function ($httpProvider) {
+MYPROFILE_MODULE.config(['$httpProvider', function ($httpProvider) {
 	$httpProvider.interceptors.push(['$q', '$localStorage', function ($q, $localStorage) {
         return {
             'request': function (config) {
@@ -25,18 +25,16 @@ angular.module('myProfile').config(['$httpProvider', function ($httpProvider) {
     }]);
 }]);
 
-angular.module('myProfile').
-component('myProfile', {
+MYPROFILE_MODULE.component('myProfile', {
     bindings: {user: '<'},
-    template: require('./my-profile.template.html').default,
+    template: require('./my-profile.template.html'),
     controller: MyProfileController
 });
 
 // filter array by @field {String}
 // return items from @daysBefore {Number} ago to @daysAfter {Number} from now
 // eg: events | recentAndUpcoming:'StartDateTime':7:30
-angular.module('myProfile').
-filter('recentAndUpcoming', ['moment', function(moment){
+MYPROFILE_MODULE.filter('recentAndUpcoming', ['moment', function(moment){
     return function(items, field, daysBefore, daysAfter){
         var timeStart = moment().subtract(daysBefore, 'days');
         var timeEnd = moment().add(daysAfter, 'days');
@@ -50,8 +48,7 @@ filter('recentAndUpcoming', ['moment', function(moment){
 // filter deliveries by date
 // return items from @daysBefore {Number} ago to @daysAfter {Number} from now
 // eg: events | recentAndUpcomingDeliveries:7:30
-angular.module('myProfile').
-filter('recentAndUpcomingDeliveries', ['moment', function(moment){
+MYPROFILE_MODULE.filter('recentAndUpcomingDeliveries', ['moment', function(moment){
     return function(items, daysBefore, daysAfter){
         var timeStart = moment().subtract(daysBefore, 'days');
         var timeEnd = moment().add(daysAfter, 'days');
@@ -63,4 +60,5 @@ filter('recentAndUpcomingDeliveries', ['moment', function(moment){
         });
     };
 }]);
-export default angular.module('myProfile').name;
+// export {MYPROFILE_MODULE};
+export default MYPROFILE_MODULE.name;
