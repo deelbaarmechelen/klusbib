@@ -29,7 +29,6 @@
     "dayjs": "^1.11.2",
     "font-awesome": "^4.6.3",
     "http-server": "^14.1.1",
-    "interact": "^0.0.3",
     "js-rich-marker": "^1.1.2",
     "lodash": "^4.17.21",
     "magnific-popup": "^1.1.0",

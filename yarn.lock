@@ -3594,20 +3594,6 @@ domhandler@^4.0.0, domhandler@^4.2.0, domhandler@^4.3.1:
   dependencies:
     domelementtype "^2.2.0"
 
-domnode-dom@~0.0.X:
-  version "0.0.4"
-  resolved "https://registry.npmjs.org/domnode-dom/-/domnode-dom-0.0.4.tgz"
-  integrity sha512-LY+BiHFBH0Xh9lplT/I2Jp+HP85ixk00j8Q+xGgFPk2xRrTp5BCC8VnFM0oKuklQFzUal34fARHSRmilxYwSNQ==
-  dependencies:
-    domnode "~0.0.3"
-
-domnode@~0.0.3:
-  version "0.0.3"
-  resolved "https://registry.npmjs.org/domnode/-/domnode-0.0.3.tgz"
-  integrity sha512-Axc62VjE0gf5EP5f1PlbsvdN4+xGmg57OYJmr2CpmiFIu07SWUJnA1XzwZ1ryxFxtDMCmtxG/I7JVBbHjo1mLQ==
-  dependencies:
-    mustache "0.4.0"
-
 domutils@^2.5.2, domutils@^2.8.0:
   version "2.8.0"
   resolved "https://registry.npmjs.org/domutils/-/domutils-2.8.0.tgz"
@@ -3629,14 +3615,6 @@ dotenv@^8.2.0:
   version "8.2.0"
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-8.2.0.tgz"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
-
-drag-stream@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.npmjs.org/drag-stream/-/drag-stream-0.0.3.tgz"
-  integrity sha512-Ev0iVtUoRErL0BBt8SlrZjjRktzwvIaDOPG82vWfm4iNMpIyKrlz23VgU60VdWh2T1WmK6wrCZv8+sH14jHOZg==
-  dependencies:
-    domnode-dom "~0.0.X"
-    through "~2.2.1"
 
 duplexer@^0.1.2:
   version "0.1.2"
@@ -4167,11 +4145,6 @@ fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
-
-fullscreen@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/fullscreen/-/fullscreen-0.0.1.tgz"
-  integrity sha512-reSW+p0jF2ZtUS0pcS+RT4oyAFceCurRbTuVGBimGs3oNM6+MSUF5I9H7lUWlb82e696Mnu+QPbwTPeTUU+3yg==
 
 function-bind@^1.1.1:
   version "1.1.1"
@@ -4726,15 +4699,6 @@ ini@^1.3.4:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
   integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
-
-interact@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.npmjs.org/interact/-/interact-0.0.3.tgz"
-  integrity sha512-cOJWm7UktmKpxyeM0UyhdVr3D/4W68JUWopD7+xpKWtW9yJREDyw2EQvTsIqFYw3bN/CHM30d84vrH60iuHlWg==
-  dependencies:
-    drag-stream "0.0.3"
-    fullscreen "0.0.1"
-    pointer-lock "0.0.3"
 
 interactjs@^1.2.0:
   version "1.10.11"
@@ -5626,11 +5590,6 @@ multicast-dns@^7.2.5:
     dns-packet "^5.2.2"
     thunky "^1.0.2"
 
-mustache@0.4.0:
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/mustache/-/mustache-0.4.0.tgz"
-  integrity sha512-lOIx6XdcDjwR2JApJUO4LuQ7rN2oT41NSphYEBqFKZOa/M+mRKnHZgpa6wbCEFQ1GE0iNZLh7UV3xXc1+8Z+YQ==
-
 nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
@@ -6010,11 +5969,6 @@ plugin-error@^0.1.2:
     arr-diff "^1.0.1"
     arr-union "^2.0.1"
     extend-shallow "^1.1.2"
-
-pointer-lock@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.npmjs.org/pointer-lock/-/pointer-lock-0.0.3.tgz"
-  integrity sha1-KwZ1ykgkw95Qly0aKDCb584KNfc=
 
 portfinder@^1.0.28:
   version "1.0.28"
@@ -7377,11 +7331,6 @@ through@^2.3.8, through@~2.3.6:
   version "2.3.8"
   resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
-
-through@~2.2.1:
-  version "2.2.7"
-  resolved "https://registry.npmjs.org/through/-/through-2.2.7.tgz"
-  integrity sha1-bo4hIAGR1OtqmfbwEN9Gqhxusr0=
 
 thunky@^1.0.2:
   version "1.1.0"
