@@ -212,11 +212,8 @@ export default function UserAdminController(UserService, EnrolmentService, $scop
         if (!user) {
             return false;
         }
-        if (user.state != "ACTIVE"
-            && user.state != "EXPIRED") {
-            return false;
-        }
-        return true;
+        return (user.state === "ACTIVE"
+            || user.state === "EXPIRED");
     }
     self.Renewal = function (user) {
         if (user.state === 'ACTIVE' || user.state === 'EXPIRED') {
