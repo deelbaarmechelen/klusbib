@@ -15,6 +15,8 @@
     	// add stylesheet(s)
 		// no longer needed as loaded in app.module.js by webpack?
         // $css.add('./css/creative.css');
+		// speecqvest: 51.02156,4.48496
+		// 2 markers op de kaart plaatsen?
 
 		$scope.map = {
 			center : {
@@ -23,9 +25,15 @@
 				zoom: 17
 			},
 			markers : {
-				klusbibMarker: {
+				potterijMarker: {
 					lat: 51.022066,
-					lng: 4.482764
+					lng: 4.482764,
+					message: "Potterijstraat 5 (tot 20/1)"
+				},
+				speecqvestMarker: {
+					lat: 51.02156,
+					lng: 4.48496,
+					message: "Speecqvest 11 (vanaf 23/1)"
 				},
 			}
 		},
