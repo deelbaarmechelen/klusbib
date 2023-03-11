@@ -315,7 +315,7 @@ footer .footer-below {
   /*padding: 25px;*/
 }
 .sponsor-container {
-  display: grid;
+  display: fluid-grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 100px 100px;
   grid-auto-flow: row;
