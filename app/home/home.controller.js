@@ -25,11 +25,6 @@
 				zoom: 17
 			},
 			markers : {
-				potterijMarker: {
-					lat: 51.022066,
-					lng: 4.482764,
-					message: "Potterijstraat 5 (tot 20/1)"
-				},
 				speecqvestMarker: {
 					lat: 51.02156,
 					lng: 4.48496,
