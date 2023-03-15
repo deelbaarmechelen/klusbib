@@ -25,7 +25,7 @@ export default class DeliveryService {
     /*{
         "user_id" : 1,
         "state" : "REQUESTED",
-        "pick_up_address": "potterij",
+        "pick_up_address": "H. Speecqvest 11",
         "drop_off_address" : "there",
         "drop_off_date" : "2020-10-26"
     }*/

@@ -305,7 +305,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
 
     self.confirmDeliveryRequest = function(delivery) {
         console.log('delivery confirmation  ' + JSON.stringify(delivery));
-        delivery.pick_up_address = 'Potterij 5, 2800 Mechelen';
+        delivery.pick_up_address = 'H. Speecqvest 11, 2800 Mechelen';
         delivery.pick_up_date = null;
         delivery.state = 'REQUESTED';
         delivery.type = 'DROPOFF';
@@ -323,7 +323,7 @@ export default function MyProfileController($http, __env, UserService, Reservati
     };
     self.confirmPickUpRequest = function(delivery) {
         console.log('pick up confirmation  ' + JSON.stringify(delivery));
-        delivery.drop_off_address = 'Potterij 5, 2800 Mechelen';
+        delivery.drop_off_address = 'H. Speecqvest 11, 2800 Mechelen';
         delivery.drop_off_date = null;
         delivery.state = 'REQUESTED';
         delivery.type = 'PICKUP';

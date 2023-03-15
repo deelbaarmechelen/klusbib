@@ -28,13 +28,15 @@
 				speecqvestMarker: {
 					lat: 51.02156,
 					lng: 4.48496,
-					message: "Speecqvest 11 (vanaf 23/1)"
+					message: "Speecqvest 11"
 				},
 			}
-		},
+		};
 		$scope.defaults = {
 			scrollWheelZoom: false
-		}
+		};
+
+		$scope.address = 'Speecqvest 11 te Mechelen';
 
 		$scope.menuItems = [
 			{'label': 'Over ons', 'href': '/#!/#about'}, 

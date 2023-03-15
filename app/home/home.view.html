@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
                     <h1 id="homeHeading">Welkom bij Klusbib</h1>
-                    <h2 class="subtitle">Ons adres: Potterijstraat 5 te Mechelen
+                    <h2 class="subtitle">Ons adres: {{ address }}
                     </h2>
                     <hr>
     <!--                     <h2 class="section-heading">Klusbib</h2> -->
@@ -55,7 +55,7 @@
                     <leaflet id="map" center="map.center" markers="map.markers" class="w3-round-large w3-greyscale" style="height: 400px;"></leaflet>
 		        	<p>
 		        		<i class="fa fa-map-marker fa-3x"></i>
-                        Speecqvest 11 te Mechelen
+                        {{ address }}
        				</p>
 <!--					<p>-->
 <!--		        		<i class="fa fa-phone fa-3x"></i>-->
@@ -162,7 +162,7 @@
                     </p>
                     <h3 >Waar kan ik jullie vinden?</h3>
                     <p class="text-faded">
-                    Je kan de Klusbib vinden in de Potterijstraat 5 te Mechelen.
+                    Je kan de Klusbib vinden in {{ address }}.
                     </p>
                     <h3>Wat kan er zoal ontleend worden?</h3>
                     <p class="text-faded">
