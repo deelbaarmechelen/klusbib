@@ -1,7 +1,7 @@
 User-agent: *
 Disallow: /test/
 Disallow: /e2e-tests/
-Disallow: /
-Allow: /$
+Disallow: / # disallow all sub directories
+Allow: /$   # allow root directory
+Allow: /?*$
 
-User-agent: Googlebot-Image
