@@ -45,18 +45,6 @@
         <input type="tel" name="phone" id="phone" class="form-control" ng-model="vm.user.phone" size="20" maxlength="20" required/>
         <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block">Telefoon is vereist</span>
     </div>
-    <div class="form-group" ng-class="{ 'has-error': form.registration_number.$touched && (form.registration_number.$error.required ||
-     form.registration_number.$invalid) }">
-        <label for="registration_number">Rijksregisternummer *</label>
-        <span id="helpRegistrationNumber" class="help-block">(te vinden op de achterkant van je identiteitskaart)</span>
-        <input type="text" name="registration_number" id="registration_number" class="form-control"
-               ng-model="vm.user.registration_number" ng-minlength="11" ng-maxlength="11" size="11" aria-describedby="helpRegistrationNumber" required/>
-        <span ng-show="form.registration_number.$touched && form.registration_number.$error.required"
-              class="help-block">Rijksregisternummer is vereist</span>
-        <span ng-show="form.registration_number.$touched && form.registration_number.$invalid"
-              class="help-block">Rijksregisternummer is ongeldig (geef enkel de 11 nummers in)</span>
-    </div>
-
 
     <p>
         Lees ook eerst de Klusbib afspraken en privacyverklaring:<br>
