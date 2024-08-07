@@ -1,3 +1,6 @@
+# Deprecated
+Due to the migration to [Lend Engine](https://www.lend-engine.com), this repository is now deprecated and no longer maintained
+
 # Klusbib
 
 Web application to facilitate the lending of work tools
